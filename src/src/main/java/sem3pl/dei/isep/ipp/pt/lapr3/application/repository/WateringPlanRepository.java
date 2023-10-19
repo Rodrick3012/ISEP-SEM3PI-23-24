@@ -1,7 +1,7 @@
-package sem3pl.dei.isep.ipp.pt.repository;
+package sem3pl.dei.isep.ipp.pt.lapr3.application.repository;
 
-import sem3pl.dei.isep.ipp.pt.domain.Watering;
-import sem3pl.dei.isep.ipp.pt.domain.WateringPlan;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Watering;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringPlan;
 
 import java.util.*;
 

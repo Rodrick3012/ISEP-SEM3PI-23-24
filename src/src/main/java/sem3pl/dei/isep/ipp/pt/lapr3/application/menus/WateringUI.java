@@ -1,7 +1,7 @@
-package sem3pl.dei.isep.ipp.pt.application.menus;
+package sem3pl.dei.isep.ipp.pt.lapr3.application.menus;
 
-import sem3pl.dei.isep.ipp.pt.application.FarmCoordinator;
-import sem3pl.dei.isep.ipp.pt.application.controller.WateringController;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.WateringController;
 
 import java.util.Scanner;
 
@@ -9,6 +9,9 @@ public class WateringUI implements Runnable {
     private final WateringController wateringController = new WateringController();
     private final Scanner sc = new Scanner(System.in);
     public WateringUI(){
+        System.out.println("Welcome to Watering Menu!");
+        System.out.println();
+        wateringMenu();
     }
 
     public void run(){
@@ -16,6 +19,7 @@ public class WateringUI implements Runnable {
     }
 
     private void wateringMenu(){
+        System.out.println("Choose a functionality of the watering menu to do");
         System.out.println();
         System.out.println("1. Select a File to import and create Watering Plan");
         System.out.println("2. View the Sectors are Watering");
@@ -26,15 +30,24 @@ public class WateringUI implements Runnable {
         switch (option){
             case 1:
                 selectFile();
+                break;
             case 2:
                // wateringConditions();
+                break;
             case 3:
-                FarmCoordinator farmCoordinator = new FarmCoordinator();
-                farmCoordinator.run();
+                System.out.println("Do you really want to exit this menu?");
+                sc.nextLine();
+                String exitOption = sc.nextLine();
+                if(exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")) {
+                    FarmCoordinator farmCoordinator = new FarmCoordinator();
+                    farmCoordinator.run();
+                }
+                break;
             default:
                 System.out.println("Invalid Option. Please Try Again.");
                 System.out.println();
                 wateringMenu();
+                break;
         }
     }
     private void selectFile(){

@@ -1,10 +1,10 @@
-package sem3pl.dei.isep.ipp.pt.application.controller;
+package sem3pl.dei.isep.ipp.pt.lapr3.application.controller;
 
 
-import sem3pl.dei.isep.ipp.pt.domain.Watering;
-import sem3pl.dei.isep.ipp.pt.domain.WateringPlan;
-import sem3pl.dei.isep.ipp.pt.domain.WateringTimeRegularity;
-import sem3pl.dei.isep.ipp.pt.repository.WateringPlanRepository;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Watering;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringPlan;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringTimeRegularity;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.repository.WateringPlanRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -85,7 +85,7 @@ public class WateringController {
     }
 
     public Map<Character, Boolean> verifiesThatIsWatering(WateringPlan wateringPlan, Integer month, Integer day, Integer hour, Integer minute) {
-        Map<Character, Boolean> sectoresAreWatering = new HashMap<>();
+        Map<Character, Boolean> sectorsAreWatering = new HashMap<>();
         for (Map.Entry<Watering, List<Calendar>> entry : wateringPlan.getWateringCalendar().entrySet()) {
             Watering watering = entry.getKey();
             List<Calendar> calendarList = entry.getValue();
@@ -97,9 +97,9 @@ public class WateringController {
                     break;
                 }
             }
-            sectoresAreWatering.put(watering.getAgriculturalParcelSector(), verification);
+            sectorsAreWatering.put(watering.getAgriculturalParcelSector(), verification);
         }
-        return sectoresAreWatering;
+        return sectorsAreWatering;
     }
 
     public List<WateringPlan> getWateringPlanList() {
