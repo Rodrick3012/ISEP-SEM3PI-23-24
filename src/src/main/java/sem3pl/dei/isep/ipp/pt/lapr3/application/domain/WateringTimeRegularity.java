@@ -30,4 +30,7 @@ public class WateringTimeRegularity {
         return Objects.hash(wateringRegularity);
     }
 
+    public String toString(){
+        return String.format("%s", wateringRegularity);
+    }
 }

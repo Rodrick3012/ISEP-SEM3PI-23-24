@@ -2,7 +2,10 @@ package sem3pl.dei.isep.ipp.pt.lapr3.application.menus;
 
 import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.WateringController;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringPlan;
 
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class WateringUI implements Runnable {
@@ -26,32 +29,39 @@ public class WateringUI implements Runnable {
         System.out.println("3. Exit");
         System.out.println();
         System.out.println("Select a option: ");
-        int option = sc.nextInt();
-        switch (option){
-            case 1:
-                selectFile();
-                break;
-            case 2:
-               // wateringConditions();
-                break;
-            case 3:
-                System.out.println("Do you really want to exit this menu?");
-                sc.nextLine();
-                String exitOption = sc.nextLine();
-                if(exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")) {
-                    FarmCoordinator farmCoordinator = new FarmCoordinator();
-                    farmCoordinator.run();
-                }
-                break;
-            default:
-                System.out.println("Invalid Option. Please Try Again.");
-                System.out.println();
-                wateringMenu();
-                break;
+        try {
+            int option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    selectFile();
+                    break;
+                case 2:
+                    // wateringConditions();
+                    break;
+                case 3:
+                    System.out.println("Do you really want to exit this menu?");
+                    sc.nextLine();
+                    String exitOption = sc.nextLine();
+                    if (exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")) {
+                        FarmCoordinator farmCoordinator = new FarmCoordinator();
+                        farmCoordinator.run();
+                    } else wateringMenu();
+                    break;
+                default:
+                    System.out.println("Invalid Option. Please Try Again.");
+                    System.out.println();
+                    wateringMenu();
+                    break;
+            }
+        } catch (InputMismatchException e){
+            System.out.println("Invalid Option. Please Try Again.");
+            System.out.println();
+            wateringMenu();
         }
     }
     private void selectFile(){
         System.out.println("Write the file name to read: ");
+        sc.nextLine();
         String fileName = sc.nextLine();
         boolean success = wateringController.readFile(fileName);
         if(success){
@@ -63,4 +73,8 @@ public class WateringUI implements Runnable {
         wateringMenu();
     }
 
+    private void listWateringPlans(){
+        List<WateringPlan> wateringPlans = wateringController.getWateringPlanList();
+        int i = 0;
+    }
 }

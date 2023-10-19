@@ -49,4 +49,8 @@ public class Watering {
     public int hashCode() {
         return Objects.hash(agriculturalParcelSector, wateringMinutes, wateringTimeRegularity);
     }
+
+    public String toString(){
+        return String.format("%c, %d, %s", agriculturalParcelSector, wateringMinutes, wateringTimeRegularity.toString());
+    }
 }

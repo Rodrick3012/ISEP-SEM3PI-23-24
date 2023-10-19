@@ -37,4 +37,14 @@ public class WateringPlan {
     public int hashCode() {
         return Objects.hash(wateringHours, wateringList, wateringCalendar);
     }
+
+    public String toString(){
+        String hours = String.format("(%s)", wateringHours);
+        List<String> wateringListFormat = new ArrayList<>();
+        for(Watering watering : wateringList){
+            String wateringFormat = String.format("%s%n", watering.toString());
+            wateringListFormat.add(wateringFormat);
+        }
+        return String.format("%s%n(%s)", hours, wateringListFormat);
+    }
 }

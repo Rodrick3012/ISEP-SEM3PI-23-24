@@ -2,6 +2,7 @@ package sem3pl.dei.isep.ipp.pt;
 
 import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ApplicationChooser implements Runnable {
@@ -19,26 +20,32 @@ public class ApplicationChooser implements Runnable {
         System.out.println("3. Exit");
         System.out.println();
         System.out.println("Select a option: ");
-        int option = sc.nextInt();
-        switch (option){
-            case 1:
-                FarmCoordinator farmCoordinator = new FarmCoordinator();
-                farmCoordinator.run();
-                break;
-            case 2:
-                System.out.println("App in Development.");
-                System.out.println();
-                applicationChooserMenu();
-                break;
-            case 3:
-                System.out.println("Exiting...");
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Invalid Option. Please Try Again.");
-                System.out.println();
-                applicationChooserMenu();
-                break;
+        try {
+            int option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    FarmCoordinator farmCoordinator = new FarmCoordinator();
+                    farmCoordinator.run();
+                    break;
+                case 2:
+                    System.out.println("App in Development.");
+                    System.out.println();
+                    applicationChooserMenu();
+                    break;
+                case 3:
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid Option. Please Try Again.");
+                    System.out.println();
+                    applicationChooserMenu();
+                    break;
+            }
+        } catch (InputMismatchException e){
+            System.out.println("Invalid Option. Please Try Again.");
+            System.out.println();
+            applicationChooserMenu();
         }
     }
 }

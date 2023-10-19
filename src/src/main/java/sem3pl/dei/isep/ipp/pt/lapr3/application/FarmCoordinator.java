@@ -2,6 +2,7 @@ package sem3pl.dei.isep.ipp.pt.lapr3.application;
 
 import sem3pl.dei.isep.ipp.pt.lapr3.application.menus.WateringUI;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FarmCoordinator implements Runnable {
@@ -22,26 +23,32 @@ public class FarmCoordinator implements Runnable {
         System.out.println("2. Exit");
         System.out.println();
         System.out.println("Select your option: ");
-        int option = sc.nextInt();
-        switch(option){
-            case 1:
-                WateringUI wateringUI = new WateringUI();
-                wateringUI.run();
-                break;
-            case 2:
-                System.out.println("Do you really want to exit the app?");
-                sc.nextLine();
-                String exitOption = sc.nextLine();
-                if(exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")){
-                    System.out.println("Exiting the app...");
-                    System.exit(0);
-                }
-                break;
-            default:
-                System.out.println("Invalid Option. Please Try Again.");
-                System.out.println();
-                farmCoordinatorMenu();
-                break;
+        try {
+            int option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    WateringUI wateringUI = new WateringUI();
+                    wateringUI.run();
+                    break;
+                case 2:
+                    System.out.println("Do you really want to exit the app?");
+                    sc.nextLine();
+                    String exitOption = sc.nextLine();
+                    if (exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")) {
+                        System.out.println("Exiting the app...");
+                        System.exit(0);
+                    } else farmCoordinatorMenu();
+                    break;
+                default:
+                    System.out.println("Invalid Option. Please Try Again.");
+                    System.out.println();
+                    farmCoordinatorMenu();
+                    break;
+            }
+        } catch (InputMismatchException e){
+            System.out.println("Invalid Option. Please Try Again.");
+            System.out.println();
+            farmCoordinatorMenu();
         }
     }
 }
