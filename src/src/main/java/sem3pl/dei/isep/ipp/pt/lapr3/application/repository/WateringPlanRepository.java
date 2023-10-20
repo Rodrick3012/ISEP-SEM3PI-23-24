@@ -1,5 +1,6 @@
 package sem3pl.dei.isep.ipp.pt.lapr3.application.repository;
 
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.DateInterval;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Watering;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringPlan;
 
@@ -16,7 +17,7 @@ public class WateringPlanRepository {
         return wateringPlanList;
     }
 
-    public boolean createWateringPlan(List<String> wateringHours, List<Watering>  wateringList, Map<Watering, List<Calendar>> wateringCalendar){
+    public boolean createWateringPlan(List<String> wateringHours, List<Watering>  wateringList, Map<Watering, List<DateInterval>> wateringCalendar){
         WateringPlan wateringPlan = new WateringPlan(wateringHours, wateringList, wateringCalendar);
         if(!hasDuplicate(wateringPlanList)){
             return addWateringPlan(wateringPlan);

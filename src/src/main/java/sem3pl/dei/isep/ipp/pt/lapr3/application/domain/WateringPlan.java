@@ -5,9 +5,9 @@ import java.util.*;
 public class WateringPlan {
     private final List<String> wateringHours;
     private final List<Watering> wateringList;
-    private final Map<Watering, List<Calendar>> wateringCalendar;
+    private final Map<Watering, List<DateInterval>> wateringCalendar;
 
-    public WateringPlan(List<String> wateringHours, List<Watering> wateringList, Map<Watering, List<Calendar>> wateringCalendar) {
+    public WateringPlan(List<String> wateringHours, List<Watering> wateringList, Map<Watering, List<DateInterval>> wateringCalendar) {
         this.wateringHours = wateringHours;
         this.wateringList = wateringList;
         this.wateringCalendar = wateringCalendar;
@@ -21,7 +21,7 @@ public class WateringPlan {
         return wateringList;
     }
 
-    public Map<Watering, List<Calendar>> getWateringCalendar() {
+    public Map<Watering, List<DateInterval>> getWateringCalendar() {
         return wateringCalendar;
     }
 

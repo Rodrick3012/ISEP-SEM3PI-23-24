@@ -1,6 +1,7 @@
 package sem3pl.dei.isep.ipp.pt.lapr3.application.controller;
 
 
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.DateInterval;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Watering;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringPlan;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringTimeRegularity;
@@ -23,14 +24,12 @@ public class WateringController {
         List<Watering> wateringList = new ArrayList<>();
         try {
             Scanner sc = new Scanner(new File(fileName));
-            while (sc.hasNext(" ")) {
-                String firstLine = sc.nextLine();
-                String[] hours = firstLine.split(",");
-                int i = 0;
-                while (i < hours.length) {
+            String firstLine = sc.nextLine();
+            String[] hours = firstLine.split(", ");
+            int i = 0;
+            while (i < hours.length) {
                     wateringHours.add(hours[i]);
                     i++;
-                }
             }
             while (sc.hasNextLine()) {
                 String nextLine = sc.nextLine();
@@ -45,9 +44,9 @@ public class WateringController {
     }
 
     private boolean createWateringPlan(List<String> wateringHours, List<Watering> wateringList){
-        Map<Watering, List<Calendar>> wateringCalendar = new HashMap<>();
+        Map<Watering, List<DateInterval>> wateringCalendar = new HashMap<>();
         for(Watering watering : wateringList){
-            List<Calendar> tempCalendarList = new ArrayList<>();
+            List<DateInterval> dateIntervalList = new ArrayList<>();
             Calendar newCalendar = Calendar.getInstance();
             for(String wateringHour : wateringHours) {
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
@@ -62,7 +61,6 @@ public class WateringController {
                             interval = 2;
                             break;
                         case "I":
-                            interval = 2;
                             newCalendar.add(Calendar.DATE, 1);
                             break;
                         case "3":
@@ -70,29 +68,47 @@ public class WateringController {
                             break;
                     }
                     for (int i = 0; i < 30; i += interval) {
+                        if(String.valueOf(watering.getWateringTimeRegularity()).equals("I") && i % 2 == 0){
+                            continue;
+                        }
+                        if(String.valueOf(watering.getWateringTimeRegularity()).equals("P") && i % 2 != 0){
+                            continue;
+                        }
+                        if(String.valueOf(watering.getWateringTimeRegularity()).equals("3") && i % 3 != 0) {
+                            continue;
+                        }
                         Calendar tempCalendar = (Calendar) newCalendar.clone();
+                        Date startDate = tempCalendar.getTime();
                         tempCalendar.add(Calendar.DATE, i);
                         tempCalendar.set(Calendar.MINUTE, watering.getWateringMinutes());
-                        tempCalendarList.add(tempCalendar);
+                        Date endDate = tempCalendar.getTime();
+                        DateInterval dateInterval = new DateInterval(startDate, endDate);
+                        dateIntervalList.add(dateInterval);
                     }
                 } catch (ParseException e) {
                     return false;
                 }
             }
-            wateringCalendar.put(watering, tempCalendarList);
+            wateringCalendar.put(watering, dateIntervalList);
         }
         return wateringPlanRepository.createWateringPlan(wateringHours, wateringList, wateringCalendar);
     }
 
     public Map<Character, Boolean> verifiesThatIsWatering(WateringPlan wateringPlan, Integer month, Integer day, Integer hour, Integer minute) {
         Map<Character, Boolean> sectorsAreWatering = new HashMap<>();
-        for (Map.Entry<Watering, List<Calendar>> entry : wateringPlan.getWateringCalendar().entrySet()) {
+        Calendar cal = Calendar.getInstance();
+        cal.clear();
+        cal.set(Calendar.MONTH, month);
+        cal.set(Calendar.DATE, day);
+        cal.set(Calendar.HOUR, hour);
+        cal.set(Calendar.MINUTE, minute);
+        Date date = cal.getTime();
+        for (Map.Entry<Watering, List<DateInterval>> entry : wateringPlan.getWateringCalendar().entrySet()) {
             Watering watering = entry.getKey();
-            List<Calendar> calendarList = entry.getValue();
+            List<DateInterval> calendarList = entry.getValue();
             boolean verification = false;
-            for (Calendar calendar : calendarList) {
-                if (calendar.get(Calendar.MONTH) + 1 == month && calendar.get(Calendar.DATE) == day &&
-                        calendar.get(Calendar.HOUR_OF_DAY) == hour && calendar.get(Calendar.MINUTE) == minute) {
+            for (DateInterval dateInterval : calendarList) {
+                if (dateInterval.getStartDate().after(date) && dateInterval.getEndDate().before(date)) {
                     verification = true;
                     break;
                 }
