@@ -51,6 +51,7 @@ public class WateringController {
             for(String wateringHour : wateringHours) {
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
                 try {
+                    newCalendar.setTime(new Date());
                     Date date = sdf.parse(wateringHour);
                     newCalendar.setTime(date);
                     int interval = 1;
