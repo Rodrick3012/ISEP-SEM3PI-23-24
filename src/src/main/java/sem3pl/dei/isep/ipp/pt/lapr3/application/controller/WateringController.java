@@ -81,7 +81,7 @@ public class WateringController {
                         Calendar tempCalendar = (Calendar) newCalendar.clone();
                         Date startDate = tempCalendar.getTime();
                         tempCalendar.add(Calendar.DATE, i);
-                        tempCalendar.set(Calendar.MINUTE, watering.getWateringMinutes());
+                        tempCalendar.add(Calendar.MINUTE, watering.getWateringMinutes());
                         Date endDate = tempCalendar.getTime();
                         DateInterval dateInterval = new DateInterval(startDate, endDate);
                         dateIntervalList.add(dateInterval);
