@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class WateringController {
@@ -79,8 +80,9 @@ public class WateringController {
                             continue;
                         }
                         Calendar tempCalendar = (Calendar) newCalendar.clone();
-                        Date startDate = tempCalendar.getTime();
+                        tempCalendar.set(Calendar.MONTH, LocalDate.now().getMonthValue());
                         tempCalendar.add(Calendar.DATE, i);
+                        Date startDate = tempCalendar.getTime();
                         tempCalendar.add(Calendar.MINUTE, watering.getWateringMinutes());
                         Date endDate = tempCalendar.getTime();
                         DateInterval dateInterval = new DateInterval(startDate, endDate);
@@ -109,7 +111,7 @@ public class WateringController {
             List<DateInterval> calendarList = entry.getValue();
             boolean verification = false;
             for (DateInterval dateInterval : calendarList) {
-                if (dateInterval.getStartDate().after(date) && dateInterval.getEndDate().before(date)) {
+                if (date.after(dateInterval.getStartDate()) && date.before(dateInterval.getEndDate())) {
                     verification = true;
                     break;
                 }
