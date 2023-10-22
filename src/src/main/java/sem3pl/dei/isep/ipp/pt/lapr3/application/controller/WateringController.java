@@ -52,7 +52,6 @@ public class WateringController {
             for(String wateringHour : wateringHours) {
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
                 try {
-                    newCalendar.setTime(new Date());
                     Date date = sdf.parse(wateringHour);
                     newCalendar.setTime(date);
                     int interval = 1;
@@ -81,7 +80,13 @@ public class WateringController {
                         }
                         Calendar tempCalendar = (Calendar) newCalendar.clone();
                         tempCalendar.set(Calendar.MONTH, LocalDate.now().getMonthValue());
+                        tempCalendar.set(Calendar.DATE, LocalDate.now().getDayOfMonth());
+                        int daysInMonth = tempCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
                         tempCalendar.add(Calendar.DATE, i);
+                        if(tempCalendar.get(Calendar.DATE) > daysInMonth){
+                            tempCalendar.add(Calendar.MONTH, 1);
+                            tempCalendar.set(Calendar.DATE, 1);
+                        }
                         Date startDate = tempCalendar.getTime();
                         tempCalendar.add(Calendar.MINUTE, watering.getWateringMinutes());
                         Date endDate = tempCalendar.getTime();
@@ -97,8 +102,8 @@ public class WateringController {
         return wateringPlanRepository.createWateringPlan(wateringHours, wateringList, wateringCalendar);
     }
 
-    public Map<Character, Boolean> verifiesThatIsWatering(WateringPlan wateringPlan, Integer month, Integer day, Integer hour, Integer minute) {
-        Map<Character, Boolean> sectorsAreWatering = new HashMap<>();
+    public Map<Character, Integer> verifiesThatIsWatering(WateringPlan wateringPlan, Integer month, Integer day, Integer hour, Integer minute) {
+        Map<Character, Integer> sectorsAreWatering = new HashMap<>();
         Calendar cal = Calendar.getInstance();
         cal.clear();
         cal.set(Calendar.MONTH, month);
@@ -109,14 +114,15 @@ public class WateringController {
         for (Map.Entry<Watering, List<DateInterval>> entry : wateringPlan.getWateringCalendar().entrySet()) {
             Watering watering = entry.getKey();
             List<DateInterval> calendarList = entry.getValue();
-            boolean verification = false;
             for (DateInterval dateInterval : calendarList) {
                 if (date.after(dateInterval.getStartDate()) && date.before(dateInterval.getEndDate())) {
-                    verification = true;
+                    Calendar cal1 = Calendar.getInstance();
+                    cal1.setTime(dateInterval.getEndDate());
+                    int differenceMinutes = cal1.get(Calendar.MINUTE) - minute;
+                    sectorsAreWatering.put(watering.getAgriculturalParcelSector(), differenceMinutes);
                     break;
                 }
             }
-            sectorsAreWatering.put(watering.getAgriculturalParcelSector(), verification);
         }
         return sectorsAreWatering;
     }

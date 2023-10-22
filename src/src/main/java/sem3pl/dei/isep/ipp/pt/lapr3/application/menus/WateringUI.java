@@ -24,7 +24,7 @@ public class WateringUI implements Runnable {
         System.out.println("Choose a functionality of the watering menu to do");
         System.out.println();
         System.out.println("1. Select a File to import and create Watering Plan");
-        System.out.println("2. View the Sectors are Watering");
+        System.out.println("2. View the Sectors that being watered");
         System.out.println("3. Exit");
         System.out.println();
         System.out.println("Select a option: ");
@@ -35,7 +35,13 @@ public class WateringUI implements Runnable {
                     selectFile();
                     break;
                 case 2:
-                    selectWateringPlanAndWriteConditions();
+                    List<WateringPlan> wateringPlans = wateringController.getWateringPlanList();
+                    if(!wateringPlans.isEmpty()) {
+                        selectWateringPlanAndWriteConditions();
+                    } else {
+                        System.out.println("Empty data. Returning to menu...");
+                        wateringMenu();
+                    }
                     break;
                 case 3:
                     System.out.println("Do you really want to exit this menu?");
@@ -44,12 +50,13 @@ public class WateringUI implements Runnable {
                     if (exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")) {
                         FarmCoordinator farmCoordinator = new FarmCoordinator();
                         farmCoordinator.run();
-                    } else wateringMenu();
+                    } else {
+                        wateringMenu();
+                    }
                     break;
                 default:
                     System.out.println("Invalid Option. Please Try Again.");
                     System.out.println();
-                    sc.next();
                     wateringMenu();
                     break;
             }
@@ -81,104 +88,112 @@ public class WateringUI implements Runnable {
         int day = inputDay();
         int hour = inputHour();
         int minute = inputMinute();
-        Map<Character, Boolean> verificationWatering = wateringController.verifiesThatIsWatering(wateringPlan, month, day, hour, minute);
-        Iterator<Map.Entry<Character, Boolean>> iterator = verificationWatering.entrySet().iterator();
-        System.out.printf("Watering Status in %d of %d in %d:%d%n", day, month, hour, minute);
+        boolean checked = checkDateData(month, day, hour, minute);
+        if(checked) {
+            Map<Character, Integer> sectorsAreWatering = wateringController.verifiesThatIsWatering(wateringPlan, month, day, hour, minute);
+            Iterator<Map.Entry<Character, Integer>> iterator = sectorsAreWatering.entrySet().iterator();
+            System.out.println();
+            System.out.printf("Sectors are Watering in %d/%d, %d:%d%n", day, month, hour, minute);
+            System.out.println();
+            while (iterator.hasNext()) {
+                Map.Entry<Character, Integer> entry = iterator.next();
+                System.out.println("Sector: " + entry.getKey() + "\nMinutes Until End Watering: " + entry.getValue());
+            }
+            System.out.println();
+            wateringMenu();
+        } else wateringMenu();
+    }
+
+    private boolean checkDateData(int month, int day, int hour, int minute){
+        System.out.println("Inputted data: ");
+        System.out.printf("%d/%d , %d:%d", day, month, hour, minute);
         System.out.println();
-        while(iterator.hasNext()){
-            Map.Entry<Character, Boolean> entry = iterator.next();
-            System.out.println("Sector: " + entry.getKey() + " Watering: " + entry.getValue());
+        boolean checked = false;
+        System.out.println("Submit data?");
+        sc.nextLine();
+        String confirmation = sc.nextLine();
+        if(confirmation.equalsIgnoreCase("Yes") || confirmation.equalsIgnoreCase("Y")){
+            checked = true;
         }
-        System.out.println();
-        System.out.println("Press any key to leave...");
-        Scanner scanner = new Scanner(System.in);
-        try {
-            System.in.read();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            scanner.close();
-        }
-        sc.next();
-        wateringMenu();
+        return checked;
     }
 
     private int inputMonth() {
         System.out.println("Write the Month: ");
-        int month = 0;
+        int month;
         try {
             month = sc.nextInt();
             if (month <= 0 || month > 12) {
                 System.out.println("Invalid Month. Please Try Again.");
                 System.out.println();
                 sc.nextLine();
-                inputMonth();
+                return inputMonth();
             }
         } catch (InputMismatchException e) {
             System.out.println("Invalid Month. Please Try Again.");
             System.out.println();
             sc.next();
-            inputMonth();
+            return inputMonth();
         }
         return month;
     }
 
     private int inputDay() {
         System.out.println("Write the Day: ");
-        int day = 0;
+        int day;
         try {
             day = sc.nextInt();
             if (day <= 0 || day > 30) {
                 System.out.println("Invalid Day. Please Try Again.");
                 System.out.println();
                 sc.nextLine();
-                inputDay();
+                return inputDay();
             }
         } catch (InputMismatchException e) {
             System.out.println("Invalid Day. Please Try Again.");
             System.out.println();
             sc.next();
-            inputDay();
+            return inputDay();
         }
         return day;
     }
 
     private int inputHour() {
         System.out.println("Write the Hour: ");
-        int hour = -1;
+        int hour;
         try {
             hour = sc.nextInt();
             if (hour < 0 || hour > 24) {
                 System.out.println("Invalid Hour. Please Try Again.");
                 System.out.println();
                 sc.nextLine();
-                inputHour();
+                return inputHour();
             }
         } catch (InputMismatchException e) {
             System.out.println("Invalid Hour. Please Try Again.");
             System.out.println();
             sc.next();
-            inputHour();
+            return inputHour();
         }
         return hour;
     }
 
     private int inputMinute() {
         System.out.println("Write the Minute: ");
-        int minute = -1;
+        int minute;
         try {
             minute = sc.nextInt();
             if (minute < 0 || minute > 60) {
                 System.out.println("Invalid Minute. Please Try Again.");
                 System.out.println();
                 sc.nextLine();
-                inputMinute();
+                return inputMinute();
             }
         } catch (InputMismatchException e) {
             System.out.println("Invalid Minute. Please Try Again.");
             System.out.println();
             sc.next();
-            inputMinute();
+            return inputMinute();
         }
         return minute;
     }
