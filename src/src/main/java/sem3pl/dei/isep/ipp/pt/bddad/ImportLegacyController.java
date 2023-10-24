@@ -1,4 +1,4 @@
-package sem3pl.dei.isep.ipp.pt.lapr3.application.controller;
+package sem3pl.dei.isep.ipp.pt.bddad;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import static java.util.Calendar.DATE;
 
 
 public class ImportLegacyController {
