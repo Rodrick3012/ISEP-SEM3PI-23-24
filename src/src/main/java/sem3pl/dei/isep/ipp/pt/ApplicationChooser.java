@@ -39,7 +39,6 @@ public class ApplicationChooser implements Runnable {
                 default:
                     System.out.println("Invalid Option. Please Try Again.");
                     System.out.println();
-                    sc.next();
                     applicationChooserMenu();
                     break;
             }

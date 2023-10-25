@@ -19,7 +19,7 @@ public class FarmCoordinator implements Runnable {
     private void farmCoordinatorMenu(){
         System.out.println("Choose the functionality you want");
         System.out.println();
-        System.out.println("1. Access to Watering Menu");
+        System.out.println("1. Access to Watering Controller Menu");
         System.out.println("2. Exit");
         System.out.println();
         System.out.println("Select your option: ");
@@ -37,12 +37,13 @@ public class FarmCoordinator implements Runnable {
                     if (exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")) {
                         System.out.println("Exiting the app...");
                         System.exit(0);
-                    } else farmCoordinatorMenu();
+                    } else {
+                        farmCoordinatorMenu();
+                    }
                     break;
                 default:
                     System.out.println("Invalid Option. Please Try Again.");
                     System.out.println();
-                    sc.next();
                     farmCoordinatorMenu();
                     break;
             }
