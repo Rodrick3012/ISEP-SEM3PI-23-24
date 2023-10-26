@@ -41,10 +41,37 @@ public class ImportLegacyController {
         add("modo");
         add("operacao");
         add("fatorproducao");
+        add("dimensao");
+
     }};
 
 
+
     public List<String> readFile(String filename) {
+
+        Map<String, String> colheitaProductMapper = new HashMap<>();
+
+        colheitaProductMapper.put("Ameixoeira", "Ameixa");
+        colheitaProductMapper.put("Damasqueiro", "Damasco");
+        colheitaProductMapper.put("Macieira", "Maçã");
+        colheitaProductMapper.put("Cenoura", "Cenoura");
+        colheitaProductMapper.put("Tremoço", "Tremoço");
+        colheitaProductMapper.put("Milho", "Milho");
+        colheitaProductMapper.put("Oliveira", "Azeitona");
+        colheitaProductMapper.put("Nabo", "Nabo");
+        colheitaProductMapper.put("Videira", "Uva");
+        colheitaProductMapper.put("Nabo greleiro", "Nabo Greleiro");
+        colheitaProductMapper.put("Pera Nashi", "Peras Nashi");
+
+
+        Set<String> operacoes = new TreeSet<>();
+        operacoes.add("Plantação");
+        operacoes.add("Sementeira");
+        operacoes.add("Poda");
+        operacoes.add("Rega");
+        operacoes.add("Incorporação no solo");
+        operacoes.add("Colheita");
+
         String filePath = "/" + filename; // Note the leading forward slash
 
         List<String> insertStatements = new ArrayList<>();
@@ -100,6 +127,13 @@ public class ImportLegacyController {
                     List<String> datas = new ArrayList<>();
                     String typeOp = "";
 
+                    if (sheetName.equals("Plantacao")){
+                        insert.append("produto,");
+                        if (colheitaProductMapper.containsKey(row.getCell(1).getStringCellValue())){
+                            values.append("'"+colheitaProductMapper.get(row.getCell(1).getStringCellValue())+"',");
+                        }
+                    }
+
                     for (int i = 0; i < numColumns; i++) {
 
 
@@ -110,6 +144,9 @@ public class ImportLegacyController {
 
                         switch (columnName) {
                             case "Área":
+                                columnName = "area";
+                                break;
+                            case "Dimensão":
                                 columnName = "area";
                                 break;
                             case "Designação":
@@ -197,12 +234,7 @@ public class ImportLegacyController {
                         }
 
 
-                        Set<String> operacoes = new TreeSet<>();
-                        operacoes.add("Plantação");
-                        operacoes.add("Sementeira");
-                        operacoes.add("Poda");
-                        operacoes.add("Rega");
-                        operacoes.add("Incorporação no solo");
+
 
 
                         if (cell != null) {
@@ -239,7 +271,7 @@ public class ImportLegacyController {
                         }
 
 
-                        if (!typeOp.equals("Fertilização")) {
+                        if (operacoes.contains(typeOp)) {
                             atributosExploracao.remove("modo");
                             atributosExploracao.remove("fatorproducao");
                             atributosExploracao.add("tipooperacao");
@@ -258,12 +290,14 @@ public class ImportLegacyController {
 
                             }
 
-
                             if (columnName.equals("tipoPlantacao") || columnName.equals("unidade") ||
                                     columnName.equals("fabricante") || columnName.equals("formulacao") ||
                                     (columnName.equals("classificacao")) || columnName.equals("objetivo") ||
                                     columnName.equals("modo") || columnName.equals("tipooperacao")) {
+                                    if (columnName.matches("modo")&& cellValue.isEmpty()){
+                                        cellValue="Aplicação";
 
+                                    }
 
                                 String insertType = "Insert into " + columnName + "(" + columnName + ") select ('" + cellValue + "') FROM dual where not exists" +
                                         "( Select 1 From " + columnName + " Where  " + columnName + " = '" + cellValue + "');";
@@ -304,7 +338,7 @@ public class ImportLegacyController {
 
                                     String ficha = "Insert into  FichaTecnica (substancia,fatorproducao,percentagem) values " +
                                             "((select id from substancia where substancia like '" + cellValue + "')," +
-                                            "(select designacao from fatorproducao where designacao like '" + firstCell + "')," +
+                                            "(select designacao from fatorproducao where designacao like '" + firstCell.getStringCellValue().trim() + "')," +
                                             "'" + nextCell + "'); ";
 
                                     insertStatements.add(insertSubs);
@@ -356,7 +390,7 @@ public class ImportLegacyController {
                     values.append(");");
                     insert.append(values);
                     if (cont != 0) {
-                        if (typeOp.equals("Fertilização")) {
+                        if (!operacoes.contains(typeOp)) {
                             insertStatements.add(insert.toString().replace("Operacao", "operacaofatorproducao"));
 
                         } else {
