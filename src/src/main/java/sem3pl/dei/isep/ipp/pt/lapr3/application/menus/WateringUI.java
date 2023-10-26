@@ -24,8 +24,9 @@ public class WateringUI implements Runnable {
         System.out.println("Choose a functionality of the watering menu to do");
         System.out.println();
         System.out.println("1. Select a File to import and create Watering Plan");
-        System.out.println("2. View the Sectors that being watered");
-        System.out.println("3. Exit");
+        System.out.println("2. Generate a Watering Plan");
+        System.out.println("3. View the Sectors that being watered");
+        System.out.println("4. Exit");
         System.out.println();
         System.out.println("Select a option: ");
         try {
@@ -35,15 +36,21 @@ public class WateringUI implements Runnable {
                     selectFile();
                     break;
                 case 2:
-                    List<WateringPlan> wateringPlans = wateringController.getWateringPlanList();
-                    if(!wateringPlans.isEmpty()) {
-                        selectWateringPlanAndWriteConditions();
+                    if(verifyListIsNotEmpty()) {
+                        generateWateringPlan();
                     } else {
                         System.out.println("Empty data. Returning to menu...");
                         wateringMenu();
                     }
                     break;
                 case 3:
+                    if(verifyListIsNotEmpty()){
+                        selectWateringPlanAndWriteConditions();
+                    } else {
+                        System.out.println("Empty data. Returning to menu...");
+                        wateringMenu();
+                    }
+                case 4:
                     System.out.println("Do you really want to exit this menu?");
                     sc.nextLine();
                     String exitOption = sc.nextLine();
@@ -68,6 +75,11 @@ public class WateringUI implements Runnable {
         }
     }
 
+    private boolean verifyListIsNotEmpty(){
+        List<WateringPlan> wateringPlans = wateringController.getWateringPlanList();
+        return !wateringPlans.isEmpty();
+    }
+
     private void selectFile() {
         System.out.println("Write the file name to read: ");
         sc.nextLine();
@@ -82,15 +94,37 @@ public class WateringUI implements Runnable {
         wateringMenu();
     }
 
+    private void generateWateringPlan(){
+        WateringPlan wateringPlan = selectWateringPlan();
+        int year = inputYear();
+        int month = inputMonth();
+        int day = inputDay();
+        boolean checked = checkPlanDateData(year, month, day);
+        if(checked){
+            boolean verified = wateringController.generateWateringPlan(wateringPlan, year, month, day);
+            if(verified){
+                System.out.println("Watering plan successfully generated!");
+            }
+            else {
+                System.out.println("Error while watering plan being generated.");
+            }
+            System.out.println();
+            wateringMenu();
+        } else {
+            wateringMenu();
+        }
+    }
+
     private void selectWateringPlanAndWriteConditions() {
         WateringPlan wateringPlan = selectWateringPlan();
+        int year = inputYear();
         int month = inputMonth();
         int day = inputDay();
         int hour = inputHour();
         int minute = inputMinute();
-        boolean checked = checkDateData(month, day, hour, minute);
+        boolean checked = checkDateData(year, month, day, hour, minute);
         if(checked) {
-            Map<Character, Integer> sectorsAreWatering = wateringController.verifiesThatIsWatering(wateringPlan, month, day, hour, minute);
+            Map<Character, Integer> sectorsAreWatering = wateringController.verifiesThatIsWatering(wateringPlan, year, month, day, hour, minute);
             Iterator<Map.Entry<Character, Integer>> iterator = sectorsAreWatering.entrySet().iterator();
             System.out.println();
             System.out.printf("Sectors are Watering in %d/%d, %d:%d%n", day, month, hour, minute);
@@ -104,9 +138,9 @@ public class WateringUI implements Runnable {
         } else wateringMenu();
     }
 
-    private boolean checkDateData(int month, int day, int hour, int minute){
+    private boolean checkPlanDateData(int year, int month, int day){
         System.out.println("Inputted data: ");
-        System.out.printf("%d/%d , %d:%d", day, month, hour, minute);
+        System.out.printf("%d/%d/%d", day, month, year);
         System.out.println();
         boolean checked = false;
         System.out.println("Submit data?");
@@ -116,6 +150,40 @@ public class WateringUI implements Runnable {
             checked = true;
         }
         return checked;
+    }
+
+    private boolean checkDateData(int year, int month, int day, int hour, int minute){
+        System.out.println("Inputted data: ");
+        System.out.printf("%d/%d/%d , %d:%d", day, month, year, hour, minute);
+        System.out.println();
+        boolean checked = false;
+        System.out.println("Submit data?");
+        sc.nextLine();
+        String confirmation = sc.nextLine();
+        if(confirmation.equalsIgnoreCase("Yes") || confirmation.equalsIgnoreCase("Y")){
+            checked = true;
+        }
+        return checked;
+    }
+
+    private int inputYear(){
+        System.out.println("Write the Year: ");
+        int year;
+        try {
+            year = sc.nextInt();
+            if (year < 1970 || year > 99999) {
+                System.out.println("Invalid Year. Please Try Again.");
+                System.out.println();
+                sc.nextLine();
+                return inputMonth();
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid Year. Please Try Again.");
+            System.out.println();
+            sc.next();
+            return inputMonth();
+        }
+        return year;
     }
 
     private int inputMonth() {
