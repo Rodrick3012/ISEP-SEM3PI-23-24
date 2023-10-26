@@ -1,5 +1,3 @@
-/*us05 Como Gestor Agrícola, pretendo saber a quantidade de produtos colhidos numa dada
-parcela, para cada produto, num dado intervalo de tempo*/
 select parcela,plantacao.nomecomum,plantacao.variedade,count(*) as quantidade
 from operacao
 inner join plantacao on operacao.plantacao=plantacao.id
