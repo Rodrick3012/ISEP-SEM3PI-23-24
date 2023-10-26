@@ -1,4 +1,4 @@
-select parcela,classificacao.classificacao,count (fatorproducao)
+select parcela,classificacao.classificacao,count (fatorproducao) as aplicações
 from operacaofatorproducao
 inner join fatorproducao on operacaofatorproducao.fatorproducao=fatorproducao.designacao
 inner join classificacao on  classificacao.id=fatorproducao.classificacao
