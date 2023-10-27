@@ -22,7 +22,7 @@ public class ImportLegacyController {
         add("datapoda");
         add("datafloracao");
         add("datacolheita");
-        add("tipoplantacao");
+        add("tipoplanta");
         add("tipooperacao");
         add("parcela");
         add("cultura");
@@ -30,7 +30,7 @@ public class ImportLegacyController {
         add("datafinal");
         add("quantidade");
         add("unidade");
-        add("plantacao");
+        add("planta");
         add("fabricante");
         add("formulacao");
         add("classificacao");
@@ -91,7 +91,7 @@ public class ImportLegacyController {
                     int cont = 0;
                     String sheetName = sheet.getSheetName();
                     sheetName = switch (sheetName) {
-                        case "Plantas" -> "Plantacao";
+                        case "Plantas" -> "planta";
                         case "Exploração agrícola" -> "Edificio";
                         case "Fator Produção" -> "FatorProducao";
                         case "Culturas" -> "Cultura";
@@ -108,6 +108,13 @@ public class ImportLegacyController {
                         atributosExploracao.remove("classificacao");
                     } else {
                         atributosExploracao.add("classificacao");
+                    }
+
+                    if (sheetName.equalsIgnoreCase("operacao")){
+                        atributosExploracao.remove("planta");
+
+                    } else {
+                        atributosExploracao.add("planta");
                     }
 
 
@@ -127,7 +134,7 @@ public class ImportLegacyController {
                     List<String> datas = new ArrayList<>();
                     String typeOp = "";
 
-                    if (sheetName.equals("Plantacao")){
+                    if (sheetName.equals("planta")){
                         insert.append("produto,");
                         if (colheitaProductMapper.containsKey(row.getCell(1).getStringCellValue())){
                             values.append("'"+colheitaProductMapper.get(row.getCell(1).getStringCellValue())+"',");
@@ -162,7 +169,7 @@ public class ImportLegacyController {
                                 columnName = ("variedade");
                                 break;
                             case "Tipo Plantação":
-                                columnName = ("tipoPlantacao");
+                                columnName = ("tipoplanta");
                                 break;
                             case "Sementeira/Plantação":
                                 columnName = ("dataSementeira");
@@ -189,7 +196,13 @@ public class ImportLegacyController {
                                 columnName = ("unidade");
                                 break;
                             case "Cultura":
-                                columnName = ("plantacao");
+                                if (sheetName.equals("Cultura")){
+                                    columnName = ("planta");
+
+                                }else{
+                                    columnName = ("cultura");
+
+                                }
                                 break;
                             case "Fabricante":
                                 columnName = ("fabricante");
@@ -290,7 +303,7 @@ public class ImportLegacyController {
 
                             }
 
-                            if (columnName.equals("tipoPlantacao") || columnName.equals("unidade") ||
+                            if (columnName.equals("tipoplanta") || columnName.equals("unidade") ||
                                     columnName.equals("fabricante") || columnName.equals("formulacao") ||
                                     (columnName.equals("classificacao")) || columnName.equals("objetivo") ||
                                     columnName.equals("modo") || columnName.equals("tipooperacao")) {
@@ -323,12 +336,33 @@ public class ImportLegacyController {
                             } else if (columnName.equalsIgnoreCase("fatorproducao")) {
                                 values.append("(select designacao from " + columnName + " where lower(designacao) like lower('" + cellValue + "'))");
 
-                            } else if (columnName.equalsIgnoreCase("plantacao")) {
-
+                            } else if (columnName.equalsIgnoreCase("planta")) {
 
                                 values.append("(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL" +
                                         " END AS result from " + columnName + " where lower(nomecomum || ' ' || variedade) like lower('%" + cellValue + "%'))");
 
+                            } else if (columnName.equalsIgnoreCase("cultura") && sheetName.equals("operacao")) {
+                                Cell cell1 = row.getCell(9);
+                                String auxID;
+
+                                if (cell1 != null) {
+                                    if (cell1.getCellType() == CellType.NUMERIC) {
+                                        double numericValue = cell1.getNumericCellValue();
+                                        auxID = String.valueOf(numericValue);
+                                    } else if (cell1.getCellType() == CellType.STRING) {
+                                        auxID = cell1.getStringCellValue();
+                                    } else {
+                                        auxID = ""; // Handle other cell types if needed
+                                    }
+                                } else {
+                                    auxID = ""; // Handle the case when the cell is null
+                                }
+
+                                if (!auxID.isEmpty()) {
+                                    values.append("'" + auxID + "'");
+                                } else {
+                                    values.append("null");
+                                }
                             } else if (columnName.equalsIgnoreCase("substancia")) {
                                 Cell nextCell = row.getCell(i + 1);
                                 Cell firstCell = row.getCell(0);
@@ -352,8 +386,8 @@ public class ImportLegacyController {
                                     Cell var = row.getCell(2);
 
 
-                                    String data = "Insert into " + columnName + " (plantacao," + columnName + ") " +
-                                            "values ((select id from plantacao where nomecomum like '" + nome.getStringCellValue().replaceAll("'", " ") + "' and variedade like '" + var.getStringCellValue().replaceAll("'", " ") + "%'),'" + cellValue + "') ;";
+                                    String data = "Insert into " + columnName + " (planta," + columnName + ") " +
+                                            "values ((select id from planta where nomecomum like '" + nome.getStringCellValue().replaceAll("'", " ") + "' and variedade like '" + var.getStringCellValue().replaceAll("'", " ") + "%'),'" + cellValue + "') ;";
                                     ;
 
                                     datas.add(data);
@@ -391,7 +425,7 @@ public class ImportLegacyController {
                     insert.append(values);
                     if (cont != 0) {
                         if (!operacoes.contains(typeOp)) {
-                            insertStatements.add(insert.toString().replace("Operacao", "operacaofatorproducao"));
+                            insertStatements.add(insert.toString().replace("operacao", "operacaofatorproducao"));
 
                         } else {
                             insertStatements.add(insert.toString());
