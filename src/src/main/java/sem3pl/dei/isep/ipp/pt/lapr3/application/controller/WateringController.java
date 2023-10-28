@@ -6,7 +6,6 @@ import sem3pl.dei.isep.ipp.pt.lapr3.application.repository.WateringPlanRepositor
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Files;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -46,21 +45,26 @@ public class WateringController {
 
     private boolean createWateringPlan(List<String> wateringHours, List<Watering> wateringList) {
         Map<Watering, List<DateInterval>> wateringCalendar = new HashMap<>();
+        int actualMinutesWatering = 0;
         for (Watering watering : wateringList) {
             List<DateInterval> dateIntervalList = new ArrayList<>();
+            Calendar newCalendar = Calendar.getInstance();
             for (String wateringHour : wateringHours) {
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
                 try {
                     Date date = sdf.parse(wateringHour);
-                    Calendar newCalendar = Calendar.getInstance();
                     newCalendar.setTime(date);
+                    if(actualMinutesWatering != 0){
+                        int hoursToAdd = actualMinutesWatering / 60;
+                        int minutesToAdd = actualMinutesWatering % 60;
+                        newCalendar.add(Calendar.HOUR_OF_DAY, hoursToAdd);
+                        newCalendar.add(Calendar.MINUTE, minutesToAdd);
+                    }
                     int interval = 1;
                     switch (String.valueOf(watering.getWateringTimeRegularity())) {
                         case "T":
-                            break;
                         case "P":
                         case "I":
-                            interval = 2;
                             break;
                         case "3":
                             interval = 3;
@@ -80,26 +84,24 @@ public class WateringController {
                                 if (tempCalendar.get(Calendar.DAY_OF_MONTH) % 2 == 0) {
                                     continue;
                                 }
-                                if (tempCalendar.get(Calendar.DAY_OF_MONTH) == 31) {
-                                    continue;
-                                }
                             }
                         }
-                        int daysInMonth = tempCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-                        tempCalendar.add(Calendar.DATE, i);
-                        if (tempCalendar.get(Calendar.DATE) > daysInMonth) {
-                            tempCalendar.add(Calendar.MONTH, 1);
-                        }
-                        Date startDate = tempCalendar.getTime();
-                        tempCalendar.add(Calendar.MINUTE, watering.getWateringMinutes());
-                        Date endDate = tempCalendar.getTime();
-                        DateInterval dateInterval = new DateInterval(startDate, endDate);
-                        dateIntervalList.add(dateInterval);
+                            int daysInMonth = tempCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+                            tempCalendar.add(Calendar.DATE, i);
+                            if (tempCalendar.get(Calendar.DATE) > daysInMonth) {
+                                tempCalendar.add(Calendar.MONTH, 1);
+                            }
+                            Date startDate = tempCalendar.getTime();
+                            tempCalendar.add(Calendar.MINUTE, watering.getWateringMinutes());
+                            Date endDate = tempCalendar.getTime();
+                            DateInterval dateInterval = new DateInterval(startDate, endDate);
+                            dateIntervalList.add(dateInterval);
                     }
                 } catch (ParseException e) {
                     return false;
                 }
             }
+            actualMinutesWatering += watering.getWateringMinutes();
             wateringCalendar.put(watering, dateIntervalList);
         }
         return wateringPlanRepository.createWateringPlan(wateringHours, wateringList, wateringCalendar);

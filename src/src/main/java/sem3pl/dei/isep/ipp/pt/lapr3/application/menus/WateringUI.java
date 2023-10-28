@@ -175,13 +175,13 @@ public class WateringUI implements Runnable {
                 System.out.println("Invalid Year. Please Try Again.");
                 System.out.println();
                 sc.nextLine();
-                return inputMonth();
+                return inputYear();
             }
         } catch (InputMismatchException e) {
             System.out.println("Invalid Year. Please Try Again.");
             System.out.println();
             sc.next();
-            return inputMonth();
+            return inputYear();
         }
         return year;
     }
