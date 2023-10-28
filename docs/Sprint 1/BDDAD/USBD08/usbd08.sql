@@ -1,8 +1,5 @@
-select fatorproducao
-from operacaofatorproducao
-WHERE data BETWEEN '01-jan-2010' AND '01-jan-2023'
-having count(*)= (select max(count(*))
-    			from operacaofatorproducao
-    			where data between '01-jan-2010' AND '01-jan-2023'
-    			group by fatorproducao)
-group by fatorproducao;
+SELECT operacaoFatorProducao.fatorProducao, count (operacaoFatorProducao.fatorProducao)
+FROM operacaoFatorProducao
+INNER JOIN fatorProducao on fatorProducao.designacao = operacaoFatorProducao.fatorProducao
+WHERE operacaoFatorProducao.data BETWEEN TO_DATE('2022-12-11', 'YYYY-MM-DD') AND TO_DATE('2023-03-20', 'YYYY-MM-DD')
+GROUP BY operacaoFatorProducao.fatorProducao
