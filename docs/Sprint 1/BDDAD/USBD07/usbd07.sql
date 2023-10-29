@@ -3,7 +3,7 @@ FROM operacao
          INNER JOIN parcela ON parcela.designacao = operacao.parcela
          INNER JOIN tipoOperacao on tipoOperacao.id = operacao.tipoOperacao
 WHERE operacao.parcela LIKE 'Vinha'
-  AND operacao.data BETWEEN TO_DATE('2022-12-11', 'YYYY-MM-DD') AND TO_DATE('2023-03-20', 'YYYY-MM-DD')
+  AND operacao.data BETWEEN '11-dec-2022' AND '20-mar-2023'
 GROUP BY operacao.parcela, tipoOperacao.tipoOperacao
 
 UNION
@@ -14,5 +14,6 @@ FROM operacaoFatorProducao
          INNER JOIN fatorProducao ON fatorProducao.designacao = operacaoFatorProducao.fatorProducao
          INNER JOIN classificacao ON classificacao.id = fatorProducao.classificacao
 WHERE operacaoFatorProducao.parcela LIKE 'Vinha'
-  AND operacaoFatorProducao.data BETWEEN TO_DATE('2022-12-11', 'YYYY-MM-DD') AND TO_DATE('2023-03-20', 'YYYY-MM-DD')
+  AND operacaofatorproducao.data BETWEEN '11-dec-2022' AND '20-mar-2023'
 GROUP BY operacaoFatorProducao.parcela, classificacao.classificacao;
+
