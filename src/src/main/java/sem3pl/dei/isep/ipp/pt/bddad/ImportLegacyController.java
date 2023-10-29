@@ -72,6 +72,11 @@ public class ImportLegacyController {
         operacoes.add("Incorporação no solo");
         operacoes.add("Colheita");
 
+        Set<String> operacoesft = new TreeSet<>();
+       operacoesft.add("Fertilização");
+        operacoesft.add("Aplicação fitofármaco");
+
+
         String filePath = "/" + filename; // Note the leading forward slash
 
         List<String> insertStatements = new ArrayList<>();
@@ -287,11 +292,9 @@ public class ImportLegacyController {
                         if (operacoes.contains(typeOp)) {
                             atributosExploracao.remove("modo");
                             atributosExploracao.remove("fatorproducao");
-                            atributosExploracao.add("tipooperacao");
                         } else {
                             atributosExploracao.add("modo");
                             atributosExploracao.add("fatorproducao");
-                            atributosExploracao.remove("tipooperacao");
                         }
 
                         if (atributosExploracao.contains(columnName.toLowerCase())) {
@@ -307,6 +310,7 @@ public class ImportLegacyController {
                                     columnName.equals("fabricante") || columnName.equals("formulacao") ||
                                     (columnName.equals("classificacao")) || columnName.equals("objetivo") ||
                                     columnName.equals("modo") || columnName.equals("tipooperacao")) {
+
                                     if (columnName.matches("modo")&& cellValue.isEmpty()){
                                         cellValue="Aplicação";
 
@@ -424,8 +428,8 @@ public class ImportLegacyController {
                     values.append(");");
                     insert.append(values);
                     if (cont != 0) {
-                        if (!operacoes.contains(typeOp)) {
-                            insertStatements.add(insert.toString().replace("operacao", "operacaofatorproducao"));
+                        if (operacoesft.contains(typeOp)) {
+                            insertStatements.add(insert.toString().replace(" operacao ", " operacaofatorproducao "));
 
                         } else {
                             insertStatements.add(insert.toString());
