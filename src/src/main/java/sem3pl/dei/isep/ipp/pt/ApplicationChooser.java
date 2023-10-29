@@ -1,5 +1,6 @@
 package sem3pl.dei.isep.ipp.pt;
 
+import sem3pl.dei.isep.ipp.pt.bddad.ImportLegacyController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 
 import java.util.InputMismatchException;
@@ -17,7 +18,8 @@ public class ApplicationChooser implements Runnable {
         System.out.println();
         System.out.println("1. Farm Coordinator");
         System.out.println("2. Basket Routing and Delivery");
-        System.out.println("3. Exit");
+        System.out.println("3. Import Legacy File");
+        System.out.println("4. Exit");
         System.out.println();
         System.out.println("Select a option: ");
         try {
@@ -33,6 +35,13 @@ public class ApplicationChooser implements Runnable {
                     applicationChooserMenu();
                     break;
                 case 3:
+                    ImportLegacyController importLegacyController = new ImportLegacyController();
+                    importLegacyController.writeSQLToFile(importLegacyController.readFile("Legacy_Data.xlsx"),"docs/Sprint 1/BDDAD/USBD04/usbd04.sql");
+                    System.out.println("File imported successfully.");
+                    System.out.println();
+                    applicationChooserMenu();
+                    break;
+                case 4:
                     System.out.println("Exiting...");
                     System.exit(0);
                     break;
