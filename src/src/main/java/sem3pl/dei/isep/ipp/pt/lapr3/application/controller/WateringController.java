@@ -75,12 +75,12 @@ public class WateringController {
                         tempCalendar.set(Calendar.MONTH, LocalDate.now().getMonthValue());
                         tempCalendar.set(Calendar.DAY_OF_MONTH, LocalDate.now().getDayOfMonth());
                         tempCalendar.set(Calendar.YEAR, LocalDate.now().getYear());
-                        if (String.valueOf(watering.getWateringTimeRegularity()).equals("P")) {
+                        if (String.valueOf(watering.getWateringTimeRegularity()).equals("I")) {
                             if (tempCalendar.get(Calendar.DAY_OF_MONTH) % 2 != 0) {
                                 continue;
                             }
                         } else {
-                            if (String.valueOf(watering.getWateringTimeRegularity()).equals("I")) {
+                            if (String.valueOf(watering.getWateringTimeRegularity()).equals("P")) {
                                 if (tempCalendar.get(Calendar.DAY_OF_MONTH) % 2 == 0) {
                                     continue;
                                 }
@@ -112,7 +112,7 @@ public class WateringController {
         Calendar cal = Calendar.getInstance();
         cal.clear();
         cal.set(Calendar.YEAR, year);
-        cal.set(Calendar.MONTH, month);
+        cal.set(Calendar.MONTH, month-1);
         cal.set(Calendar.DATE, day);
         cal.set(Calendar.HOUR, hour);
         cal.set(Calendar.MINUTE, minute);
@@ -142,15 +142,18 @@ public class WateringController {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
             List<DateInterval> allDateIntervals = new ArrayList<>();
+
             for(List<DateInterval> intervals : wateringCalendar.values()){
                 allDateIntervals.addAll(intervals);
             }
             allDateIntervals.sort(Comparator.comparing(DateInterval::getStartDate));
             pw.println("Dia;Sector;Duração;Inicio;Final");
+
             for (DateInterval dateInterval : allDateIntervals) {
                 Calendar cal1 = Calendar.getInstance();
                 cal1.clear();
                 cal1.setTime(dateInterval.getStartDate());
+                dateInterval.getStartDate().setMonth(month-1);
                     if (cal1.get(Calendar.YEAR) == year && cal1.get(Calendar.MONTH) == month && cal1.get(Calendar.DAY_OF_MONTH) == day) {
                         Watering watering = findWateringForDateInterval(wateringCalendar, dateInterval);
                         if(watering != null) {
