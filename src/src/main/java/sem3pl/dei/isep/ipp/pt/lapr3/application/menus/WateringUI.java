@@ -127,7 +127,7 @@ public class WateringUI implements Runnable {
             Map<Character, Integer> sectorsAreWatering = wateringController.verifiesThatIsWatering(wateringPlan, year, month, day, hour, minute);
             Iterator<Map.Entry<Character, Integer>> iterator = sectorsAreWatering.entrySet().iterator();
             System.out.println();
-            System.out.printf("Sectors are Watering in %d/%d, %d:%d%n", day, month, hour, minute);
+            System.out.printf("Sectors are Watering in %02d/%02d , %02d:%02d", day, month, hour, minute);
             System.out.println();
             while (iterator.hasNext()) {
                 Map.Entry<Character, Integer> entry = iterator.next();
@@ -154,7 +154,7 @@ public class WateringUI implements Runnable {
 
     private boolean checkDateData(int year, int month, int day, int hour, int minute){
         System.out.println("Inputted data: ");
-        System.out.printf("%d/%d/%d , %d:%d", day, month, year, hour, minute);
+        System.out.printf("%02d/%02d/%02d , %02d:%02d", day, month, year, hour, minute);
         System.out.println();
         boolean checked = false;
         System.out.println("Submit data?");
@@ -248,9 +248,10 @@ public class WateringUI implements Runnable {
 
     private int inputMinute() {
         System.out.println("Write the Minute: ");
+        String minuteStr = sc.next(); // Read input as a string
         int minute;
         try {
-            minute = sc.nextInt();
+            minute =Integer.parseInt(minuteStr);
             if (minute < 0 || minute > 60) {
                 System.out.println("Invalid Minute. Please Try Again.");
                 System.out.println();
