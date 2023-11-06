@@ -20,7 +20,8 @@ public class FarmCoordinator implements Runnable {
         System.out.println("Choose the functionality you want");
         System.out.println();
         System.out.println("1. Access to Watering Controller Menu");
-        System.out.println("2. Exit");
+        System.out.println("2. Perform farm operations");
+        System.out.println("3. Exit");
         System.out.println();
         System.out.println("Select your option: ");
         try {
@@ -31,6 +32,11 @@ public class FarmCoordinator implements Runnable {
                     wateringUI.run();
                     break;
                 case 2:
+                    System.out.println("App in Development.");
+                    System.out.println();
+                    farmCoordinatorMenu();
+                    break;
+                case 3:
                     System.out.println("Do you really want to exit the app?");
                     sc.nextLine();
                     String exitOption = sc.nextLine();
