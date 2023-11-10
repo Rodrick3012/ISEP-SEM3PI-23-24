@@ -1,0 +1,21 @@
+
+*** These modified files were found in JOE when it aborted on Wed Nov  8 22:35:56 2023
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+/media/sf_partilha/sem3pi2023_24_g104/.git/MERGE_MSG
+
+*** File '/media/sf_partilha/sem3pi2023_24_g104/.git/MERGE_MSG'
+
+Merge branch 'master' of https://bitbucket.org/1211281/sem3pi2023_24_g104
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
