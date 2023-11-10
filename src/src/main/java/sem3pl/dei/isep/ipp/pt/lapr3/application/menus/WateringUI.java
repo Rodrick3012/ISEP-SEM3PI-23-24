@@ -23,7 +23,7 @@ public class WateringUI implements Runnable {
     private void wateringMenu() {
         System.out.println("Choose a functionality of the watering menu to do");
         System.out.println();
-        System.out.println("1. Select a File to import and create Watering Plan");
+        System.out.println("1. Import File");
         System.out.println("2. Generate a Watering Plan");
         System.out.println("3. View the Sectors that being watered");
         System.out.println("4. Exit");

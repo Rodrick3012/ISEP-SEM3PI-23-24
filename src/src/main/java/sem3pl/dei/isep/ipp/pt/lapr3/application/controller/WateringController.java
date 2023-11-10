@@ -184,6 +184,37 @@ public class WateringController {
         return null;
     }
 
+    public boolean readWateringPlanGeneratedFileAndCheckIfWateringConcluded(String fileName){
+        Calendar currentCalendar = Calendar.getInstance();
+        currentCalendar.set(Calendar.YEAR, LocalDate.now().getYear());
+        currentCalendar.set(Calendar.MONTH, LocalDate.now().getMonthValue());
+        currentCalendar.set(Calendar.DAY_OF_MONTH, LocalDate.now().getDayOfMonth());
+        currentCalendar.setTimeInMillis(System.currentTimeMillis());
+        try{
+            Scanner sc = new Scanner(new File(fileName));
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+            sc.nextLine();
+            while(sc.hasNextLine()){
+                Calendar calendar = Calendar.getInstance();
+                String line = sc.nextLine();
+                String[] wateringPlanData = line.split(";");
+                Date date = dateFormat.parse(wateringPlanData[0]);
+                calendar.setTime(date);
+                Date time = timeFormat.parse(wateringPlanData[4]);
+                calendar.setTime(time);
+                if(currentCalendar.getTime().after(calendar.getTime())){
+                    String wateringSector = wateringPlanData[1];
+                    // inserir a rega concluida no caderno de campo de base de dados
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
 
     public List<WateringPlan> getWateringPlanList() {
         return wateringPlanRepository.getWateringPlanList();
