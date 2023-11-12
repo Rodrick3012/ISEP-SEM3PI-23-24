@@ -158,14 +158,10 @@ public class WateringController {
             endCalendar.setTime(currentDate.getTime());
             endCalendar.add(Calendar.DAY_OF_MONTH, 31);
 
-            System.out.println(currentDate.getTime());
-            System.out.println(endCalendar.getTime());
-
             for (DateInterval dateInterval : allDateIntervals) {
                 Calendar cal1 = Calendar.getInstance();
                 cal1.clear();
                 cal1.setTime(dateInterval.getStartDate());
-                System.out.println(cal1.getTime());
                 if (cal1.after(currentDate) && cal1.before(endCalendar)) {
                     Watering watering = findWateringForDateInterval(wateringCalendar, dateInterval);
                     if(watering != null) {
