@@ -96,23 +96,17 @@ public class WateringUI implements Runnable {
 
     private void generateWateringPlan(){
         WateringPlan wateringPlan = selectWateringPlan();
-        int year = inputYear();
-        int month = inputMonth();
-        int day = inputDay();
-        boolean checked = checkPlanDateData(year, month, day);
-        if(checked){
-            boolean verified = wateringController.generateWateringPlan(wateringPlan, year, month, day);
-            if(verified){
-                System.out.println("Watering plan successfully generated!");
-            }
-            else {
-                System.out.println("Error while watering plan being generated.");
-            }
-            System.out.println();
-            wateringMenu();
-        } else {
-            wateringMenu();
-        }
+        String fileName = wateringController.generateWateringPlan(wateringPlan);
+        checkWateringConcluded(fileName);
+    }
+
+    private void checkWateringConcluded(String fileName){
+        boolean verified = wateringController.readWateringPlanGeneratedFileAndCheckIfWateringConcluded(fileName);
+        if(verified){
+            System.out.println("Watering plan successfully generated!");
+        } else System.out.println("Error while watering plan being generated.");
+        System.out.println();
+        wateringMenu();
     }
 
     private void selectWateringPlanAndWriteConditions() {
@@ -136,20 +130,6 @@ public class WateringUI implements Runnable {
             System.out.println();
             wateringMenu();
         } else wateringMenu();
-    }
-
-    private boolean checkPlanDateData(int year, int month, int day){
-        System.out.println("Inputted data: ");
-        System.out.printf("%d/%d/%d", day, month, year);
-        System.out.println();
-        boolean checked = false;
-        System.out.println("Submit data?");
-        sc.nextLine();
-        String confirmation = sc.nextLine();
-        if(confirmation.equalsIgnoreCase("Yes") || confirmation.equalsIgnoreCase("Y")){
-            checked = true;
-        }
-        return checked;
     }
 
     private boolean checkDateData(int year, int month, int day, int hour, int minute){

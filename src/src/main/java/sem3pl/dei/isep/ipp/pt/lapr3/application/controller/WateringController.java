@@ -72,7 +72,7 @@ public class WateringController {
                     }
                     for (int i = 0; i < 30; i += interval) {
                         Calendar tempCalendar = (Calendar) newCalendar.clone();
-                        tempCalendar.set(Calendar.MONTH, LocalDate.now().getMonthValue());
+                        tempCalendar.set(Calendar.MONTH, LocalDate.now().getMonthValue()-1);
                         tempCalendar.set(Calendar.DAY_OF_MONTH, LocalDate.now().getDayOfMonth());
                         tempCalendar.set(Calendar.YEAR, LocalDate.now().getYear());
                         if (String.valueOf(watering.getWateringTimeRegularity()).equals("I")) {
@@ -134,8 +134,8 @@ public class WateringController {
         return sectorsAreWatering;
     }
 
-    public boolean generateWateringPlan(WateringPlan wateringPlan, int year, int month, int day) {
-        String fileName = "wateringPlan_" + day + "-" + month + "-" + year + ".csv";
+    public String generateWateringPlan(WateringPlan wateringPlan) {
+        String fileName = "wateringPlan.csv";
         Map<Watering, List<DateInterval>> wateringCalendar = wateringPlan.getWateringCalendar();
         try {
             PrintWriter pw = new PrintWriter(Files.resourcesPath + fileName);
@@ -149,30 +149,41 @@ public class WateringController {
             allDateIntervals.sort(Comparator.comparing(DateInterval::getStartDate));
             pw.println("Dia;Sector;Duração;Inicio;Final");
 
+            Calendar currentDate = Calendar.getInstance();
+            currentDate.setTime(new Date());
+            currentDate.set(Calendar.HOUR_OF_DAY, 0);
+            currentDate.set(Calendar.MINUTE, 0);
+            currentDate.set(Calendar.SECOND, 0);
+            Calendar endCalendar = Calendar.getInstance();
+            endCalendar.setTime(currentDate.getTime());
+            endCalendar.add(Calendar.DAY_OF_MONTH, 31);
+
+            System.out.println(currentDate.getTime());
+            System.out.println(endCalendar.getTime());
+
             for (DateInterval dateInterval : allDateIntervals) {
                 Calendar cal1 = Calendar.getInstance();
                 cal1.clear();
                 cal1.setTime(dateInterval.getStartDate());
-                dateInterval.getStartDate().setMonth(month-1);
-                    if (cal1.get(Calendar.YEAR) == year && cal1.get(Calendar.MONTH) == month && cal1.get(Calendar.DAY_OF_MONTH) == day) {
-                        Watering watering = findWateringForDateInterval(wateringCalendar, dateInterval);
-                        if(watering != null) {
-                            Date startDate = dateInterval.getStartDate();
-                            Date endDate = dateInterval.getEndDate();
-                            pw.println(dateFormat.format(startDate) + ";" +
+                System.out.println(cal1.getTime());
+                if (cal1.after(currentDate) && cal1.before(endCalendar)) {
+                    Watering watering = findWateringForDateInterval(wateringCalendar, dateInterval);
+                    if(watering != null) {
+                        Date startDate = dateInterval.getStartDate();
+                        Date endDate = dateInterval.getEndDate();
+                        pw.println(dateFormat.format(startDate) + ";" +
                                     watering.getAgriculturalParcelSector() + ";" +
                                     watering.getWateringMinutes() + ";" +
                                     timeFormat.format(startDate) + ";" +
                                     timeFormat.format(endDate));
-                        }
                     }
                 }
+            }
             pw.close();
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return fileName;
     }
 
     private Watering findWateringForDateInterval(Map<Watering, List<DateInterval>> wateringCalendar, DateInterval dateInterval) {
@@ -185,6 +196,7 @@ public class WateringController {
     }
 
     public boolean readWateringPlanGeneratedFileAndCheckIfWateringConcluded(String fileName){
+        fileName = Files.resourcesPath + fileName;
         Calendar currentCalendar = Calendar.getInstance();
         currentCalendar.set(Calendar.YEAR, LocalDate.now().getYear());
         currentCalendar.set(Calendar.MONTH, LocalDate.now().getMonthValue());
@@ -202,10 +214,14 @@ public class WateringController {
                 Date date = dateFormat.parse(wateringPlanData[0]);
                 calendar.setTime(date);
                 Date time = timeFormat.parse(wateringPlanData[4]);
-                calendar.setTime(time);
+                Calendar timeCalendar = Calendar.getInstance();
+                timeCalendar.setTime(time);
+                calendar.set(Calendar.HOUR_OF_DAY, timeCalendar.get(Calendar.HOUR_OF_DAY));
+                calendar.set(Calendar.MINUTE, timeCalendar.get(Calendar.MINUTE));
                 if(currentCalendar.getTime().after(calendar.getTime())){
                     String wateringSector = wateringPlanData[1];
-                    // inserir a rega concluida no caderno de campo de base de dados
+                    System.out.println(wateringPlanData[1] + ", " +  wateringPlanData[4]);
+                    // inserir a rega concluida na base de dados
                 }
             }
         } catch (Exception e){
