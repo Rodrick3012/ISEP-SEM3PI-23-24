@@ -17,9 +17,8 @@ public class ApplicationChooser implements Runnable {
         System.out.println("Choose the app to run:");
         System.out.println();
         System.out.println("1. Farm Coordinator");
-        System.out.println("2. Basket Routing and Delivery");
-        System.out.println("3. Import Legacy File");
-        System.out.println("4. Exit");
+        System.out.println("2. Import Legacy File");
+        System.out.println("3. Exit");
         System.out.println();
         System.out.println("Select a option: ");
         try {
@@ -30,18 +29,13 @@ public class ApplicationChooser implements Runnable {
                     farmCoordinator.run();
                     break;
                 case 2:
-                    System.out.println("App in Development.");
-                    System.out.println();
-                    applicationChooserMenu();
-                    break;
-                case 3:
                     ImportLegacyController importLegacyController = new ImportLegacyController();
                     importLegacyController.writeSQLToFile(importLegacyController.readFile("Legacy_Data.xlsx"),"docs/Sprint 2/BDDAD/SQL/insert.sql");
                     System.out.println("File imported successfully.");
                     System.out.println();
                     applicationChooserMenu();
                     break;
-                case 4:
+                case 3:
                     System.out.println("Exiting...");
                     System.exit(0);
                     break;
