@@ -1,4 +1,8 @@
-package sem3pl.dei.isep.ipp.pt.esinf.sprint2.support;
+package sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.matrix;
+
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.CommonGraph;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.Edge;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.Graph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,9 +41,9 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
         numVerts = vs.size();
         vertices = new ArrayList<>(vs);
         for (int i = 0 ; i < numVerts ; i++)
-            for (int j = 0 ; j < numVerts ; j++)
-                if (j != i && m[i][j] != null)
-                    addEdge(vertices.get(i), vertices.get(j),m[i][j]);
+                for (int j = 0 ; j < numVerts ; j++)
+                    if (j != i && m[i][j] != null)
+                        addEdge(vertices.get(i), vertices.get(j),m[i][j]);
     }
 
     @Override
@@ -204,7 +208,7 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
 
         // first let's remove edges from the vertex
         for (int i = 0; i < numVerts; i++)
-            removeEdge(vertKey,i);
+                removeEdge(vertKey,i);
         if (isDirected) {
             // first let's remove edges to the vertex
             for (int i = 0; i < numVerts; i++)
@@ -212,7 +216,7 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
         }
 
         // remove shifts left all vertices after the one removed
-        // It is necessary to collapse the edge matrix
+        // It is necessary to collapse the edge matrix        
         for (int i = vertKey; i < numVerts - 1; i++) {
             for (int j = 0; j < numVerts; j++) {
                 edgeMatrix[i][j] = edgeMatrix[i + 1][j];
@@ -267,7 +271,7 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
 
     /**
      * Returns a string representation of the graph.
-     * Matrix only represents existence of Edge
+     * Matrix only represents existence of Edge 
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();

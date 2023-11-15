@@ -1,5 +1,7 @@
-package sem3pl.dei.isep.ipp.pt.esinf.sprint2.support;
+package sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph;
 
+
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.matrix.MatrixGraph;
 
 import java.util.*;
 import java.util.function.BinaryOperator;
@@ -11,9 +13,10 @@ import java.util.function.BinaryOperator;
  */
 public class Algorithms {
 
-    /** Performs breadth-first search of a Graph starting in a vertex
+    /**
+     * Performs breadth-first search of a Graph starting in a vertex
      *
-     * @param g Graph instance
+     * @param g    Graph instance
      * @param vert vertex that will be the source of the search
      * @return a LinkedList with the vertices of breadth-first search
      */
@@ -96,26 +99,25 @@ public class Algorithms {
      */
     private static <V, E> void allPaths(Graph<V, E> g, V vOrig, V vDest, boolean[] visited,
                                         LinkedList<V> path, ArrayList<LinkedList<V>> paths) {
-        int vOrigIndex = g.vertices().indexOf(vOrig);
-        int vDestIndex = g.vertices().indexOf(vDest);
+        int vOrigIndex = g.key(vOrig);
+        int vDestIndex = g.key(vDest);
 
+
+        path.push(vOrig);
         visited[vOrigIndex] = true;
-        path.add(vOrig);
 
-        if (vOrig.equals(vDest)) {
-            paths.add(new LinkedList<>(path));
-        } else {
-            for (V neighbor : g.adjVertices(vOrig)) {
-                int neighborIndex = g.vertices().indexOf(neighbor);
-                if (!visited[neighborIndex]) {
-                    allPaths(g, neighbor, vDest, visited, path, paths);
-                }
-            }
+        for (V verticeAdj : g.adjVertices(vOrig)) {
+            if (verticeAdj == vDest) {
+                path.push(vDest);
+                paths.add(path);
+                path.pop();
+            } else if (!visited[g.key(verticeAdj)])
+                allPaths(g, verticeAdj, vDest, visited, path, paths);
         }
-
-        visited[vOrigIndex] = false;
-        path.removeLast();
+    path.pop();
     }
+
+
 
     /**
      * Returns all paths from vOrig to vDest
@@ -133,6 +135,9 @@ public class Algorithms {
         return paths;
     }
 
+
+
+
     /**
      * Computes shortest-path distance from a source vertex to all reachable
      * vertices of a graph g with non-negative edge weights
@@ -146,41 +151,38 @@ public class Algorithms {
      */
     private static <V, E> void shortestPathDijkstra(Graph<V, E> g, V vOrig,
                                                     Comparator<E> ce, BinaryOperator<E> sum, E zero,
-                                                    boolean[] visited, V[] pathKeys, E[] dist) {
+                                                    boolean[] visited, V[] pathKeys, E[] dist, E infinity) {
 
-        int numVertices = g.numVertices();
-
-        // Priority queue to store vertices with their distance from the source
-        PriorityQueue<V> priorityQueue = new PriorityQueue<>(Comparator.comparing(v -> dist[g.vertices().indexOf(v)], ce));
-
-        // Initialization
-        for (int i = 0; i < numVertices; i++) {
-            visited[i] = false;
-            dist[i] = zero;
-            pathKeys[i] = null;
+        PriorityQueue<V> priorityQueue = new PriorityQueue<>(Comparator.comparing(v -> dist[g.key(v)], ce));
+        for (V vertex : g.vertices()) {
+            int vertexKey = g.key(vertex);
+            visited[vertexKey] = false;
+            dist[vertexKey] = infinity; // Consider using a default value instead of null
+            pathKeys[vertexKey] = null;
         }
 
-        int vOrigIndex = g.vertices().indexOf(vOrig);
-        dist[vOrigIndex] = zero;
+        int vOrigKey = g.key(vOrig);
+        dist[vOrigKey] = zero;
         priorityQueue.add(vOrig);
 
         while (!priorityQueue.isEmpty()) {
             V currentVertex = priorityQueue.poll();
-            int currentVertexIndex = g.vertices().indexOf(currentVertex);
+            int currentVertexKey = g.key(currentVertex);
 
-            if (!visited[currentVertexIndex]) {
-                visited[currentVertexIndex] = true;
+            if (!visited[currentVertexKey]) {
+                visited[currentVertexKey] = true;
 
                 // Update the distances to the neighbors of the current vertex
                 for (V neighbor : g.adjVertices(currentVertex)) {
-                    int neighborIndex = g.vertices().indexOf(neighbor);
+                    int neighborKey = g.key(neighbor);
                     E edgeWeight = g.edge(currentVertex, neighbor).getWeight();
 
-                    E newDistance = sum.apply(dist[currentVertexIndex], edgeWeight);
+                    E newDistance = sum.apply(dist[currentVertexKey], edgeWeight);
 
-                    if (ce.compare(newDistance, dist[neighborIndex]) < 0) {
-                        dist[neighborIndex] = newDistance;
-                        pathKeys[neighborIndex] = currentVertex;
+                    // Use the comparator to compare distances
+                    if (ce.compare(newDistance, dist[neighborKey]) < 0) {
+                        dist[neighborKey] = newDistance;
+                        pathKeys[neighborKey] = currentVertex;
                         priorityQueue.add(neighbor);
                     }
                 }
@@ -200,23 +202,31 @@ public class Algorithms {
      * @param shortPath returns the vertices which make the shortest path
      * @return the length of the shortest path if vertices exist in the graph and are connected, or null otherwise
      */
+    @SuppressWarnings("unchecked")
     public static <V, E> E shortestPath(Graph<V, E> g, V vOrig, V vDest,
                                         Comparator<E> ce, BinaryOperator<E> sum, E zero,
-                                        LinkedList<V> shortPath) {
+                                        LinkedList<V> shortPath, E infinity) {
         int numVertices = g.numVertices();
 
         // Arrays to store the result of Dijkstra's algorithm
         boolean[] visited = new boolean[numVertices];
+        @SuppressWarnings("unchecked")
         V[] pathKeys = (V[]) new Object[numVertices];
+        @SuppressWarnings("unchecked")
         E[] dist = (E[]) new Object[numVertices];
 
+        if(!shortPath.isEmpty()){
+            shortPath.clear();
+        }
+
         // Run Dijkstra's algorithm
-        shortestPathDijkstra(g, vOrig, ce, sum, zero, visited, pathKeys, dist);
+        shortestPathDijkstra(g, vOrig, ce, sum, zero, visited, pathKeys, dist, infinity);
 
-        int vDestIndex = g.vertices().indexOf(vDest);
-
+        int vDestIndex = g.key(vDest);
+        if (vDestIndex<0)
+            return null;
         // Check if there is a path to the destination vertex
-        if (dist[vDestIndex].equals(zero)) {
+        if (dist[vDestIndex].equals(infinity)) {
             return null;
         }
 
@@ -241,13 +251,37 @@ public class Algorithms {
         int vOrigIndex = g.vertices().indexOf(vOrig);
         int vDestIndex = g.vertices().indexOf(vDest);
 
+        // Check if the origin and destination are the same
+        if (vOrig.equals(vDest)) {
+            path.add(vOrig);
+            return;
+        }
+
         // Reconstruct the path from the destination to the origin
-        for (V current = vDest; current != null; current = pathKeys[g.vertices().indexOf(current)]) {
-            path.addFirst(current);
+        V current = vDest;
+
+        // Set to keep track of visited vertices
+        Set<V> visitedVertices = new HashSet<>();
+
+        while (current != null) {
+            if (!visitedVertices.contains(current)) {
+                visitedVertices.add(current);
+                path.addFirst(current);
+            } else {
+                // Break the loop if the current vertex has already been visited
+                break;
+            }
+
+            // Break the loop if the current vertex is equal to the origin vertex
+            if (current.equals(vOrig)) {
+                break;
+            }
+
+            // Retrieve the predecessor from the pathKeys array
+            int currentVertexIndex = g.vertices().indexOf(current);
+            current = pathKeys[currentVertexIndex];
         }
     }
-
-
 
     /** Calculates the minimum distance graph using Floyd-Warshall
      *
@@ -313,9 +347,10 @@ public class Algorithms {
      * @param dists returns the corresponding minimum distances
      * @return if vOrig exists in the graph true, false otherwise
      */
+    @SuppressWarnings("unchecked")
     public static <V, E> boolean shortestPaths(Graph<V, E> g, V vOrig,
                                                Comparator<E> ce, BinaryOperator<E> sum, E zero,
-                                               ArrayList<LinkedList<V>> paths, ArrayList<E> dists) {
+                                               ArrayList<LinkedList<V>> paths, ArrayList<E> dists, E infinity) {
 
         int numVertices = g.numVertices();
 
@@ -325,7 +360,7 @@ public class Algorithms {
         E[] dist = (E[]) new Object[numVertices];
 
         // Run Dijkstra's algorithm
-        shortestPathDijkstra(g, vOrig, ce, sum, zero, visited, pathKeys, dist);
+        shortestPathDijkstra(g, vOrig, ce, sum, zero, visited, pathKeys, dist, infinity);
 
         // Check if the start vertex exists in the graph
         int vOrigIndex = g.vertices().indexOf(vOrig);
@@ -336,14 +371,11 @@ public class Algorithms {
         }
 
         // Initialize the result lists
-        paths.clear();
-        dists.clear();
+            paths.clear();
+            dists.clear();
 
         for (int i = 0; i < numVertices; i++) {
             // If the vertex is not reachable, skip it
-            if (dist[i].equals(zero)) {
-                continue;
-            }
 
             // Reconstruct the shortest path
             LinkedList<V> path = new LinkedList<>();
@@ -354,4 +386,7 @@ public class Algorithms {
 
         return true;
     }
-}
+    }
+
+
+

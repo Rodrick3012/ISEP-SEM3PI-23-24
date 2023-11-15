@@ -1,4 +1,4 @@
-package sem3pl.dei.isep.ipp.pt.esinf.sprint2.support;
+package sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph;
 
 import java.util.Objects;
 
@@ -45,7 +45,7 @@ public class Edge<V, E> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Edge<V, E> edge = (Edge<V, E>) o;
+        @SuppressWarnings("unchecked") Edge<V, E> edge = (Edge<V, E>) o;
         return  vOrig.equals(edge.vOrig) &&
                 vDest.equals(edge.vDest);
     }

@@ -1,6 +1,4 @@
-package sem3pl.dei.isep.ipp.pt.esinf.sprint2.support;
-
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
+package sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -97,7 +95,7 @@ public abstract class CommonGraph <V,E> implements Graph<V,E> {
         if (!(otherObj instanceof Graph<?, ?>))
             return false;
 
-        Graph<V, E> otherGraph = (Graph<V, E>) otherObj;
+        @SuppressWarnings("unchecked") Graph<V, E> otherGraph = (Graph<V, E>) otherObj;
 
         if (numVerts != otherGraph.numVertices() || numEdges != otherGraph.numEdges() || isDirected() != otherGraph.isDirected())
             return false;
@@ -118,17 +116,5 @@ public abstract class CommonGraph <V,E> implements Graph<V,E> {
     @Override
     public int hashCode() {
         return Objects.hash(numVerts, numEdges, isDirected, vertices);
-    }
-
-    public V getVertexByLocalsID(String localsID) {
-        for (V vertex : vertices) {
-            if (vertex instanceof Locals) {
-                Locals localsVertex = (Locals) vertex;
-                if (localsVertex.getId().equals(localsID)) {
-                    return vertex;
-                }
-            }
-        }
-        return null;
     }
 }
