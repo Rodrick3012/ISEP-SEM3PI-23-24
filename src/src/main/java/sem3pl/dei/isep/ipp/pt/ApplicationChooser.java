@@ -30,7 +30,7 @@ public class ApplicationChooser implements Runnable {
                     break;
                 case 2:
                     ImportLegacyController importLegacyController = new ImportLegacyController();
-                    importLegacyController.writeSQLToFile(importLegacyController.readFile("Legacy_Data.xlsx"),"docs/Sprint 2/BDDAD/SQL/insert.sql");
+                    importLegacyController.writeSQLToFile(importLegacyController.readFile("Legacy_Data.xlsx"),"docs/Sprint 2/BDDAD/USBD22/insert.sql");
                     System.out.println("File imported successfully.");
                     System.out.println();
                     applicationChooserMenu();

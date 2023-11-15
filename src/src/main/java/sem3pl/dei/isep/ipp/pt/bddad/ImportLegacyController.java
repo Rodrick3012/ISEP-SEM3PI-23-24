@@ -9,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -48,7 +49,25 @@ public class ImportLegacyController {
 
 
 
+
+
     public List<String> readFile(String filename) {
+
+        Map<String, Integer> monthMapper = new HashMap<>();
+
+        // Populate the map
+        monthMapper.put("Jan", 1);
+        monthMapper.put("Feb", 2);
+        monthMapper.put("Mar", 3);
+        monthMapper.put("Apr", 4);
+        monthMapper.put("May", 5);
+        monthMapper.put("Jun", 6);
+        monthMapper.put("Jul", 7);
+        monthMapper.put("Aug", 8);
+        monthMapper.put("Sep", 9);
+        monthMapper.put("Oct", 10);
+        monthMapper.put("Nov", 11);
+        monthMapper.put("Dec", 12);
 
         Map<String, String> colheitaProductMapper = new HashMap<>();
 
@@ -294,7 +313,7 @@ public class ImportLegacyController {
                                     if (sheetName.equalsIgnoreCase("cultura")){
                                         Cell cultid = row.getCell(8);
                                         parcelacultura = "Insert into  parcelacultura (parcela,cultura) values (" +
-                                                "(select designacao from parcela where lower(designacao) like lower('"+cellValue+"')),'"+cultid+"');";
+                                                "(select designacao from parcela where lower(designacao) like lower('"+cellValue+"')),"+cultid+");";
 
                                     }else {
                                         values.append("(select designacao from ").append(columnName).append(" where lower(designacao) like lower('").append(cellValue).append("'))");
@@ -325,7 +344,7 @@ public class ImportLegacyController {
                                     }
 
                                     if (!auxID.isEmpty()) {
-                                        values.append("'").append(auxID).append("'");
+                                        values.append(auxID);
                                     } else {
                                         values.append("null");
                                     }
@@ -339,7 +358,7 @@ public class ImportLegacyController {
                                         String ficha = "Insert into  SubstanciaFatorProducao (substancia,fatorproducao,percentagem) values " +
                                                 "((select id from substancia where substancia like '" + cellValue + "')," +
                                                 "(select designacao from fatorproducao where designacao like '" + firstCell.getStringCellValue().trim() + "')," +
-                                                "'" + nextCell + "'); ";
+                                                nextCell + "); ";
 
                                         insertStatements.add(insertSubs);
                                         insertFicha.add(ficha);
@@ -385,8 +404,7 @@ public class ImportLegacyController {
 
                                         String data = "Insert into " + columnNameAux + " (planta," + columnNameAux + ",tipo) " +
                                                 "values ((select variedade from planta where nomecomum like '" + nome.getStringCellValue().replaceAll("'", " ") + "' and variedade like '" + var.getStringCellValue().replaceAll("'", " ") + "%'),'" + cellValue + "'," +
-                                                "(select id from tipodata where tipodata like '"+valueData+"')) ;";
-                  ;
+                                                "(select id from tipodata where tipodata like '"+valueData+"')) ;";;
 
                                         datas.add(data);
                                     }
@@ -394,7 +412,22 @@ public class ImportLegacyController {
                                     if (columnName.equals("quantidade") && cellValue.isEmpty()) {
                                         cellValue = String.valueOf(0);
                                     }
-                                    values.append("'").append(cellValue).append("'");
+
+                                    if (isDate(cellValue)){
+                                        SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MMM-yyyy");
+
+                                        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+                                        Date date = inputFormat.parse(cellValue);
+                                        String formattedDate = outputFormat.format(date);
+                                        values.append("TO_DATE('").append(formattedDate).append("', 'DD-MM-YYYY')");
+                                    }else {
+                                        try {
+                                            Double.parseDouble(cellValue);
+                                            values.append(cellValue);
+                                        } catch (NumberFormatException e) {
+                                            values.append("'").append(cellValue).append("'");
+                                        }
+                                    }
 
                                 }
 
@@ -449,7 +482,9 @@ public class ImportLegacyController {
                         }
 
                     }
-                }
+                } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
         } catch(IOException e){
                 e.printStackTrace();
             }
@@ -468,5 +503,19 @@ public class ImportLegacyController {
             e.printStackTrace();
         }
     }
+
+    private static boolean isDate(String input) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        dateFormat.setLenient(false); // This will make the date validation strict
+
+        try {
+            Date date = dateFormat.parse(input);
+            return true; // If parsing is successful, it's a valid date
+        } catch (ParseException e) {
+            return false; // Parsing failed, not a valid date
+        }
+    }
 }
+
+
 
