@@ -1,9 +1,9 @@
 package sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation;
 
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.support.CommonGraph;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.support.Graph;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.support.MatrixGraph;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.CommonGraph;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.Graph;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.matrix.MatrixGraph;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -20,7 +20,7 @@ public class USEI01 {
 
     private void readVerticesGraph(CommonGraph<Locals, Integer> rede ){
 
-        try (BufferedReader br = new BufferedReader(new FileReader("src/src/main/resources/locais_big.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/locais_big.csv"))) {
             br.readLine();
             String linha;
             while ((linha = br.readLine()) != null) {
@@ -40,7 +40,7 @@ public class USEI01 {
 
     private void readEdgesGraph(CommonGraph<Locals, Integer> rede ){
 
-        try (BufferedReader br = new BufferedReader(new FileReader("src/src/main/resources/distancias_big.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/distancias_big.csv"))) {
             br.readLine();
             String linha;
             while ((linha = br.readLine()) != null) {

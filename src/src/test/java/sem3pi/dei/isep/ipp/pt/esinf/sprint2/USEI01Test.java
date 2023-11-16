@@ -3,10 +3,12 @@ package sem3pi.dei.isep.ipp.pt.esinf.sprint2;
 import org.junit.Test;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation.USEI01;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.support.CommonGraph;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.support.Edge;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.support.Graph;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.support.MatrixGraph;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.CommonGraph;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.Graph;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.matrix.MatrixGraph;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.Edge;
+
 
 
 import java.util.Optional;

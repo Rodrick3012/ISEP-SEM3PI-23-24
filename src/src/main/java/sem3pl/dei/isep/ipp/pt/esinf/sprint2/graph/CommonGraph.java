@@ -1,5 +1,7 @@
 package sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph;
 
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
@@ -116,5 +118,17 @@ public abstract class CommonGraph <V,E> implements Graph<V,E> {
     @Override
     public int hashCode() {
         return Objects.hash(numVerts, numEdges, isDirected, vertices);
+    }
+
+    public V getVertexByLocalsID(String localsID) {
+        for (V vertex : vertices) {
+            if (vertex instanceof Locals) {
+                Locals localsVertex = (Locals) vertex;
+                if (localsVertex.getId().equals(localsID)) {
+                    return vertex;
+                }
+            }
+        }
+        return null;
     }
 }
