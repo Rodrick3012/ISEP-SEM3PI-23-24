@@ -45,6 +45,9 @@ Líquido, granulado, pó
 ### Medição Sensor (Sensor)
 Dado obtido na medição de um sensor em específico
 
+### Modo (Operação fator Produção)
+Modo de aplicação do fator de produção
+
 ### Objeto (Fator Produção)
 Melhorar e nutrir o solo e as plantas, prevenir doenças, corrigir desequilíbrios, e combater pragas e doenças
 
