@@ -20,7 +20,7 @@ public class MainMenu implements Runnable {
         System.out.println("1. Farm Coordinator");
         System.out.println("2. Basket Routing & Delivery");
         System.out.println("3. Import Legacy File");
-        System.out.println("3. Exit");
+        System.out.println("4. Exit");
         System.out.println();
         System.out.println("Select a option: ");
         try {

@@ -13,9 +13,8 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         connectDataBase();
-        ApplicationChooser applicationChooser = new ApplicationChooser();
-        applicationChooser.run();
-
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.run();
         DatabaseConnection.getInstance().closeConnection();
     }
 
@@ -37,13 +36,14 @@ public class Main {
             loadProperties();
             DatabaseConnection controller = new DatabaseConnection();
             result = controller.testConnection();
-        if(result== DatabaseConnection.CONNECTION_SUCCESS)
-            System.out.println("Connected to the database.");
-        else
-            System.out.println("Not connected to the database!");
-    } catch (UnknownHostException e) {
-        System.out.println("\nDatabase Server not reachable!");
-    } catch (Exception e) {
-        System.out.println("App properties not loaded!");
+            if (result == DatabaseConnection.CONNECTION_SUCCESS)
+                System.out.println("Connected to the database.");
+            else
+                System.out.println("Not connected to the database!");
+        } catch (UnknownHostException e) {
+            System.out.println("\nDatabase Server not reachable!");
+        } catch (Exception e) {
+            System.out.println("App properties not loaded!");
+        }
     }
 }
