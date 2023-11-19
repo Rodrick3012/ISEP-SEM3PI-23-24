@@ -1,5 +1,7 @@
 package sem3pl.dei.isep.ipp.pt.lapr3.application.menus.operationsUI;
 
+import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
+
 import java.util.*;
 
 public class OperationsUI implements Runnable {
@@ -12,10 +14,10 @@ public class OperationsUI implements Runnable {
     public void run() {
         System.out.println("Welcome to Operations Menu!");
         System.out.println();
-        wateringMenu();
+        OperationsMenu();
     }
 
-    private void wateringMenu() {
+    private void OperationsMenu() {
         System.out.println("Choose a functionality of the operations menu to do");
         System.out.println();
         System.out.println("1. Record sowing operation");
@@ -28,39 +30,40 @@ public class OperationsUI implements Runnable {
         System.out.println("Select a option: ");
         try {
             int option = sc.nextInt();
+            OperationRegisterUI operationRegisterUI= new OperationRegisterUI();
             switch (option) {
                 case 1:
-                    OperationRegisterUI operationRegisterUI= new OperationRegisterUI();
-                    operationRegisterUI.run();
+                    operationRegisterUI.run("sementeira");
                     break;
                 case 2:
-
+                    operationRegisterUI.run("Monda");
                     break;
                 case 3:
-
-
+                    operationRegisterUI.run("Colheita");
                     break;
+
                 case 4:
 
                     break;
 
                 case 5:
-
+                    operationRegisterUI.run("Poda");
                     break;
                 case 6:
-
+                    FarmCoordinator farmCoordinator = new FarmCoordinator();
+                    farmCoordinator.run();
                     break;
                 default:
                     System.out.println("Invalid Option. Please Try Again.");
                     System.out.println();
-                    wateringMenu();
+                    OperationsMenu();
                     break;
             }
         } catch (InputMismatchException e) {
             System.out.println("Invalid Option. Please Try Again.");
             System.out.println();
             sc.next();
-            wateringMenu();
+            OperationsMenu();
         }
     }
 

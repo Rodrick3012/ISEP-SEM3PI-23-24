@@ -13,8 +13,9 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         connectDataBase();
-        MainMenu mainMenu = new MainMenu();
-        mainMenu.run();
+        ApplicationChooser applicationChooser = new ApplicationChooser();
+        applicationChooser.run();
+
         DatabaseConnection.getInstance().closeConnection();
     }
 
@@ -34,17 +35,15 @@ public class Main {
 
         try {
             loadProperties();
-        } catch (UnknownHostException e) {
-            System.out.println("Database Server not reachable!");
-        } catch (Exception e) {
-            System.out.println("App properties not loaded!");
-        }
-        DatabaseConnection controller = new DatabaseConnection();
-
-        result = controller.testConnection();
+            DatabaseConnection controller = new DatabaseConnection();
+            result = controller.testConnection();
         if(result== DatabaseConnection.CONNECTION_SUCCESS)
             System.out.println("Connected to the database.");
         else
-            System.out.println("Not connected to the database. Opening in offline mode...");
+            System.out.println("Not connected to the database!");
+    } catch (UnknownHostException e) {
+        System.out.println("\nDatabase Server not reachable!");
+    } catch (Exception e) {
+        System.out.println("App properties not loaded!");
     }
 }

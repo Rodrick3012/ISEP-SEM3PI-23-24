@@ -160,21 +160,26 @@ public class ImportLegacyController {
                         StringBuilder values = new StringBuilder(" VALUES (");
                         List<String> insertFicha = new ArrayList<>();
                         List<String> datas = new ArrayList<>();
+                        List<String> produtoplantalist= new ArrayList<>();
                         String typeOp = "";
 
                         if (sheetName.equals("planta")){
-                            insert.append("produto,");
+                            //insert.append("produto,");
                             if (colheitaProductMapper.containsKey(row.getCell(1).getStringCellValue())){
                                 String insertType = "Insert into Produto (produto) select ('" + colheitaProductMapper.get(row.getCell(1).getStringCellValue()) + "') FROM dual where not exists" +
                                         "( Select 1 From produto Where  produto = '" + colheitaProductMapper.get(row.getCell(1).getStringCellValue()) + "');";
 
+                                String planta = row.getCell(2).toString().replace("'"," ");
+                                String plantaProduto = "Insert into plantaProduto (produto,planta) values ((select id from produto where produto like '"+colheitaProductMapper.get(row.getCell(1).getStringCellValue())+"')," +
+                                        "(select variedade from planta where variedade like '"+planta+"'));";
+
+                                produtoplantalist.add(plantaProduto);
                                 if (!colheitaProductMapper.get(row.getCell(1).getStringCellValue()).trim().isEmpty()) {
 
                                     if (!insertStatements.contains(insertType)) {
                                         insertStatements.add(insertType);
-
                                     }
-                                    values.append("(select id from ").append("Produto").append(" where ").append("Produto").append("='").append(colheitaProductMapper.get(row.getCell(1).getStringCellValue())).append("'),");
+                                    //values.append("(select id from ").append("Produto").append(" where ").append("Produto").append("='").append(colheitaProductMapper.get(row.getCell(1).getStringCellValue())).append("'),");
 
                                 } else {
                                     values.append("''");
@@ -479,6 +484,10 @@ public class ImportLegacyController {
 
                         if (!datas.isEmpty()) {
                             insertStatements.addAll(datas);
+                        }
+
+                        if (!produtoplantalist.isEmpty()){
+                            insertStatements.addAll(produtoplantalist);
                         }
 
                     }
