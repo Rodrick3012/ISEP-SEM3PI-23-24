@@ -1,8 +1,6 @@
 package sem3pl.dei.isep.ipp.pt.lapr3.application.utils;
 
-import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Cultura;
-import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Parcela;
-import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.TipoOperacao;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -90,6 +88,41 @@ public class Utils {
 
 
         return  options.get(choice - 1).getId();
+    }
+
+    public static int selectCulturaListWithNull(String message,List<Cultura> options) {
+        System.out.println(message);
+        System.out.println("0. None");
+        for (int i = 0; i < options.size(); i++) {
+            System.out.println((i + 1) + ". " + options.get(i));
+        }
+
+        int choice = readInt("Enter the number of your choice");
+        while (choice < 0 || choice > options.size()) {
+            System.out.println("Invalid choice. Please choose a number between 0 and " + options.size());
+            choice = readInt("Enter the number of your choice");
+        }
+
+        if (choice==0){
+            return 0;
+        }
+        return  options.get(choice - 1).getId();
+    }
+
+    public static String selectFatorProducaoList(String message,List<FatorProducao> options) {
+        System.out.println(message);
+        for (int i = 0; i < options.size(); i++) {
+            System.out.println((i + 1) + ". " + options.get(i));
+        }
+
+        int choice = readInt("Enter the number of your choice");
+        while (choice < 1 || choice > options.size()) {
+            System.out.println("Invalid choice. Please choose a number between 1 and " + options.size());
+            choice = readInt("Enter the number of your choice");
+        }
+
+
+        return  options.get(choice - 1).getDesignacao();
     }
 
     public static Integer selectTipoOperacaoList(String message,List<TipoOperacao> options) {
