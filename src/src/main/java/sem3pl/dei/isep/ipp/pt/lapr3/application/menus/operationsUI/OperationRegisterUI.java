@@ -44,7 +44,6 @@ public class OperationRegisterUI {
                     tipo=tipoOper.getId();
                 }
             }
-
             String format = "dd-MM-yyyy";
             Date date = Utils.readDate("Date",format);
 
