@@ -59,4 +59,8 @@ public class Locals {
     public int hashCode() {
         return Objects.hash(id, latitude, longitude);
     }
+
+    public String toString(){
+        return String.format(id);
+    }
 }
