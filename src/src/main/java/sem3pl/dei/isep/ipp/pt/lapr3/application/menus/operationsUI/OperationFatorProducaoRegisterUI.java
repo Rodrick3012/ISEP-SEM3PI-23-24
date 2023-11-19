@@ -52,21 +52,21 @@ public class OperationFatorProducaoRegisterUI {
             String format = "dd-MM-yyyy";
             Date date = Utils.readDate("Date",format);
 
-            int quantity = Utils.readInt("Quantidade");
+            int quantity = Utils.readInt("Quantity");
 
             List<Parcela> parcelas= parcelaController.getParcelas();
-            String parcela = Utils.selectParcelaList("Escolha uma parcela",parcelas);
+            String parcela = Utils.selectParcelaList("Choose a parcel",parcelas);
 
 
             List<Cultura> culturas= culturaController.getCulturasForParcela(parcela);
             int cultura=0;
             if (!culturas.isEmpty()){
-                cultura = Utils.selectCulturaListWithNull("Escolha uma cultura",culturas);
+                cultura = Utils.selectCulturaListWithNull("Choose a culture",culturas);
             }
 
 
             List<FatorProducao> fatorProducaoList = fatorProducaoController.getFatorProducao();
-            String fatorProducao = Utils.selectFatorProducaoList("Escolha o fator produção",fatorProducaoList);
+            String fatorProducao = Utils.selectFatorProducaoList("Choose the production factor",fatorProducaoList);
 
 
             operationFatorProducaoRegisterController.operationFatorProducaoRegister(tipo,date,quantity,cultura,parcela,fatorProducao);
@@ -84,7 +84,3 @@ public class OperationFatorProducaoRegisterUI {
     }
 
 }
-
-
-
-
