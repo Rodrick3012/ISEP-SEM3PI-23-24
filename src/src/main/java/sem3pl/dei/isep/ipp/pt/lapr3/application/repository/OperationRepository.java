@@ -19,33 +19,6 @@ public class OperationRepository {
     public OperationRepository() {
     }
 
-    public List<Operation> getOperations() throws SQLException {
-
-        CallableStatement callStmt = null;
-        ResultSet resultSet = null;
-        List<Operation> operations = null;
-
-        try {
-            Connection connection = DatabaseConnection.getInstance().getConnection();
-            callStmt = connection.prepareCall("{ ? = call fncSailors() }");
-
-            callStmt.registerOutParameter(1, OracleTypes.CURSOR);
-
-            callStmt.execute();
-            resultSet = (ResultSet) callStmt.getObject(1);
-
-            operations = resultSetToList(resultSet);
-        } finally {
-            if(!Objects.isNull(callStmt)) {
-                callStmt.close();
-            }
-            if(!Objects.isNull(resultSet)) {
-                resultSet.close();
-            }
-        }
-
-        return operations;
-    }
 
     public void operationRegister(int tipooperacao, java.util.Date data, int quantidade, int cultura, String parcela) throws SQLException {
 

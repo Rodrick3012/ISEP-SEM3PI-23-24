@@ -31,7 +31,7 @@ public class OperationsUI implements Runnable {
             switch (option) {
                 case 1:
                     OperationRegisterUI operationRegisterUI= new OperationRegisterUI();
-                    operationRegisterUI.run();
+                    operationRegisterUI.run("sementeira");
                     break;
                 case 2:
 

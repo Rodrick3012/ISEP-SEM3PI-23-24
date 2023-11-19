@@ -1,5 +1,6 @@
 package sem3pl.dei.isep.ipp.pt.lapr3.application.utils;
 
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Cultura;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Parcela;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.TipoOperacao;
 
@@ -73,6 +74,22 @@ public class Utils {
 
 
         return  options.get(choice - 1).getDesignacao();
+    }
+
+    public static int selectCulturaList(String message,List<Cultura> options) {
+        System.out.println(message);
+        for (int i = 0; i < options.size(); i++) {
+            System.out.println((i + 1) + ". " + options.get(i));
+        }
+
+        int choice = readInt("Enter the number of your choice");
+        while (choice < 1 || choice > options.size()) {
+            System.out.println("Invalid choice. Please choose a number between 1 and " + options.size());
+            choice = readInt("Enter the number of your choice");
+        }
+
+
+        return  options.get(choice - 1).getId();
     }
 
     public static Integer selectTipoOperacaoList(String message,List<TipoOperacao> options) {

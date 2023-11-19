@@ -9,11 +9,15 @@ public class Repositories {
 
     private TipoOperacaoRepository tipoOperacaoRepository = null;
 
+    private CulturaRepository culturaRepository = null;
+
     private Repositories() {
 
         operationRepository = new OperationRepository();
         parcelaRepository = new ParcelaRepository();
         tipoOperacaoRepository= new TipoOperacaoRepository();
+        culturaRepository= new CulturaRepository();
+
     }
 
 
@@ -30,6 +34,9 @@ public class Repositories {
     }
     public TipoOperacaoRepository getTipoOperacaoRepository() {
         return tipoOperacaoRepository;
+    }
+    public CulturaRepository getCulturaRepository() {
+        return culturaRepository;
     }
 
 }
