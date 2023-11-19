@@ -17,8 +17,8 @@ public class WateringPlanTest {
         String wateringHour1 = "08:30";
         String wateringHour2 = "17:00";
         List<String> wateringHours = new ArrayList<>(Arrays.asList(wateringHour1, wateringHour2));
-        Watering watering1 = new Watering('A', 10, new WateringTimeRegularity("T"));
-        Watering watering2 = new Watering('B', 50, new WateringTimeRegularity("3"));
+        Watering watering1 = new Watering(10, 10, new WateringTimeRegularity("T"));
+        Watering watering2 = new Watering(12, 50, new WateringTimeRegularity("3"));
         List<Watering> wateringList = new ArrayList<>(Arrays.asList(watering1, watering2));
         Calendar calendar1 = Calendar.getInstance();
         calendar1.set(2023, 10, 10);

@@ -7,6 +7,6 @@ import java.util.Comparator;
 public class WateringComparator implements Comparator<Watering> {
     @Override
     public int compare(Watering o1, Watering o2){
-        return o1.getAgriculturalParcelSector().compareTo(o2.getAgriculturalParcelSector());
+        return o1.getSector().compareTo(o2.getSector());
     }
 }

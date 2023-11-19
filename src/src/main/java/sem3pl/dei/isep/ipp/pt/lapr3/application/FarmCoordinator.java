@@ -1,7 +1,8 @@
 package sem3pl.dei.isep.ipp.pt.lapr3.application;
 
-import sem3pl.dei.isep.ipp.pt.lapr3.application.menus.operationsUI.OperationsUI;
+import sem3pl.dei.isep.ipp.pt.MainMenu;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.menus.WateringUI;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.menus.operationsUI.OperationsUI;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -41,8 +42,8 @@ public class FarmCoordinator implements Runnable {
                     sc.nextLine();
                     String exitOption = sc.nextLine();
                     if (exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")) {
-                        System.out.println("Exiting the app...");
-                        System.exit(0);
+                        MainMenu mainMenu = new MainMenu();
+                        mainMenu.run();
                     } else {
                         farmCoordinatorMenu();
                     }

@@ -3,22 +3,22 @@ package sem3pl.dei.isep.ipp.pt.lapr3.application.domain;
 import java.util.Objects;
 
 public class Watering {
-    private Character agriculturalParcelSector;
+    private Integer sector;
     private Integer wateringMinutes;
     private WateringTimeRegularity wateringTimeRegularity;
 
-    public Watering(Character agriculturalParcelSector, Integer wateringMinutes, WateringTimeRegularity wateringTimeRegularity) {
-        this.agriculturalParcelSector = agriculturalParcelSector;
+    public Watering(Integer sector, Integer wateringMinutes, WateringTimeRegularity wateringTimeRegularity) {
+        this.sector = sector;
         this.wateringMinutes = wateringMinutes;
         this.wateringTimeRegularity = wateringTimeRegularity;
     }
 
-    public Character getAgriculturalParcelSector() {
-        return agriculturalParcelSector;
+    public Integer getSector() {
+        return sector;
     }
 
-    public void setAgriculturalParcelSector(Character agriculturalParcelSector) {
-        this.agriculturalParcelSector = agriculturalParcelSector;
+    public void setSector(Integer sector) {
+        this.sector = sector;
     }
 
     public Integer getWateringMinutes() {
@@ -42,15 +42,15 @@ public class Watering {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Watering watering = (Watering) o;
-        return Objects.equals(agriculturalParcelSector, watering.agriculturalParcelSector) && Objects.equals(wateringMinutes, watering.wateringMinutes) && Objects.equals(wateringTimeRegularity, watering.wateringTimeRegularity);
+        return Objects.equals(sector, watering.sector) && Objects.equals(wateringMinutes, watering.wateringMinutes) && Objects.equals(wateringTimeRegularity, watering.wateringTimeRegularity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(agriculturalParcelSector, wateringMinutes, wateringTimeRegularity);
+        return Objects.hash(sector, wateringMinutes, wateringTimeRegularity);
     }
 
     public String toString(){
-        return String.format("%c, %d, %s", agriculturalParcelSector, wateringMinutes, wateringTimeRegularity.toString());
+        return String.format("%c, %d, %s", sector, wateringMinutes, wateringTimeRegularity.toString());
     }
 }

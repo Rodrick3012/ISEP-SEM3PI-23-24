@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 public class WateringTest {
     @Test
     public void assertWateringIsInstantiated(){
-        Watering watering = new Watering('A', 10, new WateringTimeRegularity("T"));
+        Watering watering = new Watering(10, 10, new WateringTimeRegularity("T"));
         assertEquals(watering, watering);
     }
 }

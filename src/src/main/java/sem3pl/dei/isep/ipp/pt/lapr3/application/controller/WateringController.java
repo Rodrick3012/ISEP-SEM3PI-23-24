@@ -19,7 +19,7 @@ public class WateringController {
     public WateringController() {
     }
 
-    public boolean readFile(String fileName) {
+    public WateringPlan readFile(String fileName) {
         List<String> wateringHours = new ArrayList<>();
         List<Watering> wateringList = new ArrayList<>();
         try {
@@ -34,16 +34,16 @@ public class WateringController {
             while (sc.hasNextLine()) {
                 String nextLine = sc.nextLine();
                 String[] wateringData = nextLine.split(",");
-                Watering watering = new Watering(wateringData[0].charAt(0), Integer.valueOf(wateringData[1]), new WateringTimeRegularity(wateringData[2]));
+                Watering watering = new Watering(Integer.valueOf(wateringData[0]), Integer.valueOf(wateringData[1]), new WateringTimeRegularity(wateringData[2]));
                 wateringList.add(watering);
             }
-            return createWateringPlan(wateringHours, wateringList);
         } catch (IOException e) {
-            return false;
+            e.printStackTrace();
         }
+        return createWateringPlan(wateringHours, wateringList);
     }
 
-    private boolean createWateringPlan(List<String> wateringHours, List<Watering> wateringList) {
+    private WateringPlan createWateringPlan(List<String> wateringHours, List<Watering> wateringList) {
         Map<Watering, List<DateInterval>> wateringCalendar = new HashMap<>();
         int actualMinutesWatering = 0;
         for (Watering watering : wateringList) {
@@ -98,7 +98,7 @@ public class WateringController {
                             dateIntervalList.add(dateInterval);
                     }
                 } catch (ParseException e) {
-                    return false;
+                    e.printStackTrace();
                 }
             }
             actualMinutesWatering += watering.getWateringMinutes();
@@ -107,8 +107,8 @@ public class WateringController {
         return wateringPlanRepository.createWateringPlan(wateringHours, wateringList, wateringCalendar);
     }
 
-    public Map<Character, Integer> verifiesThatIsWatering(WateringPlan wateringPlan, Integer year, Integer month, Integer day, Integer hour, Integer minute) {
-        Map<Character, Integer> sectorsAreWatering = new HashMap<>();
+    public Map<Integer, Integer> verifiesThatIsWatering(WateringPlan wateringPlan, Integer year, Integer month, Integer day, Integer hour, Integer minute) {
+        Map<Integer, Integer> sectorsAreWatering = new HashMap<>();
         Calendar cal = Calendar.getInstance();
         cal.clear();
         cal.set(Calendar.YEAR, year);
@@ -126,7 +126,7 @@ public class WateringController {
                     cal1.clear();
                     cal1.setTime(dateInterval.getEndDate());
                     int differenceMinutes = cal1.get(Calendar.MINUTE) - minute;
-                    sectorsAreWatering.put(watering.getAgriculturalParcelSector(), differenceMinutes);
+                    sectorsAreWatering.put(watering.getSector(), differenceMinutes);
                     break;
                 }
             }
@@ -137,6 +137,11 @@ public class WateringController {
     public String generateWateringPlan(WateringPlan wateringPlan) {
         String fileName = "wateringPlan.csv";
         Map<Watering, List<DateInterval>> wateringCalendar = wateringPlan.getWateringCalendar();
+        Calendar currentCalendar = Calendar.getInstance();
+        currentCalendar.set(Calendar.YEAR, LocalDate.now().getYear());
+        currentCalendar.set(Calendar.MONTH, LocalDate.now().getMonthValue());
+        currentCalendar.set(Calendar.DAY_OF_MONTH, LocalDate.now().getDayOfMonth());
+        currentCalendar.setTimeInMillis(System.currentTimeMillis());
         try {
             PrintWriter pw = new PrintWriter(Files.resourcesPath + fileName);
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -147,7 +152,7 @@ public class WateringController {
                 allDateIntervals.addAll(intervals);
             }
             allDateIntervals.sort(Comparator.comparing(DateInterval::getStartDate));
-            pw.println("Dia;Sector;Duração;Inicio;Final");
+            pw.println("Dia;Sector;Duração;Inicio;Final;Concluída");
 
             Calendar currentDate = Calendar.getInstance();
             currentDate.setTime(new Date());
@@ -167,11 +172,17 @@ public class WateringController {
                     if(watering != null) {
                         Date startDate = dateInterval.getStartDate();
                         Date endDate = dateInterval.getEndDate();
-                        pw.println(dateFormat.format(startDate) + ";" +
-                                    watering.getAgriculturalParcelSector() + ";" +
+                        if (endDate.before(currentCalendar.getTime()))
+                            pw.println(dateFormat.format(startDate) + ";" +
+                                    watering.getSector() + ";" +
                                     watering.getWateringMinutes() + ";" +
                                     timeFormat.format(startDate) + ";" +
-                                    timeFormat.format(endDate));
+                                    timeFormat.format(endDate) + ";" + "Sim");
+                        else pw.println(dateFormat.format(startDate) + ";" +
+                                watering.getSector() + ";" +
+                                watering.getWateringMinutes() + ";" +
+                                timeFormat.format(startDate) + ";" +
+                                timeFormat.format(endDate) + ";" + "Não");
                     }
                 }
             }
@@ -192,14 +203,13 @@ public class WateringController {
     }
 
     public boolean readWateringPlanGeneratedFileAndCheckIfWateringConcluded(String fileName){
-        fileName = Files.resourcesPath + fileName;
         Calendar currentCalendar = Calendar.getInstance();
         currentCalendar.set(Calendar.YEAR, LocalDate.now().getYear());
         currentCalendar.set(Calendar.MONTH, LocalDate.now().getMonthValue());
         currentCalendar.set(Calendar.DAY_OF_MONTH, LocalDate.now().getDayOfMonth());
         currentCalendar.setTimeInMillis(System.currentTimeMillis());
         try{
-            Scanner sc = new Scanner(new File(fileName));
+            Scanner sc = new Scanner(new File(Files.resourcesPath + fileName));
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
             sc.nextLine();
@@ -214,12 +224,19 @@ public class WateringController {
                 timeCalendar.setTime(time);
                 calendar.set(Calendar.HOUR_OF_DAY, timeCalendar.get(Calendar.HOUR_OF_DAY));
                 calendar.set(Calendar.MINUTE, timeCalendar.get(Calendar.MINUTE));
-                if(currentCalendar.getTime().after(calendar.getTime())){
-                    String wateringSector = wateringPlanData[1];
-                    System.out.println(wateringPlanData[1] + ", " +  wateringPlanData[4]);
-                    // inserir a rega concluida na base de dados
+                boolean isWateringConcluded = "Sim".equals(wateringPlanData[5]);
+                if(isWateringConcluded && currentCalendar.getTime().after(calendar.getTime())){
+                    Integer wateringSector = Integer.parseInt(wateringPlanData[1]);
+                    Integer wateringDuration = Integer.parseInt(wateringPlanData[2]);
+                    SimpleDateFormat inputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    Date dateWateringConcluded = inputDateFormat.parse(wateringPlanData[0]);
+                    SimpleDateFormat outputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    outputDateFormat.format(dateWateringConcluded);
+                    // wateringPlanRepository.wateringOperationRegister(wateringSector, wateringDuration, dateWateringConcluded);
                 }
             }
+            sc.close();
+            removeNonWateringLines(fileName);
         } catch (Exception e){
             e.printStackTrace();
             return false;
@@ -227,6 +244,32 @@ public class WateringController {
         return true;
     }
 
+    private void removeNonWateringLines(String fileName) {
+        try {
+            File tempFile = new File( Files.resourcesPath + "temp_" + fileName);
+            PrintWriter pw = new PrintWriter(tempFile);
+            Scanner sc = new Scanner(new File(Files.resourcesPath + fileName));
+            pw.println(sc.nextLine());
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                String[] wateringPlanData = line.split(";");
+                boolean isWateringConcluded = "Não".equals(wateringPlanData[5]);
+                if (isWateringConcluded) {
+                    pw.println(line);
+                }
+            }
+            sc.close();
+            pw.close();
+
+            File originalFile = new File(Files.resourcesPath + fileName);
+            if(originalFile.exists()){
+                originalFile.delete();
+            }
+            tempFile.renameTo(originalFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public List<WateringPlan> getWateringPlanList() {
         return wateringPlanRepository.getWateringPlanList();

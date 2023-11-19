@@ -1,12 +1,13 @@
 package sem3pl.dei.isep.ipp.pt;
 
 import sem3pl.dei.isep.ipp.pt.bddad.ImportLegacyController;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.BasketRoutingDelivery;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class ApplicationChooser implements Runnable {
+public class MainMenu implements Runnable {
     private final Scanner sc = new Scanner(System.in);
     @Override
     public void run() {
@@ -17,7 +18,8 @@ public class ApplicationChooser implements Runnable {
         System.out.println("Choose the app to run:");
         System.out.println();
         System.out.println("1. Farm Coordinator");
-        System.out.println("2. Import Legacy File");
+        System.out.println("2. Basket Routing & Delivery");
+        System.out.println("3. Import Legacy File");
         System.out.println("3. Exit");
         System.out.println();
         System.out.println("Select a option: ");
@@ -29,13 +31,17 @@ public class ApplicationChooser implements Runnable {
                     farmCoordinator.run();
                     break;
                 case 2:
+                    BasketRoutingDelivery basketRoutingDelivery = new BasketRoutingDelivery();
+                    basketRoutingDelivery.run();
+                    break;
+                case 3:
                     ImportLegacyController importLegacyController = new ImportLegacyController();
                     importLegacyController.writeSQLToFile(importLegacyController.readFile("Legacy_Data.xlsx"),"docs/Sprint 2/BDDAD/USBD22/insert.sql");
                     System.out.println("File imported successfully.");
                     System.out.println();
                     applicationChooserMenu();
                     break;
-                case 3:
+                case 4:
                     System.out.println("Exiting...");
                     System.exit(0);
                     break;
