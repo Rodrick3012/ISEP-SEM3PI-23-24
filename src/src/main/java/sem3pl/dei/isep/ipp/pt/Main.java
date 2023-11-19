@@ -32,20 +32,19 @@ public class Main {
 
     private static void connectDataBase() throws SQLException {
         int result = 0;
-
         try {
             loadProperties();
+            DatabaseConnection controller = new DatabaseConnection();
+            result = controller.testConnection();
+
+            if (result == DatabaseConnection.CONNECTION_SUCCESS)
+                System.out.println("Connected to the database.");
+            else
+                System.out.println("Not connected to the database!");
         } catch (UnknownHostException e) {
-            System.out.println("\nDatabase Server not reachable!");
+            System.out.println("\nNo network connection available!");
         } catch (Exception e) {
             System.out.println("App properties not loaded!");
         }
-        DatabaseConnection controller = new DatabaseConnection();
-
-        result = controller.testConnection();
-        if(result== DatabaseConnection.CONNECTION_SUCCESS)
-            System.out.println("Connected to the database.");
-        else
-            System.out.println("Not connected to the database!");
     }
 }
