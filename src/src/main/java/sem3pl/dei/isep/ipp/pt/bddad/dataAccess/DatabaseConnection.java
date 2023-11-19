@@ -1,4 +1,4 @@
-package sem3pl.dei.isep.ipp.pt.bddad.controller;
+package sem3pl.dei.isep.ipp.pt.bddad.dataAccess;
 
 import oracle.jdbc.pool.OracleDataSource;
 

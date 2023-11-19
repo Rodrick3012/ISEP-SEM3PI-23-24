@@ -1,6 +1,7 @@
 package sem3pl.dei.isep.ipp.pt;
 
-import sem3pl.dei.isep.ipp.pt.bddad.controller.DatabaseConnection;
+
+import sem3pl.dei.isep.ipp.pt.bddad.dataAccess.DatabaseConnection;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,8 +41,8 @@ public class Main {
             System.out.println("App properties not loaded!");
         }
         DatabaseConnection controller = new DatabaseConnection();
-        result = controller.testConnection();
 
+        result = controller.testConnection();
         if(result== DatabaseConnection.CONNECTION_SUCCESS)
             System.out.println("Connected to the database.");
         else

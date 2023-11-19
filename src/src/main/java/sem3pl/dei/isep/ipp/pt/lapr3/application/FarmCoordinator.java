@@ -1,5 +1,6 @@
 package sem3pl.dei.isep.ipp.pt.lapr3.application;
 
+import sem3pl.dei.isep.ipp.pt.lapr3.application.menus.operationsUI.OperationsUI;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.menus.WateringUI;
 
 import java.util.InputMismatchException;
@@ -32,9 +33,8 @@ public class FarmCoordinator implements Runnable {
                     wateringUI.run();
                     break;
                 case 2:
-                    System.out.println("App in Development.");
-                    System.out.println();
-                    farmCoordinatorMenu();
+                    OperationsUI operationsUI = new OperationsUI();
+                    operationsUI.run();
                     break;
                 case 3:
                     System.out.println("Do you really want to exit the app?");
