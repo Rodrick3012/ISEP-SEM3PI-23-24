@@ -217,6 +217,5 @@ ALTER TABLE ParcelaCultura ADD CONSTRAINT FKParcelaCul209130 FOREIGN KEY (cultur
 ALTER TABLE SetorParcelaCultura ADD CONSTRAINT FKSetorParce564186 FOREIGN KEY (setor) REFERENCES Setor (setor);
 ALTER TABLE plantaProduto ADD CONSTRAINT FKplantaProd128917 FOREIGN KEY (planta) REFERENCES planta (Variedade);
 ALTER TABLE plantaProduto ADD CONSTRAINT FKplantaProd874382 FOREIGN KEY (produto) REFERENCES Produto (id);
-ALTER TABLE OperacaoRega ADD CONSTRAINT FKOperacaoRe84253 FOREIGN KEY (setor) REFERENCES Setor (setor);
 ALTER TABLE SetorParcelaCultura ADD CONSTRAINT FKSetorParce783701 FOREIGN KEY (parcela, cultura) REFERENCES ParcelaCultura (parcela, cultura);
 ALTER TABLE OperacaoRega ADD CONSTRAINT FKOperacaoRe946333 FOREIGN KEY (setor, Parcela, cultura) REFERENCES SetorParcelaCultura (setor, parcela, cultura);
