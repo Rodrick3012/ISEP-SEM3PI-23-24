@@ -25,9 +25,10 @@ DROP TABLE SubstanciaFatorProducao CASCADE CONSTRAINTS;
 DROP TABLE TipoData CASCADE CONSTRAINTS;
 DROP TABLE Produto CASCADE CONSTRAINTS;
 DROP TABLE ParcelaCultura CASCADE CONSTRAINTS;
-DROP TABLE SetorParcela CASCADE CONSTRAINTS;
-DROP TABLE RegaSetor CASCADE CONSTRAINTS;
+DROP TABLE SetorParcelaCultura CASCADE CONSTRAINTS;
+DROP TABLE Setor CASCADE CONSTRAINTS;
 DROP TABLE plantaProduto CASCADE CONSTRAINTS;
+DROP TABLE OperacaoRega CASCADE CONSTRAINTS;
 CREATE TABLE OperacaoFatorProducao (
   id            number GENERATED AS IDENTITY, 
   data          date NOT NULL, 
@@ -166,12 +167,17 @@ CREATE TABLE ParcelaCultura (
   cultura number NOT NULL, 
   PRIMARY KEY (parcela, 
   cultura));
-CREATE TABLE SetorParcela (
-  setor   varchar2(2) NOT NULL, 
-  parcela varchar2(25) NOT NULL, 
+CREATE TABLE SetorParcelaCultura (
+  setor        varchar2(2) NOT NULL, 
+  parcela      varchar2(25) NOT NULL, 
+  cultura      number NOT NULL, 
+  quantidade   number NOT NULL, 
+  dataInsercao date NOT NULL, 
+  dataRemocao  date, 
   PRIMARY KEY (setor, 
-  parcela));
-CREATE TABLE RegaSetor (
+  parcela, 
+  cultura));
+CREATE TABLE Setor (
   setor        varchar2(2) NOT NULL, 
   caudalMaximo number NOT NULL, 
   dataInicio   date NOT NULL, 
@@ -182,6 +188,14 @@ CREATE TABLE plantaProduto (
   planta  varchar2(50) NOT NULL, 
   PRIMARY KEY (produto, 
   planta));
+CREATE TABLE OperacaoRega (
+  id      number GENERATED AS IDENTITY, 
+  setor   varchar2(2) NOT NULL, 
+  Parcela varchar2(25) NOT NULL, 
+  cultura number NOT NULL, 
+  duracao number NOT NULL, 
+  data    date NOT NULL, 
+  PRIMARY KEY (id));
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa567047 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa644819 FOREIGN KEY (modo) REFERENCES Modo (id);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa455406 FOREIGN KEY (fatorproducao) REFERENCES FatorProducao (designacao);
@@ -200,7 +214,9 @@ ALTER TABLE Data ADD CONSTRAINT FKData170005 FOREIGN KEY (planta) REFERENCES pla
 ALTER TABLE Data ADD CONSTRAINT FKData398401 FOREIGN KEY (tipo) REFERENCES TipoData (id);
 ALTER TABLE ParcelaCultura ADD CONSTRAINT FKParcelaCul159527 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
 ALTER TABLE ParcelaCultura ADD CONSTRAINT FKParcelaCul209130 FOREIGN KEY (cultura) REFERENCES Cultura (id);
-ALTER TABLE SetorParcela ADD CONSTRAINT FKSetorParce432638 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
-ALTER TABLE SetorParcela ADD CONSTRAINT FKSetorParce717134 FOREIGN KEY (setor) REFERENCES RegaSetor (setor);
+ALTER TABLE SetorParcelaCultura ADD CONSTRAINT FKSetorParce564186 FOREIGN KEY (setor) REFERENCES Setor (setor);
 ALTER TABLE plantaProduto ADD CONSTRAINT FKplantaProd128917 FOREIGN KEY (planta) REFERENCES planta (Variedade);
 ALTER TABLE plantaProduto ADD CONSTRAINT FKplantaProd874382 FOREIGN KEY (produto) REFERENCES Produto (id);
+ALTER TABLE OperacaoRega ADD CONSTRAINT FKOperacaoRe84253 FOREIGN KEY (setor) REFERENCES Setor (setor);
+ALTER TABLE SetorParcelaCultura ADD CONSTRAINT FKSetorParce783701 FOREIGN KEY (parcela, cultura) REFERENCES ParcelaCultura (parcela, cultura);
+ALTER TABLE OperacaoRega ADD CONSTRAINT FKOperacaoRe946333 FOREIGN KEY (setor, Parcela, cultura) REFERENCES SetorParcelaCultura (setor, parcela, cultura);
