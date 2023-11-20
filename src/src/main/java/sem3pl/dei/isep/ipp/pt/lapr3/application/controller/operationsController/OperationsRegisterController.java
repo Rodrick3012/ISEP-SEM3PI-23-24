@@ -25,8 +25,8 @@ public class OperationsRegisterController {
         return operationRepository;
     }
 
-    public void operationRegister(int tipooperacao, Date data, int quantidade, int cultura, String parcela) throws SQLException {
-        operationRepository.operationRegister(tipooperacao, data, quantidade, cultura, parcela);
+    public void operationRegister(int tipooperacao, Date data, int quantidade, int cultura, String parcela,int unidade) throws SQLException {
+        operationRepository.operationRegister(tipooperacao, data, quantidade, cultura, parcela, unidade);
     }
 
 }

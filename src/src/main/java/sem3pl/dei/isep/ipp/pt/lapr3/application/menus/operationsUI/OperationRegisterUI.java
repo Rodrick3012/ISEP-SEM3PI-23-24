@@ -5,10 +5,12 @@ import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.culturaController.CulturaController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.operationsController.OperationsRegisterController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.operationsController.TipoOperacaoController;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.operationsController.UnidadeController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.parcelaController.ParcelaController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Cultura;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Parcela;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.TipoOperacao;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Unidade;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Utils;
 
 import java.sql.SQLException;
@@ -21,12 +23,15 @@ public class OperationRegisterUI {
     private ParcelaController parcelaController;
     private TipoOperacaoController tipoOperacaoController;
     private CulturaController culturaController;
+    private UnidadeController unidadeController;
+
 
     public OperationRegisterUI() {
         operationsRegisterController = new OperationsRegisterController();
         parcelaController = new ParcelaController();
         tipoOperacaoController = new TipoOperacaoController();
         culturaController = new CulturaController();
+        unidadeController = new UnidadeController();
     }
 
     public void run(String tipoOperacao) {
@@ -46,6 +51,9 @@ public class OperationRegisterUI {
 
             int quantity = Utils.readInt("Quantity");
 
+            List<Unidade> unidades = unidadeController.getUnidades();
+            int unidade = Utils.selectUnidades("Choose the unity",unidades);
+
             List<Parcela> parcelas = parcelaController.getParcelas();
             String parcela = Utils.selectParcelaList("Choose a parcel", parcelas);
 
@@ -56,7 +64,7 @@ public class OperationRegisterUI {
                 int cultura = Utils.selectCulturaList("Choose a culture", culturas);
 
                 System.out.println();
-                operationsRegisterController.operationRegister(tipo, date, quantity, cultura, parcela);
+                operationsRegisterController.operationRegister(tipo, date, quantity, cultura, parcela,unidade);
                 System.out.println("\nOperation registered.");
             }
 

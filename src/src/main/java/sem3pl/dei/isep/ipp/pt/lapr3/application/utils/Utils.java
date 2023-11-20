@@ -141,4 +141,21 @@ public class Utils {
 
         return options.get(choice - 1).getId();
     }
+
+    public static Integer selectUnidades(String message,List<Unidade> options) {
+        System.out.println(message);
+
+        for (int i = 0; i < options.size(); i++) {
+            System.out.println((i + 1) + ". " + options.get(i));
+        }
+
+        int choice = readInt("Enter the number of your choice");
+        while (choice < 1 || choice > options.size()) {
+            System.out.println("Invalid choice. Please choose a number between 1 and " + options.size());
+            choice = readInt("Enter the number of your choice");
+        }
+
+
+        return options.get(choice - 1).getId();
+    }
 }

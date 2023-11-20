@@ -140,9 +140,11 @@ public class ImportLegacyController {
 
                         if (sheetName.equalsIgnoreCase("operacao")){
                             atributosExploracao.remove("planta");
+                            atributosExploracao.add("unidade");
 
                         } else {
                             atributosExploracao.add("planta");
+                            atributosExploracao.remove("unidade");
                         }
 
 

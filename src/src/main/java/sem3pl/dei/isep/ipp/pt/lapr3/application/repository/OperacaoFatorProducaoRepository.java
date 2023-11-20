@@ -14,12 +14,12 @@ public class OperacaoFatorProducaoRepository {
     }
 
 
-    public void OperacaoFatorProducaoRegister(int tipooperacao, java.util.Date data, int quantidade, int cultura, String parcela,String fatorproducao) throws SQLException {
+    public void OperacaoFatorProducaoRegister(int tipooperacao, java.util.Date data, int quantidade, int cultura, String parcela,String fatorproducao, int unidade) throws SQLException {
 
         CallableStatement callStmt = null;
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            callStmt = connection.prepareCall("{ call inserirOperacaoAplicacaoFatorProducao(?,?,?,?,?,?) }");
+            callStmt = connection.prepareCall("{ call inserirOperacaoAplicacaoFatorProducao(?,?,?,?,?,?,?) }");
 
             Date sqlDate = new Date(data.getTime());
             callStmt.setDate(1, sqlDate);
@@ -28,6 +28,7 @@ public class OperacaoFatorProducaoRepository {
             callStmt.setString(4, fatorproducao);
             callStmt.setInt(5, cultura);
             callStmt.setInt(6, tipooperacao);
+            callStmt.setInt(7, unidade);
 
 
             callStmt.execute();

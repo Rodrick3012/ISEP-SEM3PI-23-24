@@ -20,12 +20,12 @@ public class OperationRepository {
     }
 
 
-    public void operationRegister(int tipooperacao, java.util.Date data, int quantidade, int cultura, String parcela) throws SQLException {
+    public void operationRegister(int tipooperacao, java.util.Date data, int quantidade, int cultura, String parcela,int unidade) throws SQLException {
 
         CallableStatement callStmt = null;
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            callStmt = connection.prepareCall("{ call inserirOperacao(?,?,?,?,?) }");
+            callStmt = connection.prepareCall("{ call inserirOperacao(?,?,?,?,?,?) }");
 
             callStmt.setInt(1, tipooperacao);
             java.sql.Date sqlDate = new java.sql.Date(data.getTime());
@@ -33,6 +33,7 @@ public class OperationRepository {
             callStmt.setInt(3, quantidade);
             callStmt.setInt(4, cultura);
             callStmt.setString(5, parcela);
+            callStmt.setInt(6, unidade);
 
             callStmt.execute();
             connection.commit();
@@ -55,7 +56,9 @@ public class OperationRepository {
                     resultSet.getDate("data"),
                     resultSet.getInt("quantidade"),
                     resultSet.getInt("cultura"),
-                    resultSet.getString("parcela")
+                    resultSet.getString("parcela"),
+                    resultSet.getInt("unidade")
+
             );
             operations.add(operacao);
         }

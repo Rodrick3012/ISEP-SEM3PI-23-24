@@ -10,13 +10,17 @@ public class Operation {
     private int cultura;
     private String parcela;
 
-    public Operation(int id, int tipooperacao, Date data, int quantidade, int cultura, String parcela) {
+    private int unidade;
+
+
+    public Operation(int id, int tipooperacao, Date data, int quantidade, int cultura, String parcela,int unidade) {
         this.id = id;
         this.tipooperacao = tipooperacao;
         this.data = data;
         this.quantidade = quantidade;
         this.cultura = cultura;
         this.parcela = parcela;
+        this.unidade=unidade;
     }
 
     public int getId() {

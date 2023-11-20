@@ -23,8 +23,8 @@ public class OperationFatorProducaoRegisterController {
         return operacaoFatorProducaoRepository;
     }
 
-    public void operationFatorProducaoRegister(int tipooperacao, Date data, int quantidade, int cultura, String parcela,String fatorproducao) throws SQLException {
-        operacaoFatorProducaoRepository.OperacaoFatorProducaoRegister(tipooperacao, data, quantidade, cultura, parcela,fatorproducao);
+    public void operationFatorProducaoRegister(int tipooperacao, Date data, int quantidade, int cultura, String parcela,String fatorproducao, int unidade) throws SQLException {
+        operacaoFatorProducaoRepository.OperacaoFatorProducaoRegister(tipooperacao, data, quantidade, cultura, parcela,fatorproducao,unidade);
     }
 }
 

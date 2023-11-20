@@ -16,6 +16,8 @@ public class Repositories {
 
     private OperacaoFatorProducaoRepository operacaoFatorProducaoRepository = null;
 
+    private UnidadeRepository unidadeRepository = null;
+
 
     private Repositories() {
 
@@ -25,6 +27,7 @@ public class Repositories {
         culturaRepository= new CulturaRepository();
         fatorProducaoRepository = new FatorProducaoRepository();
         operacaoFatorProducaoRepository= new OperacaoFatorProducaoRepository();
+        unidadeRepository = new UnidadeRepository();
     }
 
 
@@ -54,5 +57,7 @@ public class Repositories {
         return operacaoFatorProducaoRepository;
     }
 
-
+    public UnidadeRepository getUnidadeRepository(){
+        return unidadeRepository;
+    }
 }

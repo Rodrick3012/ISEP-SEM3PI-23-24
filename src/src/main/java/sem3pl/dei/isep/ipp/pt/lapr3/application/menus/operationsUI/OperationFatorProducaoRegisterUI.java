@@ -5,6 +5,7 @@ import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.culturaController.Cul
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.operationsController.OperationFatorProducaoRegisterController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.operationsController.OperationsRegisterController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.operationsController.TipoOperacaoController;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.operationsController.UnidadeController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.parcelaController.ParcelaController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.FatorProducaoController.FatorProducaoController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.*;
@@ -23,6 +24,7 @@ public class OperationFatorProducaoRegisterUI {
     private CulturaController culturaController;
 
     private FatorProducaoController fatorProducaoController;
+    private UnidadeController unidadeController;
 
 
     public OperationFatorProducaoRegisterUI() {
@@ -33,6 +35,7 @@ public class OperationFatorProducaoRegisterUI {
         culturaController = new CulturaController();
         fatorProducaoController = new FatorProducaoController();
         operationFatorProducaoRegisterController = new OperationFatorProducaoRegisterController();
+        unidadeController = new UnidadeController();
     }
 
     public void run(String tipoOperacao) {
@@ -54,6 +57,10 @@ public class OperationFatorProducaoRegisterUI {
 
             int quantity = Utils.readInt("Quantity");
 
+            List<Unidade> unidades = unidadeController.getUnidades();
+            int unidade = Utils.selectUnidades("Choose the unity",unidades);
+
+
             List<Parcela> parcelas= parcelaController.getParcelas();
             String parcela = Utils.selectParcelaList("Choose a parcel",parcelas);
 
@@ -69,7 +76,7 @@ public class OperationFatorProducaoRegisterUI {
             String fatorProducao = Utils.selectFatorProducaoList("Choose the production factor",fatorProducaoList);
 
 
-            operationFatorProducaoRegisterController.operationFatorProducaoRegister(tipo,date,quantity,cultura,parcela,fatorProducao);
+            operationFatorProducaoRegisterController.operationFatorProducaoRegister(tipo,date,quantity,cultura,parcela,fatorProducao,unidade);
             System.out.println("\nOperation registered.");
 
 

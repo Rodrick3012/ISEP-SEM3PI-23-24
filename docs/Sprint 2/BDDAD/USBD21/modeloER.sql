@@ -29,6 +29,7 @@ DROP TABLE SetorParcelaCultura CASCADE CONSTRAINTS;
 DROP TABLE Setor CASCADE CONSTRAINTS;
 DROP TABLE plantaProduto CASCADE CONSTRAINTS;
 DROP TABLE OperacaoRega CASCADE CONSTRAINTS;
+DROP TABLE Unidade CASCADE CONSTRAINTS;
 CREATE TABLE OperacaoFatorProducao (
   id            number GENERATED AS IDENTITY, 
   data          date NOT NULL, 
@@ -38,6 +39,7 @@ CREATE TABLE OperacaoFatorProducao (
   fatorproducao varchar2(30) NOT NULL, 
   cultura       number, 
   tipooperacao  number NOT NULL, 
+  unidade       number NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE Parcela (
   designacao varchar2(25) NOT NULL, 
@@ -114,6 +116,7 @@ CREATE TABLE Operacao (
   quantidade   number NOT NULL, 
   cultura      number NOT NULL, 
   parcela      varchar2(25) NOT NULL, 
+  unidade      number, 
   PRIMARY KEY (id));
 CREATE TABLE MedicaoSensor (
   idSensor    number NOT NULL, 
@@ -196,6 +199,10 @@ CREATE TABLE OperacaoRega (
   duracao number NOT NULL, 
   data    date NOT NULL, 
   PRIMARY KEY (id));
+CREATE TABLE Unidade (
+  id      number GENERATED AS IDENTITY, 
+  unidade varchar2(5) NOT NULL, 
+  PRIMARY KEY (id));
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa567047 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa644819 FOREIGN KEY (modo) REFERENCES Modo (id);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa455406 FOREIGN KEY (fatorproducao) REFERENCES FatorProducao (designacao);
@@ -219,3 +226,5 @@ ALTER TABLE plantaProduto ADD CONSTRAINT FKplantaProd128917 FOREIGN KEY (planta)
 ALTER TABLE plantaProduto ADD CONSTRAINT FKplantaProd874382 FOREIGN KEY (produto) REFERENCES Produto (id);
 ALTER TABLE SetorParcelaCultura ADD CONSTRAINT FKSetorParce783701 FOREIGN KEY (parcela, cultura) REFERENCES ParcelaCultura (parcela, cultura);
 ALTER TABLE OperacaoRega ADD CONSTRAINT FKOperacaoRe946333 FOREIGN KEY (setor, Parcela, cultura) REFERENCES SetorParcelaCultura (setor, parcela, cultura);
+ALTER TABLE Operacao ADD CONSTRAINT FKOperacao731299 FOREIGN KEY (unidade) REFERENCES Unidade (id);
+ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa538514 FOREIGN KEY (unidade) REFERENCES Unidade (id);
