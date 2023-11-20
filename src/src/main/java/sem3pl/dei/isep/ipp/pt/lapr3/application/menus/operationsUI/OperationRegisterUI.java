@@ -23,58 +23,48 @@ public class OperationRegisterUI {
     private CulturaController culturaController;
 
     public OperationRegisterUI() {
-
         operationsRegisterController = new OperationsRegisterController();
         parcelaController = new ParcelaController();
         tipoOperacaoController = new TipoOperacaoController();
         culturaController = new CulturaController();
-
     }
 
     public void run(String tipoOperacao) {
-
         try {
             System.out.println("Register a new Operation");
 
-            List<TipoOperacao> tipoOperacaoList= tipoOperacaoController.getTipoOpercao();
+            List<TipoOperacao> tipoOperacaoList = tipoOperacaoController.getTipoOpercao();
 
-            int tipo=0;
-            for (TipoOperacao tipoOper: tipoOperacaoList) {
-                if (tipoOper.getTipooperacao().equalsIgnoreCase(tipoOperacao)){
-                    tipo=tipoOper.getId();
+            int tipo = 0;
+            for (TipoOperacao tipoOper : tipoOperacaoList) {
+                if (tipoOper.getTipooperacao().equalsIgnoreCase(tipoOperacao)) {
+                    tipo = tipoOper.getId();
                 }
             }
             String format = "dd-MM-yyyy";
-            Date date = Utils.readDate("Date",format);
+            Date date = Utils.readDate("Date", format);
 
-            int quantity = Utils.readInt("Quantidade");
+            int quantity = Utils.readInt("Quantity");
 
-            List<Parcela> parcelas= parcelaController.getParcelas();
-            String parcela = Utils.selectParcelaList("Escolha uma parcela",parcelas);
+            List<Parcela> parcelas = parcelaController.getParcelas();
+            String parcela = Utils.selectParcelaList("Choose a parcel", parcelas);
 
-
-            List<Cultura> culturas= culturaController.getCulturasForParcela(parcela);
-            if (culturas.isEmpty()){
-                System.out.println("Não existe nenhuma cultura ativa na parcela selecionada");
-            }else {
-                int cultura = Utils.selectCulturaList("Escolha uma cultura",culturas);
+            List<Cultura> culturas = culturaController.getCulturasForParcela(parcela);
+            if (culturas.isEmpty()) {
+                System.out.println("There are no active cultures in the selected parcel.");
+            } else {
+                int cultura = Utils.selectCulturaList("Choose a culture", culturas);
 
                 System.out.println();
-                operationsRegisterController.operationRegister(tipo,date,quantity,cultura,parcela);
-                System.out.println("\nOperation registered.");;
+                operationsRegisterController.operationRegister(tipo, date, quantity, cultura, parcela);
+                System.out.println("\nOperation registered.");
             }
 
-
-        } catch (SQLException e ) {
+        } catch (SQLException e) {
             System.out.println("\nOperation not registered!\n" + e.getMessage());
         }
 
         FarmCoordinator farmCoordinator = new FarmCoordinator();
         farmCoordinator.run();
     }
-
 }
-
-
-
-

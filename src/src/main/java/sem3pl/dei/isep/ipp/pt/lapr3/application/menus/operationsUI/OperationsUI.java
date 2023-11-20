@@ -43,7 +43,8 @@ public class OperationsUI implements Runnable {
                     break;
 
                 case 4:
-
+                    OperationFatorProducaoRegisterUI operationFatorProducaoRegisterUI = new OperationFatorProducaoRegisterUI();
+                    operationFatorProducaoRegisterUI.run("Aplicação fitofármaco");
                     break;
 
                 case 5:

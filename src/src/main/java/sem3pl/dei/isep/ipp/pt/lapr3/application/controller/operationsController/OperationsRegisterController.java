@@ -1,5 +1,7 @@
 package sem3pl.dei.isep.ipp.pt.lapr3.application.controller.operationsController;
 
+import sem3pl.dei.isep.ipp.pt.lapr3.application.menus.operationsUI.OperationFatorProducaoRegisterUI;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.repository.OperacaoFatorProducaoRepository;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.repository.OperationRepository;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.repository.Repositories;
 
@@ -9,6 +11,7 @@ import java.util.Objects;
 
 public class OperationsRegisterController {
     private OperationRepository operationRepository;
+
 
     public OperationsRegisterController (){
         getOperationRepository();
@@ -25,5 +28,6 @@ public class OperationsRegisterController {
     public void operationRegister(int tipooperacao, Date data, int quantidade, int cultura, String parcela) throws SQLException {
         operationRepository.operationRegister(tipooperacao, data, quantidade, cultura, parcela);
     }
+
 }
 

@@ -11,13 +11,20 @@ public class Repositories {
 
     private CulturaRepository culturaRepository = null;
 
+
+    private FatorProducaoRepository fatorProducaoRepository = null;
+
+    private OperacaoFatorProducaoRepository operacaoFatorProducaoRepository = null;
+
+
     private Repositories() {
 
         operationRepository = new OperationRepository();
         parcelaRepository = new ParcelaRepository();
         tipoOperacaoRepository= new TipoOperacaoRepository();
         culturaRepository= new CulturaRepository();
-
+        fatorProducaoRepository = new FatorProducaoRepository();
+        operacaoFatorProducaoRepository= new OperacaoFatorProducaoRepository();
     }
 
 
@@ -38,5 +45,14 @@ public class Repositories {
     public CulturaRepository getCulturaRepository() {
         return culturaRepository;
     }
+
+
+    public FatorProducaoRepository getFatorProducaoRepository() {
+        return fatorProducaoRepository;
+    }
+    public OperacaoFatorProducaoRepository getOperacaoFatorProducaoRepository() {
+        return operacaoFatorProducaoRepository;
+    }
+
 
 }
