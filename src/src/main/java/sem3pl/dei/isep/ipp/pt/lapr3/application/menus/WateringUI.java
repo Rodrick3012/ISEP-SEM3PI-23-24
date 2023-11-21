@@ -123,10 +123,9 @@ public class WateringUI implements Runnable {
     private void checkWateringConcluded(String fileName){
         boolean verified = wateringController.readWateringPlanGeneratedFileAndCheckIfWateringConcluded(fileName);
         if(verified){
-            System.out.println("Watering plan successfully generated!");
-        } else System.out.println("Error while watering plan being generated.");
+            System.out.println("Watering plan successfully updated/generated and all concluded waterings added to database!");
+        } else System.out.println("Error while watering plan being updated/generated.");
         System.out.println();
-        wateringMenu();
     }
 
     private void selectWateringPlanAndWriteConditions() {

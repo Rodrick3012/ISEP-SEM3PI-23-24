@@ -44,17 +44,18 @@ public class WateringPlanRepository {
         }
         return false;
     }
-    public void wateringOperationRegister(Integer sector, Integer duration, java.util.Date date) throws SQLException {
+    public void wateringOperationRegister(Integer sector, Integer duration, java.util.Date date, java.util.Date time) throws SQLException {
         CallableStatement callableStatement = null;
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            callableStatement = connection.prepareCall("{ call inserirOperacaoRega(?,?,?) }");
+            callableStatement = connection.prepareCall("{ call procedimentoInserirOperacaoRega(?,?,?,?) }");
 
             callableStatement.setInt(1, sector);
             callableStatement.setInt(2, duration);
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
             callableStatement.setDate(3, sqlDate);
-
+            java.sql.Time sqlTime = new java.sql.Time(time.getTime());
+            callableStatement.setTime(4, sqlTime);
             callableStatement.execute();
             connection.commit();
         } finally {

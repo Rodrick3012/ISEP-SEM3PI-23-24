@@ -1,6 +1,5 @@
 package sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation;
 
-import org.apache.commons.math3.random.AbstractRandomGenerator;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.ShortestPath;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.CommonGraph;
@@ -16,15 +15,14 @@ public class USEI03 {
         Locals[] mostRemoteLocals = findMostRemoteLocals(graph.vertices());
         LinkedList<Locals> shortPath = new LinkedList<>();
         LinkedList<Integer> distancesBetweenPoints = new LinkedList<>();
-        LinkedList<Locals> refuelingPoints = new LinkedList<>();
         Locals firstLocal = mostRemoteLocals[0];
         Locals lastLocal = mostRemoteLocals[1];
         Integer shortestPathDistance = shortestPath(graph, firstLocal,
                 lastLocal, Integer::compare, Integer::sum, 0, shortPath,
-                distancesBetweenPoints, Integer.MAX_VALUE, autonomy, refuelingPoints);
+                distancesBetweenPoints, Integer.MAX_VALUE, autonomy);
         if(shortestPathDistance != null) {
-            return new ShortestPath(new ArrayList<>(shortPath), new ArrayList<>(refuelingPoints), new ArrayList<>(distancesBetweenPoints), shortestPathDistance, refuelingPoints.size());
-        } else return new ShortestPath(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 0, 0);
+            return new ShortestPath(new ArrayList<>(shortPath), new ArrayList<>(distancesBetweenPoints), shortestPathDistance);
+        } else return new ShortestPath(new ArrayList<>(), new ArrayList<>(),  0);
     }
 
     private CommonGraph<Locals, Integer> getGraph(){
@@ -59,7 +57,7 @@ public class USEI03 {
     public static <V, E> E shortestPath(Graph<V, E> g, V vOrig, V vDest,
                                         Comparator<E> ce, BinaryOperator<E> sum, E zero,
                                         LinkedList<V> shortPath, LinkedList<E> distances,
-                                        E infinity, E autonomy, LinkedList<V> refuelingPoints) {
+                                        E infinity, E autonomy) {
         int numVertices = g.numVertices();
 
         // Arrays to store the result of Dijkstra's algorithm
@@ -74,7 +72,7 @@ public class USEI03 {
         }
 
         // Run Dijkstra's algorithm
-        shortestPathDijkstra(g, vOrig, ce, sum, zero, visited, pathKeys, dist, infinity);
+        shortestPathDijkstra(g, vOrig, ce, sum, zero, visited, pathKeys, dist, infinity, autonomy);
 
         int vDestIndex = g.key(vDest);
         if (vDestIndex<0)
@@ -85,21 +83,7 @@ public class USEI03 {
         }
 
         // Reconstruct the shortest path
-        getPathWithDistances(g, vOrig, vDest, pathKeys, ce, sum, zero, shortPath, distances, refuelingPoints, autonomy);
-
-        E accumulatedDistance = zero;
-        for (V vertex : shortPath) {
-            int vertexIndex = g.key(vertex);
-            accumulatedDistance = sum.apply(accumulatedDistance, dist[vertexIndex]);
-
-            // Check if refueling is needed at the current vertex
-            if (ce.compare(accumulatedDistance, autonomy) > 0) {
-                refuelingPoints.add(vertex);
-                accumulatedDistance = zero;  // Reset accumulated distance after refueling
-            }
-        }
-
-        refuelingPoints.add(vDest);
+        getPathWithDistances(g, vOrig, vDest, pathKeys, shortPath, distances);
 
         // Return the length of the shortest path
         return dist[vDestIndex];
@@ -107,7 +91,7 @@ public class USEI03 {
 
     private static <V, E> void shortestPathDijkstra(Graph<V, E> g, V vOrig,
                                                     Comparator<E> ce, BinaryOperator<E> sum, E zero,
-                                                    boolean[] visited, V[] pathKeys, E[] dist, E infinity) {
+                                                    boolean[] visited, V[] pathKeys, E[] dist, E infinity, E autonomy) {
 
         PriorityQueue<V> priorityQueue = new PriorityQueue<>(Comparator.comparing(v -> dist[g.key(v)], ce));
         for (V vertex : g.vertices()) {
@@ -136,18 +120,29 @@ public class USEI03 {
                     E newDistance = sum.apply(dist[currentVertexKey], edgeWeight);
 
                     // Use the comparator to compare distances
-                    if (ce.compare(newDistance, dist[neighborKey]) < 0) {
-                        dist[neighborKey] = newDistance;
-                        pathKeys[neighborKey] = currentVertex;
-                        priorityQueue.add(neighbor);
+                        if (ce.compare(newDistance, dist[neighborKey]) < 0) {
+                            dist[neighborKey] = newDistance;
+                            pathKeys[neighborKey] = currentVertex;
+
+                            // Check if the neighbor is closer to the target location
+                            E autonomyRemaining = autonomy;  // Initial autonomy
+                            for (V pathVertex = neighbor; pathVertex != null; pathVertex = pathKeys[g.key(pathVertex)]) {
+                                E pathEdgeWeight = g.edge(pathKeys[g.key(pathVertex)], pathVertex).getWeight();
+                                autonomyRemaining = sum.apply(autonomyRemaining, pathEdgeWeight);
+                            }
+
+                            // Add the neighbor to the priority queue only if it is closer
+                            if (ce.compare(autonomyRemaining, autonomy) >= 0) {
+                                priorityQueue.add(neighbor);
+                            }
+                        }
                     }
                 }
             }
         }
-    }
 
-    private static <V, E> void getPathWithDistances(Graph<V, E> g, V vOrig, V vDest, V[] pathKeys, Comparator<E> ce, BinaryOperator<E> sum, E zero,
-                                                    LinkedList<V> path, LinkedList<E> distances, LinkedList<V> refuelingPoints, E autonomy) {
+    private static <V, E> void getPathWithDistances(Graph<V, E> g, V vOrig, V vDest, V[] pathKeys,
+                                                    LinkedList<V> path, LinkedList<E> distances) {
         int vOrigIndex = g.vertices().indexOf(vOrig);
         int vDestIndex = g.vertices().indexOf(vDest);
 
@@ -159,7 +154,6 @@ public class USEI03 {
 
         // Reconstruct the path from the destination to the origin
         V current = vDest;
-        E accumulatedDistance = zero;
 
         while (current != null) {
             path.addFirst(current);
@@ -177,12 +171,7 @@ public class USEI03 {
             if (current != null) {
                 int predecessorIndex = g.vertices().indexOf(current);
                 E edge = g.edge(predecessorIndex, currentVertexIndex).getWeight();
-                accumulatedDistance = sum.apply(accumulatedDistance, edge);
                 distances.addFirst(edge);
-                if(ce.compare(accumulatedDistance, autonomy) > 0){
-                    refuelingPoints.addFirst(current);
-                    accumulatedDistance = zero;
-                }
             }
         }
     }
