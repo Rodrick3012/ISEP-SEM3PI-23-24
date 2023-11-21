@@ -24,12 +24,12 @@ DROP TABLE TipoData CASCADE CONSTRAINTS;
 DROP TABLE Produto CASCADE CONSTRAINTS;
 DROP TABLE ParcelaCultura CASCADE CONSTRAINTS;
 DROP TABLE SetorParcelaCultura CASCADE CONSTRAINTS;
-DROP TABLE Setor CASCADE CONSTRAINTS;
 DROP TABLE plantaProduto CASCADE CONSTRAINTS;
 DROP TABLE OperacaoRega CASCADE CONSTRAINTS;
 DROP TABLE OperacaoFatorProducao CASCADE CONSTRAINTS;
 DROP TABLE Unidade CASCADE CONSTRAINTS;
 DROP TABLE Operacao CASCADE CONSTRAINTS;
+DROP TABLE Setor CASCADE CONSTRAINTS;
 CREATE TABLE Parcela (
   designacao varchar2(25) NOT NULL, 
   area       number NOT NULL, 
@@ -160,24 +160,18 @@ CREATE TABLE SetorParcelaCultura (
   PRIMARY KEY (setor, 
   parcela, 
   cultura));
-CREATE TABLE Setor (
-  setor        varchar2(2) NOT NULL, 
-  caudalMaximo number NOT NULL, 
-  dataInicio   date NOT NULL, 
-  dataFim      date ,
-  PRIMARY KEY (setor));
 CREATE TABLE plantaProduto (
   produto number NOT NULL, 
   planta  varchar2(50) NOT NULL, 
   PRIMARY KEY (produto, 
   planta));
 CREATE TABLE OperacaoRega (
-  id          number GENERATED AS IDENTITY, 
-  setor       varchar2(2) NOT NULL, 
-  Parcela     varchar2(25) NOT NULL, 
-  cultura     number NOT NULL, 
-  duracao     number NOT NULL, 
-  horario timestamp(0) NOT NULL,
+  id      number GENERATED AS IDENTITY, 
+  setor   varchar2(2) NOT NULL, 
+  Parcela varchar2(25) NOT NULL, 
+  cultura number NOT NULL, 
+  duracao number NOT NULL, 
+  horario timestamp(0) NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE OperacaoFatorProducao (
   id            number GENERATED AS IDENTITY, 
@@ -199,10 +193,16 @@ CREATE TABLE Operacao (
   TipoOperacao number NOT NULL, 
   data         date NOT NULL, 
   quantidade   number NOT NULL, 
-  cultura      number NOT NULL, 
+  cultura      number, 
   parcela      varchar2(25) NOT NULL, 
-  unidade      number NOT NULL, 
+  unidade      number, 
   PRIMARY KEY (id));
+CREATE TABLE Setor (
+  setor        varchar2(2) NOT NULL, 
+  caudalMaximo number NOT NULL, 
+  dataInicio   date NOT NULL, 
+  dataFim      date, 
+  PRIMARY KEY (setor));
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa567047 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa644819 FOREIGN KEY (modo) REFERENCES Modo (id);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa455406 FOREIGN KEY (fatorproducao) REFERENCES FatorProducao (designacao);
@@ -226,5 +226,5 @@ ALTER TABLE plantaProduto ADD CONSTRAINT FKplantaProd128917 FOREIGN KEY (planta)
 ALTER TABLE plantaProduto ADD CONSTRAINT FKplantaProd874382 FOREIGN KEY (produto) REFERENCES Produto (id);
 ALTER TABLE SetorParcelaCultura ADD CONSTRAINT FKSetorParce783701 FOREIGN KEY (parcela, cultura) REFERENCES ParcelaCultura (parcela, cultura);
 ALTER TABLE OperacaoRega ADD CONSTRAINT FKOperacaoRe946333 FOREIGN KEY (setor, Parcela, cultura) REFERENCES SetorParcelaCultura (setor, parcela, cultura);
-ALTER TABLE Operacao ADD CONSTRAINT FKOperacao731299 FOREIGN KEY (unidade) REFERENCES Unidade (id);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa538514 FOREIGN KEY (unidade) REFERENCES Unidade (id);
+ALTER TABLE Operacao ADD CONSTRAINT FKOperacao731299 FOREIGN KEY (unidade) REFERENCES Unidade (id);

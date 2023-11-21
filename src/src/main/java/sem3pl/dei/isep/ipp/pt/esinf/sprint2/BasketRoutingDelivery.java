@@ -1,6 +1,7 @@
 package sem3pl.dei.isep.ipp.pt.esinf.sprint2;
 
 import sem3pl.dei.isep.ipp.pt.MainMenu;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation.USEI04;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.repository.DistributionNetwork;
 
 import java.util.InputMismatchException;
@@ -26,7 +27,7 @@ public class BasketRoutingDelivery implements Runnable {
         System.out.println("1. Build the distribution network"); // USEI01
         System.out.println("2. Determine the ideal vertices for the localization of hubs"); // USEI02
         System.out.println("3. Calculate the minimum distance between two more remote locals"); // USEI03
-        System.out.println("4. Divides the network into clusters"); // USEI05
+        System.out.println("4. Create the network with all locals with a minimum cost"); // USEI04
         System.out.println("5. Exit");
         System.out.println();
         System.out.println("Select your option: ");
@@ -43,19 +44,20 @@ public class BasketRoutingDelivery implements Runnable {
             case 2:
                 if(!distributionNetwork.isEmpty()){
                     System.out.println("USEI02");
-                } else System.out.println("Graph is empty. Returning to menu.");
+                } else System.out.println("Network is empty. Returning to menu.");
                 basketRoutingDeliveryMenu();
                 break;
             case 3:
                 if(!distributionNetwork.isEmpty()){
                     System.out.println("USEI03");
-                } else System.out.println("Graph is empty. Returning to menu.");
+                } else System.out.println("Network is empty. Returning to menu.");
                 basketRoutingDeliveryMenu();
                 break;
             case 4:
                 if(!distributionNetwork.isEmpty()){
-                    System.out.println("USEI04");
-                } else System.out.println("Graph is empty. Returning to menu.");
+                    USEI04 usei04 = new USEI04();
+                    usei04.methodForUiLapr();
+                } else System.out.println("Network is empty. Returning to menu.");
                 basketRoutingDeliveryMenu();
                 break;
             case 5:

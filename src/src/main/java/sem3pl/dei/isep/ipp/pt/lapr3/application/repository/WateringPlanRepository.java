@@ -29,8 +29,8 @@ public class WateringPlanRepository {
         return wateringPlan;
     }
 
-    private boolean addWateringPlan(WateringPlan wateringPlan){
-        return wateringPlanList.add(wateringPlan);
+    private void addWateringPlan(WateringPlan wateringPlan){
+        wateringPlanList.add(wateringPlan);
     }
 
     private static boolean hasDuplicate(List<WateringPlan> wateringPlanList){
@@ -44,17 +44,17 @@ public class WateringPlanRepository {
         }
         return false;
     }
-    public void wateringOperationRegister(Integer sector, Integer duration, java.util.Date date) throws SQLException {
+    public void wateringOperationRegister(Integer sector, Integer duration, java.util.Date date, String time) throws SQLException {
         CallableStatement callableStatement = null;
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            callableStatement = connection.prepareCall("{ call inserirOperacaoRega(?,?,?) }");
+            callableStatement = connection.prepareCall("{ call procedimentoInserirOperacaoRega(?,?,?,?) }");
 
             callableStatement.setInt(1, sector);
             callableStatement.setInt(2, duration);
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
             callableStatement.setDate(3, sqlDate);
-
+            callableStatement.setString(4, time);
             callableStatement.execute();
             connection.commit();
         } finally {
