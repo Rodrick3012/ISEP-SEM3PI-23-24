@@ -1,4 +1,3 @@
-DROP TABLE OperacaoFatorProducao CASCADE CONSTRAINTS;
 DROP TABLE Parcela CASCADE CONSTRAINTS;
 DROP TABLE Modo CASCADE CONSTRAINTS;
 DROP TABLE FatorProducao CASCADE CONSTRAINTS;
@@ -13,7 +12,6 @@ DROP TABLE TipoOperacao CASCADE CONSTRAINTS;
 DROP TABLE Data CASCADE CONSTRAINTS;
 DROP TABLE CargoUtilizador CASCADE CONSTRAINTS;
 DROP TABLE Utilizadores CASCADE CONSTRAINTS;
-DROP TABLE Operacao CASCADE CONSTRAINTS;
 DROP TABLE MedicaoSensor CASCADE CONSTRAINTS;
 DROP TABLE Sensor CASCADE CONSTRAINTS;
 DROP TABLE EstacaoMeteorologica CASCADE CONSTRAINTS;
@@ -29,18 +27,9 @@ DROP TABLE SetorParcelaCultura CASCADE CONSTRAINTS;
 DROP TABLE Setor CASCADE CONSTRAINTS;
 DROP TABLE plantaProduto CASCADE CONSTRAINTS;
 DROP TABLE OperacaoRega CASCADE CONSTRAINTS;
+DROP TABLE OperacaoFatorProducao CASCADE CONSTRAINTS;
 DROP TABLE Unidade CASCADE CONSTRAINTS;
-CREATE TABLE OperacaoFatorProducao (
-  id            number GENERATED AS IDENTITY, 
-  data          date NOT NULL, 
-  quantidade    number NOT NULL, 
-  parcela       varchar2(25) NOT NULL, 
-  modo          number NOT NULL, 
-  fatorproducao varchar2(30) NOT NULL, 
-  cultura       number, 
-  tipooperacao  number NOT NULL, 
-  unidade       number NOT NULL, 
-  PRIMARY KEY (id));
+DROP TABLE Operacao CASCADE CONSTRAINTS;
 CREATE TABLE Parcela (
   designacao varchar2(25) NOT NULL, 
   area       number NOT NULL, 
@@ -109,15 +98,6 @@ CREATE TABLE Utilizadores (
   nome          varchar2(80) NOT NULL, 
   cargo         number NOT NULL, 
   PRIMARY KEY (cartaoCidadao));
-CREATE TABLE Operacao (
-  id           number GENERATED AS IDENTITY, 
-  TipoOperacao number NOT NULL, 
-  data         date NOT NULL, 
-  quantidade   number NOT NULL, 
-  cultura      number NOT NULL, 
-  parcela      varchar2(25) NOT NULL, 
-  unidade      number, 
-  PRIMARY KEY (id));
 CREATE TABLE MedicaoSensor (
   idSensor    number NOT NULL, 
   ValorMedido number NOT NULL, 
@@ -192,16 +172,36 @@ CREATE TABLE plantaProduto (
   PRIMARY KEY (produto, 
   planta));
 CREATE TABLE OperacaoRega (
-  id      number GENERATED AS IDENTITY, 
-  setor   varchar2(2) NOT NULL, 
-  Parcela varchar2(25) NOT NULL, 
-  cultura number NOT NULL, 
-  duracao number NOT NULL, 
-  data    date NOT NULL, 
+  id          number GENERATED AS IDENTITY, 
+  setor       varchar2(2) NOT NULL, 
+  Parcela     varchar2(25) NOT NULL, 
+  cultura     number NOT NULL, 
+  duracao     number NOT NULL, 
+  data        date NOT NULL, 
+  horaInicial timestamp(0) NOT NULL, 
+  PRIMARY KEY (id));
+CREATE TABLE OperacaoFatorProducao (
+  id            number GENERATED AS IDENTITY, 
+  data          date NOT NULL, 
+  quantidade    number NOT NULL, 
+  parcela       varchar2(25) NOT NULL, 
+  modo          number NOT NULL, 
+  fatorproducao varchar2(30) NOT NULL, 
+  cultura       number, 
+  tipooperacao  number NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE Unidade (
   id      number GENERATED AS IDENTITY, 
   unidade varchar2(5) NOT NULL, 
+  PRIMARY KEY (id));
+CREATE TABLE Operacao (
+  id           number GENERATED AS IDENTITY, 
+  TipoOperacao number NOT NULL, 
+  data         date NOT NULL, 
+  quantidade   number NOT NULL, 
+  cultura      number NOT NULL, 
+  parcela      varchar2(25) NOT NULL, 
+  unidade      number NOT NULL, 
   PRIMARY KEY (id));
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa567047 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa644819 FOREIGN KEY (modo) REFERENCES Modo (id);
@@ -227,4 +227,3 @@ ALTER TABLE plantaProduto ADD CONSTRAINT FKplantaProd874382 FOREIGN KEY (produto
 ALTER TABLE SetorParcelaCultura ADD CONSTRAINT FKSetorParce783701 FOREIGN KEY (parcela, cultura) REFERENCES ParcelaCultura (parcela, cultura);
 ALTER TABLE OperacaoRega ADD CONSTRAINT FKOperacaoRe946333 FOREIGN KEY (setor, Parcela, cultura) REFERENCES SetorParcelaCultura (setor, parcela, cultura);
 ALTER TABLE Operacao ADD CONSTRAINT FKOperacao731299 FOREIGN KEY (unidade) REFERENCES Unidade (id);
-ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa538514 FOREIGN KEY (unidade) REFERENCES Unidade (id);
