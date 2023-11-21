@@ -177,8 +177,7 @@ CREATE TABLE OperacaoRega (
   Parcela     varchar2(25) NOT NULL, 
   cultura     number NOT NULL, 
   duracao     number NOT NULL, 
-  data        date NOT NULL, 
-  horaInicial timestamp(0) NOT NULL, 
+  horaInicial timestamp(0) NOT NULL,
   PRIMARY KEY (id));
 CREATE TABLE OperacaoFatorProducao (
   id            number GENERATED AS IDENTITY, 
