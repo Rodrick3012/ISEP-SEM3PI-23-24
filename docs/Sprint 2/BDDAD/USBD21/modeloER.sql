@@ -189,6 +189,7 @@ CREATE TABLE OperacaoFatorProducao (
   fatorproducao varchar2(30) NOT NULL, 
   cultura       number, 
   tipooperacao  number NOT NULL, 
+  unidade       number NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE Unidade (
   id      number GENERATED AS IDENTITY, 
@@ -227,3 +228,4 @@ ALTER TABLE plantaProduto ADD CONSTRAINT FKplantaProd874382 FOREIGN KEY (produto
 ALTER TABLE SetorParcelaCultura ADD CONSTRAINT FKSetorParce783701 FOREIGN KEY (parcela, cultura) REFERENCES ParcelaCultura (parcela, cultura);
 ALTER TABLE OperacaoRega ADD CONSTRAINT FKOperacaoRe946333 FOREIGN KEY (setor, Parcela, cultura) REFERENCES SetorParcelaCultura (setor, parcela, cultura);
 ALTER TABLE Operacao ADD CONSTRAINT FKOperacao731299 FOREIGN KEY (unidade) REFERENCES Unidade (id);
+ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa538514 FOREIGN KEY (unidade) REFERENCES Unidade (id);
