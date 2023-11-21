@@ -164,7 +164,7 @@ CREATE TABLE Setor (
   setor        varchar2(2) NOT NULL, 
   caudalMaximo number NOT NULL, 
   dataInicio   date NOT NULL, 
-  dataFim      date NOT NULL, 
+  dataFim      date ,
   PRIMARY KEY (setor));
 CREATE TABLE plantaProduto (
   produto number NOT NULL, 
