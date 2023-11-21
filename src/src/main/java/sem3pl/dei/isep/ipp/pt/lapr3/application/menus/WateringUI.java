@@ -125,7 +125,6 @@ public class WateringUI implements Runnable {
         if(verified){
             System.out.println("Watering plan successfully updated/generated and all concluded waterings added to database!");
         } else System.out.println("Error while watering plan being updated/generated.");
-        System.out.println();
     }
 
     private void selectWateringPlanAndWriteConditions() {
