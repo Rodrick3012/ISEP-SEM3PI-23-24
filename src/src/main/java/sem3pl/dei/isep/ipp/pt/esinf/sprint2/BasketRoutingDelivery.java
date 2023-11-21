@@ -44,20 +44,20 @@ public class BasketRoutingDelivery implements Runnable {
             case 2:
                 if(!distributionNetwork.isEmpty()){
                     System.out.println("USEI02");
-                } else System.out.println("Graph is empty. Returning to menu.");
+                } else System.out.println("Network is empty. Returning to menu.");
                 basketRoutingDeliveryMenu();
                 break;
             case 3:
                 if(!distributionNetwork.isEmpty()){
                     System.out.println("USEI03");
-                } else System.out.println("Graph is empty. Returning to menu.");
+                } else System.out.println("Network is empty. Returning to menu.");
                 basketRoutingDeliveryMenu();
                 break;
             case 4:
                 if(!distributionNetwork.isEmpty()){
                     USEI04 usei04 = new USEI04();
                     usei04.methodForUiLapr();
-                } else System.out.println("Graph is empty. Returning to menu.");
+                } else System.out.println("Network is empty. Returning to menu.");
                 basketRoutingDeliveryMenu();
                 break;
             case 5:
