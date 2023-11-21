@@ -1,9 +1,15 @@
 --funcao validacao data/datas
-CREATE OR REPLACE FUNCTION verificarDataNaoEstaNoFuturo(data1 operacao.data%type, data2 operacao.data%type DEFAULT NULL) RETURN BOOLEAN
+CREATE OR REPLACE FUNCTION verificarDataNaoEstaNoFuturo(data1 operacao.data%type,
+                                                                    data2 operacao.data%type DEFAULT NULL)
+RETURN BOOLEAN
 IS
   var_boolean BOOLEAN;
+  dataAtual DATE;
 BEGIN
-  IF data1 <= SYSDATE AND (data2 IS NULL OR data1 <= data2) THEN
+  -- Obtém a data atual do banco de dados
+SELECT CURRENT_DATE INTO dataAtual FROM DUAL;
+
+IF data1 <= dataAtual AND (data2 IS NULL OR data1 <= data2) THEN
     var_boolean := TRUE;
 ELSE
     raise_application_error(-20001, 'Data inválida');
@@ -11,7 +17,6 @@ END IF;
 
 RETURN var_boolean;
 END;
-/
 
 --funcao validacao cultura/parcela
 create or replace FUNCTION validateCulturaNaParcela(parcela1 parcela.designacao%type, culturaId cultura.id%type) return boolean
