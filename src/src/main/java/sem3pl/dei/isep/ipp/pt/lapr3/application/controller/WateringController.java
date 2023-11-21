@@ -232,7 +232,8 @@ public class WateringController {
                     Date dateWateringConcluded = inputDateFormat.parse(wateringPlanData[0]);
                     SimpleDateFormat outputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     outputDateFormat.format(dateWateringConcluded);
-                    // wateringPlanRepository.wateringOperationRegister(wateringSector, wateringDuration, dateWateringConcluded);
+                    String wateringInitialTime = wateringPlanData[3];
+                    wateringPlanRepository.wateringOperationRegister(wateringSector, wateringDuration, dateWateringConcluded, wateringInitialTime);
                 }
             }
             sc.close();
