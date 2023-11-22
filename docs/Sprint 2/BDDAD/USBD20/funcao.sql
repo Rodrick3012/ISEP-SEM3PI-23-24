@@ -4,30 +4,69 @@ IS
 BEGIN
 
     OPEN retorno for
+
         SELECT
-            o.parcela,
-            SUM(CASE WHEN EXTRACT(MONTH FROM o.data) = 1 THEN 1 ELSE 0 END) AS January,
-            SUM(CASE WHEN EXTRACT(MONTH FROM o.data) = 2 THEN 1 ELSE 0 END) AS February,
-            SUM(CASE WHEN EXTRACT(MONTH FROM o.data) = 3 THEN 1 ELSE 0 END) AS March,
-            SUM(CASE WHEN EXTRACT(MONTH FROM o.data) = 4 THEN 1 ELSE 0 END) AS April,
-            SUM(CASE WHEN EXTRACT(MONTH FROM o.data) = 5 THEN 1 ELSE 0 END) AS May,
-            SUM(CASE WHEN EXTRACT(MONTH FROM o.data) = 6 THEN 1 ELSE 0 END) AS June,
-            SUM(CASE WHEN EXTRACT(MONTH FROM o.data) = 7 THEN 1 ELSE 0 END) AS July,
-            SUM(CASE WHEN EXTRACT(MONTH FROM o.data) = 8 THEN 1 ELSE 0 END) AS August,
-            SUM(CASE WHEN EXTRACT(MONTH FROM o.data) = 9 THEN 1 ELSE 0 END) AS September,
-            SUM(CASE WHEN EXTRACT(MONTH FROM o.data) = 10 THEN 1 ELSE 0 END) AS October,
-            SUM(CASE WHEN EXTRACT(MONTH FROM o.data) = 11 THEN 1 ELSE 0 END) AS November,
-            SUM(CASE WHEN EXTRACT(MONTH FROM o.data) = 12 THEN 1 ELSE 0 END) AS December
-        FROM
-            operacao o
-        INNER JOIN
-            tipooperacao tpo ON tpo.id = o.tipooperacao
-        WHERE
-            LOWER(tpo.tipooperacao) LIKE LOWER('rega')
-            AND o.data BETWEEN data1 AND data2
+            parcela,
+            SUM(January) AS January,
+            SUM(February) AS February,
+            SUM(March) AS March,
+            SUM(April) AS April,
+            SUM(May) AS May,
+            SUM(June) AS June,
+            SUM(July) AS July,
+            SUM(August) AS August,
+            SUM(September) AS September,
+            SUM(October) AS October,
+            SUM(November) AS November,
+            SUM(December) AS December
+        FROM (
+            SELECT
+                o.parcela,
+                CASE WHEN EXTRACT(MONTH FROM o.data) = 1 THEN 1 ELSE 0 END AS January,
+                CASE WHEN EXTRACT(MONTH FROM o.data) = 2 THEN 1 ELSE 0 END AS February,
+                CASE WHEN EXTRACT(MONTH FROM o.data) = 3 THEN 1 ELSE 0 END AS March,
+                CASE WHEN EXTRACT(MONTH FROM o.data) = 4 THEN 1 ELSE 0 END AS April,
+                CASE WHEN EXTRACT(MONTH FROM o.data) = 5 THEN 1 ELSE 0 END AS May,
+                CASE WHEN EXTRACT(MONTH FROM o.data) = 6 THEN 1 ELSE 0 END AS June,
+                CASE WHEN EXTRACT(MONTH FROM o.data) = 7 THEN 1 ELSE 0 END AS July,
+                CASE WHEN EXTRACT(MONTH FROM o.data) = 8 THEN 1 ELSE 0 END AS August,
+                CASE WHEN EXTRACT(MONTH FROM o.data) = 9 THEN 1 ELSE 0 END AS September,
+                CASE WHEN EXTRACT(MONTH FROM o.data) = 10 THEN 1 ELSE 0 END AS October,
+                CASE WHEN EXTRACT(MONTH FROM o.data) = 11 THEN 1 ELSE 0 END AS November,
+                CASE WHEN EXTRACT(MONTH FROM o.data) = 12 THEN 1 ELSE 0 END AS December
+            FROM
+                operacao o
+            INNER JOIN
+                tipooperacao tpo ON tpo.id = o.tipooperacao
+            WHERE
+                LOWER(tpo.tipooperacao) LIKE LOWER('rega')
+                AND o.data BETWEEN data1 AND data2
+
+            UNION ALL
+
+            SELECT
+                o.parcela,
+                CASE WHEN EXTRACT(MONTH FROM o.horario) = 1 THEN 1 ELSE 0 END AS January,
+                CASE WHEN EXTRACT(MONTH FROM o.horario) = 2 THEN 1 ELSE 0 END AS February,
+                CASE WHEN EXTRACT(MONTH FROM o.horario) = 3 THEN 1 ELSE 0 END AS March,
+                CASE WHEN EXTRACT(MONTH FROM o.horario) = 4 THEN 1 ELSE 0 END AS April,
+                CASE WHEN EXTRACT(MONTH FROM o.horario) = 5 THEN 1 ELSE 0 END AS May,
+                CASE WHEN EXTRACT(MONTH FROM o.horario) = 6 THEN 1 ELSE 0 END AS June,
+                CASE WHEN EXTRACT(MONTH FROM o.horario) = 7 THEN 1 ELSE 0 END AS July,
+                CASE WHEN EXTRACT(MONTH FROM o.horario) = 8 THEN 1 ELSE 0 END AS August,
+                CASE WHEN EXTRACT(MONTH FROM o.horario) = 9 THEN 1 ELSE 0 END AS September,
+                CASE WHEN EXTRACT(MONTH FROM o.horario) = 10 THEN 1 ELSE 0 END AS October,
+                CASE WHEN EXTRACT(MONTH FROM o.horario) = 11 THEN 1 ELSE 0 END AS November,
+                CASE WHEN EXTRACT(MONTH FROM o.horario) = 12 THEN 1 ELSE 0 END AS December
+            FROM
+                operacaoRega o
+            WHERE
+                o.horario BETWEEN data1 AND data2
+        )
         GROUP BY
-            o.parcela
+            parcela
         ORDER BY
-            o.parcela;
+            parcela;
+
     RETURN (retorno);
 END;
