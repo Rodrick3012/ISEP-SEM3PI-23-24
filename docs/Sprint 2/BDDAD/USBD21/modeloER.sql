@@ -30,6 +30,8 @@ DROP TABLE OperacaoFatorProducao CASCADE CONSTRAINTS;
 DROP TABLE Unidade CASCADE CONSTRAINTS;
 DROP TABLE Operacao CASCADE CONSTRAINTS;
 DROP TABLE Setor CASCADE CONSTRAINTS;
+DROP TABLE CulturaOperacao CASCADE CONSTRAINTS;
+DROP TABLE CulturaOperacaoFatorProducao CASCADE CONSTRAINTS;
 CREATE TABLE Parcela (
   designacao varchar2(25) NOT NULL, 
   area       number NOT NULL, 
@@ -193,9 +195,8 @@ CREATE TABLE Operacao (
   TipoOperacao number NOT NULL, 
   data         date NOT NULL, 
   quantidade   number NOT NULL, 
-  cultura      number, 
   parcela      varchar2(25) NOT NULL, 
-  unidade      number, 
+  unidade      number NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE Setor (
   setor        varchar2(2) NOT NULL, 
@@ -203,6 +204,16 @@ CREATE TABLE Setor (
   dataInicio   date NOT NULL, 
   dataFim      date, 
   PRIMARY KEY (setor));
+CREATE TABLE CulturaOperacao (
+  cultura  number NOT NULL, 
+  operacao number NOT NULL, 
+  PRIMARY KEY (cultura, 
+  operacao));
+CREATE TABLE CulturaOperacaoFatorProducao (
+  cultura               number NOT NULL, 
+  operacaoFatorProducao number NOT NULL, 
+  PRIMARY KEY (cultura, 
+  operacaoFatorProducao));
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa567047 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa644819 FOREIGN KEY (modo) REFERENCES Modo (id);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa455406 FOREIGN KEY (fatorproducao) REFERENCES FatorProducao (designacao);
@@ -212,7 +223,6 @@ ALTER TABLE Cultura ADD CONSTRAINT FKCultura134268 FOREIGN KEY (planta) REFERENC
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa148046 FOREIGN KEY (tipooperacao) REFERENCES TipoOperacao (id);
 ALTER TABLE Utilizadores ADD CONSTRAINT FKUtilizador274231 FOREIGN KEY (cargo) REFERENCES CargoUtilizador (id);
 ALTER TABLE Operacao ADD CONSTRAINT FKOperacao305476 FOREIGN KEY (TipoOperacao) REFERENCES TipoOperacao (id);
-ALTER TABLE Operacao ADD CONSTRAINT FKOperacao289770 FOREIGN KEY (cultura) REFERENCES Cultura (id);
 ALTER TABLE Operacao ADD CONSTRAINT FKOperacao240167 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
 ALTER TABLE Sensor ADD CONSTRAINT FKSensor671518 FOREIGN KEY (Estacao) REFERENCES EstacaoMeteorologica (designacao);
 ALTER TABLE SubstanciaFatorProducao ADD CONSTRAINT FKSubstancia885676 FOREIGN KEY (fatorProducao) REFERENCES FatorProducao (designacao);
@@ -228,3 +238,7 @@ ALTER TABLE SetorParcelaCultura ADD CONSTRAINT FKSetorParce783701 FOREIGN KEY (p
 ALTER TABLE OperacaoRega ADD CONSTRAINT FKOperacaoRe946333 FOREIGN KEY (setor, Parcela, cultura) REFERENCES SetorParcelaCultura (setor, parcela, cultura);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa538514 FOREIGN KEY (unidade) REFERENCES Unidade (id);
 ALTER TABLE Operacao ADD CONSTRAINT FKOperacao731299 FOREIGN KEY (unidade) REFERENCES Unidade (id);
+ALTER TABLE CulturaOperacao ADD CONSTRAINT FKCulturaOpe449759 FOREIGN KEY (cultura) REFERENCES Cultura (id);
+ALTER TABLE CulturaOperacao ADD CONSTRAINT FKCulturaOpe580764 FOREIGN KEY (operacao) REFERENCES Operacao (id);
+ALTER TABLE CulturaOperacaoFatorProducao ADD CONSTRAINT FKCulturaOpe195560 FOREIGN KEY (cultura) REFERENCES Cultura (id);
+ALTER TABLE CulturaOperacaoFatorProducao ADD CONSTRAINT FKCulturaOpe384025 FOREIGN KEY (operacaoFatorProducao) REFERENCES OperacaoFatorProducao (id);

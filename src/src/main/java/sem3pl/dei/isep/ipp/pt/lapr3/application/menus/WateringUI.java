@@ -1,6 +1,5 @@
 package sem3pl.dei.isep.ipp.pt.lapr3.application.menus;
 
-import edu.emory.mathcs.backport.java.util.concurrent.TimeUnit;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.WateringController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringPlan;
