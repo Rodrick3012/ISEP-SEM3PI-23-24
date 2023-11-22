@@ -4,6 +4,7 @@ import oracle.jdbc.internal.OracleCallableStatement;
 import oracle.jdbc.internal.OracleTypes;
 import sem3pl.dei.isep.ipp.pt.bddad.dataAccess.DatabaseConnection;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Operation;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.DbmsOutput;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -34,8 +35,14 @@ public class OperationRepository {
             callStmt.setInt(4, cultura);
             callStmt.setString(5, parcela);
             callStmt.setInt(6, unidade);
+            DbmsOutput dbmsOutput = new DbmsOutput(connection);
+            dbmsOutput.enable(1000000);
+
+
 
             callStmt.execute();
+            dbmsOutput.show();
+            dbmsOutput.close();
             connection.commit();
         } finally {
             if(!Objects.isNull(callStmt)) {

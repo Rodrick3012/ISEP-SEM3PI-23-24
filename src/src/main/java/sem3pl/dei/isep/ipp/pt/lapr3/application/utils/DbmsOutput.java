@@ -2,7 +2,7 @@ package sem3pl.dei.isep.ipp.pt.lapr3.application.utils;
 
 import java.sql.*;
 
-    class DbmsOutput {
+    public class DbmsOutput {
 
         /*
          * our instance variables. It is always best to
