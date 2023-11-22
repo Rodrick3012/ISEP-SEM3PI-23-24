@@ -2,11 +2,11 @@
 #include "asm.h"
 
 int main() {
-    int arr[] = {10, 20, 30, 40, 50};
+    int arr[] = {1,2,3,4};
     int* ptr = arr;
     int length = sizeof(arr)/sizeof(arr[0]);
-    int *read = &arr[4];
-    int *write = &arr[0];
+    int* read = &arr[2];
+    int* write = &arr[1];
     int num=3;
     int vec[num];
 
@@ -23,6 +23,8 @@ int main() {
         }
         printf("\n");
     }
+
+
 
     return 0;
 }
