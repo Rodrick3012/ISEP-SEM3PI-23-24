@@ -18,6 +18,7 @@ END IF;
 RETURN var_boolean;
 END;
 
+
 --funcao validacao cultura/parcela
 create or replace FUNCTION validateCulturaNaParcela(parcela1 parcela.designacao%type, culturaId cultura.id%type) return boolean
 is var_boolean boolean;
