@@ -15,7 +15,6 @@ public class Main {
         connectDataBase();
         MainMenu mainMenu = new MainMenu();
         mainMenu.run();
-        DatabaseConnection.getInstance().closeConnection();
     }
 
     private static void loadProperties() throws IOException {

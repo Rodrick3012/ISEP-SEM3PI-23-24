@@ -48,6 +48,7 @@ public class WateringUI implements Runnable {
                     }
                 case 3:
                     System.out.println("Do you really want to exit this menu?");
+                    System.out.println("Yes/No");
                     sc.nextLine();
                     String exitOption = sc.nextLine();
                     if (exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")) {
