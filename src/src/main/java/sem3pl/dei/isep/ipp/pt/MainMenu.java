@@ -1,9 +1,11 @@
 package sem3pl.dei.isep.ipp.pt;
 
 import sem3pl.dei.isep.ipp.pt.bddad.ImportLegacyController;
+import sem3pl.dei.isep.ipp.pt.bddad.dataAccess.DatabaseConnection;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.BasketRoutingDelivery;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -43,6 +45,10 @@ public class MainMenu implements Runnable {
                     break;
                 case 4:
                     System.out.println("Exiting...");
+                    try {
+                        DatabaseConnection.getInstance().closeConnection();
+                    } catch (SQLException e){
+                    }
                     System.exit(0);
                     break;
                 default:
