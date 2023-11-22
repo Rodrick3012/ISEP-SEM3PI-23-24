@@ -1,8 +1,8 @@
 --Teste de inserçao de operacao mas com cultura/parcela invalida
 declare
 tipo_op operacao.tipoOperacao%type := 7;
-    data_teste operacao.data%type := '23-11-12';
-    data_testeFail operacao.data%type := '29-11-20';
+    data_teste operacao.data%type := to_date('2023-11-12', 'YYYY-MM-DD');
+    data_testeFail operacao.data%type := to_date('2029-11-20', 'YYYY-MM-DD');
 	quantidade_teste operacao.quantidade%type := 0;
 	cultura_teste operacao.cultura%type := 12;
 	cultura_testeFail operacao.cultura%type := 13;
@@ -21,7 +21,7 @@ end;
 --Teste de inserçao de operacao mas com data invalida
 declare
 tipo_op operacao.tipoOperacao%type := 7;
-    data_testeFail operacao.data%type := '29-11-20';
+    data_testeFail operacao.data%type := to_date('2029-11-20', 'YYYY-MM-DD');
 	quantidade_teste operacao.quantidade%type := 0;
 	cultura_teste operacao.cultura%type := 12;
     parcela_teste operacao.parcela%type := 'Campo grande';
@@ -39,7 +39,7 @@ end;
 -- Teste de inserçao de operacao mas com quantidade invalida
 declare
 tipo_op operacao.tipoOperacao%type := 7;
-    data_teste operacao.data%type := '23-11-10';
+    data_teste operacao.data%type := to_date('2023-11-12', 'YYYY-MM-DD');
     quantidade_testeFail operacao.quantidade%type := 10000;
 	cultura_teste operacao.cultura%type := 12;
 	cultura_testeFail operacao.cultura%type := 13;
