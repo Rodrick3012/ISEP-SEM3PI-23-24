@@ -40,7 +40,7 @@ BEGIN
                 tipooperacao tpo ON tpo.id = o.tipooperacao
             WHERE
                 LOWER(tpo.tipooperacao) LIKE LOWER('rega')
-                AND o.data BETWEEN TO_DATE('2018-01-01','YYYY-MM-DD') AND TO_DATE('2020-01-01','YYYY-MM-DD')
+                AND o.data BETWEEN data1 AND data2
 
             UNION ALL
 
@@ -61,7 +61,7 @@ BEGIN
             FROM
                 operacaoRega o
             WHERE
-                o.horario BETWEEN TO_DATE('2018-01-01','YYYY-MM-DD') AND TO_DATE('2024-01-01','YYYY-MM-DD')
+                o.horario BETWEEN data1 AND data2
         )
         GROUP BY
             parcela
