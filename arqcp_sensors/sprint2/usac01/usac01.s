@@ -1,95 +1,97 @@
 .section .text
-    .global extract_token
+.global extract_token
 
+# Inicialização de registradores
 extract_token:
-    movq $0, %rcx	#inicializa o indice
-    movq $0, %rax 
-    movq $0 , %r8
-    movq $0 , %r9
-    
-    
-find_token:
+    movq $0, %r9        # Inicializa o índice para percorrer a string em %rdi
+    movq $0, %r10       # Inicializa o índice para percorrer a string em %rsi(token)
+    movq $0, %rcx       # Inicializa um contador
+    movl $0, (%rdx)      # Coloca um terminador nulo no endereço apontado por %rdx para armazenar a string resultante
 
-	movb (%rdi, %rcx, 1), %al  # Lê o próximo caractere de input
-	movb (%rsi, %r9, 1), %r8b  # Lê o próximo caractere do token
+# Loop principal
+loop:
+    movb (%rdi, %r9, 1), %al   # Lê o próximo caractere da string em %rdi
+    cmpb $0, %al               # Verifica se chegou ao final da string
+    je exit                    # Se sim, sai do loop
 
-    
-    cmpb %al, %r8b  # Compara os caracteres
-    jne check_separator  # Se não são iguais, verifica se é um separador
+    movb (%rsi, %r10, 1), %cl  # Lê o próximo caractere do token
+    cmpb $0, %cl               # Verifica se chegou ao final da string
+    je exit                    # Se sim, sai do loop
 
-    cmpb $58, %al  # Compara com ':'
-    je read_value  # Se encontrou ':', lê o valor
+    cmpb %al, %cl              # Compara os caracteres
+    je test_equal              # Se são iguais, vai para a rotina test_equal
 
-    cmpb $0, %al 	#verifica que string terminou
-    je exit  # Se chegou ao final da string, sai
+    incq %r9                   # Incrementa o índice da string em %rdi
+    jmp loop                   # Continua procurando
 
-    incq %rcx
-    incq %r9
-    jmp find_token  # Continua procurando
-    
-    
-    
-check_separator:
+# Rotina de teste de igualdade
+test_equal:
+    push %r9                   # Preserva o índice da string em %rdi
+    push %r10                  # Preserva o índice da string em %rsi(token)
 
-    cmpb $35, %al  # Compara com '#'
-    je found_separator  # Se for '#', vai para o processamento do separador
+    incq %r9                   # Avança para o próximo caractere em %rdi
+    incq %r10                  # Avança para o próximo caractere em %rsi(token)
 
-	incq %rcx 	#proximo byte
-	
-	
-    cmpb $0, %al 	#verifica que string terminou
-    jne check_separator  # Se ainda não chegou ao final da string, continua verificando
-    
-    #Se chegou ao final da string e não encontrou o token, sai
-    jmp exit
-    
-    
-    
-found_separator:
-    # Processamento do separador '#'
-    
-    incq %rcx
-    jmp find_token  # Reinicia a busca do token  
-    
-    
-      
-    
-read_value:
+# Loop interno
+loop2:
+    movb (%rsi, %r10, 1), %cl  # Lê o próximo caractere do token
+    cmpb $0, %cl               # Verifica se chegou ao final do token
+    je equal                   # Se sim, vai para a etiqueta equal
 
-    incq %rcx  # salta o ':'
+    movb (%rdi, %r9, 1), %al   # Lê o próximo caractere da string em %rdi
+    cmpb $0, %al               # Verifica se chegou ao final da string
+    je exit                    # Se sim, sai do loop
 
+    cmpb %al, %cl              # Compara os caracteres
+    jne not_equal              # Se não são iguais, vai para a etiqueta not_equal
 
+    incq %r9                   # Incrementa o índice da string em %rdi
+    incq %r10                  # Incrementa o índice da string em %rsi
+    jmp loop2                  # Continua procurando
 
+# Se os caracteres são iguais
+equal:
+    movl $0, %eax              # Inicializa o registrador %eax
 
-convert_to_int_or_string:
+    movb (%rdi, %r9, 1), %al   # Lê o próximo caractere da string em %rdi
 
-    movsbl (%rdi, %rcx, 1), %edx  # Carrega o próximo byte do valor
-    cmpl $0, %edx 	#verifica que string terminou
-    je store_value  # Se for o terminador nulo, sai
+    incq %r9                   # Avança para o próximo caractere em %rdi
 
-    cmpl $46, %edx  # Compara com '.'
-    je store_value  # Se encontrou '.', sai (para o caso de ser um número decimal)
+    cmpb $46, %al              # Compara com '.'
+    je equal                   # Se encontrou '.', continua no loop
 
-    cmpl $35, %edx  # Compara com '#'
-    je store_value  #Se encontrou '#', sai (para o caso de ser uma string)
+    cmpb $35, %al              # Compara com '#'
+    je end                     # Se encontrou '#', vai para a etiqueta end
 
-    # Se não é terminador nulo, '.', ou '#', assume que é parte de um número ou string
-    incq %rcx  # Move para o próximo caractere
-    jmp convert_to_int_or_string  #Repete o processo para o próximo caractere
+    cmpb $0, %al               # Verifica se chegou ao final da string
+    je end                     # Se sim, vai para a etiqueta end
 
-store_value:
-    movb $0, (%rdx)  # Coloca um terminador nulo no final do valor para garantir que seja uma string válida
-    movl %edx, (%rdx)  # Armazena o valor convertido na posição de memória apontada por %rdi
-    ret
-    
-    
-    
+    movl (%rdx), %r8d          # Carrega o valor atual em %rdx
+    imull $10, %r8d            # Multiplica o valor atual por 10
+    movl %r8d, (%rdx)          # Armazena o resultado de volta em %rdx
+
+    sub $'0', %al              # Converte o caractere para um valor numérico
+    addl %eax, (%rdx)          # Adiciona o valor ao acumulador em %rdx
+
+    jmp equal                  # Continua no loop
+
+# Se os caracteres não são iguais
+not_equal:
+    pop %r10                   # Restaura o índice da string em %rsi(token)
+    pop %r9                    # Restaura o índice da string em %rdi
+    incq %r9                   # Avança para o próximo caractere em %rdi, necessario se nao haveria um loop ifinito em loop
+    jmp loop                   # Retorna ao loop principal
+
+# Se chegou ao final da string ou encontrou um '#'
 exit:
+    movl $1431655765, (%rdx)   # Define um valor de sentinela no endereço apontado por %rdx
+    ret                         # Retorna da função
 
-ret
-    
-    
 
+end:
+    pop %r10                   # Restaura o índice da string em %rsi
+    pop %r9                    # Restaura o índice da string em %rdi
+    ret                         # Retorna da função
 
 		
 		

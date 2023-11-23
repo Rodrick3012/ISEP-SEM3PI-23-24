@@ -20,7 +20,7 @@ public class OperacaoFatorProducaoRepository {
         CallableStatement callStmt = null;
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            callStmt = connection.prepareCall("{ call inserirOperacaoAplicacaoFatorProducao(?,?,?,?,?,?,?,?,?) }");
+            callStmt = connection.prepareCall("{ call pcdinserirOperacaoFatorProducao(?,?,?,?,?,?,?,?) }");
 
             java.util.Date currentDate = new java.util.Date();
             java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
@@ -33,17 +33,7 @@ public class OperacaoFatorProducaoRepository {
             callStmt.setInt(6, cultura);
             callStmt.setInt(7, tipooperacao);
             callStmt.setInt(8, unidade);
-            callStmt.registerOutParameter(9, java.sql.Types.INTEGER); // Register the OUT parameter for ID
 
-            System.out.println(sqlDate);
-            System.out.println(sqlDate1);
-            System.out.println(quantidade);
-            System.out.println(parcela);
-            System.out.println(fatorproducao);
-            System.out.println(cultura);
-            System.out.println(tipooperacao);
-            System.out.println(unidade);
-            System.out.println(java.sql.Types.INTEGER);
 
             DbmsOutput dbmsOutput = new DbmsOutput(connection);
             dbmsOutput.enable(1000000);
