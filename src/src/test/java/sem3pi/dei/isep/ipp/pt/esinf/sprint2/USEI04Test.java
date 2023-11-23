@@ -21,7 +21,7 @@ public class USEI04Test {
     @Test
     public void testEx4() {
         USEI01 usei01 = new USEI01();
-        graph = usei01.readToGraph();
+        graph = usei01.readToGraph("src/test/resources/locais_big.csv", "src/test/resources/distancias_big.csv");
 
         USEI04 usei04 = new USEI04();
         // Executar o algoritmo de Prim

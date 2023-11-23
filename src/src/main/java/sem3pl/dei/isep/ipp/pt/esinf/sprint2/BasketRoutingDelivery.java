@@ -1,8 +1,14 @@
 package sem3pl.dei.isep.ipp.pt.esinf.sprint2;
 
+import org.apache.commons.lang.ObjectUtils;
 import sem3pl.dei.isep.ipp.pt.MainMenu;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.ShortestPath;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.CommonGraph;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation.USEI03;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation.USEI04;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.repository.DistributionNetwork;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Utils;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,7 +16,7 @@ import java.util.Scanner;
 public class BasketRoutingDelivery implements Runnable {
     private final Scanner sc = new Scanner(System.in);
 
-    private DistributionNetwork distributionNetwork;
+    private DistributionNetwork distributionNetwork = new DistributionNetwork();
 
     public BasketRoutingDelivery(){
     }
@@ -42,22 +48,38 @@ public class BasketRoutingDelivery implements Runnable {
                 basketRoutingDeliveryMenu();
                 break;
             case 2:
-                if(!distributionNetwork.isEmpty()){
-                    System.out.println("USEI02");
-                } else System.out.println("Network is empty. Returning to menu.");
+                try {
+                    if (!distributionNetwork.isEmpty()) {
+                        System.out.println("USEI02");
+                    } else System.out.println("Network is empty. Returning to menu.");
+                } catch (NullPointerException e){
+                    System.out.println("Network is empty. Returning to menu.");
+                }
                 basketRoutingDeliveryMenu();
                 break;
             case 3:
-                if(!distributionNetwork.isEmpty()){
-                    System.out.println("USEI03");
-                } else System.out.println("Network is empty. Returning to menu.");
+                try {
+                    if (!distributionNetwork.isEmpty()) {
+                        CommonGraph<Locals, Integer> graph = distributionNetwork.getGraph();
+                        Integer autonomy = Utils.readInt("Write the autonomy of the vehicle: ");
+                        USEI03 usei03 = new USEI03();
+                        ShortestPath shortestPath = usei03.getShortestPathBetweenTwoMostRemoteLocalsForUI(graph, autonomy);
+                        System.out.println(shortestPath.toString());
+                    } else System.out.println("Network is empty. Returning to menu.");
+                } catch (NullPointerException e){
+                    System.out.println("Network is empty. Returning to menu.");
+                }
                 basketRoutingDeliveryMenu();
                 break;
             case 4:
-                if(!distributionNetwork.isEmpty()){
-                    USEI04 usei04 = new USEI04();
-                    usei04.methodForUiLapr();
-                } else System.out.println("Network is empty. Returning to menu.");
+                try {
+                    if (!distributionNetwork.isEmpty()) {
+                        USEI04 usei04 = new USEI04();
+                        usei04.methodForUiLapr();
+                    } else System.out.println("Network is empty. Returning to menu.");
+                } catch (NullPointerException e){
+                    System.out.println("Network is empty. Returning to menu.");
+                }
                 basketRoutingDeliveryMenu();
                 break;
             case 5:
