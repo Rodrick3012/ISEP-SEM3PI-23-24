@@ -27,7 +27,7 @@ public class OperationRepository {
         CallableStatement callStmt = null;
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            callStmt = connection.prepareCall("{ call inserirOperacao(?,?,?,?,?,?,?,?) }");
+            callStmt = connection.prepareCall("{ call pcdinserirOperacao(?,?,?,?,?,?,?) }");
 
             java.util.Date currentDate = new java.util.Date();
             java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
@@ -40,7 +40,6 @@ public class OperationRepository {
             callStmt.setString(6, parcela);
             callStmt.setInt(7, unidade);
 
-            callStmt.registerOutParameter(8, java.sql.Types.INTEGER); // Register the OUT parameter for ID
 
             DbmsOutput dbmsOutput = new DbmsOutput(connection);
             dbmsOutput.enable(1000000);
