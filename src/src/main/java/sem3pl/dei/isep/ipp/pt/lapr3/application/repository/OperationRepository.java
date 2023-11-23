@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class OperationRepository {
@@ -26,15 +27,21 @@ public class OperationRepository {
         CallableStatement callStmt = null;
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            callStmt = connection.prepareCall("{ call inserirOperacao(?,?,?,?,?,?) }");
+            callStmt = connection.prepareCall("{ call inserirOperacao(?,?,?,?,?,?,?,?) }");
 
-            callStmt.setInt(1, tipooperacao);
-            java.sql.Date sqlDate = new java.sql.Date(data.getTime());
-            callStmt.setDate(2, sqlDate);
-            callStmt.setInt(3, quantidade);
-            callStmt.setInt(4, cultura);
-            callStmt.setString(5, parcela);
-            callStmt.setInt(6, unidade);
+            java.util.Date currentDate = new java.util.Date();
+            java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+            callStmt.setDate(1,sqlDate);
+            callStmt.setInt(2, tipooperacao);
+            java.sql.Date sqlDate1 = new java.sql.Date(data.getTime());
+            callStmt.setDate(3, sqlDate1);
+            callStmt.setInt(4, quantidade);
+            callStmt.setInt(5, cultura);
+            callStmt.setString(6, parcela);
+            callStmt.setInt(7, unidade);
+
+            callStmt.registerOutParameter(8, java.sql.Types.INTEGER); // Register the OUT parameter for ID
+
             DbmsOutput dbmsOutput = new DbmsOutput(connection);
             dbmsOutput.enable(1000000);
 
