@@ -182,7 +182,6 @@ CREATE TABLE OperacaoFatorProducao (
   parcela       varchar2(25) NOT NULL, 
   modo          number NOT NULL, 
   fatorproducao varchar2(30) NOT NULL, 
-  cultura       number, 
   tipooperacao  number NOT NULL, 
   unidade       number NOT NULL, 
   PRIMARY KEY (id));
@@ -218,7 +217,6 @@ ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa567047 FOREIGN KEY 
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa644819 FOREIGN KEY (modo) REFERENCES Modo (id);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa455406 FOREIGN KEY (fatorproducao) REFERENCES FatorProducao (designacao);
 ALTER TABLE FatorProducao ADD CONSTRAINT FKFatorProdu762811 FOREIGN KEY (objetivo) REFERENCES Objetivo (id);
-ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa482555 FOREIGN KEY (cultura) REFERENCES Cultura (id);
 ALTER TABLE Cultura ADD CONSTRAINT FKCultura134268 FOREIGN KEY (planta) REFERENCES planta (Variedade);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa148046 FOREIGN KEY (tipooperacao) REFERENCES TipoOperacao (id);
 ALTER TABLE Utilizadores ADD CONSTRAINT FKUtilizador274231 FOREIGN KEY (cargo) REFERENCES CargoUtilizador (id);

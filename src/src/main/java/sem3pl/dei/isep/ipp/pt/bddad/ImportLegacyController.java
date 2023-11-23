@@ -278,14 +278,20 @@ public class ImportLegacyController {
                                 atributosExploracao.add("fatorproducao");
                             }
 
+
+
                             if (atributosExploracao.contains(columnName.toLowerCase())) {
 
                                 if (!columnName.equals("substancia") && !columnName.equals("datap")
                                         && !columnName.equals("datas") && !columnName.equals("datac")
                                         && !columnName.equals("dataf")) {
                                     //here
-                                    if (!(sheetName.equalsIgnoreCase("cultura")&&columnName.equalsIgnoreCase("parcela")))  {
-                                        insert.append(columnName);
+                                    if (!(sheetName.equalsIgnoreCase("cultura")&&columnName.equalsIgnoreCase("parcela") ))  {
+                                        if (!(sheetName.equalsIgnoreCase("operacao")&&columnName.equalsIgnoreCase("cultura"))){
+                                            insert.append(columnName);
+
+                                        }
+
                                     }
 
                                 }
@@ -335,26 +341,47 @@ public class ImportLegacyController {
 
                                 } else if (columnName.equalsIgnoreCase("cultura") && sheetName.equals("operacao")) {
                                     Cell cell1 = row.getCell(9);
+                                    Cell cell2 = row.getCell(10);
                                     String auxID;
+                                    String auxParcelaID;
+
 
                                     if (cell1 != null) {
                                         if (cell1.getCellType() == CellType.NUMERIC) {
                                             double numericValue = cell1.getNumericCellValue();
+                                            double numericValu2 = cell2.getNumericCellValue();
+
                                             auxID = String.valueOf(numericValue);
+                                            auxParcelaID = String.valueOf(numericValu2);
+
                                         } else if (cell1.getCellType() == CellType.STRING) {
                                             auxID = cell1.getStringCellValue();
+                                            auxParcelaID = cell2.getStringCellValue();
+
                                         } else {
                                             auxID = ""; // Handle other cell types if needed
+                                            auxParcelaID="";
                                         }
                                     } else {
                                         auxID = ""; // Handle the case when the cell is null
+                                        auxParcelaID="";
+
+                                    }
+
+                                    String table ="culturaoperacao";
+                                    String campo ="operacao";
+
+                                    String op = row.getCell(2).toString();
+                                    if (operacoesft.contains(op)){
+                                        table ="culturaoperacaofatorproducao";
+                                        campo ="operacaofatorproducao";
                                     }
 
                                     if (!auxID.isEmpty()) {
-                                        values.append(auxID);
-                                    } else {
-                                        values.append("null");
+                                        String insertSubs = "Insert into "+table+" (cultura,"+campo+") values ("+auxID+","+auxParcelaID+");";
+                                        datas.add(insertSubs);
                                     }
+
                                 } else if (columnName.equalsIgnoreCase("substancia")) {
                                     Cell nextCell = row.getCell(i + 1);
                                     Cell firstCell = row.getCell(0);
@@ -446,10 +473,11 @@ public class ImportLegacyController {
                                             && !columnName.equals("datas") && !columnName.equals("datac")
                                             && !columnName.equals("dataf")) {
 
-                                        if (!(sheetName.equalsIgnoreCase("cultura")&&columnName.equalsIgnoreCase("parcela"))) {
-
-                                            insert.append(", ");
-                                            values.append(", ");
+                                        if (!(sheetName.equalsIgnoreCase("cultura")&&columnName.equalsIgnoreCase("parcela") ))  {
+                                            if (!(sheetName.equalsIgnoreCase("operacao")&&columnName.equalsIgnoreCase("cultura"))) {
+                                                insert.append(", ");
+                                                values.append(", ");
+                                            }
                                         }
                                     }
                                 }

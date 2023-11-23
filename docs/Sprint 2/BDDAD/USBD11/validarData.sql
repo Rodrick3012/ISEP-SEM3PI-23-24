@@ -32,4 +32,18 @@ dbms_output.put_line (case when v_boolean then 'true' else 'false' end);
 END;
 /
 
+DECLARE
+v_boolean boolean;
+BEGIN
+v_boolean := verificarDataNaoEstaNoFuturo(TO_DATE('12-11-2020', 'DD-MM-YYYY'),  TO_DATE('12-11-2020', 'DD-MM-YYYY'),TO_DATE('10-11-2020', 'DD-MM-YYYY'));
+dbms_output.put_line (case when v_boolean then 'true' else 'false' end);
+END;
+/
 
+DECLARE
+v_boolean boolean;
+BEGIN
+v_boolean := verificarDataNaoEstaNoFuturo(TO_DATE('12-11-2020', 'DD-MM-YYYY'),  TO_DATE('12-11-2020', 'DD-MM-YYYY'),TO_DATE('13-11-2020', 'DD-MM-YYYY'));
+dbms_output.put_line (case when v_boolean then 'true' else 'false' end);
+END;
+/
