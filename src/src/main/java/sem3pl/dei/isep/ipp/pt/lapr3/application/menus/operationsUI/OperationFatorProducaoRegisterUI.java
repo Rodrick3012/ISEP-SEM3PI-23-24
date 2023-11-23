@@ -77,13 +77,11 @@ public class OperationFatorProducaoRegisterUI {
 
 
             operationFatorProducaoRegisterController.operationFatorProducaoRegister(tipo,date,quantity,cultura,parcela,fatorProducao,unidade);
-            System.out.println("\nOperation registered.");
 
 
 
 
-        } catch (SQLException e ) {
-            System.out.println("\nOperation not registered!\n" + e.getMessage());
+        } catch (SQLException ignored) {
         }
 
         FarmCoordinator farmCoordinator = new FarmCoordinator();

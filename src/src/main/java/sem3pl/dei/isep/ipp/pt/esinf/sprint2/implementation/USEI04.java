@@ -13,7 +13,7 @@ public class USEI04 {
 
     public List<Edge<Locals, Integer>> readDataForUs04() {
         USEI01 usei01 = new USEI01();
-        graph = usei01.readToGraph();
+        graph = usei01.readToGraph("src/main/resources/locais_big.csv", "src/main/resources/distancias_big.csv");
         Locals newLocal1 = new Locals("CT43", 39.1167, -7.2833);
 
         return prim(graph);
@@ -22,7 +22,7 @@ public class USEI04 {
     public void methodForUiLapr(){
 
         USEI01 usei01 = new USEI01();
-        graph = usei01.readToGraph();
+        graph = usei01.readToGraph("src/src/main/resources/locais_big.csv", "src/src/main/resources/distancias_big.csv");
         Locals newLocal1 = new Locals("CT43", 39.1167, -7.2833);
 
         List<Edge<Locals, Integer>> minimumSpanningTree = prim(graph);

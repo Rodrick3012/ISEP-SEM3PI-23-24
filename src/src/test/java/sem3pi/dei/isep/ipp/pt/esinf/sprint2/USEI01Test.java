@@ -21,7 +21,7 @@ public class USEI01Test {
     @Test
     public void testGraphInsertionVerticesFromFile() {
         USEI01 usei01 = new USEI01();
-        CommonGraph<Locals, Integer> graph = usei01.readToGraph();
+        CommonGraph<Locals, Integer> graph = usei01.readToGraph("src/test/resources/locais_big.csv", "src/test/resources/distancias_big.csv");
 
         // Creating a new local for insertion
         Locals newLocal1 = new Locals("CT43",39.1167, -7.2833);
@@ -681,7 +681,7 @@ public class USEI01Test {
     public void testEdgeInsertion() {
 
         USEI01 usei01 = new USEI01();
-        CommonGraph<Locals, Integer> graph = usei01.readToGraph();
+        CommonGraph<Locals, Integer> graph = usei01.readToGraph("src/test/resources/locais_big.csv", "src/test/resources/distancias_big.csv");
 
         Edge<Locals, Integer> edge1 = graph.edge(graph.getVertexByLocalsID("CT32"), graph.getVertexByLocalsID("CT160"));
         Edge<Locals, Integer> edge2 = graph.edge(graph.getVertexByLocalsID("CT32"), graph.getVertexByLocalsID("CT198"));

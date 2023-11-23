@@ -11,16 +11,16 @@ import java.io.IOException;
 
 public class USEI01 {
 
-    public CommonGraph<Locals, Integer> readToGraph(){
+    public CommonGraph<Locals, Integer> readToGraph(String fileNameLocais, String fileNameDistancias){
         CommonGraph<Locals, Integer> rede = new MatrixGraph<>(false);
-        readVerticesGraph(rede);
-        readEdgesGraph(rede);
+        readVerticesGraph(rede, fileNameLocais);
+        readEdgesGraph(rede, fileNameDistancias);
         return  rede;
     }
 
-    private void readVerticesGraph(CommonGraph<Locals, Integer> rede ){
+    private void readVerticesGraph(CommonGraph<Locals, Integer> rede, String fileName){
 
-        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/locais_big.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             br.readLine();
             String linha;
             while ((linha = br.readLine()) != null) {
@@ -38,9 +38,9 @@ public class USEI01 {
     }
 
 
-    private void readEdgesGraph(CommonGraph<Locals, Integer> rede ){
+    private void readEdgesGraph(CommonGraph<Locals, Integer> rede, String fileName){
 
-        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/distancias_big.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             br.readLine();
             String linha;
             while ((linha = br.readLine()) != null) {

@@ -7,12 +7,16 @@ public class ShortestPath {
     private ArrayList<Locals> path;
     private ArrayList<Integer> distances;
     private Integer totalDistance;
+    private Integer refuelingPoints;
 
-    public ShortestPath(ArrayList<Locals> path, ArrayList<Integer> distances, Integer totalDistance) {
+    public ShortestPath(ArrayList<Locals> path, ArrayList<Integer> distances, Integer totalDistance, Integer refuelingPoints) {
         this.path = path;
         this.distances = distances;
         this.totalDistance = totalDistance;
+        this.refuelingPoints = refuelingPoints;
     }
+
+
 
     public ArrayList<Locals> getPath() {
         return path;
@@ -55,11 +59,29 @@ public class ShortestPath {
 
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("Local de origem: ").append(path.get(0)).append("\n");
-        sb.append("Locais de passagem: ").append(path).append("\n");
-        sb.append("Distância entre os locais de percurso: ").append(distances).append("\n");
-        sb.append("Local de destino: ").append(path.get(path.size()-1)).append("\n");
-        sb.append("Distância total do percurso: ").append(totalDistance).append("\n");
+        try {
+            sb.append("\n");
+            sb.append("Local de origem: ").append(path.get(0)).append("\n");
+            sb.append("Locais de passagem: ").append(path).append("\n");
+            sb.append("Distância entre os locais de percurso: ").append(distances).append("\n");
+            sb.append("Local de destino: ").append(path.get(path.size() - 1)).append("\n");
+            sb.append("Distância total do percurso: ").append(totalDistance).append("\n");
+            sb.append("Número de carregamentos efetuados: ").append(refuelingPoints).append("\n");
+        } catch (IndexOutOfBoundsException e){
+            sb.append("\n");
+            sb.append("Locais de passagem: ").append("[vazio]").append("\n");
+            sb.append("Distância entre os locais de percurso: ").append(0).append("\n");
+            sb.append("Distância total do percurso: ").append(0).append("\n");
+            sb.append("Número de carregamentos efetuados: ").append(0).append("\n");
+        }
         return sb.toString();
+    }
+
+    public Integer getRefuelingPoints() {
+        return refuelingPoints;
+    }
+
+    public void setRefuelingPoints(Integer refuelingPoints) {
+        this.refuelingPoints = refuelingPoints;
     }
 }
