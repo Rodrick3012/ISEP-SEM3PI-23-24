@@ -25,7 +25,7 @@ public class FatorProducaoRepository {
 
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            callStmt = connection.prepareCall("{ ? = call getfatorproducao() }");
+            callStmt = connection.prepareCall("{ ? = call fncgetfatorproducao() }");
 
             callStmt.registerOutParameter(1, OracleTypes.CURSOR);
 

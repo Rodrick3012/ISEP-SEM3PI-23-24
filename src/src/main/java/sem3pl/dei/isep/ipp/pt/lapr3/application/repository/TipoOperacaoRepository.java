@@ -26,7 +26,7 @@ public class TipoOperacaoRepository {
 
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            callStmt = connection.prepareCall("{ ? = call gettipoopercao() }");
+            callStmt = connection.prepareCall("{ ? = call fncgettipoopercao() }");
 
             callStmt.registerOutParameter(1, OracleTypes.CURSOR);
 

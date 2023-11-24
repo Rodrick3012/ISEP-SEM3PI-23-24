@@ -43,7 +43,7 @@ public class OperationFatorProducaoRegisterUI {
         try {
             System.out.println("Register a new Operation");
 
-            List<TipoOperacao> tipoOperacaoList= tipoOperacaoController.getTipoOpercao();
+            List<TipoOperacao> tipoOperacaoList= tipoOperacaoController.getTipoOperacao();
 
             int tipo=0;
             for (TipoOperacao tipoOper: tipoOperacaoList) {

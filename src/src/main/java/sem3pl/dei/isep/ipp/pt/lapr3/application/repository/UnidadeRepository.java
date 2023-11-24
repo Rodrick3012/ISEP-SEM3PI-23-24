@@ -25,7 +25,7 @@ public class UnidadeRepository {
 
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            callStmt = connection.prepareCall("{ ? = call getUnidade() }");
+            callStmt = connection.prepareCall("{ ? = call fncgetUnidade() }");
 
             callStmt.registerOutParameter(1, OracleTypes.CURSOR);
 

@@ -25,7 +25,7 @@ public class ParcelaRepository {
 
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            callStmt = connection.prepareCall("{ ? = call getparcelas() }");
+            callStmt = connection.prepareCall("{ ? = call fncgetparcelas() }");
 
             callStmt.registerOutParameter(1, OracleTypes.CURSOR);
 

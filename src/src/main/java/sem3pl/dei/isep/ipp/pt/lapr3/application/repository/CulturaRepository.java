@@ -55,7 +55,7 @@ public class CulturaRepository {
 
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            callStmt = connection.prepareCall("{ ? = call getCulturaforParcela(?) }");
+            callStmt = connection.prepareCall("{ ? = call fncgetCulturaforParcela(?) }");
 
             callStmt.registerOutParameter(1, OracleTypes.CURSOR);
             callStmt.setString(2, parcela);

@@ -8,7 +8,7 @@ DECLARE
 
     v_index NUMBER;
 BEGIN
-    rega_cursor := getRegaMothlyForDate(TO_DATE('2002-01-01', 'YYYY-MM-DD'), TO_DATE('2017-12-31', 'YYYY-MM-DD'));
+    rega_cursor := fncgetRegaMothlyForDate(TO_DATE('2002-01-01', 'YYYY-MM-DD'), TO_DATE('2017-12-31', 'YYYY-MM-DD'));
 
     LOOP
         FETCH rega_cursor INTO v_parcela, v_values(1), v_values(2), v_values(3), v_values(4), v_values(5), v_values(6), v_values(7), v_values(8), v_values(9), v_values(10), v_values(11), v_values(12);

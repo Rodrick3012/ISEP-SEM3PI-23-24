@@ -1,6 +1,5 @@
 package sem3pl.dei.isep.ipp.pt.lapr3.application.menus.operationsUI;
 
-import sem3pl.dei.isep.ipp.pt.Main;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.culturaController.CulturaController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.operationsController.OperationsRegisterController;
@@ -14,7 +13,6 @@ import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Unidade;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Utils;
 
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +36,7 @@ public class OperationRegisterUI {
         try {
             System.out.println("Register a new Operation");
 
-            List<TipoOperacao> tipoOperacaoList = tipoOperacaoController.getTipoOpercao();
+            List<TipoOperacao> tipoOperacaoList = tipoOperacaoController.getTipoOperacao();
 
             int tipo = 0;
             for (TipoOperacao tipoOper : tipoOperacaoList) {
