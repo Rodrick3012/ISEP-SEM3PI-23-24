@@ -12,7 +12,7 @@ public class USEI02 {
 
     //1criterio
 
-    public static Map<Locals, Integer> obterMapaOrdenadoPorGrau(CommonGraph<Locals,Integer> graph) {
+    public static Map<Locals, Integer> obterMapaOrdenadoPorGrau(CommonGraph<Locals, Integer> graph) {
         Map<Locals, Integer> grausMap = new HashMap<>();
 
         // Iterar sobre todos os vértices do grafo
@@ -41,16 +41,14 @@ public class USEI02 {
     }
 
 
-
-
     //2criterio
 
 
-    public Map<Locals, Double> calcularProximidade(CommonGraph<Locals,Double> graph) {
+    public Map<Locals, Double> calcularProximidade(CommonGraph<Locals, Double> graph) {
         Map<Locals, Double> proximidadeMap = new HashMap<>();
 
         for (Locals vertex : graph.vertices()) {
-            double proximidade = calcularCentralidadeProximidade(vertex,graph);
+            double proximidade = calcularCentralidadeProximidade(vertex, graph);
             proximidadeMap.put(vertex, proximidade);
         }
 
@@ -69,7 +67,7 @@ public class USEI02 {
         return proximidadeMap;
     }
 
-    private double calcularCentralidadeProximidade(Locals sourceVertex,CommonGraph<Locals,Double> graph) {
+    private double calcularCentralidadeProximidade(Locals sourceVertex, CommonGraph<Locals, Double> graph) {
         double somaDistancias = 0.0;
         Algorithms algorithms = new Algorithms();
         for (Locals targetVertex : graph.vertices()) {
@@ -83,5 +81,63 @@ public class USEI02 {
         }
 
         return somaDistancias;
+    }
+
+    public Map<Locals, Double> calculateBetweennessCentrality(CommonGraph<Locals, Double> graph) {
+        Map<Locals, Double> betweennessCentrality = new HashMap<>();
+
+        for (Locals s : graph.vertices()) {
+            Stack<Locals> stack = new Stack<>();
+            Map<Locals, List<Locals>> predecessors = new HashMap<>();
+            Map<Locals, Integer> distance = new HashMap<>();
+            Map<Locals, Double> sigma = new HashMap<>();
+            Map<Locals, Double> delta = new HashMap<>();
+
+            for (Locals v : graph.vertices()) {
+                predecessors.put(v, new ArrayList<>());
+                distance.put(v, -1);
+                sigma.put(v, 0.0);
+                delta.put(v, 0.0);
+            }
+
+            distance.put(s, 0);
+            sigma.put(s, 1.0);
+
+            Queue<Locals> queue = new LinkedList<>();
+            queue.add(s);
+
+            while (!queue.isEmpty()) {
+                Locals v = queue.poll();
+                stack.push(v);
+
+                for (Locals w : graph.adjVertices(v)) {
+                    if (distance.get(w) < 0) {
+                        queue.add(w);
+                        distance.put(w, distance.get(v) + 1);
+                    }
+
+                    if (distance.get(w) == distance.get(v) + 1) {
+                        sigma.put(w, sigma.get(w) + sigma.get(v));
+                        predecessors.get(w).add(v);
+                    }
+                }
+            }
+
+            while (!stack.isEmpty()) {
+                Locals w = stack.pop();
+                for (Locals v : predecessors.get(w)) {
+                    double partialDependency = (sigma.get(v) / sigma.get(w)) * (1 + delta.get(w));
+                    delta.put(v, delta.get(v) + partialDependency);
+                }
+
+                if (!w.equals(s)) {
+                    betweennessCentrality.put(w, betweennessCentrality.getOrDefault(w, 0.0) + delta.get(w));
+                }
+            }
+        }
+
+        return betweennessCentrality;
+
+
     }
 }
