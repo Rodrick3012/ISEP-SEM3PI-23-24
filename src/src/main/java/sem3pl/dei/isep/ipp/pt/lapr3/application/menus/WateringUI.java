@@ -41,7 +41,7 @@ public class WateringUI implements Runnable {
                     break;
                 case 2:
                     if(verifyListIsNotEmpty()){
-                        selectWateringPlanAndWriteConditions();
+                        verifyThatIsWatering();
                     } else {
                         System.out.println("Empty data. Returning to menu...");
                         wateringMenu();
@@ -128,7 +128,7 @@ public class WateringUI implements Runnable {
         } else System.out.println("Error while watering plan being updated/generated.");
     }
 
-    private void selectWateringPlanAndWriteConditions() {
+    private void verifyThatIsWatering() {
         WateringPlan wateringPlan = selectWateringPlan();
         int year = inputYear();
         int month = inputMonth();
