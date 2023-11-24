@@ -1,36 +1,36 @@
 insert into fabricante(fabricante) values ('Nutrofertil');
 insert into fatorProducao values ('Fertimax Extrume de Cavalo',(select id from fabricante where fabricante.fabricante = 'Nutrofertil'),2,2,2,6.7);
 insert into fatorProducao values ('BIOFERTIL N6',(select id from fabricante where fabricante.fabricante = 'Nutrofertil'),2,2,2,6.4);
-    
+
 INSERT INTO substancia (substancia) VALUES ('Materia organica');
 INSERT INTO substancia (substancia) VALUES ('N');
 INSERT INTO substancia (substancia) VALUES ('P205');
 INSERT INTO substancia (substancia) VALUES ('K20');
 INSERT INTO substancia (substancia) VALUES ('Ca');
 
-    
-insert into substanciaFatorProducao values ((select id from substancia where substancia = 'Materia organica'),'Fertimax Extrume de Cavalo',50); 
+
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'Materia organica'),'Fertimax Extrume de Cavalo',50);
 insert into substanciaFatorProducao values ((select id from substancia where substancia = 'N'),'Fertimax Extrume de Cavalo',3) ;
-insert into substanciaFatorProducao values ((select id from substancia where substancia = 'P205'),'Fertimax Extrume de Cavalo',0.8); 
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'P205'),'Fertimax Extrume de Cavalo',0.8);
 insert into substanciaFatorProducao values ((select id from substancia where substancia = 'K20'),'Fertimax Extrume de Cavalo',0.4) ;
 insert into substanciaFatorProducao values ((select id from substancia where substancia = 'Ca'),'Fertimax Extrume de Cavalo',1.6) ;
 insert into substanciaFatorProducao values ((select id from substancia where substancia = 'MgO'),'Fertimax Extrume de Cavalo',0.3) ;
-insert into substanciaFatorProducao values ((select id from substancia where substancia = 'B'),'Fertimax Extrume de Cavalo',0.004)  ;   
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'B'),'Fertimax Extrume de Cavalo',0.004)  ;
 
-insert into substanciaFatorProducao values ((select id from substancia where substancia = 'Materia organica'),'BIOFERTIL N6',50); 
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'Materia organica'),'BIOFERTIL N6',50);
 insert into substanciaFatorProducao values ((select id from substancia where substancia = 'N'),'BIOFERTIL N6',6.4) ;
-insert into substanciaFatorProducao values ((select id from substancia where substancia = 'P205'),'BIOFERTIL N6',2.5); 
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'P205'),'BIOFERTIL N6',2.5);
 insert into substanciaFatorProducao values ((select id from substancia where substancia = 'K20'),'BIOFERTIL N6',2.4) ;
 insert into substanciaFatorProducao values ((select id from substancia where substancia = 'Ca'),'BIOFERTIL N6',6) ;
 insert into substanciaFatorProducao values ((select id from substancia where substancia = 'MgO'),'BIOFERTIL N6',0.3) ;
-insert into substanciaFatorProducao values ((select id from substancia where substancia = 'B'),'BIOFERTIL N6',0.0020)  ;   
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'B'),'BIOFERTIL N6',0.0020)  ;
 
 insert into produto (produto) values ('Abóbora');
 insert into planta values('Cucurbita moschata var Butternut','Abóbora','manteiga',2);
 insert into plantaProduto values ((select id from produto where produto.produto = 'Abóbora'),'Cucurbita moschata var Butternut');
 insert into parcela values('Campo novo',1.1);
 
-insert into setor (setor,caudalMaximo,dataInicio) values (10,2500,TO_DATE('01-05-2017', 'DD-MM-YYYY'));    
+insert into setor (setor,caudalMaximo,dataInicio) values (10,2500,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
 insert into setorParcelaCultura(parcela,cultura,setor,quantidade,dataInsercao) values ('Campo grande',11,10,30,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
 insert into setorParcelaCultura (parcela,cultura,setor,quantidade,dataInsercao) values ('Campo grande',12,10,20,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
 
@@ -80,7 +80,7 @@ insert into parcelaCultura values ('Lameiro do moinho',(select id from cultura w
 
 
 insert into cultura(planta,dataInicial,quantidade) values ('Sugarsnax Hybrid',TO_DATE('2023-04-05','YYYY-MM-DD'),1.2);
-    
+
 insert into parcelaCultura values ('Campo novo',(select id from cultura where planta = 'Sugarsnax Hybrid' And dataFinal is NULL));
 
 insert into cultura(planta,dataInicial,quantidade) values ('Cucurbita moschata var Butternut',TO_DATE('2023-04-06','YYYY-MM-DD'),0.6);
@@ -93,7 +93,7 @@ insert into tipoOperacao (tipoOperacao) values ('Monda');
 -- Monda de plantação de cenouras Danvers Half Long (08/08/2023)
 insert into cultura(planta,dataInicial,quantidade) values ('Danvers Half Long',TO_DATE('2023-07-05','YYYY-MM-DD'),1.2);
 insert into parcelaCultura values ('Campo novo',(select id from cultura where planta = 'Danvers Half Long' AND datafinal IS null));
- 
+
 insert into cultura(planta,dataInicial,quantidade) values ('Amarelo',TO_DATE('2023-10-12','YYYY-MM-DD'),32);
 insert into parcelaCultura values ('Campo novo',(select id from cultura where planta = 'Amarelo' AND datafinal IS null));
 
@@ -317,140 +317,137 @@ INSERT INTO operacaoRega (setor, parcela, cultura, duracao,  horario) VALUES (42
 INSERT INTO operacaoRega (setor, parcela, cultura, duracao,  horario) VALUES (42, 'Campo novo',( select cultura from setorparcelacultura where parcela = 'Campo novo' and setor = 42), 120, TO_TIMESTAMP('2023-08-26 21:30:00', 'YYYY-MM-DD HH24:MI:SS'));
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Sementeira'),TO_DATE('2023-10-12', 'YYYY-MM-DD'),32,'Campo novo',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Amarelo') and dataFinal is null),215);
+insert into culturaOperacao (cultura, operacao) values ((SELECT id FROM cultura WHERE planta = 'Amarelo' and dataFinal is null),215);
 
-    
 insert into operacao(tipoOperacao,data,quantidade,parcela,unidade) values (8,TO_DATE('2023-10-10','YYYY-MM-DD'),1.1,'Campo novo',4);
 insert into operacao(tipoOperacao, data, quantidade, parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Colheita'), TO_DATE('2023-09-18', 'YYYY-MM-DD'), 900,  'Campo novo',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Danvers Half Long') and dataFinal IS NULL),217);
+insert into culturaOperacao values ((select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),217);
 
 insert into operacao(tipoOperacao, data, quantidade, parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Colheita'), TO_DATE('2023-09-22', 'YYYY-MM-DD'), 1500, 'Campo novo',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Danvers Half Long') and dataFinal IS NULL),218);
+insert into culturaOperacao values ((select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),218);
 
 
-insert into operacao(tipoOperacao, data, quantidade, parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Colheita'), TO_DATE('2023-10-05', 'YYYY-MM-DD'), 1200,  'Campo novo',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Danvers Half Long') and dataFinal IS NULL),219);
+insert into operacao(tipoOperacao, data, quantidade, parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Colheita'), TO_DATE('2023-10-05', 'YYYY-MM-DD'), 1200, 'Campo novo',3);
+insert into culturaOperacao values ((select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),219);
 
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Sementeira'),TO_DATE('2023-07-05', 'YYYY-MM-DD'),1.2,'Campo novo',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Danvers Half Long') and dataFinal IS NULL),220);
+insert into culturaOperacao values ((select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),220);
 
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Monda'),TO_DATE('2023-08-08','YYYY-MM-DD'),0.5,'Campo novo',4);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Danvers Half Long') and dataFinal IS NULL),221);
+insert into culturaOperacao values ((select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),221);
 
-insert into operacao(tipoOperacao, data, quantidade, parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Colheita'), TO_DATE('2023-09-15', 'YYYY-MM-DD'), 8000,  'Campo novo',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Danvers Half Long') and dataFinal IS NULL),222);
+insert into operacao(tipoOperacao, data, quantidade, parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Colheita'), TO_DATE('2023-09-15', 'YYYY-MM-DD'), 8000, 'Campo novo',3);
+insert into culturaOperacao values ((select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),222);
 
 
-insert into operacao(tipoOperacao, data, quantidade, parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Colheita'), TO_DATE('2023-09-25', 'YYYY-MM-DD'), 5000,  'Campo novo',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Cucurbita moschata var Butternut') and dataFinal IS NULL),223);
+insert into operacao(tipoOperacao, data, quantidade, parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Colheita'), TO_DATE('2023-09-25', 'YYYY-MM-DD'), 5000, 'Campo novo',3);
+insert into culturaOperacao values ((select id from cultura where planta = 'Cucurbita moschata var Butternut' and dataFinal IS NULL),223);
 
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Monda'),TO_DATE('2023-05-08','YYYY-MM-DD'),0.5,'Campo novo',4);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Sugarsnax Hybrid') and dataFinal IS NULL),224);
+insert into culturaOperacao values ((select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),224);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (7,TO_DATE('2023-06-14','YYYY-MM-DD'),1500,'Campo novo',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Sugarsnax Hybrid') and dataFinal IS NULL),225);
+insert into culturaOperacao values ((select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),225);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (7,TO_DATE('2023-06-28','YYYY-MM-DD'),2500,'Campo novo',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Sugarsnax Hybrid') and dataFinal IS NULL),226);
+insert into culturaOperacao values ((select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),226);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Monda'),TO_DATE('2023-05-20','YYYY-MM-DD'),0.6,'Campo novo',4);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Cucurbita moschata var Butternut') and dataFinal IS NULL),227);
+insert into culturaOperacao values ((select id from cultura where planta = 'Cucurbita moschata var Butternut' and dataFinal IS NULL),227);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Monda'),TO_DATE('2023-06-20','YYYY-MM-DD'),0.6,'Campo novo',4);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Cucurbita moschata var Butternut') and dataFinal IS NULL),228);
+insert into culturaOperacao values ((select id from cultura where planta = 'Cucurbita moschata var Butternut' and dataFinal IS NULL),228);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (8,TO_DATE('2023-07-04','YYYY-MM-DD'),0.5,'Campo novo',4);
 
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Sementeira'),TO_DATE('2023-04-05', 'YYYY-MM-DD'),1.2,'Campo novo',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Sugarsnax Hybrid') and dataFinal IS NULL),230);
+insert into culturaOperacao values ((select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),230);
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Sementeira'),TO_DATE('2023-04-06', 'YYYY-MM-DD'),1.5,'Campo novo',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Cucurbita moschata var Butternut') and dataFinal IS NULL),231);
+insert into culturaOperacao values ((select id from cultura where planta = 'Cucurbita moschata var Butternut' and dataFinal IS NULL),231);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (7,TO_DATE('2023-08-18', 'YYYY-MM-DD'),700,'Lameiro da ponte',3);
-insert into culturaOperacao values(24,232);
+insert into culturaOperacao values (24,232);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (7,TO_DATE('2023-08-30', 'YYYY-MM-DD'),900,'Lameiro da ponte',3);
-insert into culturaOperacao values(25,233);
+insert into culturaOperacao values (25,233);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (7,TO_DATE('2023-09-05', 'YYYY-MM-DD'),900,'Lameiro da ponte',3);
-insert into culturaOperacao values(22,234);
+insert into culturaOperacao values (22,234);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (7,TO_DATE('2023-08-30', 'YYYY-MM-DD'),1050,'Lameiro da ponte',3);
-insert into culturaOperacao values(22,235);
+insert into culturaOperacao values (22,235);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (7,TO_DATE('2023-08-30', 'YYYY-MM-DD'),950,'Lameiro da ponte',3);
-insert into culturaOperacao values(23,236);
+insert into culturaOperacao values (23,236);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (7,TO_DATE('2023-08-30', 'YYYY-MM-DD'),800,'Lameiro da ponte',3);
-insert into culturaOperacao values(23,237);
+insert into culturaOperacao values (23,237);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (7,TO_DATE('2023-11-02','YYYY-MM-DD'),400,'Campo grande',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Arbequina') and dataFinal IS NULL),238);
+insert into culturaOperacao values ((select id from cultura where planta = 'Arbequina' and dataFinal IS NULL),238);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (7,TO_DATE('2023-11-05','YYYY-MM-DD'),300,'Campo grande',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('PICUAL') and dataFinal IS NULL),239);
+insert into culturaOperacao values ((select id from cultura where planta = 'PICUAL' and dataFinal IS NULL),239);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (7,TO_DATE('2023-11-08','YYYY-MM-DD'),350,'Campo grande',3);
-insert into culturaOperacao values(11,240);
+insert into culturaOperacao values (11,240);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (1,TO_DATE('2016-10-12','YYYY-MM-DD'),40,'Campo grande',1);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Arbequina') and dataFinal IS NULL),241);
+insert into culturaOperacao values ((select id from cultura where planta = 'Arbequina' and dataFinal IS NULL),241);
 
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (1,TO_DATE('2019-01-09','YYYY-MM-DD'),50,'Lameiro do moinho',1);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Porta de loja') and dataFinal IS NULL),242);
+insert into culturaOperacao values ((select id from cultura where planta = 'Porta de loja' and dataFinal IS NULL),242);
 
-insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (1,TO_DATE('2019-01-09','YYYY-MM-DD'),20,'Lameiro do moinho',1);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Malápio') and dataFinal IS NULL),243);
+insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (1,TO_DATE('2019-01-09','YYYY-MM-DD'),20, 'Lameiro do moinho',1);
+insert into culturaOperacao values ((select id from cultura where planta = 'Malápio' and dataFinal IS NULL),243);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (1,TO_DATE('2019-01-10','YYYY-MM-DD'),40,'Lameiro do moinho',1);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Pipo de basto') and dataFinal IS NULL),244);
+insert into culturaOperacao values ((select id from cultura where planta = 'Pipo de basto' and dataFinal IS NULL),244);
 
 -- Operação de plantação de Macieira Canada
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (1,TO_DATE('2019-01-10','YYYY-MM-DD'),30,'Lameiro do moinho',1);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Canada') and dataFinal IS NULL),245);
+insert into culturaOperacao values ((select id from cultura where planta = 'Canada' and dataFinal IS NULL),245);
 
 -- Operação de plantação de Macieira Grand Fay
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (1,TO_DATE('2019-01-11','YYYY-MM-DD'),40,'Lameiro do moinho',1);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Grand Fay') and dataFinal IS NULL),246);
+insert into culturaOperacao values ((select id from cultura where planta = 'Grand Fay' and dataFinal IS NULL),246);
 
 -- Operação de plantação de Macieira Gronho Doce
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (1,TO_DATE('2019-01-11','YYYY-MM-DD'),50,'Lameiro do moinho',1);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Gronho Doce') and dataFinal IS NULL),247);
+insert into culturaOperacao values ((select id from cultura where planta = 'Gronho Doce' and dataFinal IS NULL),247);
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Colheita'),TO_DATE('2023-09-15', 'YYYY-MM-DD'),700,'Lameiro do moinho',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Canada') and dataFinal IS NULL),248);
+insert into culturaOperacao values ((select id from cultura where planta = 'Canada' and dataFinal IS NULL),248);
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Colheita'),TO_DATE('2023-09-15', 'YYYY-MM-DD'),600,'Lameiro do moinho',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Grand Fay') and dataFinal IS NULL),249);
+insert into culturaOperacao values ((select id from cultura where planta = 'Grand Fay' and dataFinal IS NULL),249);
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Colheita'),TO_DATE('2023-09-15', 'YYYY-MM-DD'),700,'Lameiro do moinho',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Grand Fay') and dataFinal IS NULL),250);
+insert into culturaOperacao values ((select id from cultura where planta = 'Grand Fay' and dataFinal IS NULL),250);
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Colheita'),TO_DATE('2023-09-15', 'YYYY-MM-DD'),600,'Lameiro do moinho',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Pipo de Basto') and dataFinal IS NULL),251);
+insert into culturaOperacao values ((select id from cultura where planta = 'Pipo de basto' and dataFinal IS NULL),251);
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Colheita'),TO_DATE('2023-09-15', 'YYYY-MM-DD'),700,'Lameiro do moinho',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Pipo de Basto') and dataFinal IS NULL),252);
+insert into culturaOperacao values ((select id from cultura where planta = 'Pipo de basto' and dataFinal IS NULL),252);
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Colheita'),TO_DATE('2023-09-15', 'YYYY-MM-DD'),1200,'Lameiro do moinho',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Gronho Doce') and dataFinal IS NULL),253);
+insert into culturaOperacao values ((select id from cultura where planta = 'Gronho Doce' and dataFinal IS NULL),253);
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Colheita'),TO_DATE('2023-09-15', 'YYYY-MM-DD'),700,'Lameiro do moinho',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Malápio') and dataFinal IS NULL),254);
+insert into culturaOperacao values ((select id from cultura where planta = 'Malápio' and dataFinal IS NULL),254);
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Colheita'),TO_DATE('2023-09-15', 'YYYY-MM-DD'),700,'Lameiro do moinho',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Porta de loja') and dataFinal IS NULL),255);
+insert into culturaOperacao values ((select id from cultura where planta = 'Porta de loja' and dataFinal IS NULL),255);
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Colheita'),TO_DATE('2023-09-15', 'YYYY-MM-DD'),800,'Lameiro do moinho',3);
-insert into culturaOperacao values((select id from cultura where lower(planta) = lower('Porta de loja') and dataFinal IS NULL),256);
-
-
+insert into culturaOperacao values ((select id from cultura where planta = 'Porta de loja' and dataFinal IS NULL),256);
 
 insert into operacaofatorProducao(data,quantidade,parcela,modo,fatorProducao,tipoOperacao,unidade) values (TO_DATE('2021-01-13','YYYY-MM-DD'),120,'Campo grande',1,'BIOFERTIL N6',5,3);
 insert into culturaOperacaoFatorProducao values ((select id from cultura where lower(planta) = lower('PICUAL') and dataFinal IS NULL),30);
@@ -558,3 +555,4 @@ insert into culturaOperacaoFatorProducao values ((select id from cultura where l
 
 insert into operacaofatorProducao(data,quantidade,parcela,modo,fatorProducao,tipoOperacao,unidade) values (TO_DATE('2023-05-15','YYYY-MM-DD'),5,'Lameiro do moinho',3,'EPSO Microtop',5,3);
 insert into culturaOperacaoFatorProducao values ((select id from cultura where lower(planta)= lower('Gronho Doce') and dataFinal IS NULL),65);
+
