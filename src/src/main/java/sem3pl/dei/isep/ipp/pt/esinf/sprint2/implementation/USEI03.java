@@ -26,6 +26,11 @@ public class USEI03 {
         } else return new ShortestPath(new ArrayList<>(), new ArrayList<>(), 0, 0);
     }
 
+    private CommonGraph<Locals, Integer> getGraph() {
+        USEI01 usei01 = new USEI01();
+        return usei01.readToGraph("src/main/resources/locais_big.csv", "src/main/resources/distancias_big.csv");
+    }
+
     public ShortestPath getShortestPathBetweenTwoMostRemoteLocalsForUI(CommonGraph<Locals,Integer> graph, Integer autonomy) {
         Locals[] mostRemoteLocals = findMostRemoteLocals(graph.vertices());
         LinkedList<Locals> shortPath = new LinkedList<>();
@@ -39,11 +44,6 @@ public class USEI03 {
         if (shortestPathDistance != null) {
             return new ShortestPath(new ArrayList<>(shortPath), new ArrayList<>(distancesBetweenPoints), shortestPathDistance, rechargePoints.size());
         } else return new ShortestPath(new ArrayList<>(), new ArrayList<>(), 0, 0);
-    }
-
-    private CommonGraph<Locals, Integer> getGraph() {
-        USEI01 usei01 = new USEI01();
-        return usei01.readToGraph("src/main/resources/locais_big.csv", "src/main/resources/distancias_big.csv");
     }
 
     private Locals[] findMostRemoteLocals(List<Locals> localsList) {
