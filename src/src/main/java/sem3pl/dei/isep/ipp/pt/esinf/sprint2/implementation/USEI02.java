@@ -1,4 +1,4 @@
-package sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation;
+/*package sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation;
 
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.Algorithms;
@@ -141,3 +141,4 @@ public class USEI02 {
 
     }
 }
+*/

@@ -49,11 +49,11 @@ begin
     end if;
 exception
     when dataInvalida then
-        raise_application_error(-20001, 'Data inválida');
+        raise_application_error(-20001, 'Data invï¿½lida');
 end;
-/
 
--- Bloco anónimo para demonstração
+
+-- Bloco anï¿½nimo para demonstraï¿½ï¿½o
 declare
     listOperacoes sys_refcursor;
     dataOperacao operacao.data%type;
