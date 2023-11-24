@@ -131,4 +131,26 @@ public abstract class CommonGraph <V,E> implements Graph<V,E> {
         }
         return null;
     }
+
+
+    public Integer degreeOf(V vertex) {
+        if (!validVertex(vertex)) {
+
+            return null;
+        }
+
+        int degree = 0;
+
+        // Iterar sobre todas as arestas
+        for (Edge<V, E> edge : edges()) {
+            if (edge.getVOrig().equals(vertex) || edge.getVDest().equals(vertex)) {
+                // Se a aresta conecta ao vértice, incrementar o grau
+                degree++;
+            }
+        }
+
+        return degree;
+    }
 }
+
+
