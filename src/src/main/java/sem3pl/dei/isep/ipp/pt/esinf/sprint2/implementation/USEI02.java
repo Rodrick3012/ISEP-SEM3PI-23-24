@@ -1,6 +1,7 @@
 package sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation;
 
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.Algorithms;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.CommonGraph;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.support.ComparadorPorValorDecrescente;
 
@@ -49,7 +50,7 @@ public class USEI02 {
         Map<Locals, Double> proximidadeMap = new HashMap<>();
 
         for (Locals vertex : graph.vertices()) {
-            double proximidade = calcularCentralidadeProximidade(vertex);
+            double proximidade = calcularCentralidadeProximidade(vertex,graph);
             proximidadeMap.put(vertex, proximidade);
         }
 
@@ -58,8 +59,9 @@ public class USEI02 {
 
         Collections.sort(listaEntradas, new ComparadorPorValorDecrescente());
 
+
         // Criar um novo mapa ordenado
-        Map<Locals, Integer> mapaOrdenado = new LinkedHashMap<>();
+        Map<Locals, Double> mapaOrdenado = new LinkedHashMap<>();
         for (Map.Entry<Locals, Double> entry : listaEntradas) {
             mapaOrdenado.put(entry.getKey(), entry.getValue());
         }
@@ -67,16 +69,15 @@ public class USEI02 {
         return proximidadeMap;
     }
 
-    private double calcularCentralidadeProximidade(Locals sourceVertex) {
+    private double calcularCentralidadeProximidade(Locals sourceVertex,CommonGraph<Locals,Double> graph) {
         double somaDistancias = 0.0;
-
-        DijkstraShortestPath<V, E> dijkstra = new DijkstraShortestPath<>(this);
-        for (Locals targetVertex : vertices()) {
+        Algorithms algorithms = new Algorithms();
+        for (Locals targetVertex : graph.vertices()) {
             if (!sourceVertex.equals(targetVertex)) {
                 // Calcular a distância mais curta entre os vértices usando Dijkstra
-                double distancia = dijkstra.getPathWeight(sourceVertex, targetVertex);
+                LinkedList<Locals> shortPath = new LinkedList<>();
 
-                // Somar a distância invertida
+                double distancia = Algorithms.shortestPath(graph, sourceVertex, targetVertex, Comparator.naturalOrder(), Double::sum, 0.0, shortPath, Double.MAX_VALUE);                // Somar a distância invertida
                 somaDistancias += 1.0 / distancia;
             }
         }
