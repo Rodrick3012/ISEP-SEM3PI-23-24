@@ -1,4 +1,4 @@
-/*package sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation;
+package sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation;
 
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.Algorithms;
@@ -6,6 +6,8 @@ import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.CommonGraph;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.support.ComparadorPorValorDecrescente;
 
 import java.util.*;
+
+import static sem3pl.dei.isep.ipp.pt.esinf.sprint2.support.desempatadorCriterios.desempatarCriterios;
 
 public class USEI02 {
 
@@ -26,18 +28,7 @@ public class USEI02 {
             }
         }
 
-        // Criar uma lista de entradas do mapa
-        List<Map.Entry<Locals, Integer>> listaEntradas = new ArrayList<>(grausMap.entrySet());        // Ordenar a lista por ordem decrescente de valores usando um comparador externo
-
-        Collections.sort(listaEntradas, new ComparadorPorValorDecrescente());
-
-        // Criar um novo mapa ordenado
-        Map<Locals, Integer> mapaOrdenado = new LinkedHashMap<>();
-        for (Map.Entry<Locals, Integer> entry : listaEntradas) {
-            mapaOrdenado.put(entry.getKey(), entry.getValue());
-        }
-
-        return mapaOrdenado;
+        return grausMap;
     }
 
 
@@ -50,18 +41,6 @@ public class USEI02 {
         for (Locals vertex : graph.vertices()) {
             double proximidade = calcularCentralidadeProximidade(vertex, graph);
             proximidadeMap.put(vertex, proximidade);
-        }
-
-        // Criar uma lista de entradas do mapa
-        List<Map.Entry<Locals, Double>> listaEntradas = new ArrayList<>(proximidadeMap.entrySet());        // Ordenar a lista por ordem decrescente de valores usando um comparador externo
-
-        Collections.sort(listaEntradas, new ComparadorPorValorDecrescente());
-
-
-        // Criar um novo mapa ordenado
-        Map<Locals, Double> mapaOrdenado = new LinkedHashMap<>();
-        for (Map.Entry<Locals, Double> entry : listaEntradas) {
-            mapaOrdenado.put(entry.getKey(), entry.getValue());
         }
 
         return proximidadeMap;
@@ -82,6 +61,9 @@ public class USEI02 {
 
         return somaDistancias;
     }
+
+
+    //3criterio
 
     public Map<Locals, Double> calculateBetweennessCentrality(CommonGraph<Locals, Double> graph) {
         Map<Locals, Double> betweennessCentrality = new HashMap<>();
@@ -140,5 +122,45 @@ public class USEI02 {
 
 
     }
+
+
+    public List<Locals> ordenarLocalidadesPorCriterios(CommonGraph<Locals, Double> graph, CommonGraph<Locals, Integer> graph1) {
+
+        Map<Locals, Double> mapaCentralidade = calculateBetweennessCentrality(graph);
+        Map<Locals, Double> mapaProximidade = calcularProximidade(graph);
+        Map<Locals, Integer> mapaInfluencia = obterMapaOrdenadoPorGrau(graph1);
+
+
+        // Criar uma lista de entradas do mapa
+        List<Map.Entry<Locals, Double>> listaEntradas = new ArrayList<>(mapaCentralidade.entrySet());
+
+        // Ordenar a lista por ordem decrescente de valores usando um comparador externo
+        Collections.sort(listaEntradas, new ComparadorPorValorDecrescente<>());
+
+        // Criar um novo mapa ordenado
+        Map<Locals, Double> mapaOrdenado = new LinkedHashMap<>();
+        for (Map.Entry<Locals, Double> entry : listaEntradas) {
+            mapaOrdenado.put(entry.getKey(), entry.getValue());
+        }
+
+
+        // Verificar se há empates e aplicar o critério de desempate do 1º critério
+        for (int i = 0; i < listaEntradas.size() - 1; i++) {
+            Map.Entry<Locals, Double> entryAtual = listaEntradas.get(i);
+            Map.Entry<Locals, Double> entryProximo = listaEntradas.get(i + 1);
+
+            if (entryAtual.getValue().equals(entryProximo.getValue())) {
+
+                // Empate, aplicar critério de desempate
+                desempatarCriterios(mapaOrdenado, mapaInfluencia, mapaProximidade, entryAtual, entryProximo);
+            }
+        }
+        // Criar uma lista final de localidades ordenadas
+        List<Locals> localidadesOrdenadas = new ArrayList<>(mapaOrdenado.keySet());
+
+        return localidadesOrdenadas;
+
+    }
+
+
 }
-*/
