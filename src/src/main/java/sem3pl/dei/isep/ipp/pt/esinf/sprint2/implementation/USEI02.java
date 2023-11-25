@@ -7,6 +7,7 @@ import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.CommonGraph;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.support.ComparadorPorValorDecrescente;
 
 import java.util.*;
+import java.util.function.BinaryOperator;
 
 import static sem3pl.dei.isep.ipp.pt.esinf.sprint2.support.desempatadorCriterios.desempatarCriterios;
 
@@ -48,15 +49,21 @@ public class USEI02 {
     }
 
     private double calcularCentralidadeProximidade(Locals sourceVertex, CommonGraph<Locals, Integer> graph) {
+
         double somaDistancias = 0.0;
-        Algorithms algorithms = new Algorithms();
+
         for (Locals targetVertex : graph.vertices()) {
             if (!sourceVertex.equals(targetVertex)) {
-                // Calcular a distância mais curta entre os vértices usando Dijkstra
+                Comparator<Integer> ce = Comparator.naturalOrder(); // or another appropriate comparator
+                BinaryOperator<Integer> sum = Integer::sum; // or another appropriate operator
+                Integer zero = 0; // or another appropriate initial value
                 LinkedList<Locals> shortPath = new LinkedList<>();
-
-                //double distancia = Algorithms.shortestPath(graph, sourceVertex, targetVertex, Comparator.naturalOrder(), Integer::sum, 0, shortPath, Double.MAX_VALUE);                // Somar a distância invertida
-               // somaDistancias += 1.0 / distancia;
+                Integer infinity = Integer.MAX_VALUE; // or another appropriate value representing infinity
+                Integer distancia = Algorithms.<Locals, Integer>shortestPath(graph, sourceVertex, targetVertex, ce, sum, zero, shortPath, infinity);
+                // Somar a distância invertida
+                if (distancia != 0) {
+                    somaDistancias += 1.0 / distancia;
+                }
             }
         }
 
