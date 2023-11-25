@@ -12,9 +12,8 @@ sort_array:
 	
 	pushq %rbx
 	pushq %r12 
-		
-	movq ptrvec(%rip),%rsi						# Endereço em '%RSI'
-	movslq num(%rip),%rcx						# Size em '%RCX'
+		   					                    # Endereço em '%RSI'
+	movslq %esi,%rcx						# Size em '%RCX'
 	movq $0,%r8									# i = 0
 	
 
@@ -39,11 +38,11 @@ second_loop:
 	cmpq %r9,%rcx								# Se o j for maior que o size sai do segundo loop
 	jle continuation_loop
 	
-	movl (%rsi,%r8,4),%ebx					 	# temporary1 = arr[i]
-	movl (%rsi,%r9,4),%r12d	 				 	# temporary2 = arr[j]
+	movl (%rdi,%r8,4),%ebx					 	# temporary1 = arr[i]
+	movl (%rdi,%r9,4),%r12d	 				 	# temporary2 = arr[j]
 		
 	cmpl %ebx,%r12d								# Se o arr[i] for menor que o arr[j] eles trocam
-	jg swap_elements
+	jl swap_elements
 	
 	incq %r9									# Se não for j++ e volta a repetir o segundo loop
 	jmp second_loop
@@ -52,8 +51,8 @@ second_loop:
 	
 swap_elements:			
 	
-	movl %r12d,(%rsi,%r8,4) 					# Trocam se os elementos
-	movl %ebx,(%rsi,%r9,4)
+	movl %r12d,(%rdi,%r8,4) 					# Trocam se os elementos
+	movl %ebx,(%rdi,%r9,4)
 	
 	incq %r9									# j++
 	jmp second_loop								
