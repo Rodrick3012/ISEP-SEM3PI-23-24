@@ -31,13 +31,13 @@ public class USEI04 {
         int contadora = 0;
         double weightTotal = 0;
         for (Edge<Locals, Integer> edge : minimumSpanningTree) {
-            System.out.println(edge.getVOrig().getId() + " - " + edge.getVDest().getId() + ": " + edge.getWeight());
+            System.out.println(edge.getVOrig().getId() + " - " + edge.getVDest().getId() + ": " + edge.getWeight()/1000 + " km" );
             contadora++;
             weightTotal += edge.getWeight();
         }
-        System.out.println("Número de vértices percorrido - "+ contadora+1);
-        System.out.println("Número de vértices total - "+graph.numVertices());
-        System.out.println("Distância total -"+ weightTotal);
+        System.out.println("Number of places covered: "+ contadora+1);
+        System.out.println("Total number of locations: "+graph.numVertices());
+        System.out.println("Total distance: "+ weightTotal/1000 + " km");
     }
 
 

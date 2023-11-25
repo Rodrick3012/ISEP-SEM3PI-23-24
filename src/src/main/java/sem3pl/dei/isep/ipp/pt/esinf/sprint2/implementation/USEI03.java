@@ -11,6 +11,7 @@ import java.util.function.BinaryOperator;
 public class USEI03 {
 
     public ShortestPath getShortestPathBetweenTwoMostRemoteLocals(Integer autonomy) {
+        autonomy = autonomy * 1000;
         CommonGraph<Locals, Integer> graph = getGraph();
         Locals[] mostRemoteLocals = findMostRemoteLocals(graph.vertices());
         LinkedList<Locals> shortPath = new LinkedList<>();
@@ -18,11 +19,12 @@ public class USEI03 {
         Locals firstLocal = mostRemoteLocals[0];
         Locals lastLocal = mostRemoteLocals[1];
         LinkedList<Locals> rechargePoints = new LinkedList<>();
+        Map<String, Integer> distancesForUI = new HashMap<>();
         Integer shortestPathDistance = shortestPath(graph, firstLocal,
                 lastLocal, Integer::compare, Integer::sum, 0, shortPath,
-                distancesBetweenPoints, Integer.MAX_VALUE, autonomy, rechargePoints);
+                distancesBetweenPoints, Integer.MAX_VALUE, autonomy, rechargePoints, distancesForUI);
         if (shortestPathDistance != null) {
-            return new ShortestPath(new ArrayList<>(shortPath), new ArrayList<>(distancesBetweenPoints), shortestPathDistance, rechargePoints.size());
+            return new ShortestPath(new ArrayList<>(shortPath), new ArrayList<>(distancesBetweenPoints), shortestPathDistance/1000, rechargePoints.size());
         } else return new ShortestPath(new ArrayList<>(), new ArrayList<>(), 0, 0);
     }
 
@@ -32,17 +34,19 @@ public class USEI03 {
     }
 
     public ShortestPath getShortestPathBetweenTwoMostRemoteLocalsForUI(CommonGraph<Locals,Integer> graph, Integer autonomy) {
+        autonomy = autonomy * 1000;
         Locals[] mostRemoteLocals = findMostRemoteLocals(graph.vertices());
         LinkedList<Locals> shortPath = new LinkedList<>();
         LinkedList<Integer> distancesBetweenPoints = new LinkedList<>();
         Locals firstLocal = mostRemoteLocals[0];
         Locals lastLocal = mostRemoteLocals[1];
         LinkedList<Locals> rechargePoints = new LinkedList<>();
+        Map<String, Integer> distancesForUI = new HashMap<>();
         Integer shortestPathDistance = shortestPath(graph, firstLocal,
                 lastLocal, Integer::compare, Integer::sum, 0, shortPath,
-                distancesBetweenPoints, Integer.MAX_VALUE, autonomy, rechargePoints);
+                distancesBetweenPoints, Integer.MAX_VALUE, autonomy, rechargePoints, distancesForUI);
         if (shortestPathDistance != null) {
-            return new ShortestPath(new ArrayList<>(shortPath), new ArrayList<>(distancesBetweenPoints), shortestPathDistance, rechargePoints.size());
+            return new ShortestPath(new ArrayList<>(shortPath), new ArrayList<>(distancesBetweenPoints), shortestPathDistance/1000, rechargePoints.size(), distancesForUI);
         } else return new ShortestPath(new ArrayList<>(), new ArrayList<>(), 0, 0);
     }
 
@@ -73,7 +77,7 @@ public class USEI03 {
     public static <V, E> E shortestPath(Graph<V, E> g, V vOrig, V vDest,
                                         Comparator<E> ce, BinaryOperator<E> sum, E zero,
                                         LinkedList<V> shortPath, LinkedList<E> distances,
-                                        E infinity, E autonomy, LinkedList<V> chargingPoints) {
+                                        E infinity, E autonomy, LinkedList<V> chargingPoints, Map<String, E> distancesForUI) {
         int numVertices = g.numVertices();
 
         // Arrays to store the result of Dijkstra's algorithm
@@ -99,7 +103,7 @@ public class USEI03 {
         }
 
         // Reconstruct the shortest path
-        getPathWithDistances(g, vOrig, vDest, pathKeys, shortPath, distances, ce, sum, zero, chargingPoints, autonomy);
+        getPathWithDistances(g, vOrig, vDest, pathKeys, shortPath, distances, distancesForUI, ce, sum, zero, chargingPoints, autonomy);
 
         // Return the length of the shortest path
         return dist[vDestIndex];
@@ -181,7 +185,7 @@ public class USEI03 {
     }
 
     private static <V, E> void getPathWithDistances(Graph<V, E> g, V vOrig, V vDest, V[] pathKeys,
-                                                    LinkedList<V> path, LinkedList<E> distances, Comparator<E> ce, BinaryOperator<E> sum, E zero, LinkedList<V> rechargePoints, E autonomy) {
+                                                    LinkedList<V> path, LinkedList<E> distances, Map<String, E> distancesForUI, Comparator<E> ce, BinaryOperator<E> sum, E zero, LinkedList<V> rechargePoints, E autonomy) {
         int vOrigIndex = g.vertices().indexOf(vOrig);
         int vDestIndex = g.vertices().indexOf(vDest);
 
@@ -213,6 +217,7 @@ public class USEI03 {
                 E edge = g.edge(predecessorIndex, currentVertexIndex).getWeight();
                 accumulatedDistance = sum.apply(accumulatedDistance, edge);
                 distances.addFirst(edge);
+                distancesForUI.put(predecessorIndex + " -> " + currentVertexIndex, edge);
                 if (ce.compare(accumulatedDistance, autonomy) > 0) {
                     rechargePoints.addFirst(current);
                     accumulatedDistance = zero;

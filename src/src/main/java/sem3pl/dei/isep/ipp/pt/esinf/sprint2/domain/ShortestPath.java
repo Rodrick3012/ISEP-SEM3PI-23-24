@@ -1,6 +1,7 @@
 package sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 
 public class ShortestPath {
@@ -8,6 +9,7 @@ public class ShortestPath {
     private ArrayList<Integer> distances;
     private Integer totalDistance;
     private Integer refuelingPoints;
+    private Map<String, Integer> distancesForUI;
 
     public ShortestPath(ArrayList<Locals> path, ArrayList<Integer> distances, Integer totalDistance, Integer refuelingPoints) {
         this.path = path;
@@ -16,6 +18,13 @@ public class ShortestPath {
         this.refuelingPoints = refuelingPoints;
     }
 
+    public ShortestPath(ArrayList<Locals> path, ArrayList<Integer> distances, Integer totalDistance, Integer refuelingPoints, Map<String, Integer> distancesForUI){
+        this.path = path;
+        this.distances = distances;
+        this.totalDistance = totalDistance;
+        this.refuelingPoints = refuelingPoints;
+        this.distancesForUI = distancesForUI;
+    }
 
 
     public ArrayList<Locals> getPath() {
@@ -60,19 +69,21 @@ public class ShortestPath {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         try {
+            Locals origin = path.get(0);
             sb.append("\n");
-            sb.append("Local de origem: ").append(path.get(0)).append("\n");
-            sb.append("Locais de passagem: ").append(path).append("\n");
-            sb.append("Distância entre os locais de percurso: ").append(distances).append("\n");
-            sb.append("Local de destino: ").append(path.get(path.size() - 1)).append("\n");
-            sb.append("Distância total do percurso: ").append(totalDistance).append("\n");
-            sb.append("Número de carregamentos efetuados: ").append(refuelingPoints).append("\n");
+            sb.append("Origin: ").append(origin).append("\n");
+            sb.append("Passing Places: ").append(path).append("\n");
+            sb.append("Distances between route locations: ").append("\n");
+            for (Map.Entry<String, Integer> entry : distancesForUI.entrySet()){
+                sb.append(entry.getKey()).append(": ").append(entry.getValue()/1000).append(" km").append("\n");
+            }
+            sb.append("Destiny: ").append(path.get(path.size() - 1)).append("\n");
+            sb.append("Total distance: ").append(totalDistance).append(" km").append("\n");
+            sb.append("Number of charges made: ").append(refuelingPoints).append("\n");
         } catch (IndexOutOfBoundsException e){
             sb.append("\n");
-            sb.append("Locais de passagem: ").append("[vazio]").append("\n");
-            sb.append("Distância entre os locais de percurso: ").append(0).append("\n");
-            sb.append("Distância total do percurso: ").append(0).append("\n");
-            sb.append("Número de carregamentos efetuados: ").append(0).append("\n");
+            sb.append("Distance to low to calculate minimum distance!");
+            sb.append("\n");
         }
         return sb.toString();
     }

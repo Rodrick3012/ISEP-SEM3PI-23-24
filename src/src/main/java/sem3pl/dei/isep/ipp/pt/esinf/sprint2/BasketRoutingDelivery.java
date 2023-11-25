@@ -64,7 +64,7 @@ public class BasketRoutingDelivery implements Runnable {
                 try {
                     if (!distributionNetwork.isEmpty()) {
                         CommonGraph<Locals, Integer> graph = distributionNetwork.getGraph();
-                        Integer autonomy = Utils.readInt("Write the autonomy of the vehicle: ");
+                        Integer autonomy = Utils.readInt("Write the autonomy of the vehicle");
                         USEI03 usei03 = new USEI03();
                         ShortestPath shortestPath = usei03.getShortestPathBetweenTwoMostRemoteLocalsForUI(graph, autonomy);
                         System.out.println(shortestPath.toString());
