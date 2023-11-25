@@ -1,3 +1,4 @@
+
 package sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation;
 
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
@@ -35,7 +36,7 @@ public class USEI02 {
     //2criterio
 
 
-    public Map<Locals, Double> calcularProximidade(CommonGraph<Locals, Double> graph) {
+    public Map<Locals, Double> calcularProximidade(CommonGraph<Locals, Integer> graph) {
         Map<Locals, Double> proximidadeMap = new HashMap<>();
 
         for (Locals vertex : graph.vertices()) {
@@ -46,7 +47,7 @@ public class USEI02 {
         return proximidadeMap;
     }
 
-    private double calcularCentralidadeProximidade(Locals sourceVertex, CommonGraph<Locals, Double> graph) {
+    private double calcularCentralidadeProximidade(Locals sourceVertex, CommonGraph<Locals, Integer> graph) {
         double somaDistancias = 0.0;
         Algorithms algorithms = new Algorithms();
         for (Locals targetVertex : graph.vertices()) {
@@ -54,8 +55,8 @@ public class USEI02 {
                 // Calcular a distância mais curta entre os vértices usando Dijkstra
                 LinkedList<Locals> shortPath = new LinkedList<>();
 
-                double distancia = Algorithms.shortestPath(graph, sourceVertex, targetVertex, Comparator.naturalOrder(), Double::sum, 0.0, shortPath, Double.MAX_VALUE);                // Somar a distância invertida
-                somaDistancias += 1.0 / distancia;
+                //double distancia = Algorithms.shortestPath(graph, sourceVertex, targetVertex, Comparator.naturalOrder(), Integer::sum, 0, shortPath, Double.MAX_VALUE);                // Somar a distância invertida
+               // somaDistancias += 1.0 / distancia;
             }
         }
 
@@ -65,7 +66,7 @@ public class USEI02 {
 
     //3criterio
 
-    public Map<Locals, Double> calculateBetweennessCentrality(CommonGraph<Locals, Double> graph) {
+    public Map<Locals, Double> calculateBetweennessCentrality(CommonGraph<Locals, Integer> graph) {
         Map<Locals, Double> betweennessCentrality = new HashMap<>();
 
         for (Locals s : graph.vertices()) {
@@ -124,11 +125,11 @@ public class USEI02 {
     }
 
 
-    public List<Locals> ordenarLocalidadesPorCriterios(CommonGraph<Locals, Double> graph, CommonGraph<Locals, Integer> graph1) {
+    public List<Locals> ordenarLocalidadesPorCriterios(CommonGraph<Locals, Integer> graph) {
 
         Map<Locals, Double> mapaCentralidade = calculateBetweennessCentrality(graph);
         Map<Locals, Double> mapaProximidade = calcularProximidade(graph);
-        Map<Locals, Integer> mapaInfluencia = obterMapaOrdenadoPorGrau(graph1);
+        Map<Locals, Integer> mapaInfluencia = obterMapaOrdenadoPorGrau(graph);
 
 
         // Criar uma lista de entradas do mapa
@@ -164,3 +165,4 @@ public class USEI02 {
 
 
 }
+
