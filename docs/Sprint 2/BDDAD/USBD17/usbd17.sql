@@ -97,3 +97,29 @@ begin
         dbms_output.put_line ('ID: '|| idOperacao ||' Parcela: '|| parcelaOperacao ||' Tipo: '|| tipo || ' Data: '|| dataOperacao ||' Quantidade: '||quantidadeOperacao || ' Fator Produção: ' || fatorProducaoOperacao || ' Substância: ' || substanciaOperacao);
     end loop;
 end;
+
+
+
+
+
+--bloco anonimo de demonstração pedido--
+
+
+
+declare
+listOperacoes sys_refcursor;
+    idOperacao operacaoFatorProducao.id%type;
+    parcelaOperacao operacaoFatorProducao.parcela%type;
+    tipo operacaoFatorProducao.tipoOperacao%type;
+    dataOperacao operacaoFatorProducao.data%type;
+    quantidadeOperacao operacaoFatorProducao.quantidade%type;
+    fatorProducaoOperacao operacaoFatorProducao.fatorProducao%type;
+    substanciaOperacao substancia.substancia%type;
+begin
+    listOperacoes := fncOperacoesFatorProducaoRealizadas (to_date('2023-11-25', 'YYYY-MM-DD'), 'Lameiro do Moinho', to_date('2019-01-01', 'YYYY-MM-DD'), to_date('2023-07-06', 'YYYY-MM-DD'));
+    loop
+fetch listOperacoes into idOperacao, parcelaOperacao, tipo, dataOperacao, quantidadeOperacao, fatorProducaoOperacao, substanciaOperacao;
+        exit when listOperacoes%NOTFOUND;
+        dbms_output.put_line ('ID: '|| idOperacao ||' Parcela: '|| parcelaOperacao ||' Tipo: '|| tipo || ' Data: '|| dataOperacao ||' Quantidade: '||quantidadeOperacao || ' Fator Produção: ' || fatorProducaoOperacao || ' Substância: ' || substanciaOperacao);
+end loop;
+end;
