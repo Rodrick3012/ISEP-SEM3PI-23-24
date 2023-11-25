@@ -1,4 +1,4 @@
-create or replace NONEDITIONABLE FUNCTION getRegaMothlyForDate(data1 operacao.data%type,data2 operacao.data%type) return SYS_REFCURSOR
+create or replace NONEDITIONABLE FUNCTION fncgetRegaMothlyForDate(data1 operacao.data%type,data2 operacao.data%type) return SYS_REFCURSOR
     IS
     retorno SYS_REFCURSOR;
 BEGIN
