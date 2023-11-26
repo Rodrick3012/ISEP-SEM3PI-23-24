@@ -55,7 +55,7 @@ public class OperationFatorProducaoRegisterUI {
             String format = "dd-MM-yyyy";
             Date date = Utils.readDate("Date",format);
 
-            int quantity = Utils.readInt("Quantity");
+            double quantity = Utils.readDouble("Quantity");
 
             List<Unidade> unidades = unidadeController.getUnidades();
             int unidade = Utils.selectUnidades("Choose the unity",unidades);

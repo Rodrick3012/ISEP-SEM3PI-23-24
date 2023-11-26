@@ -56,6 +56,25 @@ public class Utils {
         return num;
     }
 
+    public static double readDouble(String message) {
+        double num = 0.0;
+        boolean isValid = false;
+
+        while (!isValid) {
+            try {
+                System.out.print(message + ": ");
+                num = scanner.nextDouble();
+                isValid = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid double.");
+                scanner.next(); // Clear the input buffer
+            }
+        }
+        scanner.nextLine(); // Consume the newline character after reading the double
+        return num;
+    }
+
+
     // Method to select an option from a list
     public static String selectParcelaList(String message,List<Parcela> options) {
         System.out.println(message);

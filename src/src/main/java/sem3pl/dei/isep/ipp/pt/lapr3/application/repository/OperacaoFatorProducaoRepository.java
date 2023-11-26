@@ -15,7 +15,7 @@ public class OperacaoFatorProducaoRepository {
     }
 
 
-    public void OperacaoFatorProducaoRegister(int tipooperacao, java.util.Date data, int quantidade, int cultura, String parcela,String fatorproducao, int unidade) throws SQLException {
+    public void OperacaoFatorProducaoRegister(int tipooperacao, java.util.Date data, double quantidade, int cultura, String parcela,String fatorproducao, int unidade) throws SQLException {
 
         CallableStatement callStmt = null;
         try {
@@ -27,7 +27,7 @@ public class OperacaoFatorProducaoRepository {
             callStmt.setDate(1,sqlDate);
             Date sqlDate1 = new Date(data.getTime());
             callStmt.setDate(2, sqlDate1);
-            callStmt.setInt(3, quantidade);
+            callStmt.setDouble(3, quantidade);
             callStmt.setString(4, parcela);
             callStmt.setString(5, fatorproducao);
             callStmt.setInt(6, cultura);
