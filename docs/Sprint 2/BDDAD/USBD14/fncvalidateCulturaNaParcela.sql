@@ -30,7 +30,7 @@ END;
 DECLARE
 result BOOLEAN;
 BEGIN
-    result := fncvalidateCulturaNaParcela('Campo da bouça',11); -- Substitua 'NomeDaParcela' e 999 pelos valores desejados
+    result := fncvalidateCulturaNaParcela('Campo da bouça',11);
     DBMS_OUTPUT.PUT_LINE('Resultado do Teste 2: ' || CASE WHEN result THEN 'Sucesso' ELSE 'Falha' END);
 EXCEPTION
     WHEN OTHERS THEN

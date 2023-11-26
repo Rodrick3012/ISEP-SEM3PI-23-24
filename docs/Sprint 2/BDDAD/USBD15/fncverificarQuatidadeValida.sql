@@ -61,7 +61,7 @@ END;
 DECLARE
 result1 BOOLEAN;
 BEGIN
-    result1 := fncverificarQuantidadeValida(5, 28, 'Lameiro da ponte', 1); -- Substitua os valores pelos desejados
+    result1 := fncverificarQuantidadeValida(5, 28, 'Lameiro da ponte', 1);
     DBMS_OUTPUT.PUT_LINE('Resultado do Teste 1: ' || CASE WHEN result1 THEN 'Sucesso' ELSE 'Falha' END);
 EXCEPTION
     WHEN OTHERS THEN
@@ -74,7 +74,7 @@ END;
 DECLARE
 result1 BOOLEAN;
 BEGIN
-    result1 := fncverificarQuantidadeValida(300, 28, 'Lameiro da ponte', 1); -- Substitua os valores pelos desejados
+    result1 := fncverificarQuantidadeValida(300, 28, 'Lameiro da ponte', 1);
     DBMS_OUTPUT.PUT_LINE('Resultado do Teste 2: ' || CASE WHEN result1 THEN 'Sucesso' ELSE 'Falha' END);
 EXCEPTION
     WHEN OTHERS THEN
