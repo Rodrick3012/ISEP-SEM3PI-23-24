@@ -3,6 +3,7 @@ package sem3pl.dei.isep.ipp.pt.esinf.sprint2;
 import org.apache.commons.lang.ObjectUtils;
 import sem3pl.dei.isep.ipp.pt.MainMenu;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.LocationCriteria;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.ShortestPath;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.CommonGraph;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.Graph;
@@ -12,7 +13,9 @@ import sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation.USEI04;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.repository.DistributionNetwork;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class BasketRoutingDelivery implements Runnable {
@@ -53,8 +56,9 @@ public class BasketRoutingDelivery implements Runnable {
                 try {
                     if (!distributionNetwork.isEmpty()) {
                         Graph<Locals, Integer> graph = distributionNetwork.getGraph();
-                        USEI02 usei02 = new USEI02();
-                        usei02.optimizeLocations(graph);
+                        int nHubs = Utils.readInt("Write the number of hubs");
+                        ArrayList<List<LocationCriteria>> localsList = USEI02.optimizeLocations(graph, nHubs);
+                        System.out.println("Ideal vertices: " +  localsList);
                     } else System.out.println("Network is empty. Returning to menu.");
                 } catch (NullPointerException e){
                     System.out.println("Network is empty. Returning to menu.");
