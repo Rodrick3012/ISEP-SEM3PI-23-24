@@ -2,7 +2,7 @@ create function fncOperacoesFatorProducaoRealizadas
 (dataAtual date,
 parcelaDada operacao.parcela%type,
 dataInicio operacao.data%type,
- dataFim operacao.data%type) return sys_refcursor
+ dataFim operacao.data%type)  return sys_refcursor
     is
     listOperacoes sys_refcursor;
     validacao boolean;
