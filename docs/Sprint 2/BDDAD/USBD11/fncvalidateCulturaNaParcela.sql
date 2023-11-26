@@ -16,3 +16,36 @@ BEGIN
         return false;
     end if;
 End;
+
+--Teste com uma cultura válida na parcela:
+DECLARE
+result BOOLEAN;
+BEGIN
+    result := fncvalidateCulturaNaParcela('Campo da bouça', 1);
+    DBMS_OUTPUT.PUT_LINE('Resultado do Teste 1: ' || CASE WHEN result THEN 'Sucesso' ELSE 'Falha' END);
+END;
+/
+
+--Teste com uma cultura inválida na parcela:
+DECLARE
+result BOOLEAN;
+BEGIN
+    result := fncvalidateCulturaNaParcela('Campo da bouça',11); -- Substitua 'NomeDaParcela' e 999 pelos valores desejados
+    DBMS_OUTPUT.PUT_LINE('Resultado do Teste 2: ' || CASE WHEN result THEN 'Sucesso' ELSE 'Falha' END);
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLERRM);
+END;
+/
+
+--Teste com uma parcela inexistente:
+DECLARE
+result BOOLEAN;
+BEGIN
+    result := fncvalidateCulturaNaParcela('ParcelaInexistente', 1);
+    DBMS_OUTPUT.PUT_LINE('Resultado do Teste 3: ' || CASE WHEN result THEN 'Sucesso' ELSE 'Falha' END);
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLERRM);
+END;
+/
