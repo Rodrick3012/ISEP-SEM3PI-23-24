@@ -68,6 +68,6 @@ begin
     loop
         fetch listOperacoes into dataOperacao, culturaOperacao, parcelaOperacao, var_tipoOperacao;
         exit when listOperacoes%NOTFOUND;
-        dbms_output.put_line(var_tipoOperacao || ' ' || to_char(dataOperacao, 'DD/MM/YYYY') || ' ' || culturaOperacao);
+        dbms_output.put_line(to_char(dataOperacao, 'DD/MM/YYYY') || ' operação de ' || var_tipoOperacao || ' ' || culturaOperacao);
     end loop;
 end;
