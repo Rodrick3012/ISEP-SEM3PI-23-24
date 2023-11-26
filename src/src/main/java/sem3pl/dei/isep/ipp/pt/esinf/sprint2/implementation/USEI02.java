@@ -24,7 +24,7 @@ public class USEI02 {
                     if (path != null && !path.isEmpty()) {
                         centrality++;
                     }
-                 }
+                }
             }
 
             centralityMap.put(locals, centrality);
@@ -72,9 +72,19 @@ public class USEI02 {
             influenceList.add(new LocationCriteria(criteria.getLocation(), criteria.getInfluence(), 0));
         }
 
+        // Imprimir os resultados
+        System.out.println("Locais selecionados como hubs:");
+        for (LocationCriteria criteria : selectedHubs) {
+            System.out.println("Localização: " + criteria.getLocation().getId() +
+                    ", Centralidade: " + criteria.getCentrality() +
+                    ", Influência: " + criteria.getInfluence());
+
+        }
+
         ArrayList<List<LocationCriteria>> result = new ArrayList<>();
         result.add(centralityList);
         result.add(influenceList);
+
 
         return result;
     }
