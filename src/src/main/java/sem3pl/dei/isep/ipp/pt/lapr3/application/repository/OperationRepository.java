@@ -22,7 +22,7 @@ public class OperationRepository {
     }
 
 
-    public void operationRegister(int tipooperacao, java.util.Date data, int quantidade, int cultura, String parcela,int unidade) throws SQLException {
+    public void operationRegister(int tipooperacao, java.util.Date data, double quantidade, int cultura, String parcela,int unidade) throws SQLException {
 
         CallableStatement callStmt = null;
         try {
@@ -35,7 +35,7 @@ public class OperationRepository {
             callStmt.setInt(2, tipooperacao);
             java.sql.Date sqlDate1 = new java.sql.Date(data.getTime());
             callStmt.setDate(3, sqlDate1);
-            callStmt.setInt(4, quantidade);
+            callStmt.setDouble(4, quantidade);
             callStmt.setInt(5, cultura);
             callStmt.setString(6, parcela);
             callStmt.setInt(7, unidade);
