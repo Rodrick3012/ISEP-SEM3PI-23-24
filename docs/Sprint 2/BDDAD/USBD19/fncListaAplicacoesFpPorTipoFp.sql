@@ -1,79 +1,57 @@
-CREATE OR REPLACE FUNCTION fncListaAplicacoesFpPorTipoFp(
-    pdataInicial operacaoFatorProducao.data%type
-, pdataFinal operacaoFatorProducao.data%type) RETURN SYS_REFCURSOR
-    IS
-    cursor1 SYS_REFCURSOR;
+create or replace FUNCTION fncListaAplicacoesFpPorTipoFp(
+      pdataInicial operacaoFatorProducao.data%type
+    , pdataFinal operacaoFatorProducao.data%type
+    , p_parcela parcela.designacao%type) RETURN SYS_REFCURSOR
+IS
+  cursor1 SYS_REFCURSOR;
 BEGIN
-    OPEN cursor1 FOR
-        SELECT
-            classificacao.classificacao AS tipo_fator_producao,
-            parcela,
-            NVL(cultura.planta, 'Inexistente') AS cultura
-        FROM operacaoFatorProducao
-                 INNER JOIN fatorProducao ON fatorProducao.designacao = operacaoFatorProducao.fatorProducao
-                 INNER JOIN classificacao ON classificacao.id = fatorProducao.classificacao
-                 INNER JOIN culturaoperacaofatorproducao cofp on cofp.operacaofatorproducao=operacaofatorproducao.id
-                 LEFT JOIN cultura ON cultura.id = cofp.cultura
-        WHERE
-            operacaoFatorProducao.data BETWEEN pdataInicial AND pdataFinal
-        GROUP BY NVL(cultura.planta,'Inexistente'),parcela,classificacao.classificacao
-        ORDER BY tipo_fator_producao;
-    RETURN cursor1;
+OPEN cursor1 FOR
+SELECT
+    classificacao.classificacao AS tipo_fator_producao,
+    fatorProducao.designacao,
+    NVL(cultura.planta, 'Sem cultura') AS cultura
+FROM operacaoFatorProducao
+         INNER JOIN fatorProducao ON fatorProducao.designacao = operacaoFatorProducao.fatorProducao
+         INNER JOIN classificacao ON classificacao.id = fatorProducao.classificacao
+         LEFT JOIN culturaoperacaofatorproducao cofp on cofp.operacaofatorproducao=operacaofatorproducao.id
+         LEFT JOIN cultura ON cultura.id = cofp.cultura
+WHERE
+    operacaoFatorProducao.data BETWEEN pdataInicial AND pdataFinal AND parcela = p_parcela
+ORDER BY operacaoFatorProducao.data;
+RETURN cursor1;
 END;
+/
 
 
-
-
---teste com todas as operacoes existentes
+-- bloco anonimo
 DECLARE
-    cursor1 sys_refcursor;
-    var_class classificacao.classificacao%type;
-    var_cultura cultura.planta%type;
-    var_parcela operacaoFatorProducao.parcela%type;
-    dataInicio operacaoFatorProducao.data%type := TO_DATE('12-11-2004', 'DD-MM-YYYY');
-    dataFim operacaoFatorProducao.data%type := TO_DATE('2-11-2023', 'DD-MM-YYYY');
+v_cursor SYS_REFCURSOR;
+    v_tipo_fator_producao classificacao.classificacao%TYPE;
+    v_designacao fatorProducao.designacao%TYPE;
+    v_cultura cultura.planta%TYPE;
 BEGIN
-    cursor1 := fnclistaAplicacoesFpPorTipoFp(dataInicio, dataFim);
+    v_cursor := fncListaAplicacoesFpPorTipoFp(
+        TO_DATE('2019-01-04', 'YYYY-MM-DD'), -- Replace with your actual start date
+        TO_DATE('2023-07-06', 'YYYY-MM-DD'),  -- Replace with your actual end date
+        'Lameiro do moinho'
+    );
+
     LOOP
-        FETCH cursor1 INTO var_class, var_cultura, var_parcela;
-        EXIT WHEN cursor1%NOTFOUND;
-        DBMS_OUTPUT.PUT_LINE(var_class || '---' || var_cultura || '---' || var_parcela);
-    END LOOP;
-END;
-
-
---teste com lista vazia
-DECLARE
-    cursor1 sys_refcursor;
-    var_class classificacao.classificacao%type;
-    var_cultura cultura.planta%type;
-    var_parcela operacaoFatorProducao.parcela%type;
-    dataInicio operacaoFatorProducao.data%type := TO_DATE('12-11-2004', 'DD-MM-YYYY');
-    dataFim operacaoFatorProducao.data%type := TO_DATE('12-11-2004', 'DD-MM-YYYY');
 BEGIN
-    cursor1 := fnclistaAplicacoesFpPorTipoFp(dataInicio, dataFim);
-    LOOP
-        FETCH cursor1 INTO var_class, var_cultura, var_parcela;
-        EXIT WHEN cursor1%NOTFOUND;
-        DBMS_OUTPUT.PUT_LINE(var_class || '---' || var_cultura || '---' || var_parcela);
-    END LOOP;
+FETCH v_cursor INTO v_tipo_fator_producao, v_designacao, v_cultura;
+EXIT WHEN v_cursor%NOTFOUND;
+
+            DBMS_OUTPUT.PUT_LINE('Tipo Fator Producao: ' || v_tipo_fator_producao || ', Designacao: ' || v_designacao || ', Cultura: ' || v_cultura);
+        --excecao para ajudar a detetar algum tipo de erro--
+EXCEPTION
+            WHEN OTHERS THEN
+                DBMS_OUTPUT.PUT_LINE('Error during FETCH: ' || SQLERRM);
 END;
+END LOOP;
 
-
---teste valores trocados da data(deve retornar vazio)
-DECLARE
-    cursor1 sys_refcursor;
-    var_class classificacao.classificacao%type;
-    var_cultura cultura.planta%type;
-    var_parcela operacaoFatorProducao.parcela%type;
-    dataInicio operacaoFatorProducao.data%type := TO_DATE('12-11-2020', 'DD-MM-YYYY');
-    dataFim operacaoFatorProducao.data%type := TO_DATE('12-11-2003', 'DD-MM-YYYY');
-BEGIN
-    cursor1 := fnclistaAplicacoesFpPorTipoFp(dataInicio, dataFim);
-    LOOP
-        FETCH cursor1 INTO var_class, var_cultura, var_parcela;
-        EXIT WHEN cursor1%NOTFOUND;
-        DBMS_OUTPUT.PUT_LINE(var_class || '---' || var_cultura || '---' || var_parcela);
-    END LOOP;
+CLOSE v_cursor;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
 END;
-
+/
