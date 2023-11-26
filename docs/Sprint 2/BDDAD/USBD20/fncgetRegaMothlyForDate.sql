@@ -1,10 +1,9 @@
-create or replace NONEDITIONABLE FUNCTION fncgetRegaMothlyForDate(data1 operacao.data%type,data2 operacao.data%type) return SYS_REFCURSOR
+CREATE OR REPLACE NONEDITIONABLE FUNCTION fncgetRegaMothlyForDate(data1 operacao.data%type, data2 operacao.data%type)
+    RETURN SYS_REFCURSOR
     IS
     retorno SYS_REFCURSOR;
 BEGIN
-
-    OPEN retorno for
-
+    OPEN retorno FOR
         SELECT
             parcela,
             SUM(January) AS January,
@@ -22,55 +21,36 @@ BEGIN
         FROM (
                  SELECT
                      o.parcela,
-                     CASE WHEN EXTRACT(MONTH FROM o.data) = 1 THEN 1 ELSE 0 END AS January,
-                     CASE WHEN EXTRACT(MONTH FROM o.data) = 2 THEN 1 ELSE 0 END AS February,
-                     CASE WHEN EXTRACT(MONTH FROM o.data) = 3 THEN 1 ELSE 0 END AS March,
-                     CASE WHEN EXTRACT(MONTH FROM o.data) = 4 THEN 1 ELSE 0 END AS April,
-                     CASE WHEN EXTRACT(MONTH FROM o.data) = 5 THEN 1 ELSE 0 END AS May,
-                     CASE WHEN EXTRACT(MONTH FROM o.data) = 6 THEN 1 ELSE 0 END AS June,
-                     CASE WHEN EXTRACT(MONTH FROM o.data) = 7 THEN 1 ELSE 0 END AS July,
-                     CASE WHEN EXTRACT(MONTH FROM o.data) = 8 THEN 1 ELSE 0 END AS August,
-                     CASE WHEN EXTRACT(MONTH FROM o.data) = 9 THEN 1 ELSE 0 END AS September,
-                     CASE WHEN EXTRACT(MONTH FROM o.data) = 10 THEN 1 ELSE 0 END AS October,
-                     CASE WHEN EXTRACT(MONTH FROM o.data) = 11 THEN 1 ELSE 0 END AS November,
-                     CASE WHEN EXTRACT(MONTH FROM o.data) = 12 THEN 1 ELSE 0 END AS December
-                 FROM
-                     operacao o
-                         INNER JOIN
-                     tipooperacao tpo ON tpo.id = o.tipooperacao
-                 WHERE
-                         LOWER(tpo.tipooperacao) LIKE LOWER('rega')
-                   AND o.data BETWEEN data1 AND data2
-
-                 UNION ALL
-
-                 SELECT
-                     o.parcela,
-                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 1 THEN 1 ELSE 0 END AS January,
-                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 2 THEN 1 ELSE 0 END AS February,
-                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 3 THEN 1 ELSE 0 END AS March,
-                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 4 THEN 1 ELSE 0 END AS April,
-                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 5 THEN 1 ELSE 0 END AS May,
-                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 6 THEN 1 ELSE 0 END AS June,
-                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 7 THEN 1 ELSE 0 END AS July,
-                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 8 THEN 1 ELSE 0 END AS August,
-                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 9 THEN 1 ELSE 0 END AS September,
-                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 10 THEN 1 ELSE 0 END AS October,
-                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 11 THEN 1 ELSE 0 END AS November,
-                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 12 THEN 1 ELSE 0 END AS December
-                 FROM
-                     operacaoRega o
-                 WHERE
-                     o.horario BETWEEN data1 AND data2
+                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 1 THEN o.duracao ELSE 0 END AS January,
+                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 2 THEN o.duracao ELSE 0 END AS February,
+                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 3 THEN o.duracao ELSE 0 END AS March,
+                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 4 THEN o.duracao ELSE 0 END AS April,
+                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 5 THEN o.duracao ELSE 0 END AS May,
+                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 6 THEN o.duracao ELSE 0 END AS June,
+                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 7 THEN o.duracao ELSE 0 END AS July,
+                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 8 THEN o.duracao ELSE 0 END AS August,
+                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 9 THEN o.duracao ELSE 0 END AS September,
+                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 10 THEN o.duracao ELSE 0 END AS October,
+                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 11 THEN o.duracao ELSE 0 END AS November,
+                     CASE WHEN EXTRACT(MONTH FROM o.horario) = 12 THEN o.duracao ELSE 0 END AS December
+                 FROM (
+                          SELECT DISTINCT
+                              parcela,
+                              TRUNC(horario) AS horario,
+                              duracao
+                          FROM
+                              operacaoRega
+                          WHERE
+                              horario BETWEEN data1 AND data2
+                      ) o
              )
         GROUP BY
             parcela
         ORDER BY
             parcela;
 
-    RETURN (retorno);
+    RETURN retorno;
 END;
-
 
 DECLARE
     rega_cursor SYS_REFCURSOR;
@@ -82,7 +62,7 @@ DECLARE
 
     v_index NUMBER;
 BEGIN
-    rega_cursor := fncgetRegaMothlyForDate(TO_DATE('2002-01-01', 'YYYY-MM-DD'), TO_DATE('2017-12-31', 'YYYY-MM-DD'));
+    rega_cursor := fncgetRegaMothlyForDate(TO_DATE('2023-06-01', 'YYYY-MM-DD'), TO_DATE('2023-11-06', 'YYYY-MM-DD'));
 
     LOOP
         FETCH rega_cursor INTO v_parcela, v_values(1), v_values(2), v_values(3), v_values(4), v_values(5), v_values(6), v_values(7), v_values(8), v_values(9), v_values(10), v_values(11), v_values(12);
@@ -105,3 +85,4 @@ BEGIN
 
     CLOSE rega_cursor;
 END;
+
