@@ -26,8 +26,8 @@ insert into substanciaFatorProducao values ((select id from substancia where sub
 insert into substanciaFatorProducao values ((select id from substancia where substancia = 'B'),'BIOFERTIL N6',0.0020)  ;
 
 insert into produto (produto) values ('Abóbora');
-insert into planta values('Cucurbita moschata var Butternut','Abóbora','manteiga',2);
-insert into plantaProduto values ((select id from produto where produto.produto = 'Abóbora'),'Cucurbita moschata var Butternut');
+insert into planta values('manteiga','Abóbora','Cucurbita moschata var Butternut',2);
+insert into plantaProduto values ((select id from produto where produto.produto = 'Abóbora'),'manteiga');
 insert into parcela values('Campo novo',1.1);
 
 insert into setor (setor,caudalMaximo,dataInicio) values (10,2500,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
@@ -83,8 +83,8 @@ insert into cultura(planta,dataInicial,quantidade) values ('Sugarsnax Hybrid',TO
 
 insert into parcelaCultura values ('Campo novo',(select id from cultura where planta = 'Sugarsnax Hybrid' And dataFinal is NULL));
 
-insert into cultura(planta,dataInicial,quantidade) values ('Cucurbita moschata var Butternut',TO_DATE('2023-04-06','YYYY-MM-DD'),0.6);
-insert into parcelaCultura values ('Campo novo',(select id from cultura where planta = 'Cucurbita moschata var Butternut' And dataFinal is NULL));
+insert into cultura(planta,dataInicial,quantidade) values ('manteiga',TO_DATE('2023-04-06','YYYY-MM-DD'),0.6);
+insert into parcelaCultura values ('Campo novo',(select id from cultura where planta = 'manteiga' And dataFinal is NULL));
 
 insert into tipoOperacao (tipoOperacao) values ('Monda');
 
@@ -120,7 +120,7 @@ insert into setorParcelaCultura (parcela,cultura, setor,quantidade,dataInsercao)
 insert into setorParcelaCultura (parcela,cultura, setor,quantidade,dataInsercao,dataRemocao) values ('Campo novo',(select cultura from parcelaCultura inner join cultura on cultura.id=parcelaCultura.cultura where parcela = 'Campo novo' and cultura.planta = 'Sugarsnax Hybrid'),41,1.2,TO_DATE('05-04-2023', 'DD-MM-YYYY'),TO_DATE('31-05-2023', 'DD-MM-YYYY'));
 insert into setorParcelaCultura (parcela,cultura, setor,quantidade,dataInsercao,dataRemocao) values ('Campo novo',(select cultura from parcelaCultura inner join cultura on cultura.id=parcelaCultura.cultura where parcela = 'Campo novo' and cultura.planta = 'Danvers Half Long'),41,1.2,TO_DATE('05-07-2023', 'DD-MM-YYYY'),TO_DATE('08-10-2023', 'DD-MM-YYYY'));
 --setor 42
-insert into setorParcelaCultura(parcela,cultura,setor,quantidade,dataInsercao,dataRemocao ) values ('Campo novo',(select cultura from parcelaCultura inner join cultura on cultura.id=parcelaCultura.cultura where parcela = 'Campo novo' and cultura.planta = 'Cucurbita moschata var Butternut'),42,0.6,TO_DATE('06-04-2023', 'DD-MM-YYYY'),TO_DATE('10-09-2023', 'DD-MM-YYYY'));
+insert into setorParcelaCultura(parcela,cultura,setor,quantidade,dataInsercao,dataRemocao ) values ('Campo novo',(select cultura from parcelaCultura inner join cultura on cultura.id=parcelaCultura.cultura where parcela = 'Campo novo' and cultura.planta = 'manteiga'),42,0.6,TO_DATE('06-04-2023', 'DD-MM-YYYY'),TO_DATE('10-09-2023', 'DD-MM-YYYY'));
 
 
 INSERT INTO operacaoRega (setor, parcela, cultura, duracao,  horario) VALUES (41, 'Campo novo', (select id from cultura where planta = 'Sugarsnax Hybrid' and datainicial = TO_DATE('05-04-2023', 'DD-MM-YYYY')), 120, TO_TIMESTAMP('2023-05-20 07:30:00', 'YYYY-MM-DD HH24:MI:SS'));
@@ -343,7 +343,7 @@ insert into culturaOperacao values ((select id from cultura where planta = 'Danv
 
 
 insert into operacao(tipoOperacao, data, quantidade, parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Colheita'), TO_DATE('2023-09-25', 'YYYY-MM-DD'), 5000, 'Campo novo',3);
-insert into culturaOperacao values ((select id from cultura where planta = 'Cucurbita moschata var Butternut' and dataFinal IS NULL),223);
+insert into culturaOperacao values ((select id from cultura where planta = 'manteiga' and dataFinal IS NULL),223);
 
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Monda'),TO_DATE('2023-05-08','YYYY-MM-DD'),0.5,'Campo novo',4);
@@ -356,10 +356,10 @@ insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (7,TO
 insert into culturaOperacao values ((select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),226);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Monda'),TO_DATE('2023-05-20','YYYY-MM-DD'),0.6,'Campo novo',4);
-insert into culturaOperacao values ((select id from cultura where planta = 'Cucurbita moschata var Butternut' and dataFinal IS NULL),227);
+insert into culturaOperacao values ((select id from cultura where planta = 'manteiga' and dataFinal IS NULL),227);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values((select id from tipoOperacao where tipoOperacao = 'Monda'),TO_DATE('2023-06-20','YYYY-MM-DD'),0.6,'Campo novo',4);
-insert into culturaOperacao values ((select id from cultura where planta = 'Cucurbita moschata var Butternut' and dataFinal IS NULL),228);
+insert into culturaOperacao values ((select id from cultura where planta = 'manteiga' and dataFinal IS NULL),228);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (8,TO_DATE('2023-07-04','YYYY-MM-DD'),0.5,'Campo novo',4);
 
@@ -368,7 +368,7 @@ INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SE
 insert into culturaOperacao values ((select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),230);
 
 INSERT INTO operacao(tipoOperacao, data, quantidade, parcela,unidade)VALUES ((SELECT id FROM tipoOperacao WHERE tipoOperacao = 'Sementeira'),TO_DATE('2023-04-06', 'YYYY-MM-DD'),1.5,'Campo novo',3);
-insert into culturaOperacao values ((select id from cultura where planta = 'Cucurbita moschata var Butternut' and dataFinal IS NULL),231);
+insert into culturaOperacao values ((select id from cultura where planta = 'manteiga' and dataFinal IS NULL),231);
 
 insert into operacao (tipoOperacao,data,quantidade,parcela,unidade) values (7,TO_DATE('2023-08-18', 'YYYY-MM-DD'),700,'Lameiro da ponte',3);
 insert into culturaOperacao values (24,232);
