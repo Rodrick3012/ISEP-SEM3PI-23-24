@@ -16,3 +16,39 @@ BEGIN
 END;
 
 
+--teste com datas validas
+DECLARE
+result1 BOOLEAN;
+BEGIN
+    result1 := fncverificarDataNaoEstaNoFuturo(SYSDATE, TO_DATE('2023-01-01', 'YYYY-MM-DD'));
+    DBMS_OUTPUT.PUT_LINE('Resultado do Teste 1: ' || CASE WHEN result1 THEN 'Sucesso' ELSE 'Falha' END);
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLERRM);
+END;
+/
+
+
+--teste com data no futuro
+DECLARE
+result1 BOOLEAN;
+BEGIN
+    result1 := fncverificarDataNaoEstaNoFuturo(SYSDATE, TO_DATE('2024-01-01', 'YYYY-MM-DD'));
+    DBMS_OUTPUT.PUT_LINE('Resultado do Teste 2: ' || CASE WHEN result1 THEN 'Sucesso' ELSE 'Falha' END);
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLERRM);
+END;
+/
+
+--teste com data inicial maior que data final
+DECLARE
+result1 BOOLEAN;
+BEGIN
+    result1 := fncverificarDataNaoEstaNoFuturo(SYSDATE, TO_DATE('2023-01-01', 'YYYY-MM-DD'), TO_DATE('2022-12-01', 'YYYY-MM-DD'));
+    DBMS_OUTPUT.PUT_LINE('Resultado do Teste 3: ' || CASE WHEN result THEN 'Sucesso' ELSE 'Falha' END);
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLERRM);
+END;
+/
