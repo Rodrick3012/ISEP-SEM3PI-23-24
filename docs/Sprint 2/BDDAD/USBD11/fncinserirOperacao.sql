@@ -49,3 +49,5 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('Inserção mal-sucedida devido a um erro inesperado.');
         rollback;
 END;
+
+
