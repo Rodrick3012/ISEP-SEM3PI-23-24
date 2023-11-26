@@ -24,7 +24,7 @@ public class USEI02 {
                     if (path != null && !path.isEmpty()) {
                         centrality++;
                     }
-                }
+                 }
             }
 
             centralityMap.put(locals, centrality);
