@@ -57,3 +57,41 @@ BEGIN
 END;
 /
 
+
+--Teste com uma quantidade válida para uma cultura com tipo de planta "Permanente":
+DECLARE
+result1 BOOLEAN;
+BEGIN
+    result1 := fncverificarQuantidadeValida(5, 28, 'Lameiro da ponte', 1); -- Substitua os valores pelos desejados
+    DBMS_OUTPUT.PUT_LINE('Resultado do Teste 1: ' || CASE WHEN result1 THEN 'Sucesso' ELSE 'Falha' END);
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLERRM);
+END;
+/
+
+
+--Teste com uma quantidade inválida para uma cultura com tipo de planta "Permanente":
+DECLARE
+result1 BOOLEAN;
+BEGIN
+    result1 := fncverificarQuantidadeValida(300, 28, 'Lameiro da ponte', 1); -- Substitua os valores pelos desejados
+    DBMS_OUTPUT.PUT_LINE('Resultado do Teste 2: ' || CASE WHEN result1 THEN 'Sucesso' ELSE 'Falha' END);
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLERRM);
+END;
+/
+
+--Teste com uma quantidade válida para uma cultura com ha e "Temporaria":
+DECLARE
+result1 BOOLEAN;
+BEGIN
+    result1 := fncverificarQuantidadeValida(0.1, 18, 'Horta nova', 4);
+    DBMS_OUTPUT.PUT_LINE('Resultado do Teste 3: ' || CASE WHEN result1 THEN 'Sucesso' ELSE 'Falha' END);
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLERRM);
+END;
+/
+
