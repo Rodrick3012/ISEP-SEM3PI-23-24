@@ -58,7 +58,6 @@ public class BasketRoutingDelivery implements Runnable {
                         Graph<Locals, Integer> graph = distributionNetwork.getGraph();
                         int nHubs = Utils.readInt("Write the number of hubs");
                         ArrayList<List<LocationCriteria>> localsList = USEI02.optimizeLocations(graph, nHubs);
-                        System.out.println("Ideal vertices: " +  localsList);
                     } else System.out.println("Network is empty. Returning to menu.");
                 } catch (NullPointerException e){
                     System.out.println("Network is empty. Returning to menu.");
