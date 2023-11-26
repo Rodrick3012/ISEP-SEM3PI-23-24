@@ -8,7 +8,7 @@ create or replace NONEDITIONABLE PROCEDURE pcdinserirOperacao(
     unidade1 operacao.unidade%TYPE
 
 )
-IS
+    IS
     -- Variável booleana para armazenar os resultados das validações
     var_boolean BOOLEAN;
     var_id_inserted number;
@@ -40,13 +40,12 @@ VALUES (parcela1, tipoOperacao, data1, quantidade1, unidade1)
 INSERT INTO culturaoperacao(cultura,operacao)
 VALUES (cultura1,var_id_inserted);
 
-commit;
 DBMS_OUTPUT.PUT_LINE('Inserção bem-sucedida: ' || SQL%ROWCOUNT || ' linha(s) inserida(s).');
 
+commit;
 EXCEPTION
     WHEN OTHERS THEN
-        rollback;
         DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLCODE || ' - ' || SQLERRM);
         DBMS_OUTPUT.PUT_LINE('Inserção mal-sucedida devido a um erro inesperado.');
+        rollback;
 END;
-
