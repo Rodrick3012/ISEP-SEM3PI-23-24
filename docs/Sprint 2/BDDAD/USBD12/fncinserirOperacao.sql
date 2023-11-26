@@ -1,4 +1,4 @@
---procedimento para inserir a operação
+ --procedimento para inserir a operação
 create or replace NONEDITIONABLE PROCEDURE pcdinserirOperacao(
     dataAtual date,
     tipoOperacao operacao.tipoOperacao%type,

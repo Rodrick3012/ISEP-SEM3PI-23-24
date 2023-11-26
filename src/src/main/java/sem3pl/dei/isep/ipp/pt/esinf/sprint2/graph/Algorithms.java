@@ -7,9 +7,7 @@ import java.util.*;
 import java.util.function.BinaryOperator;
 
 /**
- *
  * @author DEI-ISEP
- *
  */
 public class Algorithms {
 
@@ -114,9 +112,8 @@ public class Algorithms {
             } else if (!visited[g.key(verticeAdj)])
                 allPaths(g, verticeAdj, vDest, visited, path, paths);
         }
-    path.pop();
+        path.pop();
     }
-
 
 
     /**
@@ -134,8 +131,6 @@ public class Algorithms {
         allPaths(g, vOrig, vDest, visited, path, paths);
         return paths;
     }
-
-
 
 
     /**
@@ -215,7 +210,7 @@ public class Algorithms {
         @SuppressWarnings("unchecked")
         E[] dist = (E[]) new Object[numVertices];
 
-        if(!shortPath.isEmpty()){
+        if (!shortPath.isEmpty()) {
             shortPath.clear();
         }
 
@@ -223,7 +218,7 @@ public class Algorithms {
         shortestPathDijkstra(g, vOrig, ce, sum, zero, visited, pathKeys, dist, infinity);
 
         int vDestIndex = g.key(vDest);
-        if (vDestIndex<0)
+        if (vDestIndex < 0)
             return null;
         // Check if there is a path to the destination vertex
         if (dist[vDestIndex].equals(infinity)) {
@@ -236,6 +231,7 @@ public class Algorithms {
         // Return the length of the shortest path
         return dist[vDestIndex];
     }
+
     /**
      * Extracts from pathKeys the minimum path between voInf and vdInf
      * The path is constructed from the end to the beginning
@@ -283,10 +279,11 @@ public class Algorithms {
         }
     }
 
-    /** Calculates the minimum distance graph using Floyd-Warshall
+    /**
+     * Calculates the minimum distance graph using Floyd-Warshall
      *
-     * @param g initial graph
-     * @param ce comparator between elements of type E
+     * @param g   initial graph
+     * @param ce  comparator between elements of type E
      * @param sum sum two elements of type E
      * @return the minimum distance graph
      */
@@ -338,11 +335,11 @@ public class Algorithms {
     /**
      * Shortest-path between a vertex and all other vertices
      *
-     * @param g graph
+     * @param g     graph
      * @param vOrig start vertex
-     * @param ce comparator between elements of type E
-     * @param sum sum two elements of type E
-     * @param zero neutral element of the sum in elements of type E
+     * @param ce    comparator between elements of type E
+     * @param sum   sum two elements of type E
+     * @param zero  neutral element of the sum in elements of type E
      * @param paths returns all the minimum paths
      * @param dists returns the corresponding minimum distances
      * @return if vOrig exists in the graph true, false otherwise
@@ -371,8 +368,8 @@ public class Algorithms {
         }
 
         // Initialize the result lists
-            paths.clear();
-            dists.clear();
+        paths.clear();
+        dists.clear();
 
         for (int i = 0; i < numVertices; i++) {
             // If the vertex is not reachable, skip it
@@ -387,8 +384,51 @@ public class Algorithms {
         return true;
     }
 
+    private static <V> List<V> reconstructPath(Map<V, V> predecessors, V start, V end) {
+        List<V> path = new LinkedList<>();
+        V current = end;
 
+        while (current != null) {
+            path.add(current);
+            current = predecessors.get(current);
+        }
+
+        // Inverte a lista para obter o caminho do início até o destino
+        Collections.reverse(path);
+        return path;
     }
+
+    public static <V, E> List<V> getShortestPath(Graph<V, E> graph, V start, V end) {
+        Queue<V> queue = new LinkedList<>();
+        Map<V, V> predecessors = new HashMap<>();
+
+        // Inicialização
+        queue.add(start);
+        predecessors.put(start, null);
+
+        // BFS para encontrar o caminho mínimo
+        while (!queue.isEmpty()) {
+            V current = queue.poll();
+
+            if (current == end) {
+                // Encontrou o destino, reconstrói o caminho e retorna
+                return reconstructPath(predecessors, start, end);
+            }
+
+            for (V neighbor : graph.adjVertices(current)) {
+                if (!predecessors.containsKey(neighbor)) {
+                    queue.add(neighbor);
+                    predecessors.put(neighbor, current);
+                }
+            }
+        }
+
+        // Se o destino não foi alcançado, retorna uma lista vazia
+        return Collections.emptyList();
+    }
+
+
+}
 
 
 

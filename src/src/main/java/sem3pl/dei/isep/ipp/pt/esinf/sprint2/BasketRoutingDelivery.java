@@ -5,6 +5,7 @@ import sem3pl.dei.isep.ipp.pt.MainMenu;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.ShortestPath;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.CommonGraph;
+import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.Graph;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation.USEI02;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation.USEI03;
 import sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation.USEI04;
@@ -51,9 +52,9 @@ public class BasketRoutingDelivery implements Runnable {
             case 2:
                 try {
                     if (!distributionNetwork.isEmpty()) {
-                        CommonGraph<Locals, Integer> graph = distributionNetwork.getGraph();
+                        Graph<Locals, Integer> graph = distributionNetwork.getGraph();
                         USEI02 usei02 = new USEI02();
-                        usei02.ordenarLocalidadesPorCriterios(graph);
+                        usei02.optimizeLocations(graph);
                     } else System.out.println("Network is empty. Returning to menu.");
                 } catch (NullPointerException e){
                     System.out.println("Network is empty. Returning to menu.");
