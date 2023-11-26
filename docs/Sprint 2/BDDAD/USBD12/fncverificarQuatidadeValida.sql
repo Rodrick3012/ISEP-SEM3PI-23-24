@@ -85,11 +85,13 @@ END;
 --Teste com uma quantidade válida para uma cultura com ha e "Temporaria":
 DECLARE
 result1 BOOLEAN;
+    quantidade_val NUMBER := 0.1; -- Declare uma variável com o valor desejado
 BEGIN
-    result1 := fncverificarQuantidadeValida(0.1, 18, 'Horta nova', 4);
+    result1 := fncverificarQuantidadeValida(quantidade_val, 18, 'Horta nova', 4);
     DBMS_OUTPUT.PUT_LINE('Resultado do Teste 3: ' || CASE WHEN result1 THEN 'Sucesso' ELSE 'Falha' END);
 EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLERRM);
 END;
 /
+
