@@ -1,8 +1,8 @@
 package sem3pi.dei.isep.ipp.pt.esinf.sprint2;
 
 import org.junit.Test;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.ShortestPath;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation.USEI03;
+import sem3pl.dei.isep.ipp.pt.esinf.application.domain.ShortestPath;
+import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI03;
 
 import java.util.Optional;
 

@@ -2,7 +2,7 @@ package sem3pl.dei.isep.ipp.pt;
 
 import sem3pl.dei.isep.ipp.pt.bddad.ImportLegacyController;
 import sem3pl.dei.isep.ipp.pt.bddad.dataAccess.DatabaseConnection;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.BasketRoutingDelivery;
+import sem3pl.dei.isep.ipp.pt.esinf.application.BasketRoutingDelivery;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 
 import java.sql.SQLException;

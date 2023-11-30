@@ -1,14 +1,12 @@
 package sem3pi.dei.isep.ipp.pt.esinf.sprint2;
 
 import org.junit.Test;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.Locals;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.domain.LocationCriteria;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.CommonGraph;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.Graph;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.map.MapGraph;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.graph.matrix.MatrixGraph;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation.USEI01;
-import sem3pl.dei.isep.ipp.pt.esinf.sprint2.implementation.USEI02;
+import sem3pl.dei.isep.ipp.pt.esinf.application.domain.Locals;
+import sem3pl.dei.isep.ipp.pt.esinf.application.domain.LocationCriteria;
+import sem3pl.dei.isep.ipp.pt.esinf.application.graph.Graph;
+import sem3pl.dei.isep.ipp.pt.esinf.application.graph.map.MapGraph;
+import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI01;
+import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI02;
 
 import java.util.ArrayList;
 import java.util.List;
