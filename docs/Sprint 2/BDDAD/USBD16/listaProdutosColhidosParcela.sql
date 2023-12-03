@@ -49,7 +49,7 @@ BEGIN
         'Campo novo'
     );
 
-    LOOP
+LOOP
 FETCH v_cursor INTO v_planta, v_produto, v_especie;
         EXIT WHEN v_cursor%NOTFOUND;
         DBMS_OUTPUT.PUT_LINE('1-' || v_produto || ' 2-' || v_planta || ' 3-' || v_especie);
