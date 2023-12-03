@@ -48,7 +48,7 @@ public class WateringPlanRepository {
         CallableStatement callableStatement = null;
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            callableStatement = connection.prepareCall("{ call procedimentoInserirOperacaoRega(?,?,?,?) }");
+            callableStatement = connection.prepareCall("{ call pcdInserirOperacaoRega(?,?,?,?) }");
 
             callableStatement.setInt(1, sector);
             callableStatement.setInt(2, duration);
