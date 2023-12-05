@@ -42,11 +42,11 @@ public class Fertigation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Fertigation that = (Fertigation) o;
-        return Objects.equals(mix, that.mix) && Objects.equals(recurrence, that.recurrence);
+        return Objects.equals(watering, that.watering) && Objects.equals(mix, that.mix) && Objects.equals(recurrence, that.recurrence);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mix, recurrence);
+        return Objects.hash(watering, mix, recurrence);
     }
 }
