@@ -3,12 +3,22 @@ package sem3pl.dei.isep.ipp.pt.lapr3.application.domain;
 import java.util.Objects;
 
 public class Fertigation {
+    private Watering watering;
     private String mix;
     private Integer recurrence;
 
-    public Fertigation(String mix, Integer recurrence) {
+    public Fertigation(Watering watering, String mix, Integer recurrence) {
+        this.watering = watering;
         this.mix = mix;
         this.recurrence = recurrence;
+    }
+
+    public Watering getWatering(){
+        return watering;
+    }
+
+    public void setWatering(Watering watering){
+        this.watering = watering;
     }
 
     public String getMix() {
