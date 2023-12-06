@@ -114,7 +114,7 @@ public class ImportLegacyController {
                     int numColumns = headerRow.getPhysicalNumberOfCells();
 
                     for (Row row : sheet) {
-                        String parcelacultura="";
+
 
                         int cont = 0;
                         String sheetName = sheet.getSheetName();
@@ -324,12 +324,16 @@ public class ImportLegacyController {
 
                                 } else if (columnName.equalsIgnoreCase("parcela")) {
                                     if (sheetName.equalsIgnoreCase("cultura")){
+                                        /*
                                         Cell cultid = row.getCell(8);
                                         parcelacultura = "Insert into  parcelacultura (parcela,cultura) values (" +
                                                 "(select designacao from parcela where lower(designacao) like lower('"+cellValue+"')),"+cultid+");";
 
                                     }else {
-                                        values.append("(select designacao from ").append(columnName).append(" where lower(designacao) like lower('").append(cellValue).append("'))");
+
+                                         */
+                                        insert.append("parcela,");
+                                        values.append("(select designacao from ").append(columnName).append(" where lower(designacao) like lower('").append(cellValue).append("')),");
                                     }
 
                                 } else if (columnName.equalsIgnoreCase("fatorproducao")) {
@@ -368,19 +372,7 @@ public class ImportLegacyController {
 
                                     }
 
-                                    String table ="culturaoperacao";
-                                    String campo ="operacao";
 
-                                    String op = row.getCell(2).toString();
-                                    if (operacoesft.contains(op)){
-                                        table ="culturaoperacaofatorproducao";
-                                        campo ="operacaofatorproducao";
-                                    }
-
-                                    if (!auxID.isEmpty()) {
-                                        String insertSubs = "Insert into "+table+" (cultura,"+campo+") values ("+auxID+","+auxParcelaID+");";
-                                        datas.add(insertSubs);
-                                    }
 
                                 } else if (columnName.equalsIgnoreCase("substancia")) {
                                     Cell nextCell = row.getCell(i + 1);
@@ -494,19 +486,19 @@ public class ImportLegacyController {
                         values.append(");");
                         insert.append(values);
                         if (cont != 0) {
-                            if (operacoesft.contains(typeOp)) {
-                                insertStatements.add(insert.toString().replace(" operacao ", " operacaofatorproducao "));
+                            if (!sheetName.equalsIgnoreCase("edificio")){
+                                if (operacoesft.contains(typeOp)) {
+                                    insertStatements.add(insert.toString().replace(" operacao ", " operacaofatorproducao "));
 
-                            } else {
-                                insertStatements.add(insert.toString());
+                                } else {
+                                    insertStatements.add(insert.toString());
 
+                                }
                             }
 
                         }
 
-                        if (!parcelacultura.isEmpty()){
-                            insertStatements.add(parcelacultura);
-                        }
+
 
                         if (!insertFicha.isEmpty()) {
                             insertStatements.addAll(insertFicha);
