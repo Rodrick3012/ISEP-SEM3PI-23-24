@@ -49,13 +49,13 @@ public class FarmCoordinator implements Runnable {
                     }
                     break;
                 default:
-                    System.out.println("Invalid Option. Please Try Again.");
+                    System.err.println("Invalid Option. Please Try Again.");
                     System.out.println();
                     farmCoordinatorMenu();
                     break;
             }
         } catch (InputMismatchException e){
-            System.out.println("Invalid Option. Please Try Again.");
+            System.err.println("Invalid Option. Please Try Again.");
             System.out.println();
             sc.next();
             farmCoordinatorMenu();

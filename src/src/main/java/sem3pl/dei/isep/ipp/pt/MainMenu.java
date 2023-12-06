@@ -52,13 +52,13 @@ public class MainMenu implements Runnable {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Invalid Option. Please Try Again.");
+                    System.err.println("Invalid Option. Please Try Again.");
                     System.out.println();
                     applicationChooserMenu();
                     break;
             }
         } catch (InputMismatchException e){
-            System.out.println("Invalid Option. Please Try Again.");
+            System.err.println("Invalid Option. Please Try Again.");
             System.out.println();
             sc.next();
             applicationChooserMenu();

@@ -38,11 +38,11 @@ public class Main {
             if (result == DatabaseConnection.CONNECTION_SUCCESS)
                 System.out.println("Connected to the database.");
             else
-                System.out.println("Not connected to the database!");
+                System.err.println("Not connected to the database!");
         } catch (UnknownHostException e) {
-            System.out.println("\nDatabase Server not reachable!");
+            System.err.println("\nDatabase Server not reachable!");
         } catch (Exception e) {
-            System.out.println("App properties not loaded!");
+            System.err.println("App properties not loaded!");
         }
     }
 }
