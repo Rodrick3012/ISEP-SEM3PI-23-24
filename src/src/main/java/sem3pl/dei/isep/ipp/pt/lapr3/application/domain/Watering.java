@@ -6,11 +6,13 @@ public class Watering {
     private Integer sector;
     private Integer wateringMinutes;
     private WateringTimeRegularity wateringTimeRegularity;
+    private Fertigation fertigation;
 
-    public Watering(Integer sector, Integer wateringMinutes, WateringTimeRegularity wateringTimeRegularity) {
+    public Watering(Integer sector, Integer wateringMinutes, WateringTimeRegularity wateringTimeRegularity, Fertigation fertigation) {
         this.sector = sector;
         this.wateringMinutes = wateringMinutes;
         this.wateringTimeRegularity = wateringTimeRegularity;
+        this.fertigation = fertigation;
     }
 
     public Integer getSector() {
@@ -35,6 +37,14 @@ public class Watering {
 
     public void setWateringTimeRegularity(WateringTimeRegularity wateringTimeRegularity) {
         this.wateringTimeRegularity = wateringTimeRegularity;
+    }
+
+    public Fertigation getFertigation(){
+        return fertigation;
+    }
+
+    public void setFertigation(Fertigation fertigation){
+        this.fertigation = fertigation;
     }
 
     @Override

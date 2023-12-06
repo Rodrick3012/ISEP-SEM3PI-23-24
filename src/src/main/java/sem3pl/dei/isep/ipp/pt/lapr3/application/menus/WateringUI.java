@@ -21,7 +21,7 @@ public class WateringUI implements Runnable {
     public void run() {
         System.out.println("Welcome to Watering Menu!");
         System.out.println();
-        scheduler.scheduleAtFixedRate(this::generateAndCheckWateringPlan, 1, 10, TimeUnit.MINUTES);
+        // scheduler.scheduleAtFixedRate(this::generateAndCheckWateringPlan, 1, 10, TimeUnit.MINUTES);
         wateringMenu();
     }
 
@@ -30,6 +30,7 @@ public class WateringUI implements Runnable {
         System.out.println();
         System.out.println("1. Import File");
         System.out.println("2. View the Sectors that being watered");
+        System.out.println("3. Generate Watering Plan");
         System.out.println("3. Exit");
         System.out.println();
         System.out.println("Select a option: ");
@@ -46,13 +47,17 @@ public class WateringUI implements Runnable {
                         System.out.println("Empty data. Returning to menu...");
                         wateringMenu();
                     }
+                    break;
                 case 3:
+                    generateAndCheckWateringPlan();
+                    break;
+                case 4:
                     System.out.println("Do you really want to exit this menu?");
                     System.out.println("Yes/No");
                     sc.nextLine();
                     String exitOption = sc.nextLine();
                     if (exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")) {
-                        stopScheduler();
+                        // stopScheduler();
                         FarmCoordinator farmCoordinator = new FarmCoordinator();
                         farmCoordinator.run();
                     } else {
@@ -60,13 +65,13 @@ public class WateringUI implements Runnable {
                     }
                     break;
                 default:
-                    System.out.println("Invalid Option. Please Try Again.");
+                    System.err.println("Invalid Option. Please Try Again.");
                     System.out.println();
                     wateringMenu();
                     break;
             }
         } catch (InputMismatchException e) {
-            System.out.println("Invalid Option. Please Try Again.");
+            System.err.println("Invalid Option. Please Try Again.");
             System.out.println();
             sc.next();
             wateringMenu();
@@ -86,7 +91,7 @@ public class WateringUI implements Runnable {
         if(wateringController.getWateringPlanList().contains(wateringPlan)) {
             System.out.println("File successfully imported! Watering Plan created.");
         } else {
-            System.out.println("Error while importing a file. Watering Plan not created.");
+            System.err.println("Error while importing a file. Watering Plan not created.");
         }
         System.out.println();
         wateringMenu();
@@ -98,7 +103,8 @@ public class WateringUI implements Runnable {
             WateringPlan wateringPlan = wateringPlans.get(0);
             generateWateringPlan(wateringPlan);
         }
-        else System.out.println("Empty data. Import a file to create Watering Plan.");
+        else System.err.println("Empty data. Import a file to create Watering Plan.");
+        wateringMenu();
     }
 
     private void generateWateringPlan(WateringPlan wateringPlan){

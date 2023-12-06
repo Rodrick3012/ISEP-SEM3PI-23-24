@@ -47,7 +47,7 @@ public class BasketRoutingDelivery implements Runnable {
             case 1:
                 boolean verify = distributionNetwork.createDistributionNetwork();
                 if(!verify){
-                    System.out.println("Error while creating the network.");
+                    System.err.println("Error while creating the network.");
                 } else System.out.println("Network successfully created!");
                 basketRoutingDeliveryMenu();
                 break;
@@ -57,9 +57,9 @@ public class BasketRoutingDelivery implements Runnable {
                         Graph<Locals, Integer> graph = distributionNetwork.getGraph();
                         int nHubs = Utils.readInt("Write the number of hubs");
                         ArrayList<List<LocationCriteria>> localsList = USEI02.optimizeLocations(graph, nHubs);
-                    } else System.out.println("Network is empty. Returning to menu.");
+                    } else System.err.println("Network is empty. Returning to menu.");
                 } catch (NullPointerException e){
-                    System.out.println("Network is empty. Returning to menu.");
+                    System.err.println("Network is empty. Returning to menu.");
                 }
                 basketRoutingDeliveryMenu();
                 break;
@@ -71,9 +71,9 @@ public class BasketRoutingDelivery implements Runnable {
                         USEI03 usei03 = new USEI03();
                         ShortestPath shortestPath = usei03.getShortestPathBetweenTwoMostRemoteLocalsForUI(graph, autonomy);
                         System.out.println(shortestPath.toString());
-                    } else System.out.println("Network is empty. Returning to menu.");
+                    } else System.err.println("Network is empty. Returning to menu.");
                 } catch (NullPointerException e){
-                    System.out.println("Network is empty. Returning to menu.");
+                    System.err.println("Network is empty. Returning to menu.");
                 }
                 basketRoutingDeliveryMenu();
                 break;
@@ -82,9 +82,9 @@ public class BasketRoutingDelivery implements Runnable {
                     if (!distributionNetwork.isEmpty()) {
                         USEI04 usei04 = new USEI04();
                         usei04.methodForUiLapr();
-                    } else System.out.println("Network is empty. Returning to menu.");
+                    } else System.err.println("Network is empty. Returning to menu.");
                 } catch (NullPointerException e){
-                    System.out.println("Network is empty. Returning to menu.");
+                    System.err.println("Network is empty. Returning to menu.");
                 }
                 basketRoutingDeliveryMenu();
                 break;
@@ -98,14 +98,14 @@ public class BasketRoutingDelivery implements Runnable {
                 } else basketRoutingDeliveryMenu();
                 break;
             default:
-                System.out.println("Invalid Option. Please Try Again.");
+                System.err.println("Invalid Option. Please Try Again.");
                 System.out.println();
                 sc.next();
                 basketRoutingDeliveryMenu();
                 break;
         }
         } catch (InputMismatchException e){
-            System.out.println("Invalid Option. Please Try Again.");
+            System.err.println("Invalid Option. Please Try Again.");
             System.out.println();
             sc.next();
             basketRoutingDeliveryMenu();

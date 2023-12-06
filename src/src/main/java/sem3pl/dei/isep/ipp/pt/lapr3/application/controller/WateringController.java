@@ -34,7 +34,12 @@ public class WateringController {
             while (sc.hasNextLine()) {
                 String nextLine = sc.nextLine();
                 String[] wateringData = nextLine.split(",");
-                Watering watering = new Watering(Integer.valueOf(wateringData[0]), Integer.valueOf(wateringData[1]), new WateringTimeRegularity(wateringData[2]));
+                Watering watering = new Watering(Integer.valueOf(wateringData[0]), Integer.valueOf(wateringData[1]), new WateringTimeRegularity(wateringData[2]), null);
+                if(wateringData.length > 3){
+                    String mixNumber = wateringData[3].replaceAll("[^0-9]", "");
+                    Fertigation fertigation = new Fertigation(Integer.parseInt(mixNumber), Integer.parseInt(wateringData[4]));
+                    watering.setFertigation(fertigation);
+                }
                 wateringList.add(watering);
             }
         } catch (IOException e) {
@@ -152,7 +157,7 @@ public class WateringController {
                 allDateIntervals.addAll(intervals);
             }
             allDateIntervals.sort(Comparator.comparing(DateInterval::getStartDate));
-            pw.println("Dia;Sector;Duração;Inicio;Final;Concluída");
+            pw.println("Dia;Sector;Duração;Inicio;Final;Concluída;Mix de fertirrega;Recorrência");
 
             Calendar currentDate = Calendar.getInstance();
             currentDate.setTime(new Date());
@@ -172,17 +177,35 @@ public class WateringController {
                     if(watering != null) {
                         Date startDate = dateInterval.getStartDate();
                         Date endDate = dateInterval.getEndDate();
-                        if (endDate.before(currentCalendar.getTime()))
+                        if (watering.getFertigation() == null) {
+                            if (endDate.before(currentCalendar.getTime()))
+                                pw.println(dateFormat.format(startDate) + ";" +
+                                        watering.getSector() + ";" +
+                                        watering.getWateringMinutes() + ";" +
+                                        timeFormat.format(startDate) + ";" +
+                                        timeFormat.format(endDate) + ";" + "Sim");
+                            else pw.println(dateFormat.format(startDate) + ";" +
+                                    watering.getSector() + ";" +
+                                    watering.getWateringMinutes() + ";" +
+                                    timeFormat.format(startDate) + ";" +
+                                    timeFormat.format(endDate) + ";" + "Não");
+                        } else if (endDate.before(currentCalendar.getTime()))
                             pw.println(dateFormat.format(startDate) + ";" +
                                     watering.getSector() + ";" +
                                     watering.getWateringMinutes() + ";" +
                                     timeFormat.format(startDate) + ";" +
-                                    timeFormat.format(endDate) + ";" + "Sim");
+                                    timeFormat.format(endDate) + ";" +
+                                    "Sim" + ";" +
+                                    watering.getFertigation().getMix() + ";" +
+                                    watering.getFertigation().getRecurrence());
                         else pw.println(dateFormat.format(startDate) + ";" +
-                                watering.getSector() + ";" +
-                                watering.getWateringMinutes() + ";" +
-                                timeFormat.format(startDate) + ";" +
-                                timeFormat.format(endDate) + ";" + "Não");
+                                    watering.getSector() + ";" +
+                                    watering.getWateringMinutes() + ";" +
+                                    timeFormat.format(startDate) + ";" +
+                                    timeFormat.format(endDate) + ";" +
+                                    "Não" + ";" +
+                                    watering.getFertigation().getMix() + ";" +
+                                    watering.getFertigation().getRecurrence());
                     }
                 }
             }
@@ -233,7 +256,7 @@ public class WateringController {
                     SimpleDateFormat outputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     outputDateFormat.format(dateWateringConcluded);
                     String wateringInitialTime = wateringPlanData[3];
-                    wateringPlanRepository.wateringOperationRegister(wateringSector, wateringDuration, dateWateringConcluded, wateringInitialTime);
+                    // wateringPlanRepository.wateringOperationRegister(wateringSector, wateringDuration, dateWateringConcluded, wateringInitialTime);
                 }
             }
             sc.close();
@@ -254,8 +277,8 @@ public class WateringController {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 String[] wateringPlanData = line.split(";");
-                boolean isWateringConcluded = "Não".equals(wateringPlanData[5]);
-                if (isWateringConcluded) {
+                boolean isWateringConcluded = "Sim".equals(wateringPlanData[5]);
+                if (!isWateringConcluded) {
                     pw.println(line);
                 }
             }

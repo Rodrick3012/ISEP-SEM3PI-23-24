@@ -3,19 +3,19 @@ package sem3pl.dei.isep.ipp.pt.lapr3.application.domain;
 import java.util.Objects;
 
 public class Fertigation {
-    private String mix;
+    private Integer mix;
     private Integer recurrence;
 
-    public Fertigation(String mix, Integer recurrence) {
+    public Fertigation(Integer mix, Integer recurrence) {
         this.mix = mix;
         this.recurrence = recurrence;
     }
 
-    public String getMix() {
+    public Integer getMix() {
         return mix;
     }
 
-    public void setMix(String mix) {
+    public void setMix(Integer mix) {
         this.mix = mix;
     }
 
