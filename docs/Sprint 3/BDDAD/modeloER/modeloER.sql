@@ -130,7 +130,7 @@ CREATE TABLE Produto (
   produto varchar2(30) NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE SetorParcelaCultura (
-  id           number(10) GENERATED AS IDENTITY, 
+  id           number GENERATED AS IDENTITY, 
   setor        varchar2(2) NOT NULL, 
   quantidade   number NOT NULL, 
   dataInsercao date NOT NULL, 
@@ -143,10 +143,10 @@ CREATE TABLE plantaProduto (
   PRIMARY KEY (produto, 
   planta));
 CREATE TABLE OperacaoRegaSetor (
-  id                  number NOT NULL, 
-  duracao             number NOT NULL, 
-  horario             timestamp(0) NOT NULL, 
-  SetorParcelaCultura number(10) NOT NULL, 
+  id      number NOT NULL, 
+  duracao number NOT NULL, 
+  horario timestamp(0) NOT NULL, 
+  setor   varchar2(2) NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE Operacao (
   id      number GENERATED AS IDENTITY, 
@@ -176,7 +176,7 @@ CREATE TABLE Monda (
 CREATE TABLE MobilizacaoSolo (
   id      number NOT NULL, 
   area    number(10) NOT NULL, 
-  Cultura number NOT NULL, 
+  parcela varchar2(25) NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE Semeadura (
   id         number NOT NULL, 
@@ -192,16 +192,14 @@ CREATE TABLE Plantacao (
 CREATE TABLE Produto_Colheita (
   Produtoid          number NOT NULL, 
   OperacaoColheitaid number NOT NULL, 
-  Colheitaid         number NOT NULL, 
   PRIMARY KEY (Produtoid, 
-  OperacaoColheitaid, 
-  Colheitaid));
+  OperacaoColheitaid));
 CREATE TABLE CulturaOperacaoFatorProducao (
   OperacaoFatorProducao number NOT NULL, 
   Cultura               number NOT NULL, 
   PRIMARY KEY (OperacaoFatorProducao));
 CREATE TABLE RegaFertirrega (
-  OperacaoRegaSetor number GENERATED AS IDENTITY, 
+  OperacaoRegaSetor number NOT NULL, 
   MixFertirrega     number NOT NULL, 
   PRIMARY KEY (OperacaoRegaSetor));
 CREATE TABLE OperacaoFertilizacao (
@@ -242,14 +240,12 @@ ALTER TABLE Data ADD CONSTRAINT FKData398401 FOREIGN KEY (tipo) REFERENCES TipoD
 ALTER TABLE SetorParcelaCultura ADD CONSTRAINT FKSetorParce564186 FOREIGN KEY (setor) REFERENCES Setor (setor);
 ALTER TABLE plantaProduto ADD CONSTRAINT FKplantaProd128917 FOREIGN KEY (planta) REFERENCES planta (Variedade);
 ALTER TABLE plantaProduto ADD CONSTRAINT FKplantaProd874382 FOREIGN KEY (produto) REFERENCES Produto (id);
-ALTER TABLE OperacaoRegaSetor ADD CONSTRAINT FKOperacaoRe832593 FOREIGN KEY (SetorParcelaCultura) REFERENCES SetorParcelaCultura (id);
 ALTER TABLE MixFertirrega_FatorProducao ADD CONSTRAINT FKMixFertirr147144 FOREIGN KEY (MixFertirrega) REFERENCES MixFertirrega (id);
 ALTER TABLE MixFertirrega_FatorProducao ADD CONSTRAINT FKMixFertirr220075 FOREIGN KEY (FatorProducao) REFERENCES FatorProducao (designacao);
 ALTER TABLE Cultura ADD CONSTRAINT FKCultura155084 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
 ALTER TABLE SetorParcelaCultura ADD CONSTRAINT FKSetorParce706503 FOREIGN KEY (Cultura) REFERENCES Cultura (id);
 ALTER TABLE Monda ADD CONSTRAINT FKMonda818719 FOREIGN KEY (Cultura) REFERENCES Cultura (id);
 ALTER TABLE Semeadura ADD CONSTRAINT FKSemeadura484590 FOREIGN KEY (Cultura) REFERENCES Cultura (id);
-ALTER TABLE MobilizacaoSolo ADD CONSTRAINT FKMobilizaca539483 FOREIGN KEY (Cultura) REFERENCES Cultura (id);
 ALTER TABLE Plantacao ADD CONSTRAINT FKPlantacao644701 FOREIGN KEY (Cultura) REFERENCES Cultura (id);
 ALTER TABLE Plantacao ADD CONSTRAINT FKPlantacao567054 FOREIGN KEY (id) REFERENCES Operacao (id);
 ALTER TABLE Monda ADD CONSTRAINT FKMonda393036 FOREIGN KEY (id) REFERENCES Operacao (id);
@@ -258,7 +254,6 @@ ALTER TABLE MobilizacaoSolo ADD CONSTRAINT FKMobilizaca220351 FOREIGN KEY (id) R
 ALTER TABLE OperacaoRegaSetor ADD CONSTRAINT FKOperacaoRe730827 FOREIGN KEY (id) REFERENCES Operacao (id);
 ALTER TABLE Produto_Colheita ADD CONSTRAINT FKProduto_Co772513 FOREIGN KEY (Produtoid) REFERENCES Produto (id);
 ALTER TABLE RegaFertirrega ADD CONSTRAINT FKRegaFertir391842 FOREIGN KEY (MixFertirrega) REFERENCES MixFertirrega (id);
-ALTER TABLE RegaFertirrega ADD CONSTRAINT FKRegaFertir824492 FOREIGN KEY (MixFertirrega) REFERENCES OperacaoRegaSetor (id);
 ALTER TABLE Colheita ADD CONSTRAINT FKColheita943585 FOREIGN KEY (id) REFERENCES Operacao (id);
 ALTER TABLE Colheita ADD CONSTRAINT FKColheita268170 FOREIGN KEY (Cultura) REFERENCES Cultura (id);
 ALTER TABLE Produto_Colheita ADD CONSTRAINT FKProduto_Co270585 FOREIGN KEY (OperacaoColheitaid) REFERENCES Colheita (id);
@@ -274,3 +269,6 @@ ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa39367 FOREIGN KEY (
 ALTER TABLE OperacaoAplicacao ADD CONSTRAINT FKOperacaoAp303441 FOREIGN KEY (id) REFERENCES OperacaoFatorProducao (id);
 ALTER TABLE OperacaoFertilizacao ADD CONSTRAINT FKOperacaoFe880318 FOREIGN KEY (id) REFERENCES OperacaoFatorProducao (id);
 ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa567047 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
+ALTER TABLE RegaFertirrega ADD CONSTRAINT FKRegaFertir40828 FOREIGN KEY (OperacaoRegaSetor) REFERENCES OperacaoRegaSetor (id);
+ALTER TABLE OperacaoRegaSetor ADD CONSTRAINT FKOperacaoRe376754 FOREIGN KEY (setor) REFERENCES Setor (setor);
+ALTER TABLE MobilizacaoSolo ADD CONSTRAINT FKMobilizaca144825 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);

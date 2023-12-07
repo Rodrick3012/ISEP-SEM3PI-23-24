@@ -588,7 +588,7 @@ Insert into Operacao (anulada,data) values (0,To_Date('5-5-2020', 'DD-MM-YYYY'))
 Insert into Operacao (anulada,data) values (0,To_Date('15-5-2020', 'DD-MM-YYYY'));
 Insert into Operacao (anulada,data) values (0,To_Date('2-6-2020', 'DD-MM-YYYY'));
 Insert into Operacao (anulada,data) values (0,To_Date('20-8-2020', 'DD-MM-YYYY'));
-Insert into Operacao (anulada,data) values (0,To<_Date('28-8-2020', 'DD-MM-YYYY'));
+Insert into Operacao (anulada,data) values (0,To_Date('28-8-2020', 'DD-MM-YYYY'));
 Insert into Operacao (anulada,data) values (0,To_Date('7-9-2020', 'DD-MM-YYYY'));
 Insert into Operacao (anulada,data) values (0,To_Date('20-9-2020', 'DD-MM-YYYY'));
 Insert into Operacao (anulada,data) values (0,To_Date('10-10-2020', 'DD-MM-YYYY'));
@@ -873,3 +873,636 @@ insert into OperacaoFertilizacao (id,modo) values (105,(select id from modo wher
 insert into OperacaoFertilizacao (id,modo) values (106,(select id from modo where modo like 'Foliar'));
 insert into OperacaoFertilizacao (id,modo) values (131,(select id from modo where modo like 'Solo'));
 insert into OperacaoFertilizacao (id,modo) values (132,(select id from modo where modo like 'Solo'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+insert into fabricante(fabricante) values ('Nutrofertil');
+insert into fatorProducao values ('Fertimax Extrume de Cavalo',(select id from fabricante where fabricante.fabricante = 'Nutrofertil'),2,2,2,6.7);
+insert into fatorProducao values ('BIOFERTIL N6',(select id from fabricante where fabricante.fabricante = 'Nutrofertil'),2,2,2,6.4);
+
+INSERT INTO substancia (substancia) VALUES ('Materia organica');
+INSERT INTO substancia (substancia) VALUES ('N');
+INSERT INTO substancia (substancia) VALUES ('P205');
+INSERT INTO substancia (substancia) VALUES ('K20');
+INSERT INTO substancia (substancia) VALUES ('Ca');
+
+
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'Materia organica'),'Fertimax Extrume de Cavalo',50);
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'N'),'Fertimax Extrume de Cavalo',3) ;
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'P205'),'Fertimax Extrume de Cavalo',0.8);
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'K20'),'Fertimax Extrume de Cavalo',0.4) ;
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'Ca'),'Fertimax Extrume de Cavalo',1.6) ;
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'MgO'),'Fertimax Extrume de Cavalo',0.3) ;
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'B'),'Fertimax Extrume de Cavalo',0.004)  ;
+
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'Materia organica'),'BIOFERTIL N6',50);
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'N'),'BIOFERTIL N6',6.4) ;
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'P205'),'BIOFERTIL N6',2.5);
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'K20'),'BIOFERTIL N6',2.4) ;
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'Ca'),'BIOFERTIL N6',6) ;
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'MgO'),'BIOFERTIL N6',0.3) ;
+insert into substanciaFatorProducao values ((select id from substancia where substancia = 'B'),'BIOFERTIL N6',0.0020)  ;
+
+insert into produto (produto) values ('Abóbora');
+insert into planta values('manteiga','Abóbora','Cucurbita moschata var Butternut',2);
+insert into plantaProduto values ((select id from produto where produto.produto = 'Abóbora'),'manteiga');
+insert into parcela values('Campo novo',1.1);
+
+insert into setor (setor,caudalMaximo,dataInicio) values (10,2500,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+insert into setorParcelaCultura(cultura,setor,quantidade,dataInsercao) values (11,10,30,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+insert into setorParcelaCultura (cultura,setor,quantidade,dataInsercao) values (12,10,20,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+
+insert into setor (setor,caudalMaximo,dataInicio) values (11,1500,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+insert into setor (setor,caudalMaximo,dataInicio) values (21,3500,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+insert into setor (setor,caudalMaximo,dataInicio) values (22,3500,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into setor (setor,caudalMaximo,dataInicio,dataFim) values (41,2500,TO_DATE('01-04-2023', 'DD-MM-YYYY'),TO_DATE('10-10-2023', 'DD-MM-YYYY'));
+insert into setor (setor,caudalMaximo,dataInicio,dataFim) values (42,3500,TO_DATE('01-04-2023', 'DD-MM-YYYY'),TO_DATE('10-10-2023', 'DD-MM-YYYY'));
+
+insert into planta values('Arbequina' ,'Oliveira', 'Arbequina',1);
+insert into plantaProduto values (9,'Arbequina');
+
+insert into cultura(planta,parcela,dataInicial,quantidade) values ('Arbequina','Campo grande',TO_DATE('2016-10-12','YYYY-MM-DD'),40);
+insert into planta values('Porta de loja' ,'Maceira', 'Malus domestica',1);
+insert into plantaProduto values (3,'Porta de loja');
+insert into cultura(planta,parcela,dataInicial,quantidade) values ('Porta de loja','Lameiro do moinho',TO_DATE('2019-01-09','YYYY-MM-DD'),50);
+
+insert into planta values('Malápio' ,'Maceira', 'Malus domestica',1);
+insert into plantaProduto values (3,'Malápio');
+insert into cultura(planta,parcela,dataInicial,quantidade) values ('Malápio','Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'),20);
+
+
+-- Operação de plantação de Macieira Pipo de Basto
+insert into planta values('Pipo de basto' ,'Maceira', 'Malus domestica',1);
+insert into plantaProduto values (3,'Pipo de basto');
+insert into cultura(planta,parcela,dataInicial,quantidade) values ('Pipo de basto','Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'),40);
+
+-- Operação de plantação de Macieira Canada
+insert into planta values('Canada' ,'Maceira', 'Malus domestica',1);
+insert into plantaProduto values (3,'Canada');
+insert into cultura(planta,parcela,dataInicial,quantidade) values ('Canada','Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'),30);
+
+-- Operação de plantação de Macieira Grand Fay
+insert into planta values('Grand Fay' ,'Maceira', 'Malus domestica',1);
+insert into plantaProduto values (3,'Grand Fay');
+insert into cultura(planta,parcela,dataInicial,quantidade) values ('Grand Fay','Lameiro do moinho',TO_DATE('2019-01-11','YYYY-MM-DD'),40);
+
+-- Operação de plantação de Macieira Gronho Doce
+insert into planta values('Gronho Doce' ,'Maceira', 'Malus domestica',1);
+insert into plantaProduto values (3,'Gronho Doce');
+insert into cultura(planta,parcela,dataInicial,quantidade) values ('Gronho Doce','Lameiro do moinho',TO_DATE('2019-01-11','YYYY-MM-DD'),50);
+
+
+insert into cultura(planta,parcela,dataInicial,quantidade) values ('Sugarsnax Hybrid','Campo novo',TO_DATE('2023-04-05','YYYY-MM-DD'),1.2);
+
+insert into cultura(planta,parcela,dataInicial,quantidade) values ('manteiga','Campo novo',TO_DATE('2023-04-06','YYYY-MM-DD'),0.6);
+
+
+-- Monda de plantação de cenouras Danvers Half Long (08/08/2023)
+insert into cultura(planta,parcela,dataInicial,quantidade) values ('Danvers Half Long','Campo novo',TO_DATE('2023-07-05','YYYY-MM-DD'),1.2);
+
+insert into cultura(planta,parcela,dataInicial,quantidade) values ('Amarelo','Campo novo',TO_DATE('2023-10-12','YYYY-MM-DD'),32);
+insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where planta like 'Arbequina'),11,40,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+
+
+--setor 21
+insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values (22,21,90,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values (23,21,60,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values (24,21,60,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values (25,21,40,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where parcela = 'Lameiro do moinho' and cultura.planta = 'Pipo de basto'),21,40,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+
+
+--setor 22
+insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where parcela = 'Lameiro do moinho' and cultura.planta = 'Porta de loja'),22,50,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where parcela = 'Lameiro do moinho' and cultura.planta = 'Malápio'),22,20,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where parcela = 'Lameiro do moinho' and cultura.planta = 'Canada'),22,30,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where parcela = 'Lameiro do moinho' and cultura.planta = 'Grand Fay'),22,40,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where parcela = 'Lameiro do moinho' and cultura.planta = 'Gronho Doce'),22,50,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+
+
+--setor 41
+insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao,dataRemocao) values ((select id from cultura where parcela = 'Campo novo' and cultura.planta = 'Sugarsnax Hybrid'),41,1.2,TO_DATE('05-04-2023', 'DD-MM-YYYY'),TO_DATE('31-05-2023', 'DD-MM-YYYY'));
+insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao,dataRemocao) values ((select id from cultura where parcela = 'Campo novo' and cultura.planta = 'Danvers Half Long'),41,1.2,TO_DATE('05-07-2023', 'DD-MM-YYYY'),TO_DATE('08-10-2023', 'DD-MM-YYYY'));
+
+
+--setor 42
+insert into setorParcelaCultura(cultura,setor,quantidade,dataInsercao,dataRemocao ) values ((select id from cultura where parcela = 'Campo novo' and cultura.planta = 'manteiga'),42,0.6,TO_DATE('06-04-2023', 'DD-MM-YYYY'),TO_DATE('10-09-2023', 'DD-MM-YYYY'));
+
+
+
+--Operacao Rega setor 41
+Insert INTO operacao (anulada,data) values (0, TO_DATE('20-05-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('02-06-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('09-06-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('09-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('16-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('23-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('30-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('07-08-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('14-08-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('21-08-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('28-08-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('06-09-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('13-09-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('20-09-2023', 'DD-MM-YYYY'));
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (141, 120, TO_TIMESTAMP('2023-05-20 07:30:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (142, 120, TO_TIMESTAMP('2023-06-02 07:30:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (143, 120, TO_TIMESTAMP('2023-06-09 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (144, 120, TO_TIMESTAMP('2023-07-09 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (145, 120, TO_TIMESTAMP('2023-07-16 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (146, 120, TO_TIMESTAMP('2023-07-23 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (147, 120, TO_TIMESTAMP('2023-07-30 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (148, 120, TO_TIMESTAMP('2023-08-07 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (149, 120, TO_TIMESTAMP('2023-08-14 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (150, 120, TO_TIMESTAMP('2023-08-21 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (151, 120, TO_TIMESTAMP('2023-08-28 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (152, 120, TO_TIMESTAMP('2023-09-06 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (153, 120, TO_TIMESTAMP('2023-09-13 07:00:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (154, 120, TO_TIMESTAMP('2023-09-20 07:00:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+
+
+
+--setor 22
+Insert INTO operacao (anulada,data) values (0, TO_DATE('13-05-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('02-06-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('16-06-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('01-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('08-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('15-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('22-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('29-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('05-08-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('10-08-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('17-08-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('24-08-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('02-09-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('09-09-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('18-09-2023', 'DD-MM-YYYY'));
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (155, 120, TO_TIMESTAMP('2023-05-13 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (156, 120, TO_TIMESTAMP('2023-06-02 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (157, 120, TO_TIMESTAMP('2023-06-16 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (158,  120, TO_TIMESTAMP('2023-07-01 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (159, 180, TO_TIMESTAMP('2023-07-08 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (160, 180, TO_TIMESTAMP('2023-07-15 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (161, 180, TO_TIMESTAMP('2023-07-22 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (162, 180, TO_TIMESTAMP('2023-07-29 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (163, 150, TO_TIMESTAMP('2023-08-05 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (164, 150, TO_TIMESTAMP('2023-08-10 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (165, 150, TO_TIMESTAMP('2023-08-17 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (166, 120, TO_TIMESTAMP('2023-08-24 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (167, 120, TO_TIMESTAMP('2023-09-02 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (168, 120, TO_TIMESTAMP('2023-09-09 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (169, 120, TO_TIMESTAMP('2023-09-18 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+
+
+Insert INTO operacao (anulada,data) values (0, TO_DATE('13-05-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('02-06-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('16-06-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('01-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('08-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('15-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('22-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('29-07-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('05-08-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('10-08-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('17-08-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('24-08-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('02-09-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('09-09-2023', 'DD-MM-YYYY'));
+Insert INTO operacao (anulada,data) values (0, TO_DATE('18-09-2023', 'DD-MM-YYYY'));
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (170, 120, TO_TIMESTAMP('2023-05-14 07:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (171, 120, TO_TIMESTAMP('2023-06-01 07:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (172, 120, TO_TIMESTAMP('2023-06-15 07:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (173, 120, TO_TIMESTAMP('2023-06-30 07:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (174, 180, TO_TIMESTAMP('2023-07-07 07:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (175, 180, TO_TIMESTAMP('2023-07-14 22:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (176, 180, TO_TIMESTAMP('2023-07-21 22:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (177, 180, TO_TIMESTAMP('2023-07-28 22:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (178, 150, TO_TIMESTAMP('2023-08-04 22:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (179, 150, TO_TIMESTAMP('2023-08-11 22:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (180, 150, TO_TIMESTAMP('2023-08-18 22:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (181, 120, TO_TIMESTAMP('2023-08-25 22:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (182, 120, TO_TIMESTAMP('2023-09-01 22:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (183, 120, TO_TIMESTAMP('2023-09-08 22:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (184, 120, TO_TIMESTAMP('2023-09-15 22:00:00', 'YYYY-MM-DD HH24:MI:SS'),21);
+
+--rega setor 10
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('02-06-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('02-07-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('02-08-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('04-09-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('02-10-2023', 'DD-MM-YYYY'));
+
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (185, 60, TO_TIMESTAMP('2023-06-02 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (186, 120,TO_TIMESTAMP('2023-07-02 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (187, 180,TO_TIMESTAMP('2023-08-02 05:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (188, 120,TO_TIMESTAMP('2023-09-04 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (189, 60, TO_TIMESTAMP('2023-10-02 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
+
+
+
+--setor 42
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('12-06-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('19-06-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('30-06-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('08-07-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('15-07-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('22-07-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('29-07-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('05-08-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('12-08-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('19-08-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('26-08-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('31-08-2023', 'DD-MM-YYYY'));
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('05-09-2023', 'DD-MM-YYYY'));
+
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (190,  60, TO_TIMESTAMP('2023-06-12 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (191,  60, TO_TIMESTAMP('2023-06-19 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (192, 120, TO_TIMESTAMP('2023-06-30 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (193, 120, TO_TIMESTAMP('2023-07-08 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (194, 120, TO_TIMESTAMP('2023-07-15 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (195, 150, TO_TIMESTAMP('2023-07-22 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (196, 150, TO_TIMESTAMP('2023-07-29 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (197, 120, TO_TIMESTAMP('2023-08-05 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (198, 120, TO_TIMESTAMP('2023-08-12 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (199, 120, TO_TIMESTAMP('2023-08-19 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (200, 120, TO_TIMESTAMP('2023-08-26 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (201, 120, TO_TIMESTAMP('2023-08-31 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (202, 120, TO_TIMESTAMP('2023-09-05 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+
+
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('12-10-2023', 'DD-MM-YYYY'));
+INSERT INTO Semeadura (id,cultura,area,quantidade) values (203,(SELECT id FROM cultura WHERE planta = 'Amarelo' and dataFinal is null),1.1,32);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('10-10-2023', 'DD-MM-YYYY'));
+INSERT INTO MobilizacaoSolo (id,parcela,area) values (204,'Campo novo',0.5);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('18-09-2023', 'DD-MM-YYYY'));
+INSERT INTO Colheita(id,cultura,quantidade) values (205,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),900);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Danvers Half Long'),205);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('22-09-2023', 'DD-MM-YYYY'));
+INSERT INTO Colheita(id,cultura,quantidade) values (206,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),1500);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Danvers Half Long'),206);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('05-10-2023', 'DD-MM-YYYY'));
+INSERT INTO Colheita(id,cultura,quantidade) values (207,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),1200);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Danvers Half Long'),207);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('05-07-2023', 'DD-MM-YYYY'));
+INSERT INTO Semeadura (id,cultura,area,quantidade) values (208,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),0.5,1.2);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('08-08-2023', 'DD-MM-YYYY'));
+INSERT INTO Monda (id,cultura,area) values (209,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),0.5);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('15-09-2023', 'DD-MM-YYYY'));
+INSERT INTO Colheita (id,cultura,quantidade) values (210,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),8000);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Danvers Half Long'),210);
+
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-15',' YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (211,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),8000);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Danvers Half Long'),211);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-25',' YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (212,(select id from cultura where planta = 'manteiga' and dataFinal IS NULL),5000);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'manteiga'),212);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-08', 'YYYY-MM-DD'));
+INSERT INTO Monda (id,cultura,area) values (213,(select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),0.5);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-06-14','YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (214,(select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),1500);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Sugarsnax Hybrid'),214);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-06-28','YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (215,(select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),2500);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Sugarsnax Hybrid'),215);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-20', 'YYYY-MM-DD'));
+INSERT INTO Monda (id,cultura,area) values (216,(select id from cultura where planta = 'manteiga' and dataFinal IS NULL),0.6);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-06-20', 'YYYY-MM-DD'));
+INSERT INTO Monda (id,cultura,area) values (217,(select id from cultura where planta = 'manteiga' and dataFinal IS NULL),0.6);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-04-05', 'YYYY-MM-DD'));
+INSERT INTO Semeadura (id,cultura,area,quantidade) values (218,(select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),0.5,1.2);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-04-06', 'YYYY-MM-DD'));
+INSERT INTO Semeadura (id,cultura,area,quantidade) values (219,(select id from cultura where planta = 'manteiga' and dataFinal IS NULL),0.6,1.5);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-07-04', 'YYYY-MM-DD'));
+INSERT INTO MobilizacaoSolo (id,area,parcela) values (220,0.5,'Campo novo');
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-08-18', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (221,(select id from cultura where planta = 'ROYAL GALA' and dataInicial = TO_DATE('08-01-2017', 'DD-MM-YY') and dataFinal IS NULL),700);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'ROYAL GALA'),221);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-08-30', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (222,(select id from cultura where planta = 'ROYAL GALA' and dataInicial = TO_DATE('10-12-2018', 'DD-MM-YY') and dataFinal IS NULL),900);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'ROYAL GALA'),222);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-05', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (223,(select id from cultura where planta = 'JONAGORED' and dataFinal IS NULL),900);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'JONAGORED'),223);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-08', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (224,(select id from cultura where planta = 'JONAGORED' and dataFinal IS NULL),1050);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'JONAGORED'),224);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-28', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (225,(select id from cultura where planta = 'FUJI' and dataFinal IS NULL),950);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'FUJI'),225);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-10-03', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (226,(select id from cultura where planta = 'FUJI' and dataFinal IS NULL),800);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'FUJI'),226);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-11-02', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (227,(select id from cultura where planta = 'Arbequina' and dataFinal IS NULL),400);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Arbequina'),227);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-11-05', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (228,(select id from cultura where planta = 'PICUAL' and dataFinal IS NULL),300);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'PICUAL'),228);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-11-08', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (229,(select id from cultura where planta like 'Galega%' and dataFinal IS NULL),350);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Galega%'),229);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2016-10-12', 'YYYY-MM-DD'));
+INSERT INTO Plantacao(id,cultura,quantidade) values (230,(select id from cultura where planta like  'Arbequina' and dataFinal IS NULL),40);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-09', 'YYYY-MM-DD'));
+INSERT INTO Plantacao(id,cultura,quantidade) values (231,(select id from cultura where planta like  'Porta de loja' and dataFinal IS NULL),50);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-09', 'YYYY-MM-DD'));
+INSERT INTO Plantacao(id,cultura,quantidade) values (232,(select id from cultura where planta like  'Malápio' and dataFinal IS NULL),20);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-10', 'YYYY-MM-DD'));
+INSERT INTO Plantacao(id,cultura,quantidade) values (233,(select id from cultura where planta like  'Pipo de basto' and dataFinal IS NULL),40);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-10', 'YYYY-MM-DD'));
+INSERT INTO Plantacao(id,cultura,quantidade) values (234,(select id from cultura where planta like  'Canada' and dataFinal IS NULL),30);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-11', 'YYYY-MM-DD'));
+INSERT INTO Plantacao(id,cultura,quantidade) values (235,(select id from cultura where planta like  'Grand Fay' and dataFinal IS NULL),40);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-11', 'YYYY-MM-DD'));
+INSERT INTO Plantacao(id,cultura,quantidade) values (236,(select id from cultura where planta like  'Gronho Doce' and dataFinal IS NULL),50);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-15', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (237,(select id from cultura where planta = 'Canada' and dataFinal IS NULL),700);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Canada'),237);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-16', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (238,(select id from cultura where planta = 'Grand Fay' and dataFinal IS NULL),600);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Grand Fay'),238);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-20', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (239,(select id from cultura where planta = 'Grand Fay' and dataFinal IS NULL),700);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Grand Fay'),239);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-27', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (240,(select id from cultura where planta = 'Pipo de basto' and dataFinal IS NULL),600);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Pipo de basto'),240);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-10-05', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (241,(select id from cultura where planta = 'Pipo de basto' and dataFinal IS NULL),700);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Pipo de basto'),241);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-10-15', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (242,(select id from cultura where planta = 'Gronho Doce' and dataFinal IS NULL),1200);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Gronho Doce'),242);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-10-15', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (243,(select id from cultura where planta = 'Malápio' and dataFinal IS NULL),700);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Malápio'),243);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-11-12', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (244,(select id from cultura where planta = 'Porta de loja' and dataFinal IS NULL),700);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Porta de loja' ),244);
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-11-15', 'YYYY-MM-DD'));
+INSERT INTO Colheita(id,cultura,quantidade) values (245,(select id from cultura where planta = 'Porta de loja' and dataFinal IS NULL),800);
+INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Porta de loja' ),245);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-13', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (246,'BIOFERTIL N6','Campo grande',120);
+insert into operacaoAplicacao(id) values (246);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (246,(select id from cultura where lower(planta) = lower('PICUAL') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (247,'BIOFERTIL N6','Campo grande',180);
+insert into operacaoAplicacao(id) values (247);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (247,(select id from cultura where lower(planta) like lower('galega%') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (248,'BIOFERTIL N6','Campo grande',240);
+insert into operacaoAplicacao(id) values (248);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (248,(select id from cultura where lower(planta) = lower('Arbequina') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (249,'BIOFERTIL N6','Campo grande',120);
+insert into operacaoAplicacao(id) values (249);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (249,(select id from cultura where lower(planta) = lower('PICUAL') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (250,'BIOFERTIL N6','Campo grande',180);
+insert into operacaoAplicacao(id) values (250);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (250,(select id from cultura where lower(planta) like lower('galega%') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-13', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (251,'BIOFERTIL N6','Campo grande',240);
+insert into operacaoAplicacao(id) values (251);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (251,(select id from cultura where lower(planta) = lower('Arbequina') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (252,'BIOFERTIL N6','Campo grande',120);
+insert into operacaoAplicacao(id) values (252);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (252,(select id from cultura where lower(planta) like lower('picual') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (253,'BIOFERTIL N6','Campo grande',180);
+insert into operacaoAplicacao(id) values (253);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (253,(select id from cultura where lower(planta) like lower('galega%') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (254,'BIOFERTIL N6','Campo grande',240);
+insert into operacaoAplicacao(id) values (254);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (254,(select id from cultura where lower(planta) like lower('Arbequina') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-04-01', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (255,'Biocal Composto','Campo novo',500);
+insert into operacaoAplicacao(id) values (255);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-07-03', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (256,'Fertimax Extrume de Cavalo','Campo novo',1800);
+insert into operacaoAplicacao(id) values (256);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-04', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (257,'BIOFERTIL N6','Lameiro do moinho',3200);
+insert into operacaoAplicacao(id) values (257);
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-06', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (258,'Fertimax Extrume de Cavalo','Lameiro do moinho',100);
+insert into operacaoAplicacao(id) values (258);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (258,(select id from cultura where lower(planta) like lower('porta de loja') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-06', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (259,'Fertimax Extrume de Cavalo','Lameiro do moinho',40);
+insert into operacaoAplicacao(id) values (259);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (259,(select id from cultura where lower(planta) like lower('malápio') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-06', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (260,'Fertimax Extrume de Cavalo','Lameiro do moinho',80);
+insert into operacaoAplicacao(id) values (260);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (260,(select id from cultura where lower(planta) like lower('pipo de basto') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-06', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (261,'Fertimax Extrume de Cavalo','Lameiro do moinho',60);
+insert into operacaoAplicacao(id) values (261);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (261,(select id from cultura where lower(planta) like lower('canada') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-07', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (262,'Fertimax Extrume de Cavalo','Lameiro do moinho',80);
+insert into operacaoAplicacao(id) values (262);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (262,(select id from cultura where lower(planta) like lower('grand fay') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-07', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (263,'Fertimax Extrume de Cavalo','Lameiro do moinho',100);
+insert into operacaoAplicacao(id) values (263);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (263,(select id from cultura where lower(planta) like lower('gronho doce') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-07', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (264,'Fertimax Extrume de Cavalo','Lameiro do moinho',150);
+insert into operacaoAplicacao(id) values (264);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (264,(select id from cultura where lower(planta) like lower('porta de loja') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-07', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (265,'Fertimax Extrume de Cavalo','Lameiro do moinho',60);
+insert into operacaoAplicacao(id) values (265);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (265,(select id from cultura where lower(planta) like lower('malápio') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-08', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (266,'Fertimax Extrume de Cavalo','Lameiro do moinho',120);
+insert into operacaoAplicacao(id) values (266);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (266,(select id from cultura where lower(planta) like lower('pipo de basto') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-07', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (267,'Fertimax Extrume de Cavalo','Lameiro do moinho',90);
+insert into operacaoAplicacao(id) values (267);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (267,(select id from cultura where lower(planta) like lower('canada') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-07', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (268,'Fertimax Extrume de Cavalo','Lameiro do moinho',120);
+insert into operacaoAplicacao(id) values (268);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (268,(select id from cultura where lower(planta) like lower('grand fay') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-08', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (269,'Fertimax Extrume de Cavalo','Lameiro do moinho',150);
+insert into operacaoAplicacao(id) values (269);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (269,(select id from cultura where lower(planta) like lower('gronho doce') and dataFinal IS NULL));
+
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-15', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (270,'BIOFERTIL N6','Lameiro do moinho',150);
+insert into operacaoAplicacao(id) values (270);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (270,(select id from cultura where lower(planta) like lower('porta de loja') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-15', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (271,'BIOFERTIL N6','Lameiro do moinho',60);
+insert into operacaoAplicacao(id) values (271);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (271,(select id from cultura where lower(planta) like lower('malápio') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-15', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (272,'BIOFERTIL N6','Lameiro do moinho',120);
+insert into operacaoAplicacao(id) values (272);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (272,(select id from cultura where lower(planta) like lower('pipo de basto') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-16', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (273,'BIOFERTIL N6','Lameiro do moinho',90);
+insert into operacaoAplicacao(id) values (273);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (273,(select id from cultura where lower(planta) like lower('canada') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-16', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (274,'BIOFERTIL N6','Lameiro do moinho',120);
+insert into operacaoAplicacao(id) values (274);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (274,(select id from cultura where lower(planta) like lower('grand fay') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-16', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (275,'BIOFERTIL N6','Lameiro do moinho',150);
+insert into operacaoAplicacao(id) values (275);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (275,(select id from cultura where lower(planta) like lower('gronho doce') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (276,'EPSO Microtop','Lameiro do moinho',5);
+insert into operacaoAplicacao(id) values (276);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (276,(select id from cultura where lower(planta) like lower('porta de loja') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (277,'EPSO Microtop','Lameiro do moinho',2);
+insert into operacaoAplicacao(id) values (277);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (277,(select id from cultura where lower(planta) like lower('malápio') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (278,'EPSO Microtop','Lameiro do moinho',4);
+insert into operacaoAplicacao(id) values (278);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (278,(select id from cultura where lower(planta) like lower('pipo de basto') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (279,'EPSO Microtop','Lameiro do moinho',3);
+insert into operacaoAplicacao(id) values (279);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (279,(select id from cultura where lower(planta) like lower('canada') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (280,'EPSO Microtop','Lameiro do moinho',4);
+insert into operacaoAplicacao(id) values (280);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (280,(select id from cultura where lower(planta) like lower('grand fay') and dataFinal IS NULL));
+
+INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
+insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (281,'EPSO Microtop','Lameiro do moinho',5);
+insert into operacaoAplicacao(id) values (281);
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (281,(select id from cultura where lower(planta) like lower('gronho doce') and dataFinal IS NULL));
