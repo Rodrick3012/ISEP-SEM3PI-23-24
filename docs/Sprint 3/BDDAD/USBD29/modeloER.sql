@@ -160,8 +160,7 @@ CREATE TABLE Setor (
   dataFim      date, 
   PRIMARY KEY (setor));
 CREATE TABLE MixFertirrega (
-  id         number GENERATED AS IDENTITY, 
-  designacao varchar2(40) NOT NULL, 
+  id number GENERATED AS IDENTITY, 
   PRIMARY KEY (id));
 CREATE TABLE MixFertirrega_FatorProducao (
   MixFertirrega number NOT NULL, 
