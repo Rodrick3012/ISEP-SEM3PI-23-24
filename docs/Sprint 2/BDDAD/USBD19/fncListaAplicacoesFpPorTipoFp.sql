@@ -31,8 +31,8 @@ v_cursor SYS_REFCURSOR;
     v_cultura cultura.planta%TYPE;
 BEGIN
     v_cursor := fncListaAplicacoesFpPorTipoFp(
-        TO_DATE('2019-01-04', 'YYYY-MM-DD'), -- Replace with your actual start date
-        TO_DATE('2023-07-06', 'YYYY-MM-DD'),  -- Replace with your actual end date
+        TO_DATE('2019-01-04', 'YYYY-MM-DD'),
+        TO_DATE('2023-07-06', 'YYYY-MM-DD'),
         'Lameiro do moinho'
     );
 
