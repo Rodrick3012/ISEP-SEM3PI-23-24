@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
+#include <string.h>
 
 typedef struct {
     int* data;
@@ -68,30 +68,6 @@ Sensor initializeSensor(char* line) {
 
 
 
-void create_directory_if_not_exists(const char *directory) {
-    char path[256]; // Adjust the size according to your needs
-
-    snprintf(path, sizeof(path), "../%s", directory); // This adds ".." to the directory path
-
-    struct stat st = {0};
-
-    if (stat(path, &st) == -1) {
-        mkdir(path, 0700);
-    }
-}
-
-void setupComponent() {
-    // Diretórios necessários
-    const char *coletorDeDadosDir = "ColetorDeDados";
-    const char *processadorDeDadosDir = "ProcessadorDeDados";
-    const char *saidaDeDadosDir = "SaidaDeDados";
-
-    create_directory_if_not_exists(coletorDeDadosDir);
-    create_directory_if_not_exists(processadorDeDadosDir);
-    create_directory_if_not_exists(saidaDeDadosDir);
-
-    // Outras configurações do componente, se necessário
-}
 
 
 
@@ -158,6 +134,3 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
-
-
