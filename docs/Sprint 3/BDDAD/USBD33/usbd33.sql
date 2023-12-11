@@ -1,19 +1,16 @@
 CREATE OR REPLACE FUNCTION fncListaCulturasMaiorConsumoAgua(pAno INTEGER) RETURN sys_refCursor
 IS
-  listRetorno sys_refcursor;
+    listRetorno sys_refcursor;
 BEGIN
 OPEN listRetorno FOR
-SELECT c.id, c.planta, SUM(duracao) AS MinutosRega, EXTRACT(YEAR FROM orr.horario) AS ano
-FROM operacaoRega orr
-         INNER JOIN setorparcelaCultura spc ON spc.cultura = orr.cultura
-    AND spc.parcela = orr.parcela
-    AND spc.setor = orr.setor
-         INNER JOIN parcelaCultura pc ON pc.parcela = spc.parcela
-    AND pc.cultura = spc.cultura
-         INNER JOIN cultura c ON c.id = pc.cultura
+SELECT cultura.id, cultura.planta, SUM(duracao) AS tempoTotalRega
+FROM operacaoRegaSetor orr
+         LEFT JOIN setor ON setor.setor = orr.setor
+         INNER JOIN setorParcelacultura spc ON spc.setor = setor.setor
+         INNER JOIN cultura ON cultura.id = spc.cultura
 WHERE EXTRACT(YEAR FROM orr.horario) = pAno
-GROUP BY c.id, c.planta, EXTRACT(YEAR FROM orr.horario)
-ORDER BY MinutosRega DESC, c.id ASC;
+GROUP BY cultura.id, cultura.planta
+ORDER BY tempoTotalRega DESC;
 
 RETURN listRetorno;
 END;
@@ -22,20 +19,21 @@ END;
 --Bloco anónimo
 
 DECLARE
-lista SYS_REFCURSOR;
-  idCultura cultura.id%TYPE;
-  cultura1 cultura.planta%TYPE;
-  soma INTEGER;
-  ano INTEGER;
+v_id NUMBER;
+    v_planta VARCHAR2(30);
+    v_tempoTotalRega NUMBER;
+    v_cursor SYS_REFCURSOR;
 BEGIN
-  lista := fncListaCulturasMaiorConsumoAgua(2023);
 
-  LOOP
-FETCH lista INTO idCultura, cultura1, soma, ano;
-    EXIT WHEN lista%NOTFOUND;
-    DBMS_OUTPUT.PUT_LINE('Cultura = ' || cultura1 || ' minutos rega = ' || soma || ' ano = ' || ano);
+    v_cursor := fncListaCulturasMaiorConsumoAgua(2023);
+
+    LOOP
+
+FETCH v_cursor INTO v_id, v_planta, v_tempoTotalRega;
+        EXIT WHEN v_cursor%NOTFOUND;
+
+        DBMS_OUTPUT.PUT_LINE('ID: ' || v_id || ', Planta: ' || v_planta || ', Tempo Total de Rega: ' || v_tempoTotalRega);
 END LOOP;
-
-CLOSE lista;
+CLOSE v_cursor;
 END;
 /
