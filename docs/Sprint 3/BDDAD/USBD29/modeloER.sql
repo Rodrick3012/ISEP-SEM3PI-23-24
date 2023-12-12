@@ -151,8 +151,8 @@ CREATE TABLE OperacaoRegaSetor (
   setor   varchar2(2) NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE Operacao (
-  id      number GENERATED AS IDENTITY, 
-  anulada number(1) DEFAULT 0 NOT NULL, 
+  id      number NOT NULL,
+  anulada number DEFAULT 0 NOT NULL, 
   data    date NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE Setor (
