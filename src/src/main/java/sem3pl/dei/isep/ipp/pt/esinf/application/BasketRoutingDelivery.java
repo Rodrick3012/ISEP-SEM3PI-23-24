@@ -1,6 +1,5 @@
 package sem3pl.dei.isep.ipp.pt.esinf.application;
 
-import sem3pl.dei.isep.ipp.pt.MainMenu;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.Locals;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.LocationCriteria;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.ShortestPath;
@@ -10,6 +9,7 @@ import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI02;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI03;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI04;
 import sem3pl.dei.isep.ipp.pt.esinf.application.repository.DistributionNetwork;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Utils;
 
 import java.util.ArrayList;
@@ -93,8 +93,8 @@ public class BasketRoutingDelivery implements Runnable {
                 sc.nextLine();
                 String exitOption = sc.nextLine();
                 if (exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")) {
-                    MainMenu mainMenu = new MainMenu();
-                    mainMenu.run();
+                    FarmCoordinator farmCoordinator = new FarmCoordinator();
+                    farmCoordinator.run();
                 } else basketRoutingDeliveryMenu();
                 break;
             default:
