@@ -2,6 +2,7 @@ package sem3pl.dei.isep.ipp.pt;
 
 
 import sem3pl.dei.isep.ipp.pt.bddad.dataAccess.DatabaseConnection;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,8 +14,8 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         connectDataBase();
-        MainMenu mainMenu = new MainMenu();
-        mainMenu.run();
+        FarmCoordinator farmCoordinator = new FarmCoordinator();
+        farmCoordinator.run();
     }
 
     private static void loadProperties() throws IOException {
