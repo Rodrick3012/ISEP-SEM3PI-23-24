@@ -1506,3 +1506,6 @@ INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (281,'EPSO Microtop','Lameiro do moinho',5);
 insert into operacaoAplicacao(id) values (281);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (281,(select id from cultura where lower(planta) like lower('gronho doce') and dataFinal IS NULL));
+
+insert into tipoAlteracao (tipoalteracao) values ('criacao');
+insert into tipoAlteracao (tipoalteracao) values ('anulacao');
