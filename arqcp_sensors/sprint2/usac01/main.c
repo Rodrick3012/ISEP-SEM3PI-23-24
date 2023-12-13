@@ -2,7 +2,6 @@
 #include <inttypes.h>
 #include "usac01.h"
 
-
 int main(void) {
 	
 	

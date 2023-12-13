@@ -1,51 +1,112 @@
-#include <stdio.h>
-#include <string.h>
+Sensor ID: 1
+Type: soil_humidity
+Unit: percentage
+Circular Buffer Content for buffer-> Buffer is empty
+Last Read: 0
+Timeout: 40000
+Write Counter: 0
+Last Received Time: 0
+Size array(acording moving median) 5
+Is In Error: 0
 
-// Define a structure to serialize
-struct Person {
-char name[50];
-int age;
-float height;
-};
+Sensor ID: 2
+Type: soil_humidity
+Unit: percentage
+Circular Buffer Content for buffer-> 2160 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Buffer size = 60
+Last Read: 0
+Timeout: 50000
+Write Counter: 0
+Last Received Time: 1702481845
+Size array(acording moving median) 46
+Is In Error: 0
 
-// Function to serialize the structure
-void serialize(struct Person* person, FILE* file) {
-fwrite(person, sizeof(struct Person), 1, file);
-}
+Sensor ID: 3
+Type: atmospheric_humidity
+Unit: percentage
+Circular Buffer Content for buffer-> Buffer is empty
+Last Read: 0
+Timeout: 20000
+Write Counter: 0
+Last Received Time: 0
+Size array(acording moving median) 61
+Is In Error: 0
 
-// Function to deserialize the structure
-void deserialize(struct Person* person, FILE* file) {
-fread(person, sizeof(struct Person), 1, file);
-}
+Sensor ID: 4
+Type: atmospheric_humidity
+Unit: percentage
+Circular Buffer Content for buffer-> Buffer is empty
+Last Read: 0
+Timeout: 20000
+Write Counter: 0
+Last Received Time: 0
+Size array(acording moving median) 61
+Is In Error: 0
 
-int main() {
-// Create an instance of the structure
-struct Person person;
-strcpy(person.name, "John");
-person.age = 30;
-person.height = 6.1;
+Sensor ID: 5
+Type: atmospheric_humidity
+Unit: percentage
+Circular Buffer Content for buffer-> Buffer is empty
+Last Read: 0
+Timeout: 20000
+Write Counter: 0
+Last Received Time: 0
+Size array(acording moving median) 36
+Is In Error: 0
 
-// Serialize the structure to a file
+Sensor ID: 6
+Type: atmospheric_humidity
+Unit: percentage
+Circular Buffer Content for buffer-> Buffer is empty
+Last Read: 0
+Timeout: 50000
+Write Counter: 0
+Last Received Time: 0
+Size array(acording moving median) 41
+Is In Error: 0
 
-FILE* file = fopen("person_data.bin", "wb");
-if (file != NULL) {
-    serialize(&person, file);
-    fclose(file);
-}
+Sensor ID: 7
+Type: atmospheric_temperature
+Unit: celsius
+Circular Buffer Content for buffer-> Buffer is empty
+Last Read: 0
+Timeout: 80000
+Write Counter: 0
+Last Received Time: 0
+Size array(acording moving median) 31
+Is In Error: 0
 
-// Deserialize the structure from the file
+Sensor ID: 8
+Type: atmospheric_temperature
+Unit: celsius
+Circular Buffer Content for buffer-> 2160 2160 2160 0 0 2160 0 
+Buffer size = 7
+Last Read: 0
+Timeout: 400000
+Write Counter: 0
+Last Received Time: 1702481845
+Size array(acording moving median) 5
+Is In Error: 0
 
-struct Person newPerson;
-file = fopen("person_data.bin", "rb");
-if (file != NULL) {
-    deserialize(&newPerson, file);
-    fclose(file);
+Sensor ID: 9
+Type: atmospheric_temperature
+Unit: celsius
+Circular Buffer Content for buffer-> Buffer is empty
+Last Read: 0
+Timeout: 20000
+Write Counter: 0
+Last Received Time: 0
+Size array(acording moving median) 38
+Is In Error: 0
 
-    // Display deserialized data
-    printf("Name: %s\n", newPerson.name);
-    printf("Age: %d\n", newPerson.age);
-    printf("Height: %.2f\n", newPerson.height);
-}
+Sensor ID: 10
+Type: atmospheric_temperature
+Unit: celsius
+Circular Buffer Content for buffer-> Buffer is empty
+Last Read: 0
+Timeout: 20000
+Write Counter: 0
+Last Received Time: 0
+Size array(acording moving median) 39
+Is In Error: 0
 
-return 0;
-}
