@@ -1,7 +1,7 @@
-main: main.o usac01.o asm.o calculoMediana.o sortArray.o
-	gcc main.o usac01.o asm.o calculoMediana.o sortArray.o -z noexecstack -o main
+main: main.o usac01.o asm.o calculoMediana.o sortArray.o printFunctions.o functionsForSerialization.o sensorConfigFunctions.o copyFunctions.o medianFunctions.o algorithmUs11.o
+	gcc main.o usac01.o asm.o calculoMediana.o sortArray.o printFunctions.o functionsForSerialization.o sensorConfigFunctions.o copyFunctions.o medianFunctions.o algorithmUs11.o -z noexecstack -o main
 	
-main.o: main.c usac01.h
+main.o: main.c projectFunctions.h structs.h
 	gcc -g -Wall -Wextra -fanalyzer -c main.c -o main.o
 
 asm.o: asm.s
@@ -15,6 +15,24 @@ calculoMediana.o: calculoMediana.s
 	
 sortArray.o: sortArray.s
 	gcc -g -Wall -Wextra -fanalyzer -c sortArray.s -o sortArray.o
+
+printFunctions.o: printFunctions.c
+	gcc -g -Wall -Wextra -fanalyzer -c printFunctions.c -o printFunctions.o	
+	
+functionsForSerialization.o: functionsForSerialization.c
+	gcc -g -Wall -Wextra -fanalyzer -c functionsForSerialization.c -o functionsForSerialization.o	
+
+sensorConfigFunctions.o: sensorConfigFunctions.c
+	gcc -g -Wall -Wextra -fanalyzer -c sensorConfigFunctions.c -o sensorConfigFunctions.o	
+
+copyFunctions.o: copyFunctions.c
+	gcc -g -Wall -Wextra -fanalyzer -c copyFunctions.c -o copyFunctions.o	
+
+medianFunctions.o: medianFunctions.c
+	gcc -g -Wall -Wextra -fanalyzer -c medianFunctions.c -o medianFunctions.o	
+
+algorithmUs11.o: algorithmUs11.c
+	gcc -g -Wall -Wextra -fanalyzer -c algorithmUs11.c -o algorithmUs11.o	
 		
 run: main
 	./main
