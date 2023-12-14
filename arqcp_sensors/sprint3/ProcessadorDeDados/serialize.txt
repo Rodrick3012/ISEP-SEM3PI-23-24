@@ -1,51 +1,10 @@
-#include <stdio.h>
-#include <string.h>
-
-// Define a structure to serialize
-struct Person {
-char name[50];
-int age;
-float height;
-};
-
-// Function to serialize the structure
-void serialize(struct Person* person, FILE* file) {
-fwrite(person, sizeof(struct Person), 1, file);
-}
-
-// Function to deserialize the structure
-void deserialize(struct Person* person, FILE* file) {
-fread(person, sizeof(struct Person), 1, file);
-}
-
-int main() {
-// Create an instance of the structure
-struct Person person;
-strcpy(person.name, "John");
-person.age = 30;
-person.height = 6.1;
-
-// Serialize the structure to a file
-
-FILE* file = fopen("person_data.bin", "wb");
-if (file != NULL) {
-    serialize(&person, file);
-    fclose(file);
-}
-
-// Deserialize the structure from the file
-
-struct Person newPerson;
-file = fopen("person_data.bin", "rb");
-if (file != NULL) {
-    deserialize(&newPerson, file);
-    fclose(file);
-
-    // Display deserialized data
-    printf("Name: %s\n", newPerson.name);
-    printf("Age: %d\n", newPerson.age);
-    printf("Height: %.2f\n", newPerson.height);
-}
-
-return 0;
-}
+sensor_id->1 ,write_counter->1 ,type->soil_humidity ,unit->percentage ,mediana->0 #
+sensor_id->2 ,write_counter->1 ,type->soil_humidity ,unit->percentage ,mediana->0 #
+sensor_id->3 ,write_counter->1 ,type->atmospheric_humidity ,unit->percentage ,mediana->0 #
+sensor_id->4 ,write_counter->1 ,type->atmospheric_humidity ,unit->percentage ,mediana->0 #
+sensor_id->5 ,write_counter->1 ,type->atmospheric_humidity ,unit->percentage ,mediana->0 #
+sensor_id->6 ,write_counter->1 ,type->atmospheric_humidity ,unit->percentage ,mediana->0 #
+sensor_id->7 ,write_counter->1 ,type->atmospheric_temperature ,unit->celsius ,mediana->0 #
+sensor_id->8 ,write_counter->1 ,type->atmospheric_temperature ,unit->celsius ,mediana->2160 #
+sensor_id->9 ,write_counter->1 ,type->atmospheric_temperature ,unit->celsius ,mediana->0 #
+sensor_id->10 ,write_counter->1 ,type->atmospheric_temperature ,unit->celsius ,mediana->0 #

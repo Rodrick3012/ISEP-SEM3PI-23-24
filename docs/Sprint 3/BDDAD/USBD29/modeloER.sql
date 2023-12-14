@@ -37,6 +37,8 @@ DROP TABLE Colheita CASCADE CONSTRAINTS;
 DROP TABLE Poda CASCADE CONSTRAINTS;
 DROP TABLE IncorporacaoSolo CASCADE CONSTRAINTS;
 DROP TABLE OperacaoFatorProducao CASCADE CONSTRAINTS;
+DROP TABLE LogOperacoes CASCADE CONSTRAINTS;
+DROP TABLE tipoAlteracao CASCADE CONSTRAINTS;
 CREATE TABLE Parcela (
   designacao varchar2(25) NOT NULL, 
   area       number NOT NULL, 
@@ -149,8 +151,8 @@ CREATE TABLE OperacaoRegaSetor (
   setor   varchar2(2) NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE Operacao (
-  id      number GENERATED AS IDENTITY, 
-  anulada number(1) DEFAULT 0 NOT NULL, 
+  id      number NOT NULL,
+  anulada number DEFAULT 0 NOT NULL, 
   data    date NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE Setor (
@@ -229,6 +231,16 @@ CREATE TABLE OperacaoFatorProducao (
   parcela       varchar2(25) NOT NULL, 
   quantidade    number NOT NULL, 
   PRIMARY KEY (id));
+CREATE TABLE LogOperacoes (
+  idLog         number GENERATED AS IDENTITY, 
+  idOperacao    number NOT NULL, 
+  dataAlteracao timestamp(0) NOT NULL, 
+  tipoAlteracao number NOT NULL, 
+  PRIMARY KEY (idLog));
+CREATE TABLE tipoAlteracao (
+  id            number GENERATED AS IDENTITY, 
+  tipoAlteracao varchar2(20) NOT NULL, 
+  PRIMARY KEY (id));
 ALTER TABLE FatorProducao ADD CONSTRAINT FKFatorProdu762811 FOREIGN KEY (objetivo) REFERENCES Objetivo (id);
 ALTER TABLE Cultura ADD CONSTRAINT FKCultura134268 FOREIGN KEY (planta) REFERENCES planta (Variedade);
 ALTER TABLE Sensor ADD CONSTRAINT FKSensor671518 FOREIGN KEY (Estacao) REFERENCES EstacaoMeteorologica (designacao);
@@ -271,3 +283,5 @@ ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa567047 FOREIGN KEY 
 ALTER TABLE RegaFertirrega ADD CONSTRAINT FKRegaFertir40828 FOREIGN KEY (OperacaoRegaSetor) REFERENCES OperacaoRegaSetor (id);
 ALTER TABLE OperacaoRegaSetor ADD CONSTRAINT FKOperacaoRe376754 FOREIGN KEY (setor) REFERENCES Setor (setor);
 ALTER TABLE MobilizacaoSolo ADD CONSTRAINT FKMobilizaca144825 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
+ALTER TABLE LogOperacoes ADD CONSTRAINT FKLogOperaco356012 FOREIGN KEY (idOperacao) REFERENCES Operacao (id);
+ALTER TABLE LogOperacoes ADD CONSTRAINT FKLogOperaco411938 FOREIGN KEY (tipoAlteracao) REFERENCES tipoAlteracao (id);
