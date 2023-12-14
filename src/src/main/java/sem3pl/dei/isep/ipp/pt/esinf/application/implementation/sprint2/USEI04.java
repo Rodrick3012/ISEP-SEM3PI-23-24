@@ -43,6 +43,7 @@ public class USEI04 {
 
 
     public static List<Edge<Locals, Integer>> prim(Graph<Locals, Integer> graph) {
+
         Set<Locals> visited = new HashSet<>();
         List<Edge<Locals, Integer>> minimumSpanningTree = new ArrayList<>();
 
