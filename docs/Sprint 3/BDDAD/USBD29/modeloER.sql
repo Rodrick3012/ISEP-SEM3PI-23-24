@@ -232,10 +232,12 @@ CREATE TABLE OperacaoFatorProducao (
   quantidade    number NOT NULL, 
   PRIMARY KEY (id));
 CREATE TABLE LogOperacoes (
-  idLog         number GENERATED AS IDENTITY, 
-  idOperacao    number NOT NULL, 
-  dataAlteracao timestamp(0) NOT NULL, 
-  tipoAlteracao number NOT NULL, 
+  idLog                  number GENERATED AS IDENTITY, 
+  idOperacao             number NOT NULL, 
+  estadoAnulacaoAnterior number(1) NOT NULL, 
+  dataOperacao           date NOT NULL, 
+  dataAlteracao          timestamp(0) NOT NULL, 
+  tipoAlteracao          number NOT NULL, 
   PRIMARY KEY (idLog));
 CREATE TABLE tipoAlteracao (
   id            number GENERATED AS IDENTITY, 
@@ -283,5 +285,4 @@ ALTER TABLE OperacaoFatorProducao ADD CONSTRAINT FKOperacaoFa567047 FOREIGN KEY 
 ALTER TABLE RegaFertirrega ADD CONSTRAINT FKRegaFertir40828 FOREIGN KEY (OperacaoRegaSetor) REFERENCES OperacaoRegaSetor (id);
 ALTER TABLE OperacaoRegaSetor ADD CONSTRAINT FKOperacaoRe376754 FOREIGN KEY (setor) REFERENCES Setor (setor);
 ALTER TABLE MobilizacaoSolo ADD CONSTRAINT FKMobilizaca144825 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
-ALTER TABLE LogOperacoes ADD CONSTRAINT FKLogOperaco356012 FOREIGN KEY (idOperacao) REFERENCES Operacao (id);
 ALTER TABLE LogOperacoes ADD CONSTRAINT FKLogOperaco411938 FOREIGN KEY (tipoAlteracao) REFERENCES tipoAlteracao (id);
