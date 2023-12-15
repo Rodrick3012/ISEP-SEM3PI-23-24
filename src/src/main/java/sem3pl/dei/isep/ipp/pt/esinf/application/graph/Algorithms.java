@@ -427,6 +427,181 @@ public class Algorithms {
         return Collections.emptyList();
     }
 
+    public static <V,E> boolean colorDFS(Graph<V, E> g, V vOrig, int[] color) {
+        // Make vOrig gray
+        int idxOrig = g.key(vOrig);
+        color[idxOrig] = 1; // Assuming 0 is white, 1 is gray, and 2 is black
+
+        // For each vAdj of vOrig
+        List<V> adjacentVertices = (List<V>) g.adjVertices(vOrig);
+        for (V vAdj : adjacentVertices) {
+            int idxAdj = g.key(vAdj);
+            // If the vAdj vertex is gray, there is a cycle
+            if (color[idxAdj] == 1) {
+                return true;
+            }
+
+            // If the vAdj vertex is white, recursively call colorDFS
+            if (color[idxAdj] == 0) {
+                if (colorDFS(g, vAdj, color)) {
+                    return true;
+                }
+            }
+        }
+
+        // Make vOrig black
+        color[idxOrig] = 2;
+
+        // No cycle found starting from vOrig
+        return false;
+    }
+
+    public static <V, E> ArrayList<LinkedList<V>> allCycles(Graph<V, E> g) {
+        // List to store all cycles found in the graph
+        ArrayList<LinkedList<V>> paths = new ArrayList<>();
+
+        // Iterate through all vertices in the graph
+        for (V vOrig : g.vertices()) {
+            // Array to track whether a vertex has been visited in a specific cycle
+            boolean[] visited = new boolean[g.numVertices()];
+
+            // Mark all vertices except the current one as visited to avoid duplicate cycles
+            for (V prevVertex : g.vertices()) {
+                if (!prevVertex.equals(vOrig)) {
+                    visited[g.key(prevVertex)] = true;
+                }
+            }
+
+            // List to store the current cycle being explored
+            LinkedList<V> path = new LinkedList<>();
+
+            // Call the recursive method to find all paths starting from the current vertex
+            allPaths(g, vOrig, vOrig, visited, path, paths);
+        }
+
+        return paths;
+    }
+
+    public static <V, E> boolean kahn(Graph<V, E> g, List<V> topsort) {
+        int numVerts = 0;
+        int[] degreeIn = new int[g.numVertices()];
+        Queue<V> queueAux = new LinkedList<>();
+
+        // Initialize in-degrees and add vertices with in-degree 0 to the queue
+        for (V vertex : g.vertices()) {
+            int idxV = g.key(vertex);
+            degreeIn[idxV] = g.inDegree(vertex);
+            if (degreeIn[idxV] == 0) {
+                queueAux.add(vertex);
+            }
+        }
+
+        // Process vertices in topological order
+        while (!queueAux.isEmpty()) {
+            V vOrig = queueAux.poll();
+            topsort.add(vOrig);
+            numVerts++;
+
+            // Update in-degrees for adjacent vertices
+            for (V vAdj : g.adjVertices(vOrig)) {
+                int idxVAdj = g.key(vAdj);
+                degreeIn[idxVAdj]--;
+                // If in-degree becomes 0, add the vertex to the queue
+                if (degreeIn[idxVAdj] == 0) {
+                    queueAux.add(vAdj);
+                }
+            }
+        }
+
+        // Check if all vertices are visited
+        if (numVerts < g.numVertices()) {
+            // Graph has a cycle
+            return false;
+        }
+
+        // Graph is acyclic
+        return true;
+    }
+
+    public static <V, E> Queue<V> topologSort(Graph<V, E> g) {
+        // Array to track whether a vertex has been visited
+        boolean[] visited = new boolean[g.numVertices()];
+        // Queue to store the topological ordering of vertices
+        Queue<V> topsort = new LinkedList<>();
+
+        // Iterate through all vertices in the graph
+        for (V vertex : g.vertices()) {
+            // If the vertex has not been visited, perform topological sort starting from that vertex
+            if (!visited[g.key(vertex)]) {
+                topologSort(g, vertex, visited, topsort);
+            }
+        }
+
+        return topsort;
+    }
+
+    private static <V, E> void topologSort(Graph<V, E> g, V vOrig, boolean[] visited, Queue<V> topsort) {
+        // Mark the current vertex as visited
+        int idxVOrig = g.key(vOrig);
+        visited[idxVOrig] = true;
+
+        // Recursively visit adjacent vertices
+        for (V vAdj : g.adjVertices(vOrig)) {
+            int idxVAdj = g.key(vAdj);
+            // If the adjacent vertex has not been visited, recursively call topologSort
+            if (!visited[idxVAdj]) {
+                topologSort(g, vAdj, visited, topsort);
+            }
+        }
+
+        // Add the current vertex to the topological ordering
+        topsort.add(vOrig);
+    }
+
+    public static <V, E> Map<V, Integer> welshPowell(Graph<V, E> g) {
+        // Get the list of vertices in the graph
+        List<V> lstVerts = new ArrayList<>(g.vertices());
+
+        // Sort the vertices topologically using the topologSort method
+        topologSort(g);
+
+        // Map to store vertex colors
+        Map<V, Integer> vertexColors = new HashMap<>();
+
+        // Start with the first color
+        int color = 1;
+
+        // Continue until all vertices are colored
+        while (!vertexColors.keySet().containsAll(lstVerts)) {
+            // Iterate through all vertices
+            for (V vertex : lstVerts) {
+                // Flag to check if the current color is a possible color for the vertex
+                boolean possibleColor = true;
+
+                // If the vertex is not already colored
+                if (!vertexColors.containsKey(vertex)) {
+                    // Check the colors of adjacent vertices
+                    for (V vAdj : g.adjVertices(vertex)) {
+                        // If an adjacent vertex has the same color, mark it as not a possible color
+                        if (vertexColors.containsKey(vAdj) && vertexColors.get(vAdj) == color) {
+                            possibleColor = false;
+                            break;
+                        }
+                    }
+
+                    // If the current color is possible, assign it to the vertex
+                    if (possibleColor) {
+                        vertexColors.put(vertex, color);
+                    }
+                }
+            }
+
+            // Move on to the next color
+            color++;
+        }
+
+        return vertexColors;
+    }
 
 }
 
