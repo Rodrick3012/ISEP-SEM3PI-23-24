@@ -1,6 +1,12 @@
 CREATE OR REPLACE TRIGGER trg_inserirCriacaoLog
-AFTER INSERT ON operacao
-FOR EACH ROW
+    AFTER INSERT OR UPDATE ON operacao
+    FOR EACH ROW
 BEGIN
-insert into logoperacoes(idOperacao,dataAlteracao,tipoalteracao) values (:NEW.id,SYSDATE,1);
+    IF INSERTING THEN
+        INSERT INTO logoperacoes(idOperacao, estadoAnulacaoAnterior, dataOperacao, dataAlteracao, tipoAlteracao)
+        VALUES (:NEW.id, :NEW.anulada, :NEW.data, SYSDATE, 1);
+    ELSIF UPDATING THEN
+        INSERT INTO logoperacoes(idOperacao, estadoAnulacaoAnterior, dataOperacao, dataAlteracao, tipoAlteracao)
+        VALUES (:OLD.id, :OLD.anulada, :OLD.data, SYSDATE, 2);
+    END IF;
 END;
