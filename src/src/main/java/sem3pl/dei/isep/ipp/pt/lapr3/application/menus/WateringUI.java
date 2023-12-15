@@ -4,6 +4,7 @@ import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.WateringController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringPlan;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Files;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.WateringComparator;
 
 import java.util.*;
 import java.util.concurrent.Executors;
@@ -135,18 +136,18 @@ public class WateringUI implements Runnable {
     }
 
     private void verifyThatIsWatering() {
-        WateringPlan wateringPlan = selectWateringPlan();
         int year = inputYear();
         int month = inputMonth();
         int day = inputDay();
         int hour = inputHour();
         int minute = inputMinute();
         boolean checked = checkDateData(year, month, day, hour, minute);
+        WateringPlan wateringPlan = wateringController.getWateringPlanList().get(0);
         if(checked) {
             Map<Integer, Integer> sectorsAreWatering = wateringController.verifiesThatIsWatering(wateringPlan, year, month, day, hour, minute);
             Iterator<Map.Entry<Integer, Integer>> iterator = sectorsAreWatering.entrySet().iterator();
             System.out.println();
-            System.out.printf("Sectors are Watering in %02d/%02d , %02d:%02d", day, month, hour, minute);
+            System.out.printf("Sectors are Watering in %02d/%02d/%d, %02d:%02d", day, month, year, hour, minute);
             System.out.println();
             while (iterator.hasNext()) {
                 Map.Entry<Integer, Integer> entry = iterator.next();
@@ -159,7 +160,7 @@ public class WateringUI implements Runnable {
 
     private boolean checkDateData(int year, int month, int day, int hour, int minute){
         System.out.println("Inputted data: ");
-        System.out.printf("%02d/%02d/%02d , %02d:%02d", day, month, year, hour, minute);
+        System.out.printf("%02d/%02d/%d, %02d:%02d", day, month, year, hour, minute);
         System.out.println();
         boolean checked = false;
         System.out.println("Submit data?");
@@ -272,38 +273,5 @@ public class WateringUI implements Runnable {
         return minute;
     }
 
-    private int listWateringPlans() {
-        List<WateringPlan> wateringPlans = wateringController.getWateringPlanList();
-        int i = 0;
-        for (WateringPlan wateringPlan : wateringPlans) {
-            System.out.println(i+1 + ". " + wateringPlan.toString());
-            i++;
-        }
-        return i;
-    }
 
-    private WateringPlan selectWateringPlan() {
-        List<WateringPlan> wateringPlans = wateringController.getWateringPlanList();
-        WateringPlan wateringPlan = null;
-        System.out.println("Select watering Plan: ");
-        System.out.println();
-        int options = listWateringPlans();
-        try {
-            int option = sc.nextInt() - 1;
-            if (option >= 0 && option <= options) {
-                wateringPlan = wateringPlans.get(option);
-            } else {
-                System.out.println("Invalid Option. Please Try Again.");
-                System.out.println();
-                sc.nextLine();
-                selectWateringPlan();
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid Option. Please Try Again.");
-            System.out.println();
-            sc.next();
-            selectWateringPlan();
-        }
-        return wateringPlan;
-    }
 }

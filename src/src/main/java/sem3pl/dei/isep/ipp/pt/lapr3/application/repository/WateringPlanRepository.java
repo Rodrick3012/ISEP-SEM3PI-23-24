@@ -63,4 +63,25 @@ public class WateringPlanRepository {
             }
         }
     }
+
+    public void wateringFertigationOperationRegister(Integer sector, Integer duration, java.util.Date date, String time, Integer fertigationMix) throws SQLException {
+        CallableStatement callableStatement = null;
+        try{
+            Connection connection = DatabaseConnection.getInstance().getConnection();
+            callableStatement = connection.prepareCall("{ call pcdInserirOperacaoRega(?,?,?,?,?) }");
+
+            callableStatement.setInt(1, sector);
+            callableStatement.setInt(2, duration);
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            callableStatement.setDate(3, sqlDate);
+            callableStatement.setString(4, time);
+            callableStatement.setInt(5, fertigationMix);
+            callableStatement.execute();
+            connection.commit();
+        } finally {
+            if(!Objects.isNull(callableStatement)){
+                callableStatement.close();
+            }
+        }
+    }
 }

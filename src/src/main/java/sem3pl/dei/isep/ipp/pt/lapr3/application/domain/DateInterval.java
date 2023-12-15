@@ -5,10 +5,12 @@ import java.util.Date;
 public class DateInterval {
     private Date startDate;
     private Date endDate;
+    private Integer fertigationMix;
 
     public DateInterval(Date startDate, Date endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
+        fertigationMix = null;
     }
 
     public Date getStartDate() {
@@ -27,4 +29,10 @@ public class DateInterval {
         this.endDate = endDate;
     }
 
+    public Integer getFertigationMix(){
+        return fertigationMix;
+    }
+    public void setFertigationMix(Integer fertigationMix){
+        this.fertigationMix = fertigationMix;
+    }
 }
