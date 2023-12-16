@@ -45,7 +45,7 @@ DECLARE
 result1 BOOLEAN;
 BEGIN
     result1 := fncverificarDataNaoEstaNoFuturo(SYSDATE, TO_DATE('2023-01-01', 'YYYY-MM-DD'), TO_DATE('2022-12-01', 'YYYY-MM-DD'));
-    DBMS_OUTPUT.PUT_LINE('Resultado do Teste 3: ' || CASE WHEN result THEN 'Sucesso' ELSE 'Falha' END);
+    DBMS_OUTPUT.PUT_LINE('Resultado do Teste 3: ' || CASE WHEN result1 THEN 'Sucesso' ELSE 'Falha' END);
 EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLERRM);
