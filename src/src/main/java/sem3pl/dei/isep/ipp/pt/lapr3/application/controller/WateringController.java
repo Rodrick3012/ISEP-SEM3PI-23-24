@@ -183,7 +183,7 @@ public class WateringController {
                 allDateIntervals.addAll(intervals);
             }
             allDateIntervals.sort(Comparator.comparing(DateInterval::getStartDate));
-            pw.println("Dia;Sector;Duração;Inicio;Final;Mix de fertirrega;Concluída");
+            pw.println("Dia;Sector;Duração;Inicio;Final;Receita de fertirrega;Concluída");
 
             Calendar currentDate = Calendar.getInstance();
             currentDate.setTime(new Date());
@@ -282,7 +282,7 @@ public class WateringController {
                     String wateringInitialTime = wateringPlanData[3];
                     String fertigationMix = wateringPlanData[5];
                     if(fertigationMix.isEmpty()) {
-                        wateringPlanRepository.wateringOperationRegister(wateringSector, wateringDuration, dateWateringConcluded, wateringInitialTime);
+                       wateringPlanRepository.wateringOperationRegister(wateringSector, wateringDuration, dateWateringConcluded, wateringInitialTime);
                     } else wateringPlanRepository.wateringFertigationOperationRegister(wateringSector, wateringDuration, dateWateringConcluded, wateringInitialTime, Integer.parseInt(fertigationMix));
                 }
             }
