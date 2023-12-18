@@ -91,23 +91,6 @@ public class USEI09 {
         return countPaths;
     }
 
-    private <V,E> V chooseVertexByInfluence(Set<V> cluster, CommonGraph<V,E> g){
-        HashMap<V, Integer> influenceMap = calculateInfluence(g, cluster);
-        return Collections.max(cluster, Comparator.comparing(influenceMap::get));
-    }
-
-    private static <V,E> HashMap<V, Integer> calculateInfluence(CommonGraph<V, E> g, Set<V> vertices) {
-        HashMap<V, Integer> influenceMap = new HashMap<>();
-
-        for (V vertex : vertices) {
-            int inDegree = g.inDegree(vertex);
-            int outDegree = g.outDegree(vertex);
-            influenceMap.put(vertex, inDegree + outDegree);
-        }
-
-        return influenceMap;
-    }
-
     @SuppressWarnings("unchecked")
     private static <V,E> V findHubInCluster(Set<V> cluster, ArrayList<LocationCriteria> hubs) {
         V selectedHub = null;
