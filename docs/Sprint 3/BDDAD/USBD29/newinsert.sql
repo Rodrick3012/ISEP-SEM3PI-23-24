@@ -1,443 +1,512 @@
+INSERT INTO tipoplanta (tipoplanta) values ('Permanente');
+INSERT INTO tipoplanta (tipoplanta) values ('Temporária');
 Insert into Produto (produto) select ('Ameixa') FROM dual where not exists( Select 1 From produto Where  produto = 'Ameixa');
-Insert into tipoplanta(tipoplanta) select ('Permanente') FROM dual where not exists( Select 1 From tipoplanta Where  tipoplanta = 'Permanente');
-Insert into TipoData(TipoData) select ('dataPoda') FROM dual where not exists( Select 1 From TipoData Where  TipoData = 'dataPoda');
-Insert into TipoData(TipoData) select ('dataFloração') FROM dual where not exists( Select 1 From TipoData Where  TipoData = 'dataFloração');
-Insert into TipoData(TipoData) select ('dataColheita') FROM dual where not exists( Select 1 From TipoData Where  TipoData = 'dataColheita');
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'RAINHA CLAUDIA CARANGUEJEIRA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'RAINHA CLAUDIA CARANGUEJEIRA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'RAINHA CLAUDIA CARANGUEJEIRA%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'RAINHA CLAUDIA CARANGUEJEIRA%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'RAINHA CLAUDIA CARANGUEJEIRA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'PRESIDENT', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'PRESIDENT%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'PRESIDENT%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'PRESIDENT%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'PRESIDENT'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'STANLEY', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'STANLEY%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'STANLEY%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'STANLEY%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'STANLEY'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'ANGELENO', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'ANGELENO%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'ANGELENO%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'ANGELENO%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'ANGELENO'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'BLACK BEAUTY', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK BEAUTY%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK BEAUTY%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK BEAUTY%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'BLACK BEAUTY'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'BLACK STAR', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK STAR%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK STAR%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK STAR%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'BLACK STAR'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'BLACK GOLD', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK GOLD%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK GOLD%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK GOLD%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'BLACK GOLD'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'BLACK DIAMOND', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK DIAMOND%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK DIAMOND%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK DIAMOND%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'BLACK DIAMOND'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'BLACK AMBER', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK AMBER%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK AMBER%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK AMBER%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'BLACK AMBER'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'BLACK SPLENDOR', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK SPLENDOR%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK SPLENDOR%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK SPLENDOR%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'BLACK SPLENDOR'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'FORTUNA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'FORTUNA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'FORTUNA%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'FORTUNA%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'FORTUNA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'FRIAR', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'FRIAR%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'FRIAR%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'FRIAR%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'FRIAR'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'EL DORADO', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'EL DORADO%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'EL DORADO%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'EL DORADO%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'EL DORADO'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'ELEPHANT HEART', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'ELEPHANT HEART%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'ELEPHANT HEART%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'ELEPHANT HEART%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'ELEPHANT HEART'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'GOLDEN JAPAN', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'GOLDEN JAPAN%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'GOLDEN JAPAN%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'GOLDEN JAPAN%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'GOLDEN JAPAN'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'HARRY PITCHON', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'HARRY PITCHON%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'HARRY PITCHON%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'HARRY PITCHON%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'HARRY PITCHON'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'LAETITIA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'LAETITIA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'LAETITIA%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'LAETITIA%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'LAETITIA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'METLEY', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'METLEY%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'METLEY%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'METLEY%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'METLEY'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'MIRABELLE DE NANCY', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'MIRABELLE DE NANCY%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'MIRABELLE DE NANCY%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'MIRABELLE DE NANCY%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'MIRABELLE DE NANCY'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'QUEEN ROSE', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'QUEEN ROSE%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'QUEEN ROSE%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'QUEEN ROSE%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'QUEEN ROSE'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'RED BEAUT', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'RED BEAUT%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'RED BEAUT%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'RED BEAUT%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'RED BEAUT'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'SANTA ROSA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'SANTA ROSA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'SANTA ROSA%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'SANTA ROSA%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'SANTA ROSA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'SHIRO', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'SHIRO%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'SHIRO%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'SHIRO%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'SHIRO'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'SUNGOLD', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'SUNGOLD%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'SUNGOLD%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'SUNGOLD%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'SUNGOLD'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'WILSON PERFECTION', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'WILSON PERFECTION%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'WILSON PERFECTION%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'WILSON PERFECTION%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'WILSON PERFECTION'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus domestica', 'Ameixoeira', 'AUTUMN GIANT', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'AUTUMN GIANT%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'AUTUMN GIANT%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Ameixoeira' and variedade like 'AUTUMN GIANT%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select variedade from planta where variedade like 'AUTUMN GIANT'));
+Insert into TipoPeriodo(TipoPeriodo) select ('dataPoda') FROM dual where not exists( Select 1 From TipoPeriodo Where  TipoPeriodo = 'dataPoda');
+Insert into TipoPeriodo(TipoPeriodo) select ('dataFloração') FROM dual where not exists( Select 1 From TipoPeriodo Where  TipoPeriodo = 'dataFloração');
+Insert into TipoPeriodo(TipoPeriodo) select ('dataColheita') FROM dual where not exists( Select 1 From TipoPeriodo Where  TipoPeriodo = 'dataColheita');
+INSERT INTO especie(designacao,tipoplantaid) values ('Prunus domestica', (select id from tipoplanta where tipoplanta='Permanente'));
+INSERT INTO especie(designacao,tipoplantaid) values ('Prunus armeniaca', (select id from tipoplanta where tipoplanta='Permanente'));
+INSERT INTO especie(designacao,tipoplantaid) values ('Malus domestica', (select id from tipoplanta where tipoplanta='Permanente'));
+INSERT INTO especie(designacao,tipoplantaid) values ('Pyrus pyrifolia', (select id from tipoplanta where tipoplanta='Permanente'));
+INSERT INTO especie(designacao,tipoplantaid) values ('Daucus carota subsp. Sativus', (select id from tipoplanta where tipoplanta='Temporária'));
+INSERT INTO especie(designacao,tipoplantaid) values ('Lupinus albus', (select id from tipoplanta where tipoplanta='Temporária'));
+INSERT INTO especie(designacao,tipoplantaid) values ('Zea mays', (select id from tipoplanta where tipoplanta='Temporária'));
+INSERT INTO especie(designacao,tipoplantaid) values ('Brassica rapa', (select id from tipoplanta where tipoplanta='Temporária'));
+INSERT INTO especie(designacao,tipoplantaid) values ('Olea europaea', (select id from tipoplanta where tipoplanta='Permanente'));
+INSERT INTO especie(designacao,tipoplantaid) values ('Vitis vinifera', (select id from tipoplanta where tipoplanta='Permanente'));
+INSERT INTO especie(designacao,tipoplantaid) values ('Lupinus luteus', (select id from tipoplanta where tipoplanta='Temporária'));
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'RAINHA CLAUDIA CARANGUEJEIRA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'PRESIDENT');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'STANLEY');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'ANGELENO');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'BLACK BEAUTY');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'BLACK STAR');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'BLACK GOLD');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'BLACK DIAMOND');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'BLACK AMBER');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'BLACK SPLENDOR');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'FORTUNA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'FRIAR');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'EL DORADO');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'ELEPHANT HEART');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'GOLDEN JAPAN');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'HARRY PITCHON');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'LAETITIA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'METLEY');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'MIRABELLE DE NANCY');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'QUEEN ROSE');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'RED BEAUT');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'SANTA ROSA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'SHIRO');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'SUNGOLD');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'WILSON PERFECTION');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus domestica'),'Ameixoeira', 'AUTUMN GIANT');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus armeniaca'),'Damasqueiro', 'BULIDA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus armeniaca'),'Damasqueiro', 'CANINO');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus armeniaca'),'Damasqueiro', 'LIABAUD');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus armeniaca'),'Damasqueiro', 'MAILLOT JAUNE');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Prunus armeniaca'),'Damasqueiro', 'POLONAIS');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'AKANE');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'BELGOLDEN');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'BRAVO DE ESMOLFE');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'CASA NOVA DE ALCOBAÇA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'EROVAN');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'FUJI');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'GRANNY SMITH');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'GOLDEN DELICIOUS');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'HI-EARLY');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'JONAGORED');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'LYSGOLDEN');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'MUTSU');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'PORTA DA LOJA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'REINETTE OU CANADA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'REINETTE OU GRAND FAY');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'RISCADINHA DE PALMELA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'ROYAL GALA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'REDCHIEF');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'STARKING');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'SUMMER RED');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'WELLSPUR DELICIOUS');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'NOIVA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'OLHO ABERTO');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'CAMOESA ROSA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'MALÁPIO');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'GRONHO DOCE');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'PÉ DE BOI ');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'PINOVA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'PARDO LINDO');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'PIPO DE BASTO');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'PRIMA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'QUERINA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'VISTA BELLA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'GOLDEN SMOOTHEE');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'GOLDEN SUPREMA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'GLOSTER 69');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'FREEDOM');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Pyrus pyrifolia'),'Pera Nashi', 'SNINSEIKI');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Pyrus pyrifolia'),'Pera Nashi', 'KUMOI');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Pyrus pyrifolia'),'Pera Nashi', 'HOSUI');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Pyrus pyrifolia'),'Pera Nashi', 'NIJISSEIKI');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Daucus carota subsp. Sativus'),'Cenoura', 'Carson Hybrid');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Daucus carota subsp. Sativus'),'Cenoura', 'Red Cored Chantenay');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Daucus carota subsp. Sativus'),'Cenoura', 'Danvers Half Long');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Daucus carota subsp. Sativus'),'Cenoura', 'Imperator 58');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Daucus carota subsp. Sativus'),'Cenoura', 'Sugarsnax Hybrid');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Daucus carota subsp. Sativus'),'Cenoura', 'Nelson Hybrid');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Daucus carota subsp. Sativus'),'Cenoura', 'Scarlet Nantes');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Lupinus luteus'),'Tremoço', 'Amarelo');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Lupinus albus'),'Tremoço', 'Branco');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Zea mays'),'Milho', 'MAS 24.C');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Zea mays'),'Milho', 'Doce Golden Bantam');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Brassica rapa'),'Nabo greleiro', 'Senhora Conceição');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Olea europaea'),'Oliveira', 'COBRANÇOSA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Olea europaea'),'Oliveira', 'ARBEQUINA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Olea europaea'),'Oliveira', 'HOJIBLANCA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Olea europaea'),'Oliveira', 'NEGRINHA DO FREIXO');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Olea europaea'),'Oliveira', 'PICUAL');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Olea europaea'),'Oliveira', 'MAÇANILHA');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Olea europaea'),'Oliveira', 'CONSERVA DE ELVAS');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Olea europaea'),'Oliveira', 'Galega ');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Brassica rapa'),'Nabo', 'S. Cosme');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Vitis vinifera'),'Videira', 'Dona Maria');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Vitis vinifera'),'Videira', 'Cardinal');
+
+
+
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'RAINHA CLAUDIA CARANGUEJEIRA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'RAINHA CLAUDIA CARANGUEJEIRA%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'RAINHA CLAUDIA CARANGUEJEIRA%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'RAINHA CLAUDIA CARANGUEJEIRA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'PRESIDENT%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'PRESIDENT%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'PRESIDENT%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'PRESIDENT'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'STANLEY%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'STANLEY%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'STANLEY%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'STANLEY'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'ANGELENO%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'ANGELENO%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'ANGELENO%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'ANGELENO'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK BEAUTY%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK BEAUTY%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK BEAUTY%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'BLACK BEAUTY'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK STAR%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK STAR%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK STAR%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'BLACK STAR'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK GOLD%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK GOLD%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK GOLD%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'BLACK GOLD'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK DIAMOND%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK DIAMOND%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK DIAMOND%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'BLACK DIAMOND'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK AMBER%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK AMBER%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK AMBER%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'BLACK AMBER'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK SPLENDOR%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK SPLENDOR%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'BLACK SPLENDOR%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'BLACK SPLENDOR'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'FORTUNA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'FORTUNA%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'FORTUNA%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'FORTUNA'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'FRIAR%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'FRIAR%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'FRIAR%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'FRIAR'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'EL DORADO%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'EL DORADO%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'EL DORADO%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'EL DORADO'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'ELEPHANT HEART%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'ELEPHANT HEART%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'ELEPHANT HEART%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'ELEPHANT HEART'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'GOLDEN JAPAN%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'GOLDEN JAPAN%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'GOLDEN JAPAN%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'GOLDEN JAPAN'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'HARRY PITCHON%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'HARRY PITCHON%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'HARRY PITCHON%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'HARRY PITCHON'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'LAETITIA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'LAETITIA%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'LAETITIA%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'LAETITIA'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'METLEY%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'METLEY%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'METLEY%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'METLEY'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'MIRABELLE DE NANCY%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'MIRABELLE DE NANCY%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'MIRABELLE DE NANCY%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'MIRABELLE DE NANCY'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'QUEEN ROSE%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'QUEEN ROSE%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'QUEEN ROSE%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'QUEEN ROSE'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'RED BEAUT%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'RED BEAUT%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'RED BEAUT%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'RED BEAUT'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'SANTA ROSA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'SANTA ROSA%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'SANTA ROSA%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'SANTA ROSA'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'SHIRO%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'SHIRO%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'SHIRO%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'SHIRO'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'SUNGOLD%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'SUNGOLD%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'SUNGOLD%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'SUNGOLD'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'WILSON PERFECTION%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'WILSON PERFECTION%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'WILSON PERFECTION%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'WILSON PERFECTION'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'AUTUMN GIANT%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'AUTUMN GIANT%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Ameixoeira' and variedade like 'AUTUMN GIANT%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Ameixa'),(select id from planta where variedade like 'AUTUMN GIANT'));
 Insert into Produto (produto) select ('Damasco') FROM dual where not exists( Select 1 From produto Where  produto = 'Damasco');
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus armeniaca', 'Damasqueiro', 'BULIDA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'BULIDA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'BULIDA%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'BULIDA%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Damasco'),(select variedade from planta where variedade like 'BULIDA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus armeniaca', 'Damasqueiro', 'CANINO', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'CANINO%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'CANINO%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'CANINO%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Damasco'),(select variedade from planta where variedade like 'CANINO'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus armeniaca', 'Damasqueiro', 'LIABAUD', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'LIABAUD%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'LIABAUD%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'LIABAUD%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Damasco'),(select variedade from planta where variedade like 'LIABAUD'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus armeniaca', 'Damasqueiro', 'MAILLOT JAUNE', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'MAILLOT JAUNE%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'MAILLOT JAUNE%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'MAILLOT JAUNE%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Damasco'),(select variedade from planta where variedade like 'MAILLOT JAUNE'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Prunus armeniaca', 'Damasqueiro', 'POLONAIS', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'POLONAIS%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'POLONAIS%'),'Fevereiro a março',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Damasqueiro' and variedade like 'POLONAIS%'),'Julho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Damasco'),(select variedade from planta where variedade like 'POLONAIS'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'BULIDA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'BULIDA%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'BULIDA%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Damasco'),(select id from planta where variedade like 'BULIDA'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'CANINO%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'CANINO%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'CANINO%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Damasco'),(select id from planta where variedade like 'CANINO'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'LIABAUD%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'LIABAUD%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'LIABAUD%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Damasco'),(select id from planta where variedade like 'LIABAUD'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'MAILLOT JAUNE%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'MAILLOT JAUNE%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'MAILLOT JAUNE%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Damasco'),(select id from planta where variedade like 'MAILLOT JAUNE'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'POLONAIS%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'POLONAIS%'),'Fevereiro a março',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Damasqueiro' and variedade like 'POLONAIS%'),'Julho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Damasco'),(select id from planta where variedade like 'POLONAIS'));
 Insert into Produto (produto) select ('Maçã') FROM dual where not exists( Select 1 From produto Where  produto = 'Maçã');
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'AKANE', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'AKANE%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'AKANE%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'AKANE%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'AKANE'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'BELGOLDEN', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'BELGOLDEN%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'BELGOLDEN%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'BELGOLDEN%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'BELGOLDEN'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'BRAVO DE ESMOLFE', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'BRAVO DE ESMOLFE%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'BRAVO DE ESMOLFE%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'BRAVO DE ESMOLFE%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'BRAVO DE ESMOLFE'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'CASA NOVA DE ALCOBAÇA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'CASA NOVA DE ALCOBAÇA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'CASA NOVA DE ALCOBAÇA%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'CASA NOVA DE ALCOBAÇA%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'CASA NOVA DE ALCOBAÇA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'EROVAN', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'EROVAN%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'EROVAN%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'EROVAN%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'EROVAN'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'FUJI', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'FUJI%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'FUJI%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'FUJI%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'FUJI'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'GRANNY SMITH', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GRANNY SMITH%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GRANNY SMITH%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GRANNY SMITH%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'GRANNY SMITH'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'GOLDEN DELICIOUS', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN DELICIOUS%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN DELICIOUS%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN DELICIOUS%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'GOLDEN DELICIOUS'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'HI-EARLY', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'HI-EARLY%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'HI-EARLY%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'HI-EARLY%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'HI-EARLY'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'JONAGORED', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'JONAGORED%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'JONAGORED%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'JONAGORED%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'JONAGORED'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'LYSGOLDEN', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'LYSGOLDEN%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'LYSGOLDEN%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'LYSGOLDEN%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'LYSGOLDEN'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'MUTSU', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'MUTSU%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'MUTSU%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'MUTSU%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'MUTSU'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'PORTA DA LOJA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PORTA DA LOJA%'),'Janeiro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PORTA DA LOJA%'),'Abril a maio',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PORTA DA LOJA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'PORTA DA LOJA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'REINETTE OU CANADA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'REINETTE OU CANADA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'REINETTE OU CANADA%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'REINETTE OU CANADA%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'REINETTE OU CANADA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'REINETTE OU GRAND FAY', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'REINETTE OU GRAND FAY%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'REINETTE OU GRAND FAY%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'REINETTE OU GRAND FAY%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'REINETTE OU GRAND FAY'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'RISCADINHA DE PALMELA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'RISCADINHA DE PALMELA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'RISCADINHA DE PALMELA%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'RISCADINHA DE PALMELA%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'RISCADINHA DE PALMELA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'ROYAL GALA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'ROYAL GALA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'ROYAL GALA%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'ROYAL GALA%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'ROYAL GALA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'REDCHIEF', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'REDCHIEF%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'REDCHIEF%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'REDCHIEF%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'REDCHIEF'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'STARKING', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'STARKING%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'STARKING%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'STARKING%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'STARKING'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'SUMMER RED', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'SUMMER RED%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'SUMMER RED%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'SUMMER RED%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'SUMMER RED'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'WELL SPUR DELICIOUS', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'WELL SPUR DELICIOUS%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'WELL SPUR DELICIOUS%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'WELL SPUR DELICIOUS%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'WELL SPUR DELICIOUS'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'NOIVA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'NOIVA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'NOIVA%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'NOIVA%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'NOIVA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'OLHO ABERTO', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'OLHO ABERTO%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'OLHO ABERTO%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'OLHO ABERTO%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'OLHO ABERTO'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'CAMOESA ROSA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'CAMOESA ROSA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'CAMOESA ROSA%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'CAMOESA ROSA%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'CAMOESA ROSA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'MALÁPIO', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'MALÁPIO%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'MALÁPIO%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'MALÁPIO%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'MALÁPIO'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'GRONHO DOCE', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GRONHO DOCE%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GRONHO DOCE%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GRONHO DOCE%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'GRONHO DOCE'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'PÉ DE BOI ', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PÉ DE BOI %'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PÉ DE BOI %'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PÉ DE BOI %'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'PÉ DE BOI '));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'PINOVA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PINOVA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PINOVA%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PINOVA%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'PINOVA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'PARDO LINDO', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PARDO LINDO%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PARDO LINDO%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PARDO LINDO%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'PARDO LINDO'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'PIPO DE BASTO', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PIPO DE BASTO%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PIPO DE BASTO%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PIPO DE BASTO%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'PIPO DE BASTO'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'PRIMA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PRIMA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PRIMA%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'PRIMA%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'PRIMA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'QUERINA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'QUERINA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'QUERINA%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'QUERINA%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'QUERINA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'VISTA BELLA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'VISTA BELLA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'VISTA BELLA%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'VISTA BELLA%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'VISTA BELLA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'GOLDEN SMOOTHEE', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN SMOOTHEE%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN SMOOTHEE%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN SMOOTHEE%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'GOLDEN SMOOTHEE'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'GOLDEN SUPREMA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN SUPREMA%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN SUPREMA%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN SUPREMA%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'GOLDEN SUPREMA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'GLOSTER 69', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GLOSTER 69%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GLOSTER 69%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'GLOSTER 69%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'GLOSTER 69'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Malus domestica', 'Macieira', 'FREEDOM', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'FREEDOM%'),'Novembro a dezembro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'FREEDOM%'),'Março a abril',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Macieira' and variedade like 'FREEDOM%'),'Agosto a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select variedade from planta where variedade like 'FREEDOM'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'AKANE%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'AKANE%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'AKANE%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'AKANE'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'BELGOLDEN%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'BELGOLDEN%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'BELGOLDEN%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'BELGOLDEN'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'BRAVO DE ESMOLFE%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'BRAVO DE ESMOLFE%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'BRAVO DE ESMOLFE%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'BRAVO DE ESMOLFE'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'CASA NOVA DE ALCOBAÇA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'CASA NOVA DE ALCOBAÇA%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'CASA NOVA DE ALCOBAÇA%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'CASA NOVA DE ALCOBAÇA'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'EROVAN%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'EROVAN%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'EROVAN%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'EROVAN'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'FUJI%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'FUJI%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'FUJI%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'FUJI'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GRANNY SMITH%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GRANNY SMITH%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GRANNY SMITH%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'GRANNY SMITH'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN DELICIOUS%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN DELICIOUS%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN DELICIOUS%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'GOLDEN DELICIOUS'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'HI-EARLY%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'HI-EARLY%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'HI-EARLY%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'HI-EARLY'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'JONAGORED%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'JONAGORED%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'JONAGORED%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'JONAGORED'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'LYSGOLDEN%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'LYSGOLDEN%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'LYSGOLDEN%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'LYSGOLDEN'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'MUTSU%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'MUTSU%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'MUTSU%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'MUTSU'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PORTA DA LOJA%'),'Janeiro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PORTA DA LOJA%'),'Abril a maio',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PORTA DA LOJA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'PORTA DA LOJA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'REINETTE OU CANADA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'REINETTE OU CANADA%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'REINETTE OU CANADA%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'REINETTE OU CANADA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'REINETTE OU GRAND FAY%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'REINETTE OU GRAND FAY%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'REINETTE OU GRAND FAY%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'REINETTE OU GRAND FAY'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'RISCADINHA DE PALMELA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'RISCADINHA DE PALMELA%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'RISCADINHA DE PALMELA%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'RISCADINHA DE PALMELA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'ROYAL GALA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'ROYAL GALA%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'ROYAL GALA%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'ROYAL GALA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'REDCHIEF%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'REDCHIEF%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'REDCHIEF%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'REDCHIEF'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'STARKING%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'STARKING%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'STARKING%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'STARKING'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'SUMMER RED%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'SUMMER RED%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'SUMMER RED%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'SUMMER RED'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'WELLSPUR DELICIOUS%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'WELLSPUR DELICIOUS%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'WELLSPUR DELICIOUS%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'WELLSPUR DELICIOUS'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'NOIVA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'NOIVA%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'NOIVA%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'NOIVA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'OLHO ABERTO%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'OLHO ABERTO%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'OLHO ABERTO%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'OLHO ABERTO'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'CAMOESA ROSA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'CAMOESA ROSA%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'CAMOESA ROSA%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'CAMOESA ROSA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'MALÁPIO%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'MALÁPIO%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'MALÁPIO%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'MALÁPIO'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GRONHO DOCE%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GRONHO DOCE%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GRONHO DOCE%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'GRONHO DOCE'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PÉ DE BOI %'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PÉ DE BOI %'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PÉ DE BOI %'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'PÉ DE BOI '));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PINOVA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PINOVA%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PINOVA%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'PINOVA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PARDO LINDO%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PARDO LINDO%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PARDO LINDO%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'PARDO LINDO'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PIPO DE BASTO%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PIPO DE BASTO%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PIPO DE BASTO%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'PIPO DE BASTO'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PRIMA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PRIMA%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'PRIMA%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'PRIMA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'QUERINA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'QUERINA%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'QUERINA%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'QUERINA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'VISTA BELLA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'VISTA BELLA%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'VISTA BELLA%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'VISTA BELLA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN SMOOTHEE%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN SMOOTHEE%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN SMOOTHEE%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'GOLDEN SMOOTHEE'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN SUPREMA%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN SUPREMA%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GOLDEN SUPREMA%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'GOLDEN SUPREMA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GLOSTER 69%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GLOSTER 69%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GLOSTER 69%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'GLOSTER 69'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'FREEDOM%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'FREEDOM%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'FREEDOM%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'FREEDOM'));
 Insert into Produto (produto) select ('Peras Nashi') FROM dual where not exists( Select 1 From produto Where  produto = 'Peras Nashi');
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Pyrus pyrifolia', 'Pera Nashi', 'SNINSEIKI', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Peras Nashi'),(select variedade from planta where variedade like 'SNINSEIKI'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Pyrus pyrifolia', 'Pera Nashi', 'KUMOI', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Peras Nashi'),(select variedade from planta where variedade like 'KUMOI'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Pyrus pyrifolia', 'Pera Nashi', 'HOSUI', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Peras Nashi'),(select variedade from planta where variedade like 'HOSUI'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Pyrus pyrifolia', 'Pera Nashi', 'NIJISSEIKI', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Peras Nashi'),(select variedade from planta where variedade like 'NIJISSEIKI'));
+
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Peras Nashi'),(select id from planta where variedade like 'SNINSEIKI'));
+
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Peras Nashi'),(select id from planta where variedade like 'KUMOI'));
+
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Peras Nashi'),(select id from planta where variedade like 'HOSUI'));
+
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Peras Nashi'),(select id from planta where variedade like 'NIJISSEIKI'));
 Insert into Produto (produto) select ('Cenoura') FROM dual where not exists( Select 1 From produto Where  produto = 'Cenoura');
 Insert into tipoplanta(tipoplanta) select ('Temporária') FROM dual where not exists( Select 1 From tipoplanta Where  tipoplanta = 'Temporária');
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Daucus carota subsp. Sativus', 'Cenoura', 'Carson Hybrid', (select id from tipoplanta where tipoplanta='Temporária'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Cenoura' and variedade like 'Carson Hybrid%'),'80 dias',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select variedade from planta where variedade like 'Carson Hybrid'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Daucus carota subsp. Sativus', 'Cenoura', 'Red Cored Chantenay', (select id from tipoplanta where tipoplanta='Temporária'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Cenoura' and variedade like 'Red Cored Chantenay%'),'80 dias',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select variedade from planta where variedade like 'Red Cored Chantenay'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Daucus carota subsp. Sativus', 'Cenoura', 'Danvers Half Long', (select id from tipoplanta where tipoplanta='Temporária'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Cenoura' and variedade like 'Danvers Half Long%'),'80 dias',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select variedade from planta where variedade like 'Danvers Half Long'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Daucus carota subsp. Sativus', 'Cenoura', 'Imperator 58', (select id from tipoplanta where tipoplanta='Temporária'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Cenoura' and variedade like 'Imperator 58%'),'80 dias',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select variedade from planta where variedade like 'Imperator 58'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Daucus carota subsp. Sativus', 'Cenoura', 'Sugarsnax Hybrid', (select id from tipoplanta where tipoplanta='Temporária'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Cenoura' and variedade like 'Sugarsnax Hybrid%'),'80 dias',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select variedade from planta where variedade like 'Sugarsnax Hybrid'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Daucus carota subsp. Sativus', 'Cenoura', 'Nelson Hybrid', (select id from tipoplanta where tipoplanta='Temporária'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Cenoura' and variedade like 'Nelson Hybrid%'),'80 dias',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select variedade from planta where variedade like 'Nelson Hybrid'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Daucus carota subsp. Sativus', 'Cenoura', 'Scarlet Nantes', (select id from tipoplanta where tipoplanta='Temporária'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Cenoura' and variedade like 'Scarlet Nantes%'),'80 dias',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select variedade from planta where variedade like 'Scarlet Nantes'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Cenoura' and variedade like 'Carson Hybrid%'),'80 dias',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select id from planta where variedade like 'Carson Hybrid'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Cenoura' and variedade like 'Red Cored Chantenay%'),'80 dias',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select id from planta where variedade like 'Red Cored Chantenay'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Cenoura' and variedade like 'Danvers Half Long%'),'80 dias',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select id from planta where variedade like 'Danvers Half Long'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Cenoura' and variedade like 'Imperator 58%'),'80 dias',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select id from planta where variedade like 'Imperator 58'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Cenoura' and variedade like 'Sugarsnax Hybrid%'),'80 dias',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select id from planta where variedade like 'Sugarsnax Hybrid'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Cenoura' and variedade like 'Nelson Hybrid%'),'80 dias',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select id from planta where variedade like 'Nelson Hybrid'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Cenoura' and variedade like 'Scarlet Nantes%'),'80 dias',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Cenoura'),(select id from planta where variedade like 'Scarlet Nantes'));
 Insert into Produto (produto) select ('Tremoço') FROM dual where not exists( Select 1 From produto Where  produto = 'Tremoço');
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Lupinus luteus', 'Tremoço', 'Amarelo', (select id from tipoplanta where tipoplanta='Temporária'));
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Tremoço'),(select variedade from planta where variedade like 'Amarelo'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Lupinus albus', 'Tremoço', 'Branco', (select id from tipoplanta where tipoplanta='Temporária'));
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Tremoço'),(select variedade from planta where variedade like 'Branco'));
+
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Tremoço'),(select id from planta where variedade like 'Amarelo'));
+
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Tremoço'),(select id from planta where variedade like 'Branco'));
 Insert into Produto (produto) select ('Milho') FROM dual where not exists( Select 1 From produto Where  produto = 'Milho');
-Insert into TipoData(TipoData) select ('dataSementeira') FROM dual where not exists( Select 1 From TipoData Where  TipoData = 'dataSementeira');
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Zea mays', 'Milho', 'MAS 24.C', (select id from tipoplanta where tipoplanta='Temporária'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Milho' and variedade like 'MAS 24.C%'),'Abril a junho',(select id from tipodata where tipodata like 'dataSementeira')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Milho' and variedade like 'MAS 24.C%'),'Julho a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Milho'),(select variedade from planta where variedade like 'MAS 24.C'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Zea mays', 'Milho', 'Doce Golden Bantam', (select id from tipoplanta where tipoplanta='Temporária'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Milho' and variedade like 'Doce Golden Bantam%'),'Abril a junho',(select id from tipodata where tipodata like 'dataSementeira')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Milho' and variedade like 'Doce Golden Bantam%'),'Julho a setembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Milho'),(select variedade from planta where variedade like 'Doce Golden Bantam'));
+Insert into TipoPeriodo(TipoPeriodo) select ('dataSementeira') FROM dual where not exists( Select 1 From TipoPeriodo Where  TipoPeriodo = 'dataSementeira');
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Milho' and variedade like 'MAS 24.C%'),'Abril a junho',(select id from TipoPeriodo where TipoPeriodo like 'dataSementeira')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Milho' and variedade like 'MAS 24.C%'),'Julho a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Milho'),(select id from planta where variedade like 'MAS 24.C'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Milho' and variedade like 'Doce Golden Bantam%'),'Abril a junho',(select id from TipoPeriodo where TipoPeriodo like 'dataSementeira')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Milho' and variedade like 'Doce Golden Bantam%'),'Julho a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Milho'),(select id from planta where variedade like 'Doce Golden Bantam'));
 Insert into Produto (produto) select ('Nabo Greleiro') FROM dual where not exists( Select 1 From produto Where  produto = 'Nabo Greleiro');
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Brassica rapa', 'Nabo greleiro', 'Senhora Conceição', (select id from tipoplanta where tipoplanta='Temporária'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Nabo greleiro' and variedade like 'Senhora Conceição%'),'Março a setembro',(select id from tipodata where tipodata like 'dataSementeira')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Nabo greleiro' and variedade like 'Senhora Conceição%'),'Junho a fevereiro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Nabo Greleiro'),(select variedade from planta where variedade like 'Senhora Conceição'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Nabo greleiro' and variedade like 'Senhora Conceição%'),'Março a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataSementeira')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Nabo greleiro' and variedade like 'Senhora Conceição%'),'Junho a fevereiro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Nabo Greleiro'),(select id from planta where variedade like 'Senhora Conceição'));
 Insert into Produto (produto) select ('Azeitona') FROM dual where not exists( Select 1 From produto Where  produto = 'Azeitona');
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Olea europaea', 'Oliveira', 'COBRANÇOSA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Oliveira' and variedade like 'COBRANÇOSA%'),'Outubro a novembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select variedade from planta where variedade like 'COBRANÇOSA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Olea europaea', 'Oliveira', 'ARBEQUINA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Oliveira' and variedade like 'ARBEQUINA%'),'Outubro a novembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select variedade from planta where variedade like 'ARBEQUINA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Olea europaea', 'Oliveira', 'HOJIBLANCA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Oliveira' and variedade like 'HOJIBLANCA%'),'Outubro a novembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select variedade from planta where variedade like 'HOJIBLANCA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Olea europaea', 'Oliveira', 'NEGRINHA DO FREIXO', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Oliveira' and variedade like 'NEGRINHA DO FREIXO%'),'Outubro a novembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select variedade from planta where variedade like 'NEGRINHA DO FREIXO'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Olea europaea', 'Oliveira', 'PICUAL', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Oliveira' and variedade like 'PICUAL%'),'Outubro a novembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select variedade from planta where variedade like 'PICUAL'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Olea europaea', 'Oliveira', 'MAÇANILHA', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Oliveira' and variedade like 'MAÇANILHA%'),'Outubro a novembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select variedade from planta where variedade like 'MAÇANILHA'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Olea europaea', 'Oliveira', 'CONSERVA DE ELVAS', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Oliveira' and variedade like 'CONSERVA DE ELVAS%'),'Outubro a novembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select variedade from planta where variedade like 'CONSERVA DE ELVAS'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Olea europaea', 'Oliveira', 'Galega ', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Oliveira' and variedade like 'Galega %'),'Outubro a novembro',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select variedade from planta where variedade like 'Galega '));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Oliveira' and variedade like 'COBRANÇOSA%'),'Outubro a novembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select id from planta where variedade like 'COBRANÇOSA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Oliveira' and variedade like 'ARBEQUINA%'),'Outubro a novembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select id from planta where variedade like 'ARBEQUINA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Oliveira' and variedade like 'HOJIBLANCA%'),'Outubro a novembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select id from planta where variedade like 'HOJIBLANCA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Oliveira' and variedade like 'NEGRINHA DO FREIXO%'),'Outubro a novembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select id from planta where variedade like 'NEGRINHA DO FREIXO'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Oliveira' and variedade like 'PICUAL%'),'Outubro a novembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select id from planta where variedade like 'PICUAL'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Oliveira' and variedade like 'MAÇANILHA%'),'Outubro a novembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select id from planta where variedade like 'MAÇANILHA'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Oliveira' and variedade like 'CONSERVA DE ELVAS%'),'Outubro a novembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select id from planta where variedade like 'CONSERVA DE ELVAS'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Oliveira' and variedade like 'Galega %'),'Outubro a novembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Azeitona'),(select id from planta where variedade like 'Galega '));
 Insert into Produto (produto) select ('Nabo') FROM dual where not exists( Select 1 From produto Where  produto = 'Nabo');
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Brassica rapa', 'Nabo', 'S. Cosme', (select id from tipoplanta where tipoplanta='Temporária'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Nabo' and variedade like 'S. Cosme%'),'Fevereiro a abril, agosto a outubro',(select id from tipodata where tipodata like 'dataSementeira')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Nabo' and variedade like 'S. Cosme%'),'90 dias',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Nabo'),(select variedade from planta where variedade like 'S. Cosme'));
+
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Nabo' and variedade like 'S. Cosme%'),'Fevereiro a abril, agosto a outubro',(select id from TipoPeriodo where TipoPeriodo like 'dataSementeira')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Nabo' and variedade like 'S. Cosme%'),'90 dias',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Nabo'),(select id from planta where variedade like 'S. Cosme'));
 Insert into Produto (produto) select ('Uva') FROM dual where not exists( Select 1 From produto Where  produto = 'Uva');
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Vitis vinifera', 'Videira', 'Dona Maria', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Videira' and variedade like 'Dona Maria%'),'Dezembro a janeiro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Videira' and variedade like 'Dona Maria%'),'Maio',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Videira' and variedade like 'Dona Maria%'),'Junho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Uva'),(select variedade from planta where variedade like 'Dona Maria'));
-INSERT INTO planta (especie, nomeComum, variedade, tipoplanta) VALUES ('Vitis vinifera', 'Videira', 'Cardinal', (select id from tipoplanta where tipoplanta='Permanente'));
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Videira' and variedade like 'Cardinal%'),'Dezembro a janeiro',(select id from tipodata where tipodata like 'dataPoda')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Videira' and variedade like 'Cardinal%'),'Maio',(select id from tipodata where tipodata like 'dataFloração')) ;
-Insert into Data (planta,Data,tipo) values ((select variedade from planta where nomecomum like 'Videira' and variedade like 'Cardinal%'),'Junho a agosto',(select id from tipodata where tipodata like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Uva'),(select variedade from planta where variedade like 'Cardinal'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Videira' and variedade like 'Dona Maria%'),'Dezembro a janeiro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Videira' and variedade like 'Dona Maria%'),'Maio',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Videira' and variedade like 'Dona Maria%'),'Junho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Uva'),(select id from planta where variedade like 'Dona Maria'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Videira' and variedade like 'Cardinal%'),'Dezembro a janeiro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Videira' and variedade like 'Cardinal%'),'Maio',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Videira' and variedade like 'Cardinal%'),'Junho a agosto',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Uva'),(select id from planta where variedade like 'Cardinal'));
+
+
 Insert into fabricante(fabricante) select ('ASCENZA') FROM dual where not exists( Select 1 From fabricante Where  fabricante = 'ASCENZA');
 Insert into formulacao(formulacao) select ('Pó molhável') FROM dual where not exists( Select 1 From formulacao Where  formulacao = 'Pó molhável');
 Insert into classificacao(classificacao) select ('Fitofármaco') FROM dual where not exists( Select 1 From classificacao Where  classificacao = 'Fitofármaco');
@@ -519,33 +588,33 @@ INSERT INTO Parcela (designacao, area) VALUES ('Vinha', 2.0);
 Insert into modo(modo) select ('Foliar') FROM dual where not exists( Select 1 From modo Where  modo = 'Foliar');
 Insert into modo(modo) select ('Aplicação') FROM dual where not exists( Select 1 From modo Where  modo = 'Aplicação');
 Insert into modo(modo) select ('Solo') FROM dual where not exists( Select 1 From modo Where  modo = 'Solo');
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo da bouça')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Tremoço Amarelo%')), TO_DATE('10-10-2020', 'DD-MM-YYYY'), TO_DATE('30-03-2021', 'DD-MM-YYYY'), 1.1);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo da bouça')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Milho Doce Golden Bantam%')), TO_DATE('10-04-2021', 'DD-MM-YYYY'), TO_DATE('12-08-2021', 'DD-MM-YYYY'), 0.9);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo da bouça')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Tremoço Amarelo%')), TO_DATE('03-10-2021', 'DD-MM-YYYY'), TO_DATE('05-04-2022', 'DD-MM-YYYY'), 1.1);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo da bouça')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Milho Doce Golden Bantam%')), TO_DATE('15-04-2022', 'DD-MM-YYYY'), TO_DATE('21-08-2022', 'DD-MM-YYYY'), 0.9);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo do poço')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Milho MAS 24.C%')), TO_DATE('05-04-2020', 'DD-MM-YYYY'), TO_DATE('20-08-2020', 'DD-MM-YYYY'), 1.2);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo do poço')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Tremoço Amarelo%')), TO_DATE('12-10-2020', 'DD-MM-YYYY'), TO_DATE('15-03-2021', 'DD-MM-YYYY'), 1.3);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo do poço')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Milho MAS 24.C%')), TO_DATE('03-04-2021', 'DD-MM-YYYY'), TO_DATE('25-08-2021', 'DD-MM-YYYY'), 1.2);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo do poço')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Tremoço Amarelo%')), TO_DATE('06-10-2021', 'DD-MM-YYYY'), TO_DATE('19-03-2022', 'DD-MM-YYYY'), 1.3);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo do poço')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Milho MAS 24.C%')), TO_DATE('08-04-2022', 'DD-MM-YYYY'), TO_DATE('18-08-2022', 'DD-MM-YYYY'), 1.2);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo do poço')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Tremoço Amarelo%')), TO_DATE('12-10-2022', 'DD-MM-YYYY'), TO_DATE('20-03-2023', 'DD-MM-YYYY'), 1.3);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo grande')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Oliveira Galega%')), TO_DATE('06-10-2016', 'DD-MM-YYYY'), '', 30.0);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo grande')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Oliveira Picual%')), TO_DATE('10-10-2016', 'DD-MM-YYYY'), '', 20.0);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Cenoura Scarlet Nantes%')), TO_DATE('10-03-2020', 'DD-MM-YYYY'), TO_DATE('15-05-2020', 'DD-MM-YYYY'), 0.15);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Cenoura Nelson Hybrid%')), TO_DATE('02-06-2020', 'DD-MM-YYYY'), TO_DATE('08-09-2020', 'DD-MM-YYYY'), 0.1);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Nabo S. Cosme%')), TO_DATE('20-09-2020', 'DD-MM-YYYY'), TO_DATE('10-01-2021', 'DD-MM-YYYY'), 0.2);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Sugarsnax Hybrid%')), TO_DATE('10-03-2021', 'DD-MM-YYYY'), TO_DATE('15-05-2021', 'DD-MM-YYYY'), 0.15);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Danvers Half Long%')), TO_DATE('02-06-2021', 'DD-MM-YYYY'), TO_DATE('08-09-2021', 'DD-MM-YYYY'), 0.1);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Nabo S. Cosme%')), TO_DATE('20-09-2021', 'DD-MM-YYYY'), TO_DATE('10-01-2022', 'DD-MM-YYYY'), 0.2);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Sugarsnax Hybrid%')), TO_DATE('06-03-2022', 'DD-MM-YYYY'), TO_DATE('16-05-2022', 'DD-MM-YYYY'), 0.15);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Cenoura Nelson Hybrid%')), TO_DATE('30-05-2022', 'DD-MM-YYYY'), TO_DATE('05-09-2022', 'DD-MM-YYYY'), 0.15);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Nabo greleiro Senhora Conceição%')), TO_DATE('20-09-2022', 'DD-MM-YYYY'), TO_DATE('14-01-2023', 'DD-MM-YYYY'), 0.25);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Lameiro da ponte')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Macieira Jonagored%')), TO_DATE('07-01-2017', 'DD-MM-YYYY'), '', 90.0);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Lameiro da ponte')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Macieira Fuji%')), TO_DATE('08-01-2017', 'DD-MM-YYYY'), '', 60.0);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Lameiro da ponte')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Macieira Royal Gala%')), TO_DATE('08-01-2017', 'DD-MM-YYYY'), '', 40.0);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Lameiro da ponte')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Macieira Royal Gala%')), TO_DATE('10-12-2018', 'DD-MM-YYYY'), '', 30.0);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Vinha')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Videira Dona Maria%')), TO_DATE('10-01-2018', 'DD-MM-YYYY'), '', 500.0);
-INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Vinha')),(select CASE WHEN COUNT(*) = 1 THEN MAX(variedade) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Videira Cardinal%')), TO_DATE('11-01-2018', 'DD-MM-YYYY'), '', 700.0);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo da bouça')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Tremoço Amarelo%')), TO_DATE('10-10-2020', 'DD-MM-YYYY'), TO_DATE('30-03-2021', 'DD-MM-YYYY'), 1.1);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo da bouça')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Milho Doce Golden Bantam%')), TO_DATE('10-04-2021', 'DD-MM-YYYY'), TO_DATE('12-08-2021', 'DD-MM-YYYY'), 0.9);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo da bouça')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Tremoço Amarelo%')), TO_DATE('03-10-2021', 'DD-MM-YYYY'), TO_DATE('05-04-2022', 'DD-MM-YYYY'), 1.1);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo da bouça')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Milho Doce Golden Bantam%')), TO_DATE('15-04-2022', 'DD-MM-YYYY'), TO_DATE('21-08-2022', 'DD-MM-YYYY'), 0.9);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo do poço')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Milho MAS 24.C%')), TO_DATE('05-04-2020', 'DD-MM-YYYY'), TO_DATE('20-08-2020', 'DD-MM-YYYY'), 1.2);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo do poço')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Tremoço Amarelo%')), TO_DATE('12-10-2020', 'DD-MM-YYYY'), TO_DATE('15-03-2021', 'DD-MM-YYYY'), 1.3);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo do poço')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Milho MAS 24.C%')), TO_DATE('03-04-2021', 'DD-MM-YYYY'), TO_DATE('25-08-2021', 'DD-MM-YYYY'), 1.2);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo do poço')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Tremoço Amarelo%')), TO_DATE('06-10-2021', 'DD-MM-YYYY'), TO_DATE('19-03-2022', 'DD-MM-YYYY'), 1.3);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo do poço')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Milho MAS 24.C%')), TO_DATE('08-04-2022', 'DD-MM-YYYY'), TO_DATE('18-08-2022', 'DD-MM-YYYY'), 1.2);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo do poço')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Tremoço Amarelo%')), TO_DATE('12-10-2022', 'DD-MM-YYYY'), TO_DATE('20-03-2023', 'DD-MM-YYYY'), 1.3);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo grande')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Oliveira Galega%')), TO_DATE('06-10-2016', 'DD-MM-YYYY'), '', 30.0);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Campo grande')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Oliveira Picual%')), TO_DATE('10-10-2016', 'DD-MM-YYYY'), '', 20.0);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Cenoura Scarlet Nantes%')), TO_DATE('10-03-2020', 'DD-MM-YYYY'), TO_DATE('15-05-2020', 'DD-MM-YYYY'), 0.15);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Cenoura Nelson Hybrid%')), TO_DATE('02-06-2020', 'DD-MM-YYYY'), TO_DATE('08-09-2020', 'DD-MM-YYYY'), 0.1);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Nabo S. Cosme%')), TO_DATE('20-09-2020', 'DD-MM-YYYY'), TO_DATE('10-01-2021', 'DD-MM-YYYY'), 0.2);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Sugarsnax Hybrid%')), TO_DATE('10-03-2021', 'DD-MM-YYYY'), TO_DATE('15-05-2021', 'DD-MM-YYYY'), 0.15);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Danvers Half Long%')), TO_DATE('02-06-2021', 'DD-MM-YYYY'), TO_DATE('08-09-2021', 'DD-MM-YYYY'), 0.1);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Nabo S. Cosme%')), TO_DATE('20-09-2021', 'DD-MM-YYYY'), TO_DATE('10-01-2022', 'DD-MM-YYYY'), 0.2);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Sugarsnax Hybrid%')), TO_DATE('06-03-2022', 'DD-MM-YYYY'), TO_DATE('16-05-2022', 'DD-MM-YYYY'), 0.15);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Cenoura Nelson Hybrid%')), TO_DATE('30-05-2022', 'DD-MM-YYYY'), TO_DATE('05-09-2022', 'DD-MM-YYYY'), 0.15);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Horta Nova')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Nabo greleiro Senhora Conceição%')), TO_DATE('20-09-2022', 'DD-MM-YYYY'), TO_DATE('14-01-2023', 'DD-MM-YYYY'), 0.25);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Lameiro da ponte')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Macieira Jonagored%')), TO_DATE('07-01-2017', 'DD-MM-YYYY'), '', 90.0);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Lameiro da ponte')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Macieira Fuji%')), TO_DATE('08-01-2017', 'DD-MM-YYYY'), '', 60.0);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Lameiro da ponte')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Macieira Royal Gala%')), TO_DATE('08-01-2017', 'DD-MM-YYYY'), '', 40.0);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Lameiro da ponte')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Macieira Royal Gala%')), TO_DATE('10-12-2018', 'DD-MM-YYYY'), '', 30.0);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Vinha')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Videira Dona Maria%')), TO_DATE('10-01-2018', 'DD-MM-YYYY'), '', 500.0);
+INSERT INTO Cultura (parcela,planta, dataInicial, dataFinal, quantidade) VALUES ((select designacao from Parcela where lower(designacao) like lower('Vinha')),(select CASE WHEN COUNT(*) = 1 THEN MAX(id) ELSE NULL END AS result from planta where lower(nomecomum || ' ' || variedade) like lower('%Videira Cardinal%')), TO_DATE('11-01-2018', 'DD-MM-YYYY'), '', 700.0);
 Insert into Operacao (anulada,data) values (0,To_Date('6-10-2016', 'DD-MM-YYYY'));
 Insert into Operacao (anulada,data) values (0,To_Date('10-10-2016', 'DD-MM-YYYY'));
 Insert into Operacao (anulada,data) values (0,To_Date('7-1-2017', 'DD-MM-YYYY'));
@@ -898,8 +967,10 @@ insert into OperacaoFertilizacao (id,modo) values (132,(select id from modo wher
 
 
 insert into fabricante(fabricante) values ('Nutrofertil');
-insert into fatorProducao values ('Fertimax Extrume de Cavalo',(select id from fabricante where fabricante.fabricante = 'Nutrofertil'),2,2,2,6.7);
-insert into fatorProducao values ('BIOFERTIL N6',(select id from fabricante where fabricante.fabricante = 'Nutrofertil'),2,2,2,6.4);
+insert into fatorProducao values ('Fertimax Extrume de Cavalo',(select id from fabricante where fabricante.fabricante = 'Nutrofertil'),2,2,2);
+INSERT INTO fatorproducaoph values ('Fertimax Extrume de Cavalo',6.7);
+insert into fatorProducao values ('BIOFERTIL N6',(select id from fabricante where fabricante.fabricante = 'Nutrofertil'),2,2,2);
+INSERT INTO fatorproducaoph values ('BIOFERTIL N6',6.4);
 
 INSERT INTO substancia (substancia) VALUES ('Materia organica');
 INSERT INTO substancia (substancia) VALUES ('N');
@@ -925,13 +996,15 @@ insert into substanciaFatorProducao values ((select id from substancia where sub
 insert into substanciaFatorProducao values ((select id from substancia where substancia = 'B'),'BIOFERTIL N6',0.0020)  ;
 
 insert into produto (produto) values ('Abóbora');
-insert into planta values('manteiga','Abóbora','Cucurbita moschata var Butternut',2);
-insert into plantaProduto values ((select id from produto where produto.produto = 'Abóbora'),'manteiga');
+INSERT INTO especie(designacao,tipoplantaid) values ('Cucurbita moschata var Butternut',2);
+insert into planta (nomeComum, variedade,especieid) values('Abóbora','manteiga',(select id from especie where designacao like  'Cucurbita moschata var Butternut'));
+insert into plantaProduto values ((select id from produto where produto.produto = 'Abóbora'),(select id from planta where variedade like 'manteiga'));
 insert into parcela values('Campo novo',1.1);
 
+
 insert into setor (setor,caudalMaximo,dataInicio) values (10,2500,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
-insert into setorParcelaCultura(cultura,setor,quantidade,dataInsercao) values (11,10,30,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
-insert into setorParcelaCultura (cultura,setor,quantidade,dataInsercao) values (12,10,20,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+insert into CulturaSetor(cultura,setor,quantidade,dataInsercao) values (11,10,30,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura,setor,quantidade,dataInsercao) values (12,10,20,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
 
 insert into setor (setor,caudalMaximo,dataInicio) values (11,1500,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
 insert into setor (setor,caudalMaximo,dataInicio) values (21,3500,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
@@ -939,75 +1012,82 @@ insert into setor (setor,caudalMaximo,dataInicio) values (22,3500,TO_DATE('01-05
 insert into setor (setor,caudalMaximo,dataInicio,dataFim) values (41,2500,TO_DATE('01-04-2023', 'DD-MM-YYYY'),TO_DATE('10-10-2023', 'DD-MM-YYYY'));
 insert into setor (setor,caudalMaximo,dataInicio,dataFim) values (42,3500,TO_DATE('01-04-2023', 'DD-MM-YYYY'),TO_DATE('10-10-2023', 'DD-MM-YYYY'));
 
-insert into planta values('Arbequina' ,'Oliveira', 'Arbequina',1);
-insert into plantaProduto values (9,'Arbequina');
+insert into planta (nomeComum, variedade,especieid) values('Oliveira','Arbequina',(select id from especie where designacao like  'Olea europaea'));
 
-insert into cultura(planta,parcela,dataInicial,quantidade) values ('Arbequina','Campo grande',TO_DATE('2016-10-12','YYYY-MM-DD'),40);
-insert into planta values('Porta de loja' ,'Maceira', 'Malus domestica',1);
-insert into plantaProduto values (3,'Porta de loja');
-insert into cultura(planta,parcela,dataInicial,quantidade) values ('Porta de loja','Lameiro do moinho',TO_DATE('2019-01-09','YYYY-MM-DD'),50);
 
-insert into planta values('Malápio' ,'Maceira', 'Malus domestica',1);
-insert into plantaProduto values (3,'Malápio');
-insert into cultura(planta,parcela,dataInicial,quantidade) values ('Malápio','Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'),20);
+insert into plantaProduto values (9,(select id from planta where variedade like 'Arbequina'));
+
+insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Arbequina'),'Campo grande',TO_DATE('2016-10-12','YYYY-MM-DD'),40);
+insert into planta (nomeComum, variedade,especieid) values('Maceira','Porta de loja',(select id from especie where designacao like  'Malus domestica'));
+
+insert into plantaProduto values (3,(select id from planta where variedade like 'Porta de loja'));
+insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Porta de loja'),'Lameiro do moinho',TO_DATE('2019-01-09','YYYY-MM-DD'),50);
+
+insert into planta (nomeComum, variedade,especieid) values('Maceira','Malápio',(select id from especie where designacao like  'Malus domestica'));
+insert into plantaProduto values (3,(select id from planta where variedade like 'Malápio'));
+insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Malápio'),'Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'),20);
 
 
 -- Operação de plantação de Macieira Pipo de Basto
-insert into planta values('Pipo de basto' ,'Maceira', 'Malus domestica',1);
-insert into plantaProduto values (3,'Pipo de basto');
-insert into cultura(planta,parcela,dataInicial,quantidade) values ('Pipo de basto','Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'),40);
+insert into planta (nomeComum, variedade,especieid) values('Maceira','Pipo de basto',(select id from especie where designacao like  'Malus domestica'));
+
+insert into plantaProduto values (3,(select id from planta where variedade like 'Pipo de basto'));
+insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Pipo de basto'),'Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'),40);
 
 -- Operação de plantação de Macieira Canada
-insert into planta values('Canada' ,'Maceira', 'Malus domestica',1);
-insert into plantaProduto values (3,'Canada');
-insert into cultura(planta,parcela,dataInicial,quantidade) values ('Canada','Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'),30);
+insert into planta (nomeComum, variedade,especieid) values('Maceira','Canada' ,(select id from especie where designacao like  'Malus domestica'));
+
+insert into plantaProduto values (3,(select id from planta where variedade like 'Canada'));
+insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Canada'),'Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'),30);
 
 -- Operação de plantação de Macieira Grand Fay
-insert into planta values('Grand Fay' ,'Maceira', 'Malus domestica',1);
-insert into plantaProduto values (3,'Grand Fay');
-insert into cultura(planta,parcela,dataInicial,quantidade) values ('Grand Fay','Lameiro do moinho',TO_DATE('2019-01-11','YYYY-MM-DD'),40);
+insert into planta (nomeComum, variedade,especieid) values('Maceira','Grand Fay' ,(select id from especie where designacao like  'Malus domestica'));
+
+insert into plantaProduto values (3,(select id from planta where variedade like 'Grand Fay'));
+insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Grand Fay'),'Lameiro do moinho',TO_DATE('2019-01-11','YYYY-MM-DD'),40);
 
 -- Operação de plantação de Macieira Gronho Doce
-insert into planta values('Gronho Doce' ,'Maceira', 'Malus domestica',1);
-insert into plantaProduto values (3,'Gronho Doce');
-insert into cultura(planta,parcela,dataInicial,quantidade) values ('Gronho Doce','Lameiro do moinho',TO_DATE('2019-01-11','YYYY-MM-DD'),50);
+insert into planta (nomeComum, variedade,especieid) values('Maceira','Gronho Doce' ,(select id from especie where designacao like  'Malus domestica'));
+
+insert into plantaProduto values (3,(select id from planta where variedade like 'Gronho Doce'));
+insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Gronho Doce'),'Lameiro do moinho',TO_DATE('2019-01-11','YYYY-MM-DD'),50);
 
 
-insert into cultura(planta,parcela,dataInicial,quantidade) values ('Sugarsnax Hybrid','Campo novo',TO_DATE('2023-04-05','YYYY-MM-DD'),1.2);
+insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Sugarsnax Hybrid'),'Campo novo',TO_DATE('2023-04-05','YYYY-MM-DD'),1.2);
 
-insert into cultura(planta,parcela,dataInicial,quantidade) values ('manteiga','Campo novo',TO_DATE('2023-04-06','YYYY-MM-DD'),0.6);
+insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'manteiga'),'Campo novo',TO_DATE('2023-04-06','YYYY-MM-DD'),0.6);
 
 
 -- Monda de plantação de cenouras Danvers Half Long (08/08/2023)
-insert into cultura(planta,parcela,dataInicial,quantidade) values ('Danvers Half Long','Campo novo',TO_DATE('2023-07-05','YYYY-MM-DD'),1.2);
+insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Danvers Half Long'),'Campo novo',TO_DATE('2023-07-05','YYYY-MM-DD'),1.2);
 
-insert into cultura(planta,parcela,dataInicial,quantidade) values ('Amarelo','Campo novo',TO_DATE('2023-10-12','YYYY-MM-DD'),32);
-insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where planta like 'Arbequina'),11,40,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Amarelo'),'Campo novo',TO_DATE('2023-10-12','YYYY-MM-DD'),32);
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Arbequina'),11,40,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
 
 
 --setor 21
-insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values (22,21,90,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
-insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values (23,21,60,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
-insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values (24,21,60,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
-insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values (25,21,40,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
-insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where parcela = 'Lameiro do moinho' and cultura.planta = 'Pipo de basto'),21,40,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values (22,21,90,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values (23,21,60,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values (24,21,60,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values (25,21,40,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Pipo de basto'),21,40,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
 
 
 --setor 22
-insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where parcela = 'Lameiro do moinho' and cultura.planta = 'Porta de loja'),22,50,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
-insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where parcela = 'Lameiro do moinho' and cultura.planta = 'Malápio'),22,20,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
-insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where parcela = 'Lameiro do moinho' and cultura.planta = 'Canada'),22,30,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
-insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where parcela = 'Lameiro do moinho' and cultura.planta = 'Grand Fay'),22,40,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
-insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao) values ((select id from cultura where parcela = 'Lameiro do moinho' and cultura.planta = 'Gronho Doce'),22,50,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Porta de loja'),22,50,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Malápio'),22,20,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Canada'),22,30,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Grand Fay'),22,40,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Gronho Doce'),22,50,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
 
 
 --setor 41
-insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao,dataRemocao) values ((select id from cultura where parcela = 'Campo novo' and cultura.planta = 'Sugarsnax Hybrid'),41,1.2,TO_DATE('05-04-2023', 'DD-MM-YYYY'),TO_DATE('31-05-2023', 'DD-MM-YYYY'));
-insert into setorParcelaCultura (cultura, setor,quantidade,dataInsercao,dataRemocao) values ((select id from cultura where parcela = 'Campo novo' and cultura.planta = 'Danvers Half Long'),41,1.2,TO_DATE('05-07-2023', 'DD-MM-YYYY'),TO_DATE('08-10-2023', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao,dataRemocao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Campo novo' and planta.variedade = 'Sugarsnax Hybrid'),41,1.2,TO_DATE('05-04-2023', 'DD-MM-YYYY'),TO_DATE('31-05-2023', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao,dataRemocao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Campo novo' and planta.variedade = 'Danvers Half Long'),41,1.2,TO_DATE('05-07-2023', 'DD-MM-YYYY'),TO_DATE('08-10-2023', 'DD-MM-YYYY'));
 
 
 --setor 42
-insert into setorParcelaCultura(cultura,setor,quantidade,dataInsercao,dataRemocao ) values ((select id from cultura where parcela = 'Campo novo' and cultura.planta = 'manteiga'),42,0.6,TO_DATE('06-04-2023', 'DD-MM-YYYY'),TO_DATE('10-09-2023', 'DD-MM-YYYY'));
+insert into CulturaSetor(cultura,setor,quantidade,dataInsercao,dataRemocao ) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Campo novo' and planta.variedade =  'manteiga'),42,0.6,TO_DATE('06-04-2023', 'DD-MM-YYYY'),TO_DATE('10-09-2023', 'DD-MM-YYYY'));
 
 
 
@@ -1155,7 +1235,7 @@ INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (202, 120, T
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('12-10-2023', 'DD-MM-YYYY'));
-INSERT INTO Semeadura (id,cultura,area,quantidade) values (203,(SELECT id FROM cultura WHERE planta = 'Amarelo' and dataFinal is null),1.1,32);
+INSERT INTO Semeadura (id,cultura,area,quantidade) values (203,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Amarelo' and dataFinal is null),1.1,32);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('10-10-2023', 'DD-MM-YYYY'));
@@ -1163,213 +1243,212 @@ INSERT INTO MobilizacaoSolo (id,parcela,area) values (204,'Campo novo',0.5);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('18-09-2023', 'DD-MM-YYYY'));
-INSERT INTO Colheita(id,cultura,quantidade) values (205,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),900);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Danvers Half Long'),205);
-
+INSERT INTO Colheita(id,cultura,quantidade) values (205,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Danvers Half Long' and dataFinal IS NULL),900);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Danvers Half Long'),205);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('22-09-2023', 'DD-MM-YYYY'));
-INSERT INTO Colheita(id,cultura,quantidade) values (206,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),1500);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Danvers Half Long'),206);
+INSERT INTO Colheita(id,cultura,quantidade) values (206,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Danvers Half Long' and dataFinal IS NULL),1500);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Danvers Half Long'),206);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('05-10-2023', 'DD-MM-YYYY'));
-INSERT INTO Colheita(id,cultura,quantidade) values (207,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),1200);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Danvers Half Long'),207);
+INSERT INTO Colheita(id,cultura,quantidade) values (207,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Danvers Half Long' and dataFinal IS NULL),1200);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Danvers Half Long'),207);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('05-07-2023', 'DD-MM-YYYY'));
-INSERT INTO Semeadura (id,cultura,area,quantidade) values (208,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),0.5,1.2);
+INSERT INTO Semeadura (id,cultura,area,quantidade) values (208,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Danvers Half Long' and dataFinal IS NULL),0.5,1.2);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('08-08-2023', 'DD-MM-YYYY'));
-INSERT INTO Monda (id,cultura,area) values (209,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),0.5);
+INSERT INTO Monda (id,cultura,area) values (209,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Danvers Half Long' and dataFinal IS NULL),0.5);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('15-09-2023', 'DD-MM-YYYY'));
-INSERT INTO Colheita (id,cultura,quantidade) values (210,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),8000);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Danvers Half Long'),210);
+INSERT INTO Colheita (id,cultura,quantidade) values (210,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Danvers Half Long' and dataFinal IS NULL),8000);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Danvers Half Long'),210);
 
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-15',' YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (211,(select id from cultura where planta = 'Danvers Half Long' and dataFinal IS NULL),8000);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Danvers Half Long'),211);
+INSERT INTO Colheita(id,cultura,quantidade) values (211,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Danvers Half Long' and dataFinal IS NULL),8000);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Danvers Half Long'),211);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-25',' YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (212,(select id from cultura where planta = 'manteiga' and dataFinal IS NULL),5000);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'manteiga'),212);
+INSERT INTO Colheita(id,cultura,quantidade) values (212,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'manteiga' and dataFinal IS NULL),5000);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'manteiga'),212);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-08', 'YYYY-MM-DD'));
-INSERT INTO Monda (id,cultura,area) values (213,(select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),0.5);
+INSERT INTO Monda (id,cultura,area) values (213,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Sugarsnax Hybrid' and dataFinal IS NULL),0.5);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-06-14','YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (214,(select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),1500);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Sugarsnax Hybrid'),214);
+INSERT INTO Colheita(id,cultura,quantidade) values (214,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Sugarsnax Hybrid' and dataFinal IS NULL),1500);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Sugarsnax Hybrid'),214);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-06-28','YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (215,(select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),2500);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Sugarsnax Hybrid'),215);
+INSERT INTO Colheita(id,cultura,quantidade) values (215,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Sugarsnax Hybrid' and dataFinal IS NULL),2500);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Sugarsnax Hybrid'),215);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-20', 'YYYY-MM-DD'));
-INSERT INTO Monda (id,cultura,area) values (216,(select id from cultura where planta = 'manteiga' and dataFinal IS NULL),0.6);
+INSERT INTO Monda (id,cultura,area) values (216,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like'manteiga' and dataFinal IS NULL),0.6);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-06-20', 'YYYY-MM-DD'));
-INSERT INTO Monda (id,cultura,area) values (217,(select id from cultura where planta = 'manteiga' and dataFinal IS NULL),0.6);
+INSERT INTO Monda (id,cultura,area) values (217,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'manteiga' and dataFinal IS NULL),0.6);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-04-05', 'YYYY-MM-DD'));
-INSERT INTO Semeadura (id,cultura,area,quantidade) values (218,(select id from cultura where planta = 'Sugarsnax Hybrid' and dataFinal IS NULL),0.5,1.2);
+INSERT INTO Semeadura (id,cultura,area,quantidade) values (218,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Sugarsnax Hybrid' and dataFinal IS NULL),0.5,1.2);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-04-06', 'YYYY-MM-DD'));
-INSERT INTO Semeadura (id,cultura,area,quantidade) values (219,(select id from cultura where planta = 'manteiga' and dataFinal IS NULL),0.6,1.5);
+INSERT INTO Semeadura (id,cultura,area,quantidade) values (219,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'manteiga' and dataFinal IS NULL),0.6,1.5);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-07-04', 'YYYY-MM-DD'));
 INSERT INTO MobilizacaoSolo (id,area,parcela) values (220,0.5,'Campo novo');
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-08-18', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (221,(select id from cultura where planta = 'ROYAL GALA' and dataInicial = TO_DATE('08-01-2017', 'DD-MM-YY') and dataFinal IS NULL),700);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'ROYAL GALA'),221);
+INSERT INTO Colheita(id,cultura,quantidade) values (221,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'ROYAL GALA' and dataInicial = TO_DATE('08-01-2017', 'DD-MM-YY') and dataFinal IS NULL),700);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'ROYAL GALA'),221);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-08-30', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (222,(select id from cultura where planta = 'ROYAL GALA' and dataInicial = TO_DATE('10-12-2018', 'DD-MM-YY') and dataFinal IS NULL),900);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'ROYAL GALA'),222);
+INSERT INTO Colheita(id,cultura,quantidade) values (222,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'ROYAL GALA' and dataInicial = TO_DATE('10-12-2018', 'DD-MM-YY') and dataFinal IS NULL),900);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'ROYAL GALA'),222);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-05', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (223,(select id from cultura where planta = 'JONAGORED' and dataFinal IS NULL),900);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'JONAGORED'),223);
+INSERT INTO Colheita(id,cultura,quantidade) values (223,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'JONAGORED' and dataFinal IS NULL),900);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'JONAGORED'),223);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-08', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (224,(select id from cultura where planta = 'JONAGORED' and dataFinal IS NULL),1050);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'JONAGORED'),224);
+INSERT INTO Colheita(id,cultura,quantidade) values (224,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'JONAGORED' and dataFinal IS NULL),1050);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'JONAGORED'),224);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-28', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (225,(select id from cultura where planta = 'FUJI' and dataFinal IS NULL),950);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'FUJI'),225);
+INSERT INTO Colheita(id,cultura,quantidade) values (225,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'FUJI' and dataFinal IS NULL),950);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'FUJI'),225);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-10-03', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (226,(select id from cultura where planta = 'FUJI' and dataFinal IS NULL),800);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'FUJI'),226);
+INSERT INTO Colheita(id,cultura,quantidade) values (226,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'FUJI' and dataFinal IS NULL),800);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'FUJI'),226);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-11-02', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (227,(select id from cultura where planta = 'Arbequina' and dataFinal IS NULL),400);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Arbequina'),227);
+INSERT INTO Colheita(id,cultura,quantidade) values (227,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Arbequina' and dataFinal IS NULL),400);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Arbequina'),227);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-11-05', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (228,(select id from cultura where planta = 'PICUAL' and dataFinal IS NULL),300);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'PICUAL'),228);
+INSERT INTO Colheita(id,cultura,quantidade) values (228,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'PICUAL' and dataFinal IS NULL),300);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'PICUAL'),228);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-11-08', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (229,(select id from cultura where planta like 'Galega%' and dataFinal IS NULL),350);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Galega%'),229);
+INSERT INTO Colheita(id,cultura,quantidade) values (229,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Galega%' and dataFinal IS NULL),350);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Galega%'),229);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2016-10-12', 'YYYY-MM-DD'));
-INSERT INTO Plantacao(id,cultura,quantidade) values (230,(select id from cultura where planta like  'Arbequina' and dataFinal IS NULL),40);
+INSERT INTO Plantacao(id,cultura,quantidade) values (230,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like  'Arbequina' and dataFinal IS NULL),40);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-09', 'YYYY-MM-DD'));
-INSERT INTO Plantacao(id,cultura,quantidade) values (231,(select id from cultura where planta like  'Porta de loja' and dataFinal IS NULL),50);
+INSERT INTO Plantacao(id,cultura,quantidade) values (231,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like  'Porta de loja' and dataFinal IS NULL),50);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-09', 'YYYY-MM-DD'));
-INSERT INTO Plantacao(id,cultura,quantidade) values (232,(select id from cultura where planta like  'Malápio' and dataFinal IS NULL),20);
+INSERT INTO Plantacao(id,cultura,quantidade) values (232,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like  'Malápio' and dataFinal IS NULL),20);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-10', 'YYYY-MM-DD'));
-INSERT INTO Plantacao(id,cultura,quantidade) values (233,(select id from cultura where planta like  'Pipo de basto' and dataFinal IS NULL),40);
+INSERT INTO Plantacao(id,cultura,quantidade) values (233,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like  'Pipo de basto' and dataFinal IS NULL),40);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-10', 'YYYY-MM-DD'));
-INSERT INTO Plantacao(id,cultura,quantidade) values (234,(select id from cultura where planta like  'Canada' and dataFinal IS NULL),30);
+INSERT INTO Plantacao(id,cultura,quantidade) values (234,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like  'Canada' and dataFinal IS NULL),30);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-11', 'YYYY-MM-DD'));
-INSERT INTO Plantacao(id,cultura,quantidade) values (235,(select id from cultura where planta like  'Grand Fay' and dataFinal IS NULL),40);
+INSERT INTO Plantacao(id,cultura,quantidade) values (235,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like  'Grand Fay' and dataFinal IS NULL),40);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-11', 'YYYY-MM-DD'));
-INSERT INTO Plantacao(id,cultura,quantidade) values (236,(select id from cultura where planta like  'Gronho Doce' and dataFinal IS NULL),50);
+INSERT INTO Plantacao(id,cultura,quantidade) values (236,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like  'Gronho Doce' and dataFinal IS NULL),50);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-15', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (237,(select id from cultura where planta = 'Canada' and dataFinal IS NULL),700);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Canada'),237);
+INSERT INTO Colheita(id,cultura,quantidade) values (237,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Canada' and dataFinal IS NULL),700);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Canada'),237);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-16', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (238,(select id from cultura where planta = 'Grand Fay' and dataFinal IS NULL),600);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Grand Fay'),238);
+INSERT INTO Colheita(id,cultura,quantidade) values (238,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like'Grand Fay' and dataFinal IS NULL),600);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Grand Fay'),238);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-20', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (239,(select id from cultura where planta = 'Grand Fay' and dataFinal IS NULL),700);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Grand Fay'),239);
+INSERT INTO Colheita(id,cultura,quantidade) values (239,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Grand Fay' and dataFinal IS NULL),700);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Grand Fay'),239);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-09-27', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (240,(select id from cultura where planta = 'Pipo de basto' and dataFinal IS NULL),600);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Pipo de basto'),240);
+INSERT INTO Colheita(id,cultura,quantidade) values (240,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Pipo de basto' and dataFinal IS NULL),600);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Pipo de basto'),240);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-10-05', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (241,(select id from cultura where planta = 'Pipo de basto' and dataFinal IS NULL),700);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Pipo de basto'),241);
+INSERT INTO Colheita(id,cultura,quantidade) values (241,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Pipo de basto' and dataFinal IS NULL),700);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Pipo de basto'),241);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-10-15', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (242,(select id from cultura where planta = 'Gronho Doce' and dataFinal IS NULL),1200);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Gronho Doce'),242);
+INSERT INTO Colheita(id,cultura,quantidade) values (242,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Gronho Doce' and dataFinal IS NULL),1200);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Gronho Doce'),242);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-10-15', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (243,(select id from cultura where planta = 'Malápio' and dataFinal IS NULL),700);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Malápio'),243);
+INSERT INTO Colheita(id,cultura,quantidade) values (243,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like'Malápio' and dataFinal IS NULL),700);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Malápio'),243);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-11-12', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (244,(select id from cultura where planta = 'Porta de loja' and dataFinal IS NULL),700);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Porta de loja' ),244);
+INSERT INTO Colheita(id,cultura,quantidade) values (244,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Porta de loja' and dataFinal IS NULL),700);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Porta de loja' ),244);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-11-15', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (245,(select id from cultura where planta = 'Porta de loja' and dataFinal IS NULL),800);
-INSERT INTO Produto_Colheita (produtoid,operacaocolheitaid) values ((select p.id from plantaproduto pp inner join produto  p on p.id=pp.produto where pp.planta like 'Porta de loja' ),245);
+INSERT INTO Colheita(id,cultura,quantidade) values (245,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Porta de loja' and dataFinal IS NULL),800);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Porta de loja' ),245);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-13', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (246,'BIOFERTIL N6','Campo grande',120);
 insert into operacaoAplicacao(id) values (246);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (246,(select id from cultura where lower(planta) = lower('PICUAL') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (246,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('PICUAL') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (247,'BIOFERTIL N6','Campo grande',180);
 insert into operacaoAplicacao(id) values (247);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (247,(select id from cultura where lower(planta) like lower('galega%') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (247,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('galega%') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (248,'BIOFERTIL N6','Campo grande',240);
 insert into operacaoAplicacao(id) values (248);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (248,(select id from cultura where lower(planta) = lower('Arbequina') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (248,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('Arbequina') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (249,'BIOFERTIL N6','Campo grande',120);
 insert into operacaoAplicacao(id) values (249);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (249,(select id from cultura where lower(planta) = lower('PICUAL') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (249,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('PICUAL') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (250,'BIOFERTIL N6','Campo grande',180);
 insert into operacaoAplicacao(id) values (250);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (250,(select id from cultura where lower(planta) like lower('galega%') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (250,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('galega%') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-13', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (251,'BIOFERTIL N6','Campo grande',240);
 insert into operacaoAplicacao(id) values (251);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (251,(select id from cultura where lower(planta) = lower('Arbequina') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (251,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('Arbequina') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (252,'BIOFERTIL N6','Campo grande',120);
 insert into operacaoAplicacao(id) values (252);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (252,(select id from cultura where lower(planta) like lower('picual') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (252,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('picual') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (253,'BIOFERTIL N6','Campo grande',180);
 insert into operacaoAplicacao(id) values (253);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (253,(select id from cultura where lower(planta) like lower('galega%') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (253,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('galega%') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (254,'BIOFERTIL N6','Campo grande',240);
 insert into operacaoAplicacao(id) values (254);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (254,(select id from cultura where lower(planta) like lower('Arbequina') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (254,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('Arbequina') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-04-01', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (255,'Biocal Composto','Campo novo',500);
@@ -1389,123 +1468,123 @@ insert into operacaoAplicacao(id) values (257);
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-06', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (258,'Fertimax Extrume de Cavalo','Lameiro do moinho',100);
 insert into operacaoAplicacao(id) values (258);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (258,(select id from cultura where lower(planta) like lower('porta de loja') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (258,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('porta de loja') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-06', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (259,'Fertimax Extrume de Cavalo','Lameiro do moinho',40);
 insert into operacaoAplicacao(id) values (259);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (259,(select id from cultura where lower(planta) like lower('malápio') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (259,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('malápio') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-06', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (260,'Fertimax Extrume de Cavalo','Lameiro do moinho',80);
 insert into operacaoAplicacao(id) values (260);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (260,(select id from cultura where lower(planta) like lower('pipo de basto') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (260,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('pipo de basto') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-06', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (261,'Fertimax Extrume de Cavalo','Lameiro do moinho',60);
 insert into operacaoAplicacao(id) values (261);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (261,(select id from cultura where lower(planta) like lower('canada') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (261,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('canada') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-07', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (262,'Fertimax Extrume de Cavalo','Lameiro do moinho',80);
 insert into operacaoAplicacao(id) values (262);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (262,(select id from cultura where lower(planta) like lower('grand fay') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (262,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('grand fay') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-07', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (263,'Fertimax Extrume de Cavalo','Lameiro do moinho',100);
 insert into operacaoAplicacao(id) values (263);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (263,(select id from cultura where lower(planta) like lower('gronho doce') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (263,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('gronho doce') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-07', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (264,'Fertimax Extrume de Cavalo','Lameiro do moinho',150);
 insert into operacaoAplicacao(id) values (264);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (264,(select id from cultura where lower(planta) like lower('porta de loja') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (264,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('porta de loja') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-07', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (265,'Fertimax Extrume de Cavalo','Lameiro do moinho',60);
 insert into operacaoAplicacao(id) values (265);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (265,(select id from cultura where lower(planta) like lower('malápio') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (265,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('malápio') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-08', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (266,'Fertimax Extrume de Cavalo','Lameiro do moinho',120);
 insert into operacaoAplicacao(id) values (266);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (266,(select id from cultura where lower(planta) like lower('pipo de basto') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (266,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('pipo de basto') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-07', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (267,'Fertimax Extrume de Cavalo','Lameiro do moinho',90);
 insert into operacaoAplicacao(id) values (267);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (267,(select id from cultura where lower(planta) like lower('canada') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (267,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('canada') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-07', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (268,'Fertimax Extrume de Cavalo','Lameiro do moinho',120);
 insert into operacaoAplicacao(id) values (268);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (268,(select id from cultura where lower(planta) like lower('grand fay') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (268,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('grand fay') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-08', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (269,'Fertimax Extrume de Cavalo','Lameiro do moinho',150);
 insert into operacaoAplicacao(id) values (269);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (269,(select id from cultura where lower(planta) like lower('gronho doce') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (269,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('gronho doce') and dataFinal IS NULL));
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-15', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (270,'BIOFERTIL N6','Lameiro do moinho',150);
 insert into operacaoAplicacao(id) values (270);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (270,(select id from cultura where lower(planta) like lower('porta de loja') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (270,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('porta de loja') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-15', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (271,'BIOFERTIL N6','Lameiro do moinho',60);
 insert into operacaoAplicacao(id) values (271);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (271,(select id from cultura where lower(planta) like lower('malápio') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (271,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('malápio') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-15', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (272,'BIOFERTIL N6','Lameiro do moinho',120);
 insert into operacaoAplicacao(id) values (272);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (272,(select id from cultura where lower(planta) like lower('pipo de basto') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (272,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('pipo de basto') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-16', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (273,'BIOFERTIL N6','Lameiro do moinho',90);
 insert into operacaoAplicacao(id) values (273);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (273,(select id from cultura where lower(planta) like lower('canada') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (273,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('canada') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-16', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (274,'BIOFERTIL N6','Lameiro do moinho',120);
 insert into operacaoAplicacao(id) values (274);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (274,(select id from cultura where lower(planta) like lower('grand fay') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (274,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('grand fay') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-16', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (275,'BIOFERTIL N6','Lameiro do moinho',150);
 insert into operacaoAplicacao(id) values (275);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (275,(select id from cultura where lower(planta) like lower('gronho doce') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (275,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('gronho doce') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (276,'EPSO Microtop','Lameiro do moinho',5);
 insert into operacaoAplicacao(id) values (276);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (276,(select id from cultura where lower(planta) like lower('porta de loja') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (276,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('porta de loja') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (277,'EPSO Microtop','Lameiro do moinho',2);
 insert into operacaoAplicacao(id) values (277);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (277,(select id from cultura where lower(planta) like lower('malápio') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (277,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('malápio') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (278,'EPSO Microtop','Lameiro do moinho',4);
 insert into operacaoAplicacao(id) values (278);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (278,(select id from cultura where lower(planta) like lower('pipo de basto') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (278,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('pipo de basto') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (279,'EPSO Microtop','Lameiro do moinho',3);
 insert into operacaoAplicacao(id) values (279);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (279,(select id from cultura where lower(planta) like lower('canada') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (279,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('canada') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (280,'EPSO Microtop','Lameiro do moinho',4);
 insert into operacaoAplicacao(id) values (280);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (280,(select id from cultura where lower(planta) like lower('grand fay') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (280,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('grand fay') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
 insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (281,'EPSO Microtop','Lameiro do moinho',5);
 insert into operacaoAplicacao(id) values (281);
-insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (281,(select id from cultura where lower(planta) like lower('gronho doce') and dataFinal IS NULL));
+insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (281,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('gronho doce') and dataFinal IS NULL));
 
 insert into tipoAlteracao (tipoalteracao) values ('criacao');
 insert into tipoAlteracao (tipoalteracao) values ('anulacao');
