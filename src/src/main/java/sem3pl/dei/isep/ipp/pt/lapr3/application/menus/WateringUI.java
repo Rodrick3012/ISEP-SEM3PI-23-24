@@ -4,7 +4,6 @@ import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.controller.WateringController;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringPlan;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Files;
-import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.WateringComparator;
 
 import java.util.*;
 import java.util.concurrent.Executors;
@@ -14,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class WateringUI implements Runnable {
     private final WateringController wateringController = new WateringController();
     private final Scanner sc = new Scanner(System.in);
-    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    private ScheduledExecutorService scheduler;
 
     public WateringUI() {
     }
@@ -22,7 +21,6 @@ public class WateringUI implements Runnable {
     public void run() {
         System.out.println("Welcome to Watering Menu!");
         System.out.println();
-        // scheduler.scheduleAtFixedRate(this::generateAndCheckWateringPlan, 1, 10, TimeUnit.MINUTES);
         wateringMenu();
     }
 
@@ -31,7 +29,6 @@ public class WateringUI implements Runnable {
         System.out.println();
         System.out.println("1. Import File");
         System.out.println("2. View the Sectors that being watered");
-        System.out.println("3. Generate Watering Plan");
         System.out.println("3. Exit");
         System.out.println();
         System.out.println("Select a option: ");
@@ -50,15 +47,14 @@ public class WateringUI implements Runnable {
                     }
                     break;
                 case 3:
-                    generateAndCheckWateringPlan();
-                    break;
-                case 4:
                     System.out.println("Do you really want to exit this menu?");
                     System.out.println("Yes/No");
                     sc.nextLine();
                     String exitOption = sc.nextLine();
                     if (exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")) {
-                        // stopScheduler();
+                        if(scheduler != null && !scheduler.isShutdown()){
+                            scheduler.shutdown();
+                        }
                         FarmCoordinator farmCoordinator = new FarmCoordinator();
                         farmCoordinator.run();
                     } else {
@@ -91,20 +87,12 @@ public class WateringUI implements Runnable {
         WateringPlan wateringPlan = wateringController.readFile(Files.resourcesPath + fileName);
         if(wateringController.getWateringPlanList().contains(wateringPlan)) {
             System.out.println("File successfully imported! Watering Plan created.");
+            scheduler = Executors.newScheduledThreadPool(1);
+            scheduler.scheduleAtFixedRate(() -> generateWateringPlan(wateringPlan), 1, 60, TimeUnit.SECONDS);
         } else {
             System.err.println("Error while importing a file. Watering Plan not created.");
         }
         System.out.println();
-        wateringMenu();
-    }
-
-    private void generateAndCheckWateringPlan(){
-        if(verifyListIsNotEmpty()) {
-            List<WateringPlan> wateringPlans = wateringController.getWateringPlanList();
-            WateringPlan wateringPlan = wateringPlans.get(0);
-            generateWateringPlan(wateringPlan);
-        }
-        else System.err.println("Empty data. Import a file to create Watering Plan.");
         wateringMenu();
     }
 
@@ -113,26 +101,12 @@ public class WateringUI implements Runnable {
         checkWateringConcluded(fileName);
     }
 
-    private void stopScheduler(){
-        scheduler.shutdown();
-        try {
-            if(!scheduler.awaitTermination(30, TimeUnit.SECONDS)){
-                scheduler.shutdownNow();
-                if(!scheduler.awaitTermination(30, TimeUnit.SECONDS)){
-                    System.err.println("Scheduler did not terminate");
-                }
-            }
-        } catch (InterruptedException e){
-            scheduler.shutdownNow();
-            Thread.currentThread().interrupt();
-        }
-    }
 
     private void checkWateringConcluded(String fileName){
         boolean verified = wateringController.readWateringPlanGeneratedFileAndCheckIfWateringConcluded(fileName);
         if(verified){
             System.out.println("Watering plan successfully updated/generated and all concluded waterings added to database!");
-        } else System.out.println("Error while watering plan being updated/generated.");
+        } else System.err.println("Error while watering plan being updated/generated.");
     }
 
     private void verifyThatIsWatering() {
