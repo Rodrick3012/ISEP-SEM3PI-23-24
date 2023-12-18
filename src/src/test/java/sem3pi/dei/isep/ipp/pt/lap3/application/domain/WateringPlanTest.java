@@ -1,10 +1,7 @@
 package sem3pi.dei.isep.ipp.pt.lap3.application.domain;
 
 import org.junit.Test;
-import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.DateInterval;
-import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Watering;
-import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringPlan;
-import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringTimeRegularity;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.*;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.WateringComparator;
 
 import java.util.*;
@@ -17,8 +14,8 @@ public class WateringPlanTest {
         String wateringHour1 = "08:30";
         String wateringHour2 = "17:00";
         List<String> wateringHours = new ArrayList<>(Arrays.asList(wateringHour1, wateringHour2));
-        Watering watering1 = new Watering(10, 10, new WateringTimeRegularity("T"));
-        Watering watering2 = new Watering(12, 50, new WateringTimeRegularity("3"));
+        Watering watering1 = new Watering(10, 10, new WateringTimeRegularity("T"), new Fertigation(12, 12));
+        Watering watering2 = new Watering(12, 50, new WateringTimeRegularity("3"), new Fertigation(12, 12));
         List<Watering> wateringList = new ArrayList<>(Arrays.asList(watering1, watering2));
         Calendar calendar1 = Calendar.getInstance();
         calendar1.set(2023, 10, 10);

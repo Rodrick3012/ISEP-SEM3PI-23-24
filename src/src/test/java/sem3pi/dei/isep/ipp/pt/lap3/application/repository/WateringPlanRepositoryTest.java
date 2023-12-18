@@ -1,17 +1,13 @@
 package sem3pi.dei.isep.ipp.pt.lap3.application.repository;
 
 import org.junit.Test;
-import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.DateInterval;
-import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.Watering;
-import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringPlan;
-import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringTimeRegularity;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.*;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.repository.WateringPlanRepository;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.WateringComparator;
 
 import java.util.*;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class WateringPlanRepositoryTest {
     @Test
@@ -20,14 +16,14 @@ public class WateringPlanRepositoryTest {
         assertTrue(wateringPlanRepository.getWateringPlanList().isEmpty());
     }
 
-   /* @Test
+   @Test
     public void assertWateringPlanIsCreatedSuccessfully(){
         WateringPlanRepository wateringPlanRepository = new WateringPlanRepository();
         String wateringHour1 = "08:30";
         String wateringHour2 = "17:00";
         List<String> wateringHours = new ArrayList<>(Arrays.asList(wateringHour1, wateringHour2));
-        Watering watering1 = new Watering(10, 10, new WateringTimeRegularity("T"));
-        Watering watering2 = new Watering(12, 50, new WateringTimeRegularity("3"));
+        Watering watering1 = new Watering(10, 10, new WateringTimeRegularity("T"), new Fertigation(23, 32));
+        Watering watering2 = new Watering(12, 50, new WateringTimeRegularity("3"), new Fertigation(24, 12));
         List<Watering> wateringList = new ArrayList<>(Arrays.asList(watering1, watering2));
         Calendar calendar1 = Calendar.getInstance();
         calendar1.set(2023, 10, 10);
@@ -55,7 +51,7 @@ public class WateringPlanRepositoryTest {
         Map<Watering, List<DateInterval>> wateringCalendar = new TreeMap<>(new WateringComparator());
         wateringCalendar.put(watering1, dateIntervals1);
         wateringCalendar.put(watering2, dateIntervals2);
-        assertTrue(wateringPlanRepository.createWateringPlan(wateringHours, wateringList, wateringCalendar));
+        assertNotNull(wateringPlanRepository.createWateringPlan(wateringHours, wateringList, wateringCalendar));
     }
-    */
+
 }
