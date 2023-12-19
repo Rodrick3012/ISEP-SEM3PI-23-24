@@ -7,9 +7,9 @@
 #include "projectFunctions.h"
 
 
-void algoritmoUs11(Sensor **arraySensor, int numSensores, int d) {
+void algoritmoUs11(Sensor **arraySensor, int numSensores, int 3) {
     const char *nomeDoArquivo = "infoSensores.txt";
-    const int intervaloSegundos = 5;  
+    const int intervaloSegundos = 6;  
     char serialize[256];
     char * ptrSerialize = serialize;    
     int continuarLoop = 1;
