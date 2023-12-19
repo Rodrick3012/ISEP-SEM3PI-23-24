@@ -46,6 +46,7 @@ void algoritmoUs11(Sensor **arraySensor, int numSensores, int d) {
 						calculateMovingMedian(arraySensor[i]);
 						char* sensorString = buildSensorString(arraySensor[i]);
 						fprintf(fileSerialize,"%s\n", sensorString);
+						printArray(arraySensor[i]->mediana,arraySensor[i]->elementosMediana);
 						free(sensorString);
 					}		
                 fclose(fileSerialize); // Fechar o ficheiro
