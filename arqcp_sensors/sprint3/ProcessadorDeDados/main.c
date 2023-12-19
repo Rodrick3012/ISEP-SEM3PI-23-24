@@ -17,7 +17,7 @@ volatile sig_atomic_t done = 0;
 
 
 
-void saveSerialDataToFile(const char *portName, const char *fileName) {
+void saveSerialDataToFile(const char *portName, const char *fileName,Sensor** sensorArray, int num_leituras,int d) {
     int serial = open(portName, O_RDONLY | O_NOCTTY | O_NDELAY);
 
     if (serial == -1) {
@@ -66,6 +66,7 @@ void saveSerialDataToFile(const char *portName, const char *fileName) {
                     fwrite(buffer, 1, lineLength, file);
                     fflush(file);
                 }
+				algoritmoUs11(sensorArray, num_leituras,d);
 
                 // Shift the remaining data in the buffer
                 memmove(buffer, buffer + lineLength, bufferPos - lineLength);
@@ -114,9 +115,10 @@ int main(int argc, char *argv[]) {
 
     int sensorIndex = readConfigFile(configFile,sensorArray, num_leituras);
     fclose(configFile);
-	saveSerialDataToFile(serialPort, outputFile);
+	
+	saveSerialDataToFile(serialPort, outputFile,sensorArray,num_leituras,d);
 
-	algoritmoUs11(sensorArray, num_leituras,d);
+	//algoritmoUs11(sensorArray, num_leituras,d);
     freeSensorArray(sensorArray,sensorIndex);
     return 0;
 }

@@ -53,11 +53,12 @@ void algoritmoUs11(Sensor **arraySensor, int numSensores, int d) {
 				fprintf(stderr, "Erro ao abrir o arquivo para escrita\n");
 				break;
 			   }
+		  sleep(intervaloSegundos);	   
+        }
         } else {
             fprintf(stderr, "Erro ao abrir o arquivo.\n");
         }
-        
-        sleep(intervaloSegundos);
+       
    
 	}
 	return 0;
