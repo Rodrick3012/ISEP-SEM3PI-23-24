@@ -1,6 +1,10 @@
 main: main.o usac01.o asm.o calculoMediana.o sortArray.o printFunctions.o functionsForSerialization.o sensorConfigFunctions.o copyFunctions.o medianFunctions.o algorithmUs11.o
 	gcc main.o usac01.o asm.o calculoMediana.o sortArray.o printFunctions.o functionsForSerialization.o sensorConfigFunctions.o copyFunctions.o medianFunctions.o algorithmUs11.o -z noexecstack -o main
 	
+readFromSensor: readFromSensor.o
+	gcc readFromSensor.o -z noexecstack -o readFromSensor
+	
+
 main.o: main.c projectFunctions.h structs.h
 	gcc -g -Wall -Wextra -fanalyzer -c main.c -o main.o
 
@@ -24,6 +28,10 @@ functionsForSerialization.o: functionsForSerialization.c
 
 sensorConfigFunctions.o: sensorConfigFunctions.c
 	gcc -g -Wall -Wextra -fanalyzer -c sensorConfigFunctions.c -o sensorConfigFunctions.o	
+
+readFromSensor.o: readFromSensor.c
+	gcc -g -Wall -Wextra -fanalyzer -c readFromSensor.c -o readFromSensor.o	
+
 
 copyFunctions.o: copyFunctions.c
 	gcc -g -Wall -Wextra -fanalyzer -c copyFunctions.c -o copyFunctions.o	

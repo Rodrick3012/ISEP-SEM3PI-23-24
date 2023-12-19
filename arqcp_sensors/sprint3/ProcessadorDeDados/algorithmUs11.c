@@ -8,7 +8,7 @@
 
 
 void algoritmoUs11(Sensor **arraySensor, int numSensores, int d) {
-    const char *nomeDoArquivo = "infoSensores.txt";
+    const char *nomeDoArquivo = "readSensor/infoSensores.txt";
     const int intervaloSegundos = 6;  
     char serialize[256];
     char * ptrSerialize = serialize;    

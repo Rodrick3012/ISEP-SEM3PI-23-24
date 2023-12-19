@@ -1,14 +1,13 @@
 package sem3pl.dei.isep.ipp.pt.esinf.application.graph.map;
 
 
+import org.apache.http.conn.routing.RouteInfo;
+import sem3pl.dei.isep.ipp.pt.esinf.application.domain.Locals;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.CommonGraph;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.Edge;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.Graph;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -238,6 +237,7 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return g;
     }
 
+
     //string representation
     @Override
     public String toString() {
@@ -251,4 +251,18 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         }
         return s;
     }
+
+    @Override
+    public boolean containsEdge(V currentLocation, V hub) {
+        Collection<Edge<V, E>> edges = edges(); // Obtém todas as arestas do grafo
+
+        // Procura por uma aresta que liga currentLocation a hub
+        for (Edge<V, E> edge : edges) {
+            if (edge.getVOrig().equals(currentLocation) && edge.getVDest().equals(hub)) {
+                return true; // Aresta encontrada
+            }
+        }
+        return false; // Aresta não encontrada
+    }
+
 }

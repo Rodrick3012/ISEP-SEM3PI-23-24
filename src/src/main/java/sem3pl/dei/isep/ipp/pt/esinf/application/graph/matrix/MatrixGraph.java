@@ -312,4 +312,17 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
 
         return sb.toString();
     }
+
+    @Override
+    public boolean containsEdge(V currentLocation, V hub) {
+        Collection<Edge<V, E>> edges = edges(); // Obtém todas as arestas do grafo
+
+        // Procura por uma aresta que liga currentLocation a hub
+        for (Edge<V, E> edge : edges) {
+            if (edge.getVOrig().equals(currentLocation) && edge.getVDest().equals(hub)) {
+                return true; // Aresta encontrada
+            }
+        }
+        return false; // Aresta não encontrada
+    }
 }

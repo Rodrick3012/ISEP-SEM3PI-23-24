@@ -160,4 +160,7 @@ public interface Graph<V, E> extends Cloneable {
      * @return a deep copy of graph
      */
     Graph<V, E> clone();
+
+    public boolean containsEdge(V currentLocation, V hub);
+
 }
