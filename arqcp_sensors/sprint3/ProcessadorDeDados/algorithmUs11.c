@@ -9,7 +9,7 @@
 
 void algoritmoUs11(Sensor **arraySensor, int numSensores, int d) {
     const char *nomeDoArquivo = "infoSensores.txt";
-    const int intervaloSegundos = 10;  
+    const int intervaloSegundos = 5;  
     char serialize[256];
     char * ptrSerialize = serialize;    
     int continuarLoop = 1;
@@ -30,18 +30,16 @@ void algoritmoUs11(Sensor **arraySensor, int numSensores, int d) {
 				Sensor* sensor = arraySensor[(*output) - 1];
                 insertSensorData(linha, sensor);
 
-                // Atualiza o tempo da última leitura
-                time(&(sensor->last_received_time));
-				
-                // Verifica se o sensor ultrapassou o timeout
-              /*  if (difftime(time(NULL), sensor->last_received_time) > sensor->timeout) {
-                    printf("Alerta: Sensor %d ultrapassou o timeout!\n", sensor->sensor_id);
-					sensor->isInError = 1;
-				  }
-					
-				*/
+                // Obtém o tempo atual
+				time_t currentTime;
+				time(&currentTime);
+
+				// Verifica se o sensor ultrapassou o timeout
+				if (difftime(currentTime, sensor->last_received_time) > sensor->timeout) {
+				printf("Alerta: Sensor %d ultrapassou o timeout!\n", sensor->sensor_id);
+				sensor->isInError = 1;
 			    contadorLeitura++;
-		}
+				}
                 FILE* fileSerialize = fopen("serialize.txt", "w"); // Abre o ficheiro para escrita 
                 if (fileSerialize != NULL) {
 					for (int i = 0; i < numSensores; i++) {
@@ -58,8 +56,8 @@ void algoritmoUs11(Sensor **arraySensor, int numSensores, int d) {
         } else {
             fprintf(stderr, "Erro ao abrir o arquivo.\n");
         }
-        break;           
-        //sleep(intervaloSegundos);
+        
+        sleep(intervaloSegundos);
    
 	}
 	return 0;
