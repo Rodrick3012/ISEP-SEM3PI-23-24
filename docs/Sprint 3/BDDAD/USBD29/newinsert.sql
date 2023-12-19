@@ -1106,20 +1106,20 @@ Insert INTO operacao (anulada,data) values (0, TO_DATE('28-08-2023', 'DD-MM-YYYY
 Insert INTO operacao (anulada,data) values (0, TO_DATE('06-09-2023', 'DD-MM-YYYY'));
 Insert INTO operacao (anulada,data) values (0, TO_DATE('13-09-2023', 'DD-MM-YYYY'));
 Insert INTO operacao (anulada,data) values (0, TO_DATE('20-09-2023', 'DD-MM-YYYY'));
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (141, 120, TO_TIMESTAMP('2023-05-20 07:30:00', 'YYYY-MM-DD HH24:MI:SS'),41);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (142, 120, TO_TIMESTAMP('2023-06-02 07:30:00', 'YYYY-MM-DD HH24:MI:SS'),41);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (143, 120, TO_TIMESTAMP('2023-06-09 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (144, 120, TO_TIMESTAMP('2023-07-09 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (145, 120, TO_TIMESTAMP('2023-07-16 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (146, 120, TO_TIMESTAMP('2023-07-23 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (147, 120, TO_TIMESTAMP('2023-07-30 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (148, 120, TO_TIMESTAMP('2023-08-07 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (149, 120, TO_TIMESTAMP('2023-08-14 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (150, 120, TO_TIMESTAMP('2023-08-21 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (151, 120, TO_TIMESTAMP('2023-08-28 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (152, 120, TO_TIMESTAMP('2023-09-06 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (153, 120, TO_TIMESTAMP('2023-09-13 07:00:00', 'YYYY-MM-DD HH24:MI:SS'),41);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (154, 120, TO_TIMESTAMP('2023-09-20 07:00:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (141, 120, TO_TIMESTAMP('2023-05-20 07:30:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (142, 120, TO_TIMESTAMP('2023-06-02 07:30:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (143, 120, TO_TIMESTAMP('2023-06-09 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (144, 120, TO_TIMESTAMP('2023-07-09 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (145, 120, TO_TIMESTAMP('2023-07-16 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (146, 120, TO_TIMESTAMP('2023-07-23 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (147, 120, TO_TIMESTAMP('2023-07-30 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (148, 120, TO_TIMESTAMP('2023-08-07 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (149, 120, TO_TIMESTAMP('2023-08-14 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (150, 120, TO_TIMESTAMP('2023-08-21 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (151, 120, TO_TIMESTAMP('2023-08-28 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (152, 120, TO_TIMESTAMP('2023-09-06 06:20:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (153, 120, TO_TIMESTAMP('2023-09-13 07:00:00', 'YYYY-MM-DD HH24:MI:SS'),41);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (154, 120, TO_TIMESTAMP('2023-09-20 07:00:00', 'YYYY-MM-DD HH24:MI:SS'),41);
 
 
 
@@ -1139,21 +1139,21 @@ Insert INTO operacao (anulada,data) values (0, TO_DATE('24-08-2023', 'DD-MM-YYYY
 Insert INTO operacao (anulada,data) values (0, TO_DATE('02-09-2023', 'DD-MM-YYYY'));
 Insert INTO operacao (anulada,data) values (0, TO_DATE('09-09-2023', 'DD-MM-YYYY'));
 Insert INTO operacao (anulada,data) values (0, TO_DATE('18-09-2023', 'DD-MM-YYYY'));
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (155, 120, TO_TIMESTAMP('2023-05-13 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (156, 120, TO_TIMESTAMP('2023-06-02 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (157, 120, TO_TIMESTAMP('2023-06-16 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (158,  120, TO_TIMESTAMP('2023-07-01 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (159, 180, TO_TIMESTAMP('2023-07-08 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (160, 180, TO_TIMESTAMP('2023-07-15 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (161, 180, TO_TIMESTAMP('2023-07-22 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (162, 180, TO_TIMESTAMP('2023-07-29 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (163, 150, TO_TIMESTAMP('2023-08-05 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (164, 150, TO_TIMESTAMP('2023-08-10 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (165, 150, TO_TIMESTAMP('2023-08-17 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (166, 120, TO_TIMESTAMP('2023-08-24 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (167, 120, TO_TIMESTAMP('2023-09-02 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (168, 120, TO_TIMESTAMP('2023-09-09 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (169, 120, TO_TIMESTAMP('2023-09-18 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (155, 120, TO_TIMESTAMP('2023-05-13 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (156, 120, TO_TIMESTAMP('2023-06-02 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (157, 120, TO_TIMESTAMP('2023-06-16 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (158,  120, TO_TIMESTAMP('2023-07-01 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (159, 180, TO_TIMESTAMP('2023-07-08 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (160, 180, TO_TIMESTAMP('2023-07-15 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (161, 180, TO_TIMESTAMP('2023-07-22 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (162, 180, TO_TIMESTAMP('2023-07-29 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (163, 150, TO_TIMESTAMP('2023-08-05 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (164, 150, TO_TIMESTAMP('2023-08-10 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (165, 150, TO_TIMESTAMP('2023-08-17 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (166, 120, TO_TIMESTAMP('2023-08-24 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (167, 120, TO_TIMESTAMP('2023-09-02 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (168, 120, TO_TIMESTAMP('2023-09-09 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor)VALUES (169, 120, TO_TIMESTAMP('2023-09-18 23:00:00', 'YYYY-MM-DD HH24:MI:SS'),22);
 
 
 Insert INTO operacao (anulada,data) values (0, TO_DATE('13-05-2023', 'DD-MM-YYYY'));
@@ -1194,11 +1194,11 @@ INSERT INTO Operacao (anulada,data) values (0, TO_DATE('02-08-2023', 'DD-MM-YYYY
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('04-09-2023', 'DD-MM-YYYY'));
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('02-10-2023', 'DD-MM-YYYY'));
 
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (185, 60, TO_TIMESTAMP('2023-06-02 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (186, 120,TO_TIMESTAMP('2023-07-02 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (187, 180,TO_TIMESTAMP('2023-08-02 05:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (188, 120,TO_TIMESTAMP('2023-09-04 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (189, 60, TO_TIMESTAMP('2023-10-02 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (185, 60, TO_TIMESTAMP('2023-06-02 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (186, 120,TO_TIMESTAMP('2023-07-02 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (187, 180,TO_TIMESTAMP('2023-08-02 05:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (188, 120,TO_TIMESTAMP('2023-09-04 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (189, 60, TO_TIMESTAMP('2023-10-02 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),10);
 
 
 
@@ -1217,19 +1217,19 @@ INSERT INTO Operacao (anulada,data) values (0, TO_DATE('26-08-2023', 'DD-MM-YYYY
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('31-08-2023', 'DD-MM-YYYY'));
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('05-09-2023', 'DD-MM-YYYY'));
 
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (190,  60, TO_TIMESTAMP('2023-06-12 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (191,  60, TO_TIMESTAMP('2023-06-19 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (192, 120, TO_TIMESTAMP('2023-06-30 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (193, 120, TO_TIMESTAMP('2023-07-08 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (194, 120, TO_TIMESTAMP('2023-07-15 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (195, 150, TO_TIMESTAMP('2023-07-22 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (196, 150, TO_TIMESTAMP('2023-07-29 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (197, 120, TO_TIMESTAMP('2023-08-05 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (198, 120, TO_TIMESTAMP('2023-08-12 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (199, 120, TO_TIMESTAMP('2023-08-19 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (200, 120, TO_TIMESTAMP('2023-08-26 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (201, 120, TO_TIMESTAMP('2023-08-31 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
-INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (202, 120, TO_TIMESTAMP('2023-09-05 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (190,  60, TO_TIMESTAMP('2023-06-12 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (191,  60, TO_TIMESTAMP('2023-06-19 06:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (192, 120, TO_TIMESTAMP('2023-06-30 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (193, 120, TO_TIMESTAMP('2023-07-08 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (194, 120, TO_TIMESTAMP('2023-07-15 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (195, 150, TO_TIMESTAMP('2023-07-22 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (196, 150, TO_TIMESTAMP('2023-07-29 04:00:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (197, 120, TO_TIMESTAMP('2023-08-05 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (198, 120, TO_TIMESTAMP('2023-08-12 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (199, 120, TO_TIMESTAMP('2023-08-19 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (200, 120, TO_TIMESTAMP('2023-08-26 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (201, 120, TO_TIMESTAMP('2023-08-31 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
+--INSERT INTO operacaoRegaSetor (id, duracao,  horario, setor) VALUES (202, 120, TO_TIMESTAMP('2023-09-05 21:30:00', 'YYYY-MM-DD HH24:MI:SS'),42);
 
 
 

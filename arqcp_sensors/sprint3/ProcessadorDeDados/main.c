@@ -51,7 +51,7 @@ void saveSerialDataToFile(const char *portName, const char *fileName) {
     size_t bufferPos = 0;
 
     time_t start_time = time(NULL);
-    while (!done && (time(NULL) - start_time) <= 20) { // Read for 20 seconds
+    while (!done && (time(NULL) - start_time) <= 2000) { // Read for 20 seconds
         bytesRead = read(serial, buffer + bufferPos, sizeof(buffer) - bufferPos);
         if (bytesRead > 0) {
             bufferPos += bytesRead;
@@ -96,7 +96,6 @@ int main(int argc, char *argv[]) {
     const char *outputFile = "infoSensores.txt";
 
 
-    saveSerialDataToFile(serialPort, outputFile);
 
     FILE* configFile = fopen(arquivo_config, "r");
     if (configFile == NULL) {
@@ -104,14 +103,19 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+
+
     Sensor** sensorArray = (Sensor**)malloc(num_leituras * sizeof(Sensor*));
     if (sensorArray == NULL) {
         printf("Erro ao alocar memória para o array de sensores.\n");
         fclose(configFile);
         return 1;
     }
+
     int sensorIndex = readConfigFile(configFile,sensorArray, num_leituras);
     fclose(configFile);
+	saveSerialDataToFile(serialPort, outputFile);
+
 	algoritmoUs11(sensorArray, num_leituras,d);
     freeSensorArray(sensorArray,sensorIndex);
     return 0;
