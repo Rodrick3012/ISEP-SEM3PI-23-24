@@ -8,11 +8,9 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 /**
- *
  * @author DEI-ISEP
- *
  */
-public abstract class CommonGraph <V,E> implements Graph<V,E> {
+public abstract class CommonGraph<V, E> implements Graph<V, E> {
     protected int numVerts;
     protected int numEdges;
     protected final boolean isDirected;
@@ -40,8 +38,11 @@ public abstract class CommonGraph <V,E> implements Graph<V,E> {
         return new ArrayList<>(vertices);
     }
 
+
     @Override
-    public boolean validVertex(V vert) { return vertices.contains(vert);   }
+    public boolean validVertex(V vert) {
+        return vertices.contains(vert);
+    }
 
     @Override
     public int key(V vert) {
@@ -50,7 +51,7 @@ public abstract class CommonGraph <V,E> implements Graph<V,E> {
 
     @Override
     public V vertex(int key) {
-        if ((key < 0) || (key>=numVerts)) return null;
+        if ((key < 0) || (key >= numVerts)) return null;
         return vertices.get(key);
     }
 
@@ -67,12 +68,13 @@ public abstract class CommonGraph <V,E> implements Graph<V,E> {
         return numEdges;
     }
 
-    /** Copy graph from to graph to
+    /**
+     * Copy graph from to graph to
      *
      * @param from graph from which to copy
-     * @param to graph for which to copy
+     * @param to   graph for which to copy
      */
-    protected void copy(Graph <V,E> from, Graph <V,E> to) {
+    protected void copy(Graph<V, E> from, Graph<V, E> to) {
         //insert all vertices
         for (V v : from.vertices()) {
             to.addVertex(v);
@@ -105,13 +107,14 @@ public abstract class CommonGraph <V,E> implements Graph<V,E> {
         // graph must have same vertices
         Collection<V> tvc = this.vertices();
         tvc.removeAll(otherGraph.vertices());
-        if (tvc.size() > 0 ) return false;
+        if (tvc.size() > 0) return false;
 
         // graph must have same edges
         Collection<Edge<V, E>> tec = this.edges();
         tec.removeAll(otherGraph.edges());
         return (tec.size() == 0);
     }
+
 
     public abstract Graph<V, E> clone();
 
@@ -131,26 +134,7 @@ public abstract class CommonGraph <V,E> implements Graph<V,E> {
         }
         return null;
     }
-
-
-    public Integer degreeOf(V vertex) {
-        if (!validVertex(vertex)) {
-
-            return null;
-        }
-
-        int degree = 0;
-
-        // Iterar sobre todas as arestas
-        for (Edge<V, E> edge : edges()) {
-            if (edge.getVOrig().equals(vertex) || edge.getVDest().equals(vertex)) {
-                // Se a aresta conecta ao vértice, incrementar o grau
-                degree++;
-            }
-        }
-
-        return degree;
-    }
 }
+
 
 
