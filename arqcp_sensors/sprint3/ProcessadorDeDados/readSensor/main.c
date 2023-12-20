@@ -7,15 +7,13 @@
 #include <termios.h>
 #include <signal.h>
 #include <time.h>
+#include <poll.h>
 
-//quantidade de linhas do ficheiro que vai ler por cada ciclo do algoritmo
-int d = 10;
 
 volatile sig_atomic_t done = 0;
 
 
-
-void saveSerialDataToFile(const char *portName, const char *fileName) {
+void saveSerialDataToFile(const char *portName, const char *fileName, int numValuesToRead) {
     int serial = open(portName, O_RDONLY | O_NOCTTY | O_NDELAY);
 
     if (serial == -1) {
@@ -47,22 +45,24 @@ void saveSerialDataToFile(const char *portName, const char *fileName) {
     char buffer[1024];
     ssize_t bytesRead;
     size_t bufferPos = 0;
+    
+    int valuesRead = 0;
 
-    time_t start_time = time(NULL);
-    while (!done && (time(NULL) - start_time) <= 2000) { // Read for 20 seconds
+    while (!done && valuesRead < numValuesToRead) {
         bytesRead = read(serial, buffer + bufferPos, sizeof(buffer) - bufferPos);
         if (bytesRead > 0) {
             bufferPos += bytesRead;
 
             // Check if a newline character is present in the buffer
             char *newlinePos;
-            while ((newlinePos = memchr(buffer, '\n', bufferPos)) != NULL) {
+            while ((newlinePos = memchr(buffer, '\n', bufferPos)) != NULL && valuesRead < numValuesToRead) {
                 size_t lineLength = newlinePos - buffer + 1;
 
                 // Check if the character count in the line is greater than 80
                 if (lineLength > 65) {
                     fwrite(buffer, 1, lineLength, file);
                     fflush(file);
+                    valuesRead++;  // Increment the count of values read
                 }
 
                 // Shift the remaining data in the buffer
@@ -72,15 +72,17 @@ void saveSerialDataToFile(const char *portName, const char *fileName) {
         }
     }
 
+    printf("Dados do sensor recebidos no txt\n");
     fclose(file);
     close(serial);
 }
 
-int main(int argc, char *argv[]) {
-	const char *serialPort = "/dev/ttyACM0";  // Change this to your serial port on macOS
+int main() {
+	const char *serialPort = "/dev/ttyS0";  // Change this to your serial port on macOS
     const char *outputFile = "infoSensores.txt";
 
-	saveSerialDataToFile(serialPort,outputFile);
-	return 0;
-}
+    saveSerialDataToFile(serialPort, outputFile, 10);
+    saveSerialDataToFile(serialPort, outputFile, 10);
 
+    return 0;
+}
