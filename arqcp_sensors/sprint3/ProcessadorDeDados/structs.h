@@ -24,6 +24,7 @@ typedef struct {
     int write_counter;
     time_t last_received_time;
     int isInError;
+    int numeroValoresLidos;
 } Sensor;
 
 #endif

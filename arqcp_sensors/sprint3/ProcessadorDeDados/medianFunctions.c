@@ -14,7 +14,8 @@ void calculateMovingMedian(Sensor* sensor) {
 	int windowSize = sensor->elementosMediana;
     int r = bufferSize + 1 - windowSize;
     int array3 [r];
-	printf("BUFFER ARRAY\n");	
+	printf("SENSOR ID ->%d \n ",sensor->sensor_id);
+	printf("Content circular buffer -->");	
 	printArray(sensor->buffer->arr, sensor->buffer->size);
 	for (int i = 0; i < windowSize; i++) {
 		
@@ -23,7 +24,6 @@ void calculateMovingMedian(Sensor* sensor) {
     copyElementsSorted(buffer->arr + i, array3 , r);
     printf("each sublist for moving median");
     printArray(array3, r);
-    printf("\n");
     medianaArray[i] = mediana(array3,r);    
 	
 	}

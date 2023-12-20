@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <string.h>
 #include "structs.h"
-
+#include <stdbool.h>
 
 
 void printArray(int* array, int size) {
@@ -70,4 +70,12 @@ void printCircularBuffer(const CircularBuffer* buffer) {
     }
 
     printf("\n");
+}
+bool allZeros(int *array, size_t size) {
+    for (size_t i = 0; i < size; i++) {
+        if (array[i] != 0) {
+            return false;  // Se encontrar um elemento diferente de zero, retorna falso
+        }
+    }
+    return true;  // Se todos os elementos são zero, retorna verdadeiro
 }
