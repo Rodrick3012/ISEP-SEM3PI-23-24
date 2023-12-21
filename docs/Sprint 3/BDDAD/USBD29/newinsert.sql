@@ -1048,51 +1048,64 @@ insert into planta (nomeComum, variedade,especieid) values('Oliveira','Arbequina
 
 insert into plantaProduto values (9,(select id from planta where variedade like 'Arbequina'));
 
-insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Arbequina'),'Campo grande',TO_DATE('2016-10-12','YYYY-MM-DD'),40);
-insert into planta (nomeComum, variedade,especieid) values('Maceira','Porta de loja',(select id from especie where designacao like  'Malus domestica'));
+insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'Arbequina'),'Campo grande',TO_DATE('2016-10-12','YYYY-MM-DD'));
+Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2016-10-12','YYYY-MM-DD') and variedade like 'Arbequina'),(select id from unidade where designacao like 'un'),40);
 
+
+insert into planta (nomeComum, variedade,especieid) values('Maceira','Porta de loja',(select id from especie where designacao like  'Malus domestica'));
 insert into plantaProduto values (3,(select id from planta where variedade like 'Porta de loja'));
-insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Porta de loja'),'Lameiro do moinho',TO_DATE('2019-01-09','YYYY-MM-DD'),50);
+insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'Porta de loja'),'Lameiro do moinho',TO_DATE('2019-01-09','YYYY-MM-DD'));
+Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-09','YYYY-MM-DD') and variedade like 'Porta de loja'),(select id from unidade where designacao like 'un'),50);
 
 insert into planta (nomeComum, variedade,especieid) values('Maceira','Malápio',(select id from especie where designacao like  'Malus domestica'));
 insert into plantaProduto values (3,(select id from planta where variedade like 'Malápio'));
-insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Malápio'),'Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'),20);
+insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'Malápio'),'Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'));
+Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-10','YYYY-MM-DD') and variedade like 'Malápio'),(select id from unidade where designacao like 'un'),20);
 
 
 -- Operação de plantação de Macieira Pipo de Basto
 insert into planta (nomeComum, variedade,especieid) values('Maceira','Pipo de basto',(select id from especie where designacao like  'Malus domestica'));
 
 insert into plantaProduto values (3,(select id from planta where variedade like 'Pipo de basto'));
-insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Pipo de basto'),'Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'),40);
+insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'Pipo de basto'),'Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'));
+Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-10','YYYY-MM-DD') and variedade like 'Pipo de basto'),(select id from unidade where designacao like 'un'),40);
 
 -- Operação de plantação de Macieira Canada
 insert into planta (nomeComum, variedade,especieid) values('Maceira','Canada' ,(select id from especie where designacao like  'Malus domestica'));
 
 insert into plantaProduto values (3,(select id from planta where variedade like 'Canada'));
-insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Canada'),'Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'),30);
+insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'Canada'),'Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'));
+Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-10','YYYY-MM-DD') and variedade like 'Canada'),(select id from unidade where designacao like 'un'),30);
 
 -- Operação de plantação de Macieira Grand Fay
 insert into planta (nomeComum, variedade,especieid) values('Maceira','Grand Fay' ,(select id from especie where designacao like  'Malus domestica'));
 
 insert into plantaProduto values (3,(select id from planta where variedade like 'Grand Fay'));
-insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Grand Fay'),'Lameiro do moinho',TO_DATE('2019-01-11','YYYY-MM-DD'),40);
+insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'Grand Fay'),'Lameiro do moinho',TO_DATE('2019-01-11','YYYY-MM-DD'));
+Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-11','YYYY-MM-DD') and variedade like 'Grand Fay'),(select id from unidade where designacao like 'un'),40);
 
 -- Operação de plantação de Macieira Gronho Doce
 insert into planta (nomeComum, variedade,especieid) values('Maceira','Gronho Doce' ,(select id from especie where designacao like  'Malus domestica'));
 
 insert into plantaProduto values (3,(select id from planta where variedade like 'Gronho Doce'));
-insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Gronho Doce'),'Lameiro do moinho',TO_DATE('2019-01-11','YYYY-MM-DD'),50);
+insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'Gronho Doce'),'Lameiro do moinho',TO_DATE('2019-01-11','YYYY-MM-DD'));
+Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-11','YYYY-MM-DD') and variedade like 'Gronho Doce'),(select id from unidade where designacao like 'un'),50);
 
 
-insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Sugarsnax Hybrid'),'Campo novo',TO_DATE('2023-04-05','YYYY-MM-DD'),1.2);
+insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'Sugarsnax Hybrid'),'Campo novo',TO_DATE('2023-04-05','YYYY-MM-DD'));
+Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2023-04-05','YYYY-MM-DD') and variedade like 'Sugarsnax Hybrid'),(select id from unidade where designacao like 'ha'),1.2);
 
-insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'manteiga'),'Campo novo',TO_DATE('2023-04-06','YYYY-MM-DD'),0.6);
+insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'manteiga'),'Campo novo',TO_DATE('2023-04-06','YYYY-MM-DD'));
+Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2023-04-06','YYYY-MM-DD') and variedade like 'manteiga'),(select id from unidade where designacao like 'ha'),0.6);
 
 
 -- Monda de plantação de cenouras Danvers Half Long (08/08/2023)
-insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Danvers Half Long'),'Campo novo',TO_DATE('2023-07-05','YYYY-MM-DD'),1.2);
+insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'Danvers Half Long'),'Campo novo',TO_DATE('2023-07-05','YYYY-MM-DD'));
+Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2023-07-05','YYYY-MM-DD') and variedade like 'Danvers Half Long'),(select id from unidade where designacao like 'ha'),1.2);
 
-insert into cultura(planta,parcela,dataInicial,quantidade) values ((select id from planta where variedade like 'Amarelo'),'Campo novo',TO_DATE('2023-10-12','YYYY-MM-DD'),32);
+insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'Amarelo'),'Campo novo',TO_DATE('2023-10-12','YYYY-MM-DD'));
+Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2023-10-12','YYYY-MM-DD') and variedade like 'Amarelo'),(select id from unidade where designacao like 'un'),32);
+
 insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Arbequina'),11,40,TO_DATE('01-05-2017', 'DD-MM-YYYY'));
 
 
