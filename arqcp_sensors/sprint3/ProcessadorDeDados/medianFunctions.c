@@ -14,15 +14,18 @@ void calculateMovingMedian(Sensor* sensor) {
 	int windowSize = sensor->elementosMediana;
     int r = bufferSize + 1 - windowSize;
     int array3 [r];
+	printf("SENSOR ID ->%d \n ",sensor->sensor_id);
+	printf("Content circular buffer -->");	
+	printArray(sensor->buffer->arr, sensor->buffer->size);
 	for (int i = 0; i < windowSize; i++) {
-		int index = (*(buffer->read) + i) % buffer->size;
-		if (index < 0) {
-			index += buffer->size;
-		}
-    int value = buffer->arr[index];
-
-    copyElementsSorted(buffer->arr + index, array3 , r);
+		
+    int value = buffer->arr[i];
+	
+    copyElementsSorted(buffer->arr + i, array3 , r);
+    printf("each sublist for moving median");
+    printArray(array3, r);
     medianaArray[i] = mediana(array3,r);    
+	
 	}
 	sort_array(medianaArray, windowSize);
 	sensor->ultimoCalculomediana = mediana(medianaArray,windowSize);

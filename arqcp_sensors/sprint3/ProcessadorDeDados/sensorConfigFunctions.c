@@ -49,6 +49,7 @@ Sensor initializeSensor(char* line) {
 	sensor.elementosMediana = comprimento_mediana;		
     sensor.ultimoCalculomediana = 0;
 	sensor.last_received_time=0;
+	sensor.numeroValoresLidos = 0;    	
     return sensor;
 }
 

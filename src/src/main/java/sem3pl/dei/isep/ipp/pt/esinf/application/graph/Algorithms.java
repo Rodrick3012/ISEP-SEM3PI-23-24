@@ -427,7 +427,7 @@ public class Algorithms {
         return Collections.emptyList();
     }
 
-    public static <V,E> boolean colorDFS(Graph<V, E> g, V vOrig, int[] color) {
+    public static <V, E> boolean colorDFS(Graph<V, E> g, V vOrig, int[] color) {
         // Make vOrig gray
         int idxOrig = g.key(vOrig);
         color[idxOrig] = 1; // Assuming 0 is white, 1 is gray, and 2 is black
@@ -603,7 +603,5 @@ public class Algorithms {
         return vertexColors;
     }
 
+
 }
-
-
-
