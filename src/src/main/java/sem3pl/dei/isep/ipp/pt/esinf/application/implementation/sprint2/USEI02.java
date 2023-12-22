@@ -42,6 +42,39 @@ public class USEI02 {
         return influenceMap;
     }
 
+
+    public List<Locals> obterVerticesPorMaiorGrau(Graph<Locals,Integer> graph,int numeroDeVertices) {
+        HashMap<Locals, Integer> map = calculateInfluence(graph);
+
+        List<Map.Entry<Locals, Integer>> listaOrdenada = new ArrayList<>(map.entrySet());
+        listaOrdenada.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+
+        LinkedHashMap<Locals, Integer> mapaOrdenado = new LinkedHashMap<>();
+        for (Map.Entry<Locals, Integer> entry : listaOrdenada) {
+            mapaOrdenado.put(entry.getKey(), entry.getValue());
+        }
+        return obterPrimeirosXElementos(mapaOrdenado, numeroDeVertices).keySet().stream().toList();
+    }
+
+    private static Map<Locals, Integer> obterPrimeirosXElementos(Map<Locals, Integer> mapa, int x) {
+        Map<Locals, Integer> resultado = new LinkedHashMap<>();
+        int contador = 0;
+
+        for (Map.Entry<Locals, Integer> entry : mapa.entrySet()) {
+            resultado.put(entry.getKey(), entry.getValue());
+            contador++;
+
+            if (contador == x) {
+                break;
+            }
+        }
+
+        return resultado;
+    }
+
+
+
+
     public static ArrayList<List<LocationCriteria>> optimizeLocations(Graph<Locals, Integer> graph, int numberOfHubs) {
         List<LocationCriteria> locationCriteriaList = new ArrayList<>();
 

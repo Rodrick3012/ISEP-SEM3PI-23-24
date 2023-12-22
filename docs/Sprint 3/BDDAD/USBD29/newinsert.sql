@@ -1630,3 +1630,169 @@ insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (2
 insert into operacaoAplicacao(id) values (281);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (281,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('gronho doce') and dataFinal IS NULL));
 
+insert into unidade (designacao) values ('kg/ha');
+insert into unidade (designacao) values ('l/ha');
+
+
+insert into formulacao(formulacao) values ('Orgânico');
+
+insert into classificacao(classificacao) values ('Matéria Orgânica');
+insert into fabricante (fabricante) values ('Plymag') ;
+
+insert into fabricante (fabricante) values ('Asfertglobal');
+
+insert into fabricante (fabricante) values ('Tecniferti MOL');
+
+insert into fatorProducao(designacao,fabricante,formulacao,classificacao,objetivo) values ('Tecniferti MOL',(select id from fabricante where fabricante = 'Tecniferti MOL'),4,(select id from classificacao where classificacao = 'Matéria Orgânica'),2);
+insert into substancia (substancia) values ('AF');
+
+insert into substanciaFatorProducao values (13,'Tecniferti MOL',27);
+insert into substanciaFatorProducao values (14,'Tecniferti MOL',5.6);
+insert into substanciaFatorProducao values (15,'Tecniferti MOL',1);
+insert into substanciaFatorProducao values (18,'Tecniferti MOL',15);
+insert into substanciaFatorProducao values (19,'Tecniferti MOL',10);
+
+
+insert into fatorProducao(designacao,fabricante,formulacao,classificacao,objetivo) values ('soluSOP 52',(select id from fabricante where fabricante = 'K+S'),1,2,2);
+insert into fatorProducaoPh values ('soluSOP 52',7);
+
+insert into substancia(substancia) values ('SO3');
+
+
+insert into substanciaFatorProducao values (20,'soluSOP 52',45);
+insert into substanciaFatorProducao values (16,'soluSOP 52',52.5);
+
+insert into fatorProducao(designacao,fabricante,formulacao,classificacao,objetivo) values ('Floracal Flow SL',(select id from fabricante where fabricante = 'Plymag'),4,2,2);
+insert into fatorProducaoPh values ('Floracal Flow SL',7.8);
+
+insert into substancia (substancia) values ('CaO');
+insert into substanciaFatorProducao values (21,'Floracal Flow SL',35);
+
+insert into fatorProducao(designacao,fabricante,formulacao,classificacao,objetivo) values ('Kiplant AllGrip',(select id from fabricante where fabricante = 'Asfertglobal'),4,2,2);
+insert into fatorProducao(designacao,fabricante,formulacao,classificacao,objetivo) values ('Cuperdem',(select id from fabricante where fabricante = 'Asfertglobal'),4,2,2);
+insert into substanciaFatorProducao values (1,'Cuperdem',6);
+
+
+insert into mixFertirrega values (10);
+insert into mixFertirrega_FatorProducao values (10, (select designacao from fatorProducao where designacao = 'EPSO Top'),1.5,3);
+insert into mixFertirrega_FatorProducao values (10,(select designacao from fatorProducao where designacao = 'soluSOP 52'),2.5,3);
+insert into mixFertirrega_FatorProducao values (10,(select designacao from fatorProducao where designacao = 'Floracal Flow SL'),1.7,4);
+
+insert into mixFertirrega values (11);
+insert into mixFertirrega_FatorProducao values (11,(select designacao from fatorProducao where designacao = 'Tecniferti MOL'),60,4);
+insert into mixFertirrega_FatorProducao values (11,(select designacao from fatorProducao where designacao = 'Kiplant AllGrip'),2,4);
+INSERT INTO operacao ( data) VALUES (TO_DATE('17-06-2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('17/07/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('17/08/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('04/09/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('18/09/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('02/10/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('13/05/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('02/06/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('01/07/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('08/07/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('22/07/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('29/07/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('05/08/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('17/08/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('24/08/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('02/09/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('18/09/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('12/06/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('19/06/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('08/07/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('22/07/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('05/08/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('19/08/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('26/08/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('31/08/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('05/09/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('02/06/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('09/06/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('16/07/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('23/07/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('30/07/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('07/08/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('14/08/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('21/08/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('28/08/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('06/09/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('13/09/2023','DD/MM/YYYY'));
+INSERT INTO operacao ( data) VALUES (TO_DATE('20/09/2023','DD/MM/YYYY'));
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (282, 30, TO_TIMESTAMP('17-06-2023 05:00:00', 'DD/MM/YYYY HH24:MI:SS'), 10);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (283, 30, TO_TIMESTAMP('17/07/2023 05:00:00', 'DD/MM/YYYY HH24:MI:SS'), 10);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (284, 60, TO_TIMESTAMP('17/08/2023 05:00:00', 'DD/MM/YYYY HH24:MI:SS'), 10);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (285, 120, TO_TIMESTAMP('04/09/2023 06:00:00', 'DD/MM/YYYY HH24:MI:SS'), 10);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (286, 30, TO_TIMESTAMP('18/09/2023 05:00:00', 'DD/MM/YYYY HH24:MI:SS'), 10);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (287, 60, TO_TIMESTAMP('02/10/2023 06:00:00', 'DD/MM/YYYY HH24:MI:SS'), 10);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (288, 120, TO_TIMESTAMP('13/05/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (289, 120, TO_TIMESTAMP('02/06/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (290, 120, TO_TIMESTAMP('01/07/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (291, 180, TO_TIMESTAMP('08/07/2023 05:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (292, 180, TO_TIMESTAMP('22/07/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (293, 180, TO_TIMESTAMP('29/07/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (294, 120, TO_TIMESTAMP('05/08/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (295, 120, TO_TIMESTAMP('17/08/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (296, 120, TO_TIMESTAMP('24/08/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (297, 120, TO_TIMESTAMP('02/09/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (298, 120, TO_TIMESTAMP('18/09/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (299, 120, TO_TIMESTAMP('12/06/2023 06:00:00', 'DD/MM/YYYY HH24:MI:SS'), 42);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (300, 120, TO_TIMESTAMP('19/06/2023 06:00:00', 'DD/MM/YYYY HH24:MI:SS'), 42);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (301, 120, TO_TIMESTAMP('08/07/2023 04:00:00', 'DD/MM/YYYY HH24:MI:SS'), 42);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (302, 120, TO_TIMESTAMP('22/07/2023 04:00:00', 'DD/MM/YYYY HH24:MI:SS'), 42);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (303, 120, TO_TIMESTAMP('05/08/2023 21:30:00', 'DD/MM/YYYY HH24:MI:SS'), 42);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (304, 120, TO_TIMESTAMP('19/08/2023 21:30:00', 'DD/MM/YYYY HH24:MI:SS'), 42);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (305, 120, TO_TIMESTAMP('26/08/2023 21:30:00', 'DD/MM/YYYY HH24:MI:SS'), 42);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (306, 120, TO_TIMESTAMP('31/08/2023 21:30:00', 'DD/MM/YYYY HH24:MI:SS'), 42);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (307, 120, TO_TIMESTAMP('05/09/2023 21:30:00', 'DD/MM/YYYY HH24:MI:SS'), 42);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (308, 120, TO_TIMESTAMP('02/06/2023 07:30:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (309, 120, TO_TIMESTAMP('09/06/2023 06:20:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (310, 120, TO_TIMESTAMP('16/07/2023 06:20:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (311, 120, TO_TIMESTAMP('23/07/2023 06:20:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (312, 120, TO_TIMESTAMP('30/07/2023 06:20:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (313, 120, TO_TIMESTAMP('07/08/2023 06:20:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (314, 120, TO_TIMESTAMP('14/08/2023 06:20:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (315, 120, TO_TIMESTAMP('21/08/2023 06:20:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (316, 120, TO_TIMESTAMP('28/08/2023 06:20:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (317, 120, TO_TIMESTAMP('06/09/2023 06:20:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (318, 120, TO_TIMESTAMP('13/09/2023 07:00:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (319, 120, TO_TIMESTAMP('20/09/2023 07:00:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+INSERT INTO operacao (data) VALUES (TO_DATE('02/06/2023', 'DD/MM/YYYY'));
+INSERT INTO operacao (data) VALUES (TO_DATE('02/07/2023', 'DD/MM/YYYY'));
+INSERT INTO operacao (data) VALUES (TO_DATE('02/08/2023', 'DD/MM/YYYY'));
+INSERT INTO operacao (data) VALUES (TO_DATE('16/06/2023', 'DD/MM/YYYY'));
+INSERT INTO operacao (data) VALUES (TO_DATE('15/07/2023', 'DD/MM/YYYY'));
+INSERT INTO operacao (data) VALUES (TO_DATE('10/08/2023', 'DD/MM/YYYY'));
+INSERT INTO operacao (data) VALUES (TO_DATE('09/09/2023', 'DD/MM/YYYY'));
+INSERT INTO operacao (data) VALUES (TO_DATE('30/06/2023', 'DD/MM/YYYY'));
+INSERT INTO operacao (data) VALUES (TO_DATE('15/07/2023', 'DD/MM/YYYY'));
+INSERT INTO operacao (data) VALUES (TO_DATE('29/07/2023', 'DD/MM/YYYY'));
+INSERT INTO operacao (data) VALUES (TO_DATE('12/08/2023', 'DD/MM/YYYY'));
+INSERT INTO operacao (data) VALUES (TO_DATE('20/05/2023', 'DD/MM/YYYY'));
+INSERT INTO operacao (data) VALUES (TO_DATE('09/07/2023', 'DD/MM/YYYY'));
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (320, 60, TO_TIMESTAMP('02/06/2023 06:00:00', 'DD/MM/YYYY HH24:MI:SS'), 10);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (321, 120, TO_TIMESTAMP('02/07/2023 06:00:00', 'DD/MM/YYYY HH24:MI:SS'), 10);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (322, 180, TO_TIMESTAMP('02/08/2023 05:00:00', 'DD/MM/YYYY HH24:MI:SS'), 10);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (323, 120, TO_TIMESTAMP('16/06/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (324, 180, TO_TIMESTAMP('15/07/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (325, 150, TO_TIMESTAMP('10/08/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (326, 120, TO_TIMESTAMP('09/09/2023 23:00:00', 'DD/MM/YYYY HH24:MI:SS'), 22);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (327, 120, TO_TIMESTAMP('30/06/2023 04:00:00', 'DD/MM/YYYY HH24:MI:SS'), 42);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (328, 120, TO_TIMESTAMP('15/07/2023 04:00:00', 'DD/MM/YYYY HH24:MI:SS'), 42);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (329, 150, TO_TIMESTAMP('29/07/2023 04:00:00', 'DD/MM/YYYY HH24:MI:SS'), 42);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (330, 120, TO_TIMESTAMP('12/08/2023  21:30', 'DD/MM/YYYY HH24:MI:SS'), 42);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (331, 120, TO_TIMESTAMP('20/05/2023 07:30:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (332, 120, TO_TIMESTAMP('09/07/2023 06:20:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+Insert into RegaFertirrega values(320, 10);
+Insert into RegaFertirrega values(321, 10);
+Insert into RegaFertirrega values(322, 10);
+Insert into RegaFertirrega values(323, 10);
+Insert into RegaFertirrega values(324, 11);
+Insert into RegaFertirrega values(325, 10);
+Insert into RegaFertirrega values(326, 10);
+Insert into RegaFertirrega values(327, 11);
+Insert into RegaFertirrega values(328, 10);
+Insert into RegaFertirrega values(329, 11);
+Insert into RegaFertirrega values(330, 10);
+Insert into RegaFertirrega values(331, 11);
+Insert into RegaFertirrega values(332, 10);

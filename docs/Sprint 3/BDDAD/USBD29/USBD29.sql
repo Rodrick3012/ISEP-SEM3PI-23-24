@@ -158,7 +158,7 @@ CREATE TABLE Setor (
   dataFim      date, 
   PRIMARY KEY (setor));
 CREATE TABLE MixFertirrega (
-  id number GENERATED AS IDENTITY, 
+  id number NOT NULL,
   PRIMARY KEY (id));
 CREATE TABLE CulturaOperacaoFatorProducao (
   OperacaoFatorProducao number NOT NULL, 
