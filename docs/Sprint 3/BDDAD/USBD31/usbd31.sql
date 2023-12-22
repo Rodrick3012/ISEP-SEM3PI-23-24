@@ -1,33 +1,56 @@
-CREATE OR REPLACE PROCEDURE pcd_registrar_receita_fertirrega (p_cursor SYS_REFCURSOR) AS
-    v_fator_producao VARCHAR2(30);
-    v_id_mixFertirrega NUMBER;
-BEGIN
+--AS OBJECT indica explicitamente que estamos a criar um tipo de objeto, que é uma estrutura de dados composta por atributos senão o Oracle vai assumir que estmamos a criar um tipo de coleção, como um tipo de tabela ou numeros
+CREATE OR REPLACE TYPE FatorProducaoType AS OBJECT (
+    nome VARCHAR2(50),
+    quantidade NUMBER,
+    unidade_id NUMBER
+);
 
-INSERT INTO mixFertirrega VALUES (DEFAULT) returning id into v_id_mixFertirrega;
-
-LOOP
-FETCH p_cursor INTO v_fator_producao;
-        EXIT WHEN p_cursor%NOTFOUND;
-INSERT INTO mixFertirrega_FatorProducao VALUES (v_id_mixFertirrega, v_fator_producao);
-END LOOP;
-
-CLOSE p_cursor;
-EXCEPTION
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLCODE || ' - ' || SQLERRM);
-        RAISE;
-END pcd_registrar_receita_fertirrega;
+--Criacao de um tipo de tabela com o tipo presente em cima
+CREATE OR REPLACE TYPE FatoresProducaoArrayType AS TABLE OF FatorProducaoType;
 /
 
-DECLARE
-v_cursor SYS_REFCURSOR;
+
+CREATE OR REPLACE PROCEDURE PCD_REGISTAR_RECEITA_FERTIRREGA(
+    pReceitaID NUMBER,
+    pFatoresProducao FatoresProducaoArrayType
+) AS
 BEGIN
+INSERT INTO mixFertirrega VALUES (pReceitaID);
 
-OPEN v_cursor FOR
-SELECT designacao FROM fatorProducao
-WHERE designacao IN ('Sonata', 'FLiPPER');
+FOR i IN 1..pFatoresProducao.COUNT LOOP
+        INSERT INTO mixFertirrega_fatorProducao (mixFertirrega, fatorProducao, Quantidade, unidade)
+        VALUES (pReceitaID, pFatoresProducao(i).nome, pFatoresProducao(i).quantidade, pFatoresProducao(i).unidade_id);
+END LOOP;
+END;
+/
 
-pcd_registrar_receita_fertirrega(v_cursor);
 
+DECLARE
+    -- Declaração de variáveis
+receita_id NUMBER;
+    fatores_producao FatoresProducaoArrayType;
+BEGIN
+    -- Inicializar variáveis
+    receita_id := 1; 
+    fatores_producao := FatoresProducaoArrayType();
+    
+    -- .extend serve para adicionar dinamicamente espaço para mais 2 fatorProducaoType no array
+    fatores_producao.EXTEND(2);
+    -- Adicionar elementos ao array
+    fatores_producao(1) := FatorProducaoType('BIOFERTIL N6', 100, 3);
+    fatores_producao(2) := FatorProducaoType('soluSOP 52', 50, 4);  
+    
+    -- Chamar a procedure
+    PCD_REGISTAR_RECEITA_FERTIRREGA(receita_id, fatores_producao);
+    
+    
+    
+    -- Exibir mensagem de sucesso
+    DBMS_OUTPUT.PUT_LINE('Procedure executada com sucesso.');
+EXCEPTION
+    WHEN OTHERS THEN
+        -- Exibir mensagem de erro
+        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLERRM);
+ROLLBACK;
 END;
 /
