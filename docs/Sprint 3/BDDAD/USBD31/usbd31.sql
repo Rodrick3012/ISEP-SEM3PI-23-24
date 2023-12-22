@@ -17,6 +17,7 @@ CREATE OR REPLACE PROCEDURE PCD_REGISTAR_RECEITA_FERTIRREGA(
 BEGIN
 INSERT INTO mixFertirrega VALUES (pReceitaID);
 
+--vai iterar de 1 ate pFatoresProducao.Count(retorna o numero de elementos no array)
 FOR i IN 1..pFatoresProducao.COUNT LOOP
         INSERT INTO mixFertirrega_fatorProducao (mixFertirrega, fatorProducao, Quantidade, unidade)
         VALUES (pReceitaID, pFatoresProducao(i).nome, pFatoresProducao(i).quantidade, pFatoresProducao(i).unidade_id);
