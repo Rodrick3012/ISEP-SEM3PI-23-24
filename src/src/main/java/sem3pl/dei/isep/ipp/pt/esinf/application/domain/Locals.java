@@ -19,6 +19,10 @@ public class Locals {
         this.longitude = Double.parseDouble(longitude);
     }
 
+    public Locals(String id){
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }
@@ -52,12 +56,12 @@ public class Locals {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Locals locals = (Locals) o;
-        return Double.compare(locals.latitude, latitude) == 0 && Double.compare(locals.longitude, longitude) == 0 && Objects.equals(id, locals.id);
+        return Objects.equals(id, locals.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, latitude, longitude);
+        return Objects.hash(id);
     }
 
     public String toString(){
