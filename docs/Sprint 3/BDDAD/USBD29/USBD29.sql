@@ -126,7 +126,7 @@ CREATE TABLE Cultura
     planta      number CONSTRAINT nn_planta_cultura NOT NULL,
     parcela     varchar2(25) CONSTRAINT nn_parcela_cultura NOT NULL,
     dataInicial date   CONSTRAINT nn_dataInicial_cultura NOT NULL,
-    dataFinal  date CONSTRAINT nn_dataFinal_cultura NOT NULL,
+    dataFinal  date,
     CONSTRAINT pk_Cultura primary key (id)
 );
 CREATE TABLE planta
@@ -205,7 +205,7 @@ CREATE TABLE Setor
     setor        varchar2(2) ,
     caudalMaximo number CONSTRAINT nn_caudalMaximo NOT NULL,
     dataInicio   date CONSTRAINT nn_dataInicio NOT NULL,
-    dataFim      date CONSTRAINT nn_dataFim NOT NULL ,
+    dataFim      date,
     CONSTRAINT pk_setor PRIMARY KEY (setor)
 );
 
@@ -237,7 +237,7 @@ CREATE TABLE Semeadura
     Cultura    number CONSTRAINT nn_culturaSemeadura NOT NULL,
     area       number(10) CONSTRAINT nn_areaSemeadura NOT NULL,
     quantidade number(10) CONSTRAINT nn_quantidadeSemeadura NOT NULL,
-    CONSTRAINT check_area_positive_semeadura CHECK (area > 0),
+    CONSTRAINT check_area_positive_semeadura CHECK (area >= 0),
     CONSTRAINT pk_semeadura PRIMARY KEY (id)
 );
 
@@ -294,7 +294,7 @@ CREATE TABLE CulturaSetor
     Cultura      number CONSTRAINT nn_culturaSetor NOT NULL,
     quantidade   number CONSTRAINT nn_quantidadeCulturaSetor NOT NULL,
     dataInsercao date  CONSTRAINT nn_dataInsercao NOT NULL,
-    dataRemocao  date CONSTRAINT nn_dataRemocao NOT NULL ,
+    dataRemocao  date,
     CONSTRAINT check_quantidade_positive_CulturaSetor CHECK (quantidade > 0),
     CONSTRAINT pk_culturaSetor PRIMARY KEY (id)
 );
