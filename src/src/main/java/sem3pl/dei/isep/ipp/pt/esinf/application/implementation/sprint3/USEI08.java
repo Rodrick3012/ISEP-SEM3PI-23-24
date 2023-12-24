@@ -10,6 +10,8 @@ import sem3pl.dei.isep.ipp.pt.esinf.application.graph.map.MapGraph;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI07.getEdgesFromPath;
+
 public class USEI08 {
 
     List<Locals> melhorCaminho = new ArrayList<>();
@@ -53,7 +55,7 @@ public class USEI08 {
         // Encontrar próximo hub mais próximo
         for (Locals hub : remainingHubs) {
             LinkedList<Locals> path = new LinkedList<>();
-            Integer distance = Algorithms.shortestPath(graph, currentVertex, hub, Integer::compare, Integer::sum, 0, path, Integer.MAX_VALUE);
+            Integer distance = Algorithms.shortestPathWithAutonomy(graph, currentVertex,inicialVertice, Integer::compare, Integer::sum, 0, path,distances, Integer.MAX_VALUE,autonomy,chargingPoints,mapForUi);
 
             if (distance.intValue() < minDistance) {
                 minDistance = distance;
@@ -95,20 +97,7 @@ public class USEI08 {
 
         return true;  // All hubs appear exactly twice in the list of edges
     }
-    private static List<Edge<Locals, Integer>> getEdgesFromPath(Graph<Locals, Integer> graph, List<Locals> pathLocals) {
-        List<Edge<Locals, Integer>> edges = new ArrayList<>();
 
-        for (int i = 0; i < pathLocals.size() - 1; i++) {
-            Locals sourceVertex = pathLocals.get(i);
-            Locals targetVertex = pathLocals.get(i + 1);
-            Edge<Locals, Integer> edge = graph.edge(sourceVertex, targetVertex);
-            if (edge != null) {
-                edges.add(edge);
-            }
-        }
-
-        return edges;
-    }
     public static <Locals, Integer> int calculateTotalDistance(Graph<Locals, java.lang.Integer> graph, List<Edge<Locals, Integer>> edges) {
         int totalDistance = 0;
 
