@@ -29,12 +29,9 @@ public class USEI08Test {
         InfoForUs08 infoForUs08 ;
         List<Edge<Locals,Integer>> graph1 =new ArrayList<>();
         List<Locals> hubs =  usei02.obterVerticesPorMaiorGrau(graph, 5);
-        for (Locals h: hubs) {
-            System.out.println("HUB"+h);
-        }
-        USEI08 usei08 = new USEI08();
 
-        infoForUs08 = USEI08.findOptimalCircuit(graph,hubs,graph.vertices().get(0));
+        infoForUs08 = USEI08.findOptimalCircuit(graph,hubs,graph.vertices().get(0),100000,100);
+
         assertTrue(USEI08.areAllHubsPresent(infoForUs08.getListEdges(),hubs));
     }
     @Test
@@ -45,12 +42,8 @@ public class USEI08Test {
         InfoForUs08 infoForUs08 ;
         List<Edge<Locals,Integer>> graph1 =new ArrayList<>();
         List<Locals> hubs =  usei02.obterVerticesPorMaiorGrau(graph, 6);
-        for (Locals h: hubs) {
-            System.out.println("HUB"+h);
-        }
-        USEI08 usei08 = new USEI08();
 
-        infoForUs08 = USEI08.findOptimalCircuit(graph,hubs,graph.vertices().get(0));
+        infoForUs08 = USEI08.findOptimalCircuit(graph,hubs,graph.vertices().get(0),100000,150);
         assertTrue(USEI08.areAllHubsPresent(infoForUs08.getListEdges(),hubs));
     }
     @Test
@@ -61,12 +54,8 @@ public class USEI08Test {
         InfoForUs08 infoForUs08 ;
         List<Edge<Locals,Integer>> graph1 =new ArrayList<>();
         List<Locals> hubs =  usei02.obterVerticesPorMaiorGrau(graph, 7);
-        for (Locals h: hubs) {
-            System.out.println("HUB"+h);
-        }
-        USEI08 usei08 = new USEI08();
 
-        infoForUs08 = USEI08.findOptimalCircuit(graph,hubs,graph.vertices().get(0));
+        infoForUs08 = USEI08.findOptimalCircuit(graph,hubs,graph.vertices().get(0),1000000,80);
         assertTrue(USEI08.areAllHubsPresent(infoForUs08.getListEdges(),hubs));
         
     }

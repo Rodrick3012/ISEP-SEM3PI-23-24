@@ -1,5 +1,6 @@
 package sem3pl.dei.isep.ipp.pt.esinf.application;
 
+import sem3pl.dei.isep.ipp.pt.esinf.application.domain.InfoForUs08;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.Locals;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.LocationCriteria;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.ShortestPath;
@@ -10,6 +11,7 @@ import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI02;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI03;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI04;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI06;
+import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI08;
 import sem3pl.dei.isep.ipp.pt.esinf.application.repository.DistributionNetwork;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Utils;
@@ -40,8 +42,9 @@ public class BasketRoutingDelivery implements Runnable {
         System.out.println("2. Determine the ideal vertices for the localization of hubs"); // USEI02
         System.out.println("3. Calculate the minimum distance between two more remote locals"); // USEI03
         System.out.println("4. Create the network with all locals with a minimum cost"); // USEI04
-        System.out.println("5. Create the network with all locals with a minimum cost"); // USEI04
-        System.out.println("6. Exit");
+        System.out.println("5. Finding for a producer the different routes they can take between a place of origin and a hub limited by km "); // USEI04
+        System.out.println("6. Find the delivery circuit that starts from a origin location, passes through N hubs and returns to the origin location minimizing the total distance traveled");
+        System.out.println("7. Exit");
         System.out.println();
         System.out.println("Select your option: ");
         try {
@@ -111,8 +114,25 @@ public class BasketRoutingDelivery implements Runnable {
                 }
                 basketRoutingDeliveryMenu();
                 break;
-
             case 6:
+                try {
+                    if (!distributionNetwork.isEmpty()) {
+                        CommonGraph<Locals, Integer> graph = distributionNetwork.getGraph();
+                        Integer autonomy = Utils.readInt("Write the autonomy of the vehicle");
+                        Double averageSpeed =Utils.readDouble("Write the average speed of the vehicle");
+                        Locals originVertice = Utils.selectLocalidade("Choose the origin location", graph.vertices());
+                        USEI02 usei02 = new USEI02();
+                        Integer nrHubs = Utils.readInt("How many hubs should be selected");
+                        List<Locals> hubs =  usei02.obterVerticesPorMaiorGrau(graph, nrHubs);
+                        InfoForUs08 infoForUs08 =  USEI08.findOptimalCircuit(graph,hubs,originVertice,autonomy,averageSpeed);
+                        System.out.println(infoForUs08.toString());
+                    } else System.err.println("Network is empty. Returning to menu.");
+                } catch (NullPointerException e){
+                    System.err.println("Network is empty. Returning to menu.");
+                }
+                basketRoutingDeliveryMenu();
+                break;
+            case 7:
                 System.out.println("Do you really want to exit this app?");
                 sc.nextLine();
                 String exitOption = sc.nextLine();

@@ -14,19 +14,23 @@ public class USEI08 {
 
     List<Locals> melhorCaminho = new ArrayList<>();
 
-    public static InfoForUs08 findOptimalCircuit(Graph<Locals, Integer> graph, List<Locals> hubs, Locals initialVertex) {
-
+    public static InfoForUs08 findOptimalCircuit(Graph<Locals, Integer> graph, List<Locals> hubs, Locals initialVertex, int autonomy, double velocidadeMedia) {
+        LinkedList<Locals> chargingPoints = new LinkedList<>();
         List<Edge<Locals, Integer>> optimalCircuitEdges = new ArrayList<>();
         Set<Locals> visited = initializeVisitedSet(hubs,initialVertex);
+        LinkedList<Integer> distances = new LinkedList<>();
+        Map<String,Integer> mapForUi = new HashMap<>();
 
-        // Inicia o TSP a partir do vértice inicial
-        tsp(graph, hubs, initialVertex, optimalCircuitEdges, visited, initialVertex);
-        InfoForUs08 infoForUs08 = new InfoForUs08(optimalCircuitEdges,calculateTotalDistance(graph,optimalCircuitEdges));
+
+        tsp(graph,initialVertex, optimalCircuitEdges, visited, initialVertex,chargingPoints,autonomy,mapForUi,distances);
+        int distanciaTotal = calculateTotalDistance(graph,optimalCircuitEdges);
+        double tempoCircuito = distanciaTotal/velocidadeMedia;
+        InfoForUs08 infoForUs08 = new InfoForUs08(optimalCircuitEdges,distanciaTotal,chargingPoints.size(),tempoCircuito);
         return infoForUs08;
     }
 
-    private static void tsp(Graph<Locals, Integer> graph, List<Locals> hubs, Locals currentVertex,
-                            List<Edge<Locals, Integer>> circuitEdges, Set<Locals> remainingHubs, Locals inicialVertice) {
+    private static void tsp(Graph<Locals, Integer> graph, Locals currentVertex,
+                            List<Edge<Locals, Integer>> circuitEdges, Set<Locals> remainingHubs, Locals inicialVertice,LinkedList<Locals> chargingPoints,int autonomy, Map<String,Integer> mapForUi, LinkedList<Integer> distances) {
         // Adiciona o vértice atual ao circuito
         LinkedList<Locals> minPathForHub = new LinkedList<>();
 
@@ -35,7 +39,7 @@ public class USEI08 {
 
         if (allHubsVisited) {
             // Todos os hubs foram visitados, adiciona o vértice inicial ao circuito
-            Algorithms.shortestPath(graph,currentVertex,inicialVertice,Integer::compare, Integer::sum, 0, minPathForHub, Integer.MAX_VALUE);
+            Algorithms.shortestPathWithAutonomy(graph,currentVertex,inicialVertice,Integer::compare, Integer::sum, 0, minPathForHub,distances, Integer.MAX_VALUE,autonomy,chargingPoints,mapForUi);
 
             circuitEdges.addAll(getEdgesFromPath(graph,minPathForHub));
             return;
@@ -63,7 +67,7 @@ public class USEI08 {
         circuitEdges.addAll(getEdgesFromPath(graph, minPathForHub));
 
         // Chama recursivamente para o próximo hub
-        tsp(graph, hubs, nextHub, circuitEdges, remainingHubs, inicialVertice);
+        tsp(graph,nextHub, circuitEdges, remainingHubs, inicialVertice,chargingPoints,autonomy,mapForUi,distances);
     }
 
 
