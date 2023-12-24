@@ -1,5 +1,6 @@
 package sem3pl.dei.isep.ipp.pt.esinf.application.graph.matrix;
 
+import sem3pl.dei.isep.ipp.pt.esinf.application.domain.Locals;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.CommonGraph;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.Edge;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.Graph;
@@ -323,4 +324,36 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return false; // Aresta não encontrada
     }
 
+    @Override
+    public boolean containHub(V hubId){
+        Collection<V> vertices = vertices();// Obtém todos os vertices do grafo
+        // Procura por uma aresta que liga currentLocation a hub
+        for (V vert : vertices) {
+            if (vert.toString().equals(hubId)) {
+                return true;
+            }
+        }
+        return false; // Aresta não encontrada
+    }
+
+
+    @Override
+    public Locals getLocal(V local){
+        Collection<V> vertices = vertices();// Obtém todos os vertices do grafo
+        for (V vert : vertices) {
+            if (vert.toString().equals(local)) {
+                return (Locals) vert;
+            }
+        }
+        return null;
+    }
+
+    public Locals getLocalsById(MatrixGraph<Locals, Integer> graph, String id) {
+        for (Locals vertex : graph.vertices()) {
+            if (vertex.getId().equals(id)) {
+                return vertex;
+            }
+        }
+        return null; // If the vertex with the given ID isn't found
+    }
 }

@@ -265,4 +265,29 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return false; // Aresta não encontrada
     }
 
+    @Override
+    public boolean containHub(V hubId){
+        Collection<V> vertices = vertices();// Obtém todos os vertices do grafo
+        // Procura por uma aresta que liga currentLocation a hub
+        for (V vert : vertices) {
+            if (vert.toString().equals(hubId)) {
+                return true;
+            }
+        }
+        return false; // Aresta não encontrada
+    }
+
+
+    @Override
+    public Locals getLocal(V local){
+        Collection<V> vertices = vertices();// Obtém todos os vertices do grafo
+        // Procura por uma aresta que liga currentLocation a hub
+        for (V vert : vertices) {
+            if (vert.toString().equals(local)) {
+                return (Locals) vert;
+            }
+        }
+        return null;
+    }
+
 }

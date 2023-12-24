@@ -1,5 +1,7 @@
 package sem3pl.dei.isep.ipp.pt.esinf.application.graph;
 
+import sem3pl.dei.isep.ipp.pt.esinf.application.domain.Locals;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Predicate;
@@ -163,4 +165,7 @@ public interface Graph<V, E> extends Cloneable {
 
     public boolean containsEdge(V currentLocation, V hub);
 
-}
+    public boolean containHub(V hubId);
+
+    public Locals getLocal(V local);
+    }
