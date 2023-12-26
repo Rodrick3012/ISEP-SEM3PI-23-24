@@ -19,8 +19,6 @@ public class USEI11Test {
         USEI01 usei01 = new USEI01();
         CommonGraph<Locals, Integer> graph = usei01.readToGraph("src/test/resources/locais_big.csv", "src/test/resources/distancias_big.csv");
 
-
-
         Locals local1 =graph.getVertexByLocalsID("CT1");
         Locals local2 = graph.getVertexByLocalsID("CT214");
 

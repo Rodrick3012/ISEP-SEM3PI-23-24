@@ -2,43 +2,85 @@ package sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3;
 
 
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.Locals;
-import sem3pl.dei.isep.ipp.pt.esinf.application.domain.LocationCriteria;
+import sem3pl.dei.isep.ipp.pt.esinf.application.domain.PathMaxHubs;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.Algorithms;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.Edge;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.Graph;
-import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI01;
-import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI02;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
 public class USEI07 {
 
-
-    public List<Edge<Locals, Integer>> us07_method(Graph<Locals, Integer> graph, Locals inicialVertex, List<Edge<Locals, Integer>> listEdgesFinal, List<Locals> hubs, LocalTime horaInicio, int velocidadeMedia, int tempoDescargaCabazes) {
+    public Map<String,Integer> us07_method(Graph<Locals, Integer> graph, Locals inicialVertex, List<Edge<Locals, Integer>> listEdgesFinal, List<Locals> hubs, LocalTime horaInicio, int velocidadeMedia, int tempoDescargaCabazes, List<PathMaxHubs> result) {
         LinkedList<Locals> shortPath = new LinkedList<>();
-        Integer totalDistance = 0;
-        int numeroHubsVisitados = 0;
+        List<Locals> hubsAux = hubs;
+        LocalTime horaInicioAux = horaInicio;
         Locals nextHub;
-        Integer distance = 0;
+        Integer distance;
+
+
         while (!hubs.isEmpty()) {
             hubs = ordenarVerticesDeAcordoComMaisIndicados(hubs, horaInicio, inicialVertex, graph, velocidadeMedia);
+            if (!hubs.isEmpty()) {
 
-            nextHub = hubs.remove(0);
+                nextHub = hubs.remove(0);
 
+                if (nextHub.getOpeningTime().isBefore(horaInicio)) {
+                    distance = Algorithms.shortestPath(graph, inicialVertex, nextHub, Integer::compare, Integer::sum, 0, shortPath, Integer.MAX_VALUE);
+                    horaInicio = calcularHorarioEstimadoChegada(horaInicio, distance.intValue(), velocidadeMedia);
 
-            distance = Algorithms.shortestPath(graph, inicialVertex, nextHub, Integer::compare, Integer::sum, 0, shortPath, Integer.MAX_VALUE);
-            totalDistance += distance;
-            horaInicio = calcularHorarioEstimadoChegada(horaInicio, distance.intValue(), velocidadeMedia);
-            horaInicio = horaInicio.plusSeconds(tempoDescargaCabazes);
+                    horaInicio = horaInicio.plusSeconds(tempoDescargaCabazes);
+                    listEdgesFinal.addAll(getEdgesFromPath(graph, shortPath));
 
-            listEdgesFinal.addAll(getEdgesFromPath(graph, shortPath));
-            numeroHubsVisitados++;
-            inicialVertex = nextHub;
+                    inicialVertex = nextHub;
+                }
+            }
 
         }
 
-        return listEdgesFinal;
+        int distanciaTotal=0;
+        LocalTime horaChegada = calcularHorarioEstimadoChegada(horaInicioAux,distanciaTotal,velocidadeMedia);
+        LocalTime horaPartida = horaChegada.plusSeconds(tempoDescargaCabazes);
+        for (Edge<Locals, Integer> i : listEdgesFinal) {
+            distanciaTotal+=i.getWeight();
+
+            if (hubsAux.contains(i.getVDest())) {
+                if (!result.contains(new PathMaxHubs(i.getVOrig(),true,horaChegada,horaPartida))) {
+                    result.add(new PathMaxHubs(i.getVOrig(),true,horaChegada,horaPartida));
+                }
+                if (!result.contains(new PathMaxHubs(i.getVDest(),true,horaChegada,horaPartida))) {
+                    result.add(new PathMaxHubs(i.getVDest(),true,horaChegada,horaPartida));
+                }
+            } else {
+                if (!result.contains(new PathMaxHubs(i.getVOrig(),false,horaChegada,null))) {
+                    result.add(new PathMaxHubs(i.getVOrig(),false,horaChegada,null));
+                }
+                if (!result.contains(new PathMaxHubs(i.getVDest(),false,horaChegada,null))) {
+                    result.add(new PathMaxHubs(i.getVDest(),false,horaChegada,null));
+                }
+            }
+            horaChegada = calcularHorarioEstimadoChegada(horaInicioAux,distanciaTotal,velocidadeMedia);
+            horaPartida = horaChegada.plusSeconds(tempoDescargaCabazes);
+        }
+
+        Map<String,Integer> statReturn = new HashMap<>();
+        statReturn.put("distanciaTotal",distanciaTotal);
+        statReturn.put("carregamentos",null);
+
+
+        LocalDateTime startDateTime = LocalDateTime.of(LocalDate.now(), horaInicioAux);
+        LocalDateTime endDateTime =     LocalDateTime.of(LocalDate.now(), horaChegada);
+
+        Duration duration = Duration.between(startDateTime, endDateTime);
+
+        long diffInSeconds = duration.getSeconds();
+
+        statReturn.put("tempo total", (int) diffInSeconds);
+        return  statReturn;
     }
 
 
@@ -79,13 +121,14 @@ public class USEI07 {
             int distancia = Algorithms.shortestPath(graph, pontoAnterior, hub, Integer::compare, Integer::sum, 0, shortPath, Integer.MAX_VALUE);
 
             // Calcular horário estimado de chegada
-            System.out.println(hub.getId());
             LocalTime chegadaEstimada = calcularHorarioEstimadoChegada(horaAtual, distancia, velocidadeMedia);
+
 
             // Remover se o horário de chegada ultrapassar o horário de fecho
             if (chegadaEstimada.isAfter(hub.getClosingTime())) {
                 iterator.remove();
             }
+
         }
 
         // Ordenar a lista restante por distância
@@ -137,12 +180,10 @@ public class USEI07 {
         // Adicionar o tempo estimado ao horário atual
         horaAtual = horaAtual.plusSeconds(tempoEstimadoSegundos);
 
-        System.out.println(horaAtual);
         return horaAtual;
     }
 
     private int calcularDistanciaProximidade(Locals pontoAnterior, Locals local, Graph<Locals, Integer> graph) {
-        // Implemente o cálculo real da proximidade, por exemplo, usando o algoritmo de Dijkstra
         // Retorne a distância estimada entre pontoAnterior e local
         return Algorithms.shortestPath(graph, pontoAnterior, local, Integer::compare, Integer::sum, 0, new LinkedList<>(), Integer.MAX_VALUE);
     }
