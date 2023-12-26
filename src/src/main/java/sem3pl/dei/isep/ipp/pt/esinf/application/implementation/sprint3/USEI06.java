@@ -2,6 +2,7 @@ package sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3;
 
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.InfoForUs08;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.Locals;
+import sem3pl.dei.isep.ipp.pt.esinf.application.domain.ResultDataTotalSemi;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.Edge;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.Graph;
 
@@ -35,11 +36,9 @@ public class USEI06 {
     }
 
 
-
-
     //Cada ponto do percurso associado a um mapa (local, distancia)//
     private static void depthFirstSearchPaths(Graph<Locals, Integer> g, Locals vOrig, Locals vDest, boolean[] visited,
-                                                     LinkedList<Locals> path, ArrayList<LinkedList<Locals>> paths, int autonomy) {
+                                              LinkedList<Locals> path, ArrayList<LinkedList<Locals>> paths, int autonomy) {
         int vOrigIndex = g.key(vOrig);
         int vDestIndex = g.key(vDest);
 
@@ -47,11 +46,10 @@ public class USEI06 {
         visited[vOrigIndex] = true;
 
         for (Locals verticeAdj : g.adjVertices(vOrig)) {
-            Edge<Locals, Integer> edge = g.edge(vOrig, verticeAdj);
-            int edgeWeight = (int) edge.getWeight();
 
-            // Verifica se a adição da aresta não ultrapassa a autonomia
-            if (path.isEmpty() || (getTotalPathDistance(g, path) + edgeWeight) <= autonomy) {
+
+            // Verifica se a distancia não ultrapassa a autonomia
+            if (path.isEmpty() || getTotalPathData(g, path).getTotalDistance() <= autonomy) {
                 if (verticeAdj == vDest) {
                     path.add(vDest);
                     paths.add(new LinkedList<>(path));
@@ -67,21 +65,27 @@ public class USEI06 {
     }
 
 
-
     //Distancia total//
-    private static int getTotalPathDistance(Graph<Locals, Integer> g, LinkedList<Locals> path) {
+    private static ResultDataTotalSemi getTotalPathData(Graph<Locals, Integer> g, LinkedList<Locals> path) {
         int totalDistance = 0;
+        Map<Locals, Integer> distances = new HashMap<>();
+
+        // O primeiro local tem distância 0
+        distances.put(path.getFirst(), 0);
+
         for (int i = 1; i < path.size(); i++) {
             Locals currentVertex = path.get(i - 1);
             Locals nextVertex = path.get(i);
             Edge<Locals, Integer> edge = g.edge(currentVertex, nextVertex);
-            int edgeWeight = (int) edge.getWeight();
+            int edgeWeight = edge.getWeight();
+
+
+            distances.put(nextVertex, edgeWeight);
             totalDistance += edgeWeight;
         }
-        return totalDistance;
+
+        return new ResultDataTotalSemi(totalDistance, distances);
     }
-
-
 
 
     //Metodo para caluclar o tempo de uma viagem//
@@ -99,14 +103,13 @@ public class USEI06 {
     }
 
 
-
     //Associar a uma viagem um tempo//
     private static Map<List<Locals>, String> calculateTravelTimes(Graph<Locals, Integer> g, Locals vOrig, Locals vDest, int autonomy, int averageSpeed) {
         ArrayList<LinkedList<Locals>> paths = getAllPathsWithinAutonomyDFS(g, vOrig, vDest, autonomy);
         Map<List<Locals>, String> travelTimes = new HashMap<>();
 
         for (LinkedList<Locals> path : paths) {
-            String travelTime = calculateTravelTime(averageSpeed, getTotalPathDistance(g, path));
+            String travelTime = calculateTravelTime(averageSpeed, getTotalPathData(g, path).getTotalDistance());
             travelTimes.put(new ArrayList<>(path), travelTime);
         }
 
