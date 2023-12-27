@@ -34,12 +34,13 @@ public class USEI07 {
 
                 if (nextHub.getOpeningTime().isBefore(horaInicio)) {
 
-                    int distance = Algorithms.shortestPathWithAutonomy(graph,inicialVertex,nextHub,Integer::compare, Integer::sum, 0, shortPath,distances, Integer.MAX_VALUE,autonomy,chargingPoints,mapForUi);
+                    Integer distance = Algorithms.shortestPathWithAutonomy(graph,inicialVertex,nextHub,Integer::compare, Integer::sum, 0, shortPath,distances, Integer.MAX_VALUE,autonomy,chargingPoints,mapForUi);
 
-                    horaInicio = calcularHorarioEstimadoChegada(horaInicio, distance, velocidadeMedia);
-                    horaInicio = horaInicio.plusSeconds(tempoDescargaCabazes);
-                    listEdgesFinal.addAll(getEdgesFromPath(graph, shortPath));
-
+                    if (distance!=null) {
+                        horaInicio = calcularHorarioEstimadoChegada(horaInicio, distance, velocidadeMedia);
+                        horaInicio = horaInicio.plusSeconds(tempoDescargaCabazes);
+                        listEdgesFinal.addAll(getEdgesFromPath(graph, shortPath));
+                    }
                     inicialVertex = nextHub;
                 }
             }
@@ -75,13 +76,17 @@ public class USEI07 {
         statReturn.put("distanciaTotal",distanciaTotal);
         statReturn.put("carregamentos",chargingPoints.size());
 
-
+        long diffInSeconds;
         LocalDateTime startDateTime = LocalDateTime.of(LocalDate.now(), horaInicioAux);
-        LocalDateTime endDateTime =     LocalDateTime.of(LocalDate.now(), horaChegada);
+        if (horaChegada!=null) {
+            LocalDateTime endDateTime = LocalDateTime.of(LocalDate.now(), horaChegada);
 
-        Duration duration = Duration.between(startDateTime, endDateTime);
+            Duration duration = Duration.between(startDateTime, endDateTime);
 
-        long diffInSeconds = duration.getSeconds();
+            diffInSeconds = duration.getSeconds();
+        }else {
+            diffInSeconds = 0;
+        }
 
         statReturn.put("tempo total", (int) diffInSeconds);
         return  statReturn;
