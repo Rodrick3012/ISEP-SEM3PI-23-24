@@ -25,6 +25,7 @@ public class USEI07 {
         LinkedList<Integer> distances = new LinkedList<>();
 
 
+
         while (!hubs.isEmpty()) {
             hubs = ordenarVerticesDeAcordoComMaisIndicados(hubs, horaInicio, inicialVertex, graph, velocidadeMedia);
             if (!hubs.isEmpty()) {
@@ -32,16 +33,10 @@ public class USEI07 {
                 nextHub = hubs.remove(0);
 
                 if (nextHub.getOpeningTime().isBefore(horaInicio)) {
-                   // Algorithms.shortestPath(graph, inicialVertex, nextHub, Integer::compare, Integer::sum, 0, shortPath, Integer.MAX_VALUE);
 
-                    Algorithms.shortestPathWithAutonomy(graph,inicialVertex,nextHub,Integer::compare, Integer::sum, 0, shortPath,distances, Integer.MAX_VALUE,autonomy,chargingPoints,mapForUi);
+                    int distance = Algorithms.shortestPathWithAutonomy(graph,inicialVertex,nextHub,Integer::compare, Integer::sum, 0, shortPath,distances, Integer.MAX_VALUE,autonomy,chargingPoints,mapForUi);
 
-                    System.out.println(distances);
-                    System.out.println(mapForUi);
-                    System.out.println(chargingPoints);
-
-                    // horaInicio = calcularHorarioEstimadoChegada(horaInicio, distance.intValue(), velocidadeMedia);
-
+                    horaInicio = calcularHorarioEstimadoChegada(horaInicio, distance, velocidadeMedia);
                     horaInicio = horaInicio.plusSeconds(tempoDescargaCabazes);
                     listEdgesFinal.addAll(getEdgesFromPath(graph, shortPath));
 
@@ -52,33 +47,33 @@ public class USEI07 {
         }
 
         int distanciaTotal=0;
-        LocalTime horaChegada = calcularHorarioEstimadoChegada(horaInicioAux,distanciaTotal,velocidadeMedia);
-        LocalTime horaPartida = horaChegada.plusSeconds(tempoDescargaCabazes);
-        for (Edge<Locals, Integer> i : listEdgesFinal) {
-            distanciaTotal+=i.getWeight();
+        LocalTime horaChegada=null;
+        LocalTime horaPartida;
 
+        for (Edge<Locals, Integer> i : listEdgesFinal) {
+            horaChegada=calcularHorarioEstimadoChegada(horaInicioAux,distanciaTotal,velocidadeMedia);
+            horaPartida = horaChegada.plusSeconds(tempoDescargaCabazes);
+            distanciaTotal+=i.getWeight();
             if (hubsAux.contains(i.getVDest())) {
                 if (!result.contains(new PathMaxHubs(i.getVOrig(),true,horaChegada,horaPartida))) {
                     result.add(new PathMaxHubs(i.getVOrig(),true,horaChegada,horaPartida));
-                }
+                }else
                 if (!result.contains(new PathMaxHubs(i.getVDest(),true,horaChegada,horaPartida))) {
                     result.add(new PathMaxHubs(i.getVDest(),true,horaChegada,horaPartida));
                 }
             } else {
                 if (!result.contains(new PathMaxHubs(i.getVOrig(),false,horaChegada,null))) {
                     result.add(new PathMaxHubs(i.getVOrig(),false,horaChegada,null));
-                }
+                }else
                 if (!result.contains(new PathMaxHubs(i.getVDest(),false,horaChegada,null))) {
                     result.add(new PathMaxHubs(i.getVDest(),false,horaChegada,null));
                 }
             }
-            horaChegada = calcularHorarioEstimadoChegada(horaInicioAux,distanciaTotal,velocidadeMedia);
-            horaPartida = horaChegada.plusSeconds(tempoDescargaCabazes);
         }
 
         Map<String,Integer> statReturn = new HashMap<>();
         statReturn.put("distanciaTotal",distanciaTotal);
-        statReturn.put("carregamentos",null);
+        statReturn.put("carregamentos",chargingPoints.size());
 
 
         LocalDateTime startDateTime = LocalDateTime.of(LocalDate.now(), horaInicioAux);
