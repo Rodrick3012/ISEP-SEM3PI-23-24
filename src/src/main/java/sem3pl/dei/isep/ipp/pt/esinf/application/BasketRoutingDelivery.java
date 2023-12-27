@@ -13,14 +13,19 @@ import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI03;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI04;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI06;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI08;
+import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI11;
 import sem3pl.dei.isep.ipp.pt.esinf.application.repository.DistributionNetwork;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringPlan;
+import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Files;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class BasketRoutingDelivery implements Runnable {
     private final Scanner sc = new Scanner(System.in);
@@ -45,7 +50,8 @@ public class BasketRoutingDelivery implements Runnable {
         System.out.println("4. Create the network with all locals with a minimum cost"); // USEI04
         System.out.println("5. Finding for a producer the different routes they can take between a place of origin and a hub limited by km "); // USEI04
         System.out.println("6. Find the delivery circuit that starts from a origin location, passes through N hubs and returns to the origin location minimizing the total distance traveled");
-        System.out.println("7. Exit");
+        System.out.println("7. Update hubs schedule");
+        System.out.println("8. Exit");
         System.out.println();
         System.out.println("Select your option: ");
         try {
@@ -134,6 +140,25 @@ public class BasketRoutingDelivery implements Runnable {
                     basketRoutingDeliveryMenu();
                     break;
                 case 7:
+                    try {
+                        if (!distributionNetwork.isEmpty()) {
+                            System.out.println("Write the file name to read: ");
+                            sc.nextLine();
+                            String fileName = sc.nextLine();
+                            boolean importSuccess = USEI11.loadHubSchedules(distributionNetwork.getGraph(), Files.resourcesPath + fileName);
+                            if (importSuccess) {
+                                System.out.println("File successfully imported!");
+                            } else {
+                                System.err.println("Error while importing a file.");
+                            }
+                        } else System.err.println("Network is empty. Returning to menu.");
+                    } catch (NullPointerException e) {
+                        System.err.println("Network is empty. Returning to menu.");
+                    }
+
+                    basketRoutingDeliveryMenu();
+                    break;
+                case 8:
                     System.out.println("Do you really want to exit this app?");
                     sc.nextLine();
                     String exitOption = sc.nextLine();
