@@ -1,6 +1,7 @@
 package sem3pl.dei.isep.ipp.pt.esinf.application.graph;
 
 
+import sem3pl.dei.isep.ipp.pt.esinf.application.domain.Locals;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.matrix.MatrixGraph;
 
 import java.util.*;
@@ -753,4 +754,5 @@ public class Algorithms {
             }
         }
     }
+
 }

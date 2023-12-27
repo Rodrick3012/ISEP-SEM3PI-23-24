@@ -14,11 +14,7 @@ import java.util.Map;
 
 public class USEI11 {
 
-    public USEI11(Graph graph, String filePath) {
-        loadHubSchedules(graph,filePath);
-    }
-
-    public void loadHubSchedules(Graph graph, String filePath) {
+    public static boolean loadHubSchedules(Graph graph, String filePath) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -30,7 +26,6 @@ public class USEI11 {
 
 
                     if (graph.containHub(hubId)){
-
                         graph.getLocal(hubId).setTime(openingTime,closingTime);
                     } else {
                         // Hub doesn't exist, add new schedule
@@ -41,8 +36,10 @@ public class USEI11 {
                     System.err.println("Invalid line: " + line);
                 }
             }
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
     }
 }

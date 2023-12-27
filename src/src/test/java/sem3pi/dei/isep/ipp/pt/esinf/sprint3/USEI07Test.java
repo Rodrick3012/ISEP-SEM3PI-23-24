@@ -30,7 +30,7 @@ public class USEI07Test {
 
         List<Edge<Locals,Integer>> ListEdges = new ArrayList<>();
 
-        Map<String,Integer> stats = usei07.us07_method(graph,graph.vertices().get(0),ListEdges,hubs, LocalTime.of(9,30,0),70,150,result);
+        Map<String,Integer> stats = usei07.us07_method(graph,graph.vertices().get(10),ListEdges,hubs, LocalTime.of(9,30,0),70,150,100000000,result);
 
 
         for(PathMaxHubs i : result){

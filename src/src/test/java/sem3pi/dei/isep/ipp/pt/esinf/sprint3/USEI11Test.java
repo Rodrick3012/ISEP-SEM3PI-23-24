@@ -35,7 +35,7 @@ public class USEI11Test {
         assertEquals(expectedOpeningTimeLocal2, (local2.getOpeningTime()));
         assertEquals(expectedClosingTimeLocal2, (local2.getClosingTime()));
 
-        USEI11 usei11 = new USEI11(graph,"src/test/resources/horarioFuncHub");
+        USEI11.loadHubSchedules(graph,"src/test/resources/horarioFuncHub");
 
 
         // Convert string times to LocalTime

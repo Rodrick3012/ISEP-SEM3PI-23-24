@@ -15,12 +15,15 @@ import java.util.*;
 
 public class USEI07 {
 
-    public Map<String,Integer> us07_method(Graph<Locals, Integer> graph, Locals inicialVertex, List<Edge<Locals, Integer>> listEdgesFinal, List<Locals> hubs, LocalTime horaInicio, int velocidadeMedia, int tempoDescargaCabazes, List<PathMaxHubs> result) {
+    public Map<String,Integer> us07_method(Graph<Locals, Integer> graph, Locals inicialVertex, List<Edge<Locals, Integer>> listEdgesFinal, List<Locals> hubs, LocalTime horaInicio, int velocidadeMedia, int tempoDescargaCabazes,int autonomy ,List<PathMaxHubs> result) {
         LinkedList<Locals> shortPath = new LinkedList<>();
         List<Locals> hubsAux = hubs;
         LocalTime horaInicioAux = horaInicio;
         Locals nextHub;
-        Integer distance;
+        LinkedList<Locals> chargingPoints = new LinkedList<>();
+        Map<String,Integer> mapForUi = new HashMap<>();
+        LinkedList<Integer> distances = new LinkedList<>();
+
 
         while (!hubs.isEmpty()) {
             hubs = ordenarVerticesDeAcordoComMaisIndicados(hubs, horaInicio, inicialVertex, graph, velocidadeMedia);
@@ -29,8 +32,15 @@ public class USEI07 {
                 nextHub = hubs.remove(0);
 
                 if (nextHub.getOpeningTime().isBefore(horaInicio)) {
-                    distance = Algorithms.shortestPath(graph, inicialVertex, nextHub, Integer::compare, Integer::sum, 0, shortPath, Integer.MAX_VALUE);
-                    horaInicio = calcularHorarioEstimadoChegada(horaInicio, distance.intValue(), velocidadeMedia);
+                   // Algorithms.shortestPath(graph, inicialVertex, nextHub, Integer::compare, Integer::sum, 0, shortPath, Integer.MAX_VALUE);
+
+                    Algorithms.shortestPathWithAutonomy(graph,inicialVertex,nextHub,Integer::compare, Integer::sum, 0, shortPath,distances, Integer.MAX_VALUE,autonomy,chargingPoints,mapForUi);
+
+                    System.out.println(distances);
+                    System.out.println(mapForUi);
+                    System.out.println(chargingPoints);
+
+                    // horaInicio = calcularHorarioEstimadoChegada(horaInicio, distance.intValue(), velocidadeMedia);
 
                     horaInicio = horaInicio.plusSeconds(tempoDescargaCabazes);
                     listEdgesFinal.addAll(getEdgesFromPath(graph, shortPath));
