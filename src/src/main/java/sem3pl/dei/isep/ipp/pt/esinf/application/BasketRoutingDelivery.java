@@ -1,6 +1,7 @@
 package sem3pl.dei.isep.ipp.pt.esinf.application;
 
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.InfoForUs08;
+import sem3pl.dei.isep.ipp.pt.esinf.application.domain.InfoForUs06;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.Locals;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.LocationCriteria;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.ShortestPath;
@@ -26,16 +27,16 @@ public class BasketRoutingDelivery implements Runnable {
 
     private DistributionNetwork distributionNetwork = new DistributionNetwork();
 
-    public BasketRoutingDelivery(){
+    public BasketRoutingDelivery() {
     }
 
-    public void run(){
+    public void run() {
         System.out.println("Welcome to Basket Routing & Delivery Application!");
         System.out.println();
         basketRoutingDeliveryMenu();
     }
 
-    private void basketRoutingDeliveryMenu(){
+    private void basketRoutingDeliveryMenu() {
         System.out.println("Choose the functionality you want");
         System.out.println();
         System.out.println("1. Build the distribution network"); // USEI01
@@ -48,107 +49,107 @@ public class BasketRoutingDelivery implements Runnable {
         System.out.println();
         System.out.println("Select your option: ");
         try {
-        int option = sc.nextInt();
-        switch (option){
-            case 1:
-                boolean verify = distributionNetwork.createDistributionNetwork();
-                if(!verify){
-                    System.err.println("Error while creating the network.");
-                } else System.out.println("Network successfully created!");
-                basketRoutingDeliveryMenu();
-                break;
-            case 2:
-                try {
-                    if (!distributionNetwork.isEmpty()) {
-                        Graph<Locals, Integer> graph = distributionNetwork.getGraph();
-                        int nHubs = Utils.readInt("Write the number of hubs");
-                        ArrayList<List<LocationCriteria>> localsList = USEI02.optimizeLocations(graph, nHubs);
-                    } else System.err.println("Network is empty. Returning to menu.");
-                } catch (NullPointerException e){
-                    System.err.println("Network is empty. Returning to menu.");
-                }
-                basketRoutingDeliveryMenu();
-                break;
-            case 3:
-                try {
-                    if (!distributionNetwork.isEmpty()) {
-                        CommonGraph<Locals, Integer> graph = distributionNetwork.getGraph();
-                        Integer autonomy = Utils.readInt("Write the autonomy of the vehicle");
-                        USEI03 usei03 = new USEI03();
-                        ShortestPath shortestPath = usei03.getShortestPathBetweenTwoMostRemoteLocalsForUI(graph, autonomy);
-                        System.out.println(shortestPath.toString());
-                    } else System.err.println("Network is empty. Returning to menu.");
-                } catch (NullPointerException e){
-                    System.err.println("Network is empty. Returning to menu.");
-                }
-                basketRoutingDeliveryMenu();
-                break;
-            case 4:
-                try {
-                    if (!distributionNetwork.isEmpty()) {
-                        USEI04 usei04 = new USEI04();
-                        usei04.methodForUiLapr();
-                    } else System.err.println("Network is empty. Returning to menu.");
-                } catch (NullPointerException e){
-                    System.err.println("Network is empty. Returning to menu.");
-                }
-                basketRoutingDeliveryMenu();
-                break;
+            int option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    boolean verify = distributionNetwork.createDistributionNetwork();
+                    if (!verify) {
+                        System.err.println("Error while creating the network.");
+                    } else System.out.println("Network successfully created!");
+                    basketRoutingDeliveryMenu();
+                    break;
+                case 2:
+                    try {
+                        if (!distributionNetwork.isEmpty()) {
+                            Graph<Locals, Integer> graph = distributionNetwork.getGraph();
+                            int nHubs = Utils.readInt("Write the number of hubs");
+                            ArrayList<List<LocationCriteria>> localsList = USEI02.optimizeLocations(graph, nHubs);
+                        } else System.err.println("Network is empty. Returning to menu.");
+                    } catch (NullPointerException e) {
+                        System.err.println("Network is empty. Returning to menu.");
+                    }
+                    basketRoutingDeliveryMenu();
+                    break;
+                case 3:
+                    try {
+                        if (!distributionNetwork.isEmpty()) {
+                            CommonGraph<Locals, Integer> graph = distributionNetwork.getGraph();
+                            Integer autonomy = Utils.readInt("Write the autonomy of the vehicle");
+                            USEI03 usei03 = new USEI03();
+                            ShortestPath shortestPath = usei03.getShortestPathBetweenTwoMostRemoteLocalsForUI(graph, autonomy);
+                            System.out.println(shortestPath.toString());
+                        } else System.err.println("Network is empty. Returning to menu.");
+                    } catch (NullPointerException e) {
+                        System.err.println("Network is empty. Returning to menu.");
+                    }
+                    basketRoutingDeliveryMenu();
+                    break;
+                case 4:
+                    try {
+                        if (!distributionNetwork.isEmpty()) {
+                            USEI04 usei04 = new USEI04();
+                            usei04.methodForUiLapr();
+                        } else System.err.println("Network is empty. Returning to menu.");
+                    } catch (NullPointerException e) {
+                        System.err.println("Network is empty. Returning to menu.");
+                    }
+                    basketRoutingDeliveryMenu();
+                    break;
 
-            case 5:
-                try {
-                    if (!distributionNetwork.isEmpty()) {
-                        CommonGraph<Locals, Integer> graph = distributionNetwork.getGraph();
-                        Integer autonomy = Utils.readInt("Write the autonomy of the vehicle");
-                        Integer averageSpeed =Utils.readInt("Write the average speed of the vehicle");
-                        Locals originVertice = Utils.selectLocalidade("Choose the origin location", graph.vertices());
-                        Locals destinyVertice = Utils.selectLocalidade("Choose the destiny location", graph.vertices());
+                case 5:
+                    try {
+                        if (!distributionNetwork.isEmpty()) {
+                            CommonGraph<Locals, Integer> graph = distributionNetwork.getGraph();
+                            Integer autonomy = Utils.readInt("Write the autonomy of the vehicle");
+                            Integer averageSpeed = Utils.readInt("Write the average speed of the vehicle");
+                            Locals originVertice = Utils.selectLocalidade("Choose the origin location", graph.vertices());
+                            Locals destinyVertice = Utils.selectLocalidade("Choose the destiny location", graph.vertices());
+
+                            InfoForUs06 infoForUs06 = USEI06.organizeInformation(graph, originVertice, destinyVertice, autonomy, averageSpeed);
+                            infoForUs06.printTravelSet();
 
 
-
-                        USEI06 usei06 = new USEI06();
-
-                    } else System.err.println("Network is empty. Returning to menu.");
-                } catch (NullPointerException e){
-                    System.err.println("Network is empty. Returning to menu.");
-                }
-                basketRoutingDeliveryMenu();
-                break;
-            case 6:
-                try {
-                    if (!distributionNetwork.isEmpty()) {
-                        CommonGraph<Locals, Integer> graph = distributionNetwork.getGraph();
-                        Integer autonomy = Utils.readInt("Write the autonomy of the vehicle");
-                        Double averageSpeed =Utils.readDouble("Write the average speed of the vehicle");
-                        Locals originVertice = Utils.selectLocalidade("Choose the origin location", graph.vertices());
-                        USEI02 usei02 = new USEI02();
-                        Integer nrHubs = Utils.readInt("How many hubs should be selected");
-                        List<Locals> hubs =  usei02.obterVerticesPorMaiorGrau(graph, nrHubs);
-                        InfoForUs08 infoForUs08 =  USEI08.findOptimalCircuit(graph,hubs,originVertice,autonomy,averageSpeed);
-                        System.out.println(infoForUs08.toString());
-                    } else System.err.println("Network is empty. Returning to menu.");
-                } catch (NullPointerException e){
-                    System.err.println("Network is empty. Returning to menu.");
-                }
-                basketRoutingDeliveryMenu();
-                break;
-            case 7:
-                System.out.println("Do you really want to exit this app?");
-                sc.nextLine();
-                String exitOption = sc.nextLine();
-                if (exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")) {
-                    FarmCoordinator farmCoordinator = new FarmCoordinator();
-                    farmCoordinator.run();
-                } else basketRoutingDeliveryMenu();
-                break;
-            default:
-                System.err.println("Invalid Option. Please Try Again.");
-                System.out.println();
-                sc.next();
-                basketRoutingDeliveryMenu();
-                break;
-        }
-        } catch (InputMismatchException e){
+                        } else System.err.println("Network is empty. Returning to menu.");
+                    } catch (NullPointerException e) {
+                        System.err.println("Network is empty. Returning to menu.");
+                    }
+                    basketRoutingDeliveryMenu();
+                    break;
+                case 6:
+                    try {
+                        if (!distributionNetwork.isEmpty()) {
+                            CommonGraph<Locals, Integer> graph = distributionNetwork.getGraph();
+                            Integer autonomy = Utils.readInt("Write the autonomy of the vehicle");
+                            Double averageSpeed = Utils.readDouble("Write the average speed of the vehicle");
+                            Locals originVertice = Utils.selectLocalidade("Choose the origin location", graph.vertices());
+                            USEI02 usei02 = new USEI02();
+                            Integer nrHubs = Utils.readInt("How many hubs should be selected");
+                            List<Locals> hubs = usei02.obterVerticesPorMaiorGrau(graph, nrHubs);
+                            InfoForUs08 infoForUs08 = USEI08.findOptimalCircuit(graph, hubs, originVertice, autonomy, averageSpeed);
+                            System.out.println(infoForUs08.toString());
+                        } else System.err.println("Network is empty. Returning to menu.");
+                    } catch (NullPointerException e) {
+                        System.err.println("Network is empty. Returning to menu.");
+                    }
+                    basketRoutingDeliveryMenu();
+                    break;
+                case 7:
+                    System.out.println("Do you really want to exit this app?");
+                    sc.nextLine();
+                    String exitOption = sc.nextLine();
+                    if (exitOption.equalsIgnoreCase("Yes") || exitOption.equalsIgnoreCase("Y")) {
+                        FarmCoordinator farmCoordinator = new FarmCoordinator();
+                        farmCoordinator.run();
+                    } else basketRoutingDeliveryMenu();
+                    break;
+                default:
+                    System.err.println("Invalid Option. Please Try Again.");
+                    System.out.println();
+                    sc.next();
+                    basketRoutingDeliveryMenu();
+                    break;
+            }
+        } catch (InputMismatchException e) {
             System.err.println("Invalid Option. Please Try Again.");
             System.out.println();
             sc.next();
