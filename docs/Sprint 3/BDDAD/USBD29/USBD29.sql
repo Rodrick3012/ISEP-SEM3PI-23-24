@@ -71,7 +71,7 @@ CREATE TABLE OperacaoFatorProducao
 );
 CREATE TABLE Operacao
 (
-    id      NUMBER GENERATED AS IDENTITY CONSTRAINT pk_operacao PRIMARY KEY,
+    id      NUMBER CONSTRAINT pk_operacao PRIMARY KEY,
     anulada NUMBER DEFAULT 0 CONSTRAINT nn_anuladaOperacao NOT NULL,
     data    DATE CONSTRAINT nn_dataOperacao NOT NULL
 );
@@ -135,7 +135,9 @@ CREATE TABLE planta
     Variedade varchar2(50) CONSTRAINT nn_variedade_planta NOT NULL,
     nomeComum varchar2(30) CONSTRAINT nn_nomeComum_planta NOT NULL,
     Especieid number CONSTRAINT nn_especieId_planta NOT NULL,
-    CONSTRAINT pk_planta PRIMARY KEY (id)
+    CONSTRAINT pk_planta PRIMARY KEY (id),
+    CONSTRAINT uq_variedade_nomeComum UNIQUE (Variedade, nomeComum)
+
 );
 CREATE TABLE Especie
 (
