@@ -21,7 +21,7 @@ public class USEI06 {
 
 
     // Lista com percursos//
-    private static Map<LinkedList<Locals>, ResultDataTotalSemi> getAllPathsWithinAutonomyDFS(Graph<Locals, Integer> g, Locals vOrig, Locals vDest, int autonomy, int averageSpeed) {
+    public static Map<LinkedList<Locals>, ResultDataTotalSemi> getAllPathsWithinAutonomyDFS(Graph<Locals, Integer> g, Locals vOrig, Locals vDest, int autonomy, int averageSpeed) {
         Map<LinkedList<Locals>, ResultDataTotalSemi> pathsData = new HashMap<>();
         boolean[] visited = new boolean[g.numVertices()];
         LinkedList<Locals> path = new LinkedList<>();
@@ -42,17 +42,19 @@ public class USEI06 {
         for (Locals verticeAdj : g.adjVertices(vOrig)) {
 
 
-            // Verifica se a distancia não ultrapassa a autonomia
-            if (path.isEmpty() || getTotalPathData(g, path, averageSpeed).getTotalDistance() <= autonomy * 1000) {
-                if (verticeAdj == vDest) {
-                    path.add(vDest);
-                    ResultDataTotalSemi resultDataTotalSemi = getTotalPathData(g, path, averageSpeed);
+            if (verticeAdj == vDest && getTotalPathData(g, path, averageSpeed).getTotalDistance() <= autonomy * 1000) {
+                path.add(vDest);
+                ResultDataTotalSemi resultDataTotalSemi = getTotalPathData(g, path, averageSpeed);
+                //System.out.println(getTotalPathData(g, path, averageSpeed).getTotalDistance() <= autonomy * 1000);
+                if (getTotalPathData(g, path, averageSpeed).getTotalDistance() <= autonomy * 1000) {
                     pathsData.put(new LinkedList<>(path), resultDataTotalSemi);
-                    path.removeLast();
-                } else if (!visited[g.key(verticeAdj)]) {
-                    depthFirstSearchPaths(g, verticeAdj, vDest, visited, path, pathsData, autonomy, averageSpeed);
                 }
+                path.removeLast();
+            } else if (!visited[g.key(verticeAdj)] && getTotalPathData(g, path, averageSpeed).getTotalDistance() <= autonomy * 1000) {
+                depthFirstSearchPaths(g, verticeAdj, vDest, visited, path, pathsData, autonomy, averageSpeed);
             }
+
+
         }
 
         visited[vOrigIndex] = false;
@@ -64,11 +66,11 @@ public class USEI06 {
     private static ResultDataTotalSemi getTotalPathData(Graph<Locals, Integer> g, LinkedList<Locals> path, int averageSpeed) {
         String travelTime = null;
         int totalDistance = 0;
-        Map<Locals, Integer> distances = new HashMap<>();
+        LinkedHashMap<Locals, Integer> distances = new LinkedHashMap<>();
 
         // O primeiro local tem distância 0
-        distances.put(path.getFirst(), 0);
-
+        //distances.put(path.getFirst(), 0);
+        Locals firstLocal = path.getFirst();
         for (int i = 1; i < path.size(); i++) {
             Locals currentVertex = path.get(i - 1);
             Locals nextVertex = path.get(i);
@@ -81,7 +83,31 @@ public class USEI06 {
         }
         travelTime = calculateTravelTime(averageSpeed, totalDistance);
 
-        return new ResultDataTotalSemi(totalDistance, distances, travelTime);
+        return new ResultDataTotalSemi(totalDistance, distances, travelTime, firstLocal);
+    }
+
+    private static ResultDataTotalSemi getTotalPathDataFinal(Graph<Locals, Integer> g, LinkedList<Locals> path, int averageSpeed, Locals v) {
+        path.add(v);
+        String travelTime = null;
+        int totalDistance = 0;
+        LinkedHashMap<Locals, Integer> distances = new LinkedHashMap<>();
+
+        // O primeiro local tem distância 0
+        //distances.put(path.getFirst(), 0);
+        Locals firstLocal = path.getFirst();
+        for (int i = 1; i < path.size(); i++) {
+            Locals currentVertex = path.get(i - 1);
+            Locals nextVertex = path.get(i);
+            Edge<Locals, Integer> edge = g.edge(currentVertex, nextVertex);
+            int edgeWeight = edge.getWeight();
+
+
+            distances.put(nextVertex, edgeWeight);
+            totalDistance += edgeWeight;
+        }
+        travelTime = calculateTravelTime(averageSpeed, totalDistance);
+
+        return new ResultDataTotalSemi(totalDistance, distances, travelTime, firstLocal);
     }
 
 
