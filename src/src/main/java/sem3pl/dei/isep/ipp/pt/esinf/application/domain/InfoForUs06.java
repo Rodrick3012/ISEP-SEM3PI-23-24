@@ -29,12 +29,12 @@ public class InfoForUs06 {
             ResultDataTotalSemi resultData = entry.getValue();
 
             System.out.println("Path: " + formatPath(path));
-            System.out.println("Travel Time: " + resultData.getTravelTime());
-            System.out.println("Total Distance: " + resultData.getTotalDistance());
+            System.out.println(resultData.getTravelTime());
+            System.out.println("Total Distance: " + resultData.getTotalDistance() + "m");
             System.out.println("Distances:");
 
             for (Map.Entry<Locals, Integer> distanceEntry : resultData.getDistances().entrySet()) {
-                System.out.println(distanceEntry.getKey() + ": " + distanceEntry.getValue());
+                System.out.println(distanceEntry.getKey() + ": " + distanceEntry.getValue() + "m");
             }
 
             System.out.println();

@@ -43,7 +43,7 @@ public class USEI06 {
 
 
             // Verifica se a distancia não ultrapassa a autonomia
-            if (path.isEmpty() || getTotalPathData(g, path, averageSpeed).getTotalDistance() <= autonomy) {
+            if (path.isEmpty() || getTotalPathData(g, path, averageSpeed).getTotalDistance() <= autonomy * 1000) {
                 if (verticeAdj == vDest) {
                     path.add(vDest);
                     ResultDataTotalSemi resultDataTotalSemi = getTotalPathData(g, path, averageSpeed);
@@ -86,9 +86,9 @@ public class USEI06 {
 
 
     //Metodo para caluclar o tempo de uma viagem//
-    private static String calculateTravelTime(int averageSpeed, int totalDistance) {
+    public static String calculateTravelTime(int averageSpeed, int totalDistance) {
         // Calculate the total time in hours
-        double totalTimeHours = (double) totalDistance / averageSpeed;
+        double totalTimeHours = (double) totalDistance / (averageSpeed * 1000);
 
         // Convert the total time to the format hours, minutes, and seconds
         int hours = (int) totalTimeHours;
