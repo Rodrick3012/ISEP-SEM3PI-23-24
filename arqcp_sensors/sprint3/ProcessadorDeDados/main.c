@@ -10,9 +10,7 @@
 #include <signal.h>
 #include <time.h>
 
-//quantidade de linhas do ficheiro que vai ler por cada ciclo do algoritmo
-int d = 10;
-
+int numSensores = 10;
 
 int main(int argc, char *argv[]) {
     if (argc != 5) {
@@ -47,7 +45,7 @@ int main(int argc, char *argv[]) {
 
     int sensorIndex = readConfigFile(configFile,sensorArray, num_leituras);
     fclose(configFile);
-	algoritmoUs11(sensorArray, num_leituras,d);
+	algoritmoUs11(sensorArray, numSensores,num_leituras);
     freeSensorArray(sensorArray,sensorIndex);
     return 0;
 }

@@ -26,11 +26,6 @@ copyFunctions.o: copyFunctions.c
 medianFunctions.o: medianFunctions.c
 	gcc -g -Wall -Wextra -fanalyzer -c medianFunctions.c -o medianFunctions.o	
 algorithmUs11.o: algorithmUs11.c
-	gcc -g -Wall -Wextra -fanalyzer -c algorithmUs11.c -o algorithmUs11.o	
-readFromSensor.o: readFromSensor.c
-	gcc -g -Wall -Wextra -fanalyzer -c readFromSensor.c -o readFromSensor.o	
-run: main
-	./main
-	
+	gcc -g -Wall -Wextra -fanalyzer -c algorithmUs11.c -o algorithmUs11.o		
 clean:
 	rm ∗.o main
