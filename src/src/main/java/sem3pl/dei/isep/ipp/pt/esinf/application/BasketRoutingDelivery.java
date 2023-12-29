@@ -1,5 +1,6 @@
 package sem3pl.dei.isep.ipp.pt.esinf.application;
 
+import org.apache.commons.lang.ObjectUtils;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.InfoForUs08;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.InfoForUs06;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.Locals;
@@ -7,25 +8,19 @@ import sem3pl.dei.isep.ipp.pt.esinf.application.domain.LocationCriteria;
 import sem3pl.dei.isep.ipp.pt.esinf.application.domain.ShortestPath;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.CommonGraph;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.Graph;
-import sem3pl.dei.isep.ipp.pt.esinf.application.graph.matrix.MatrixGraph;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI02;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI03;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI04;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI06;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI08;
+import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI09;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI11;
 import sem3pl.dei.isep.ipp.pt.esinf.application.repository.DistributionNetwork;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
-import sem3pl.dei.isep.ipp.pt.lapr3.application.domain.WateringPlan;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Files;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Utils;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.*;
 
 public class BasketRoutingDelivery implements Runnable {
     private final Scanner sc = new Scanner(System.in);
@@ -51,6 +46,7 @@ public class BasketRoutingDelivery implements Runnable {
         System.out.println("5. Finding for a producer the different routes they can take between a place of origin and a hub limited by km "); // USEI04
         System.out.println("6. Find the delivery circuit that starts from a origin location, passes through N hubs and returns to the origin location minimizing the total distance traveled");
         System.out.println("7. Update hubs schedule");
+        System.out.println("8. Organize the locals into N clusters with 1 hub per cluster");
         System.out.println("8. Exit");
         System.out.println();
         System.out.println("Select your option: ");
@@ -58,11 +54,7 @@ public class BasketRoutingDelivery implements Runnable {
             int option = sc.nextInt();
             switch (option) {
                 case 1:
-                    boolean verify = distributionNetwork.createDistributionNetwork();
-                    if (!verify) {
-                        System.err.println("Error while creating the network.");
-                    } else System.out.println("Network successfully created!");
-                    basketRoutingDeliveryMenu();
+                    selectDistributionNetwork();
                     break;
                 case 2:
                     try {
@@ -155,10 +147,29 @@ public class BasketRoutingDelivery implements Runnable {
                     } catch (NullPointerException e) {
                         System.err.println("Network is empty. Returning to menu.");
                     }
-
                     basketRoutingDeliveryMenu();
                     break;
                 case 8:
+                    try {
+                        if(!distributionNetwork.isEmpty()){
+                            USEI09 usei09 = new USEI09();
+                            Integer nClusters = Utils.readInt("Write the number of clusters");
+                            Map<Locals, Set<Locals>> result = usei09.organizeClusters(distributionNetwork.getGraph(), nClusters);
+                            System.out.println("Hubs: " + result.keySet());
+                            System.out.println();
+                            int i = 0;
+                            for(Map.Entry<Locals, Set<Locals>> entry : result.entrySet()){
+                                i++;
+                                System.out.println("Hub " + i + ": " + entry.getKey().toString());
+                                System.out.println("Associated Cluster: " + entry.getValue().toString());
+                                System.out.println();
+                            }
+                        } else System.err.println("Network is empty. Returning to menu.");
+                    } catch (NullPointerException e) {
+                        System.err.println("Network is empty. Returning to menu.");
+                    }
+                    break;
+                case 9:
                     System.out.println("Do you really want to exit this app?");
                     sc.nextLine();
                     String exitOption = sc.nextLine();
@@ -179,6 +190,49 @@ public class BasketRoutingDelivery implements Runnable {
             System.out.println();
             sc.next();
             basketRoutingDeliveryMenu();
+        }
+    }
+
+    private void selectDistributionNetwork(){
+        System.out.println("Select your type of distribution:");
+        System.out.println();
+        System.out.println("1. Big (more complete)");
+        System.out.println("2. Small (more efficient)");
+        System.out.println("3. Exit");
+        System.out.println();
+        System.out.println("Select your option: ");
+        try {
+            int option = sc.nextInt();
+            switch (option){
+                case 1:
+                    boolean verifyBig = distributionNetwork.createDistributionNetworkBig();
+                    if (!verifyBig) {
+                        System.err.println("Error while creating the network.");
+                    } else System.out.println("Network successfully created!");
+                    basketRoutingDeliveryMenu();
+                    break;
+                case 2:
+                    boolean verifySmall = distributionNetwork.createDistributionNetworkSmall();
+                    if (!verifySmall) {
+                        System.err.println("Error while creating the network.");
+                    } else System.out.println("Network successfully created!");
+                    basketRoutingDeliveryMenu();
+                    break;
+                case 3:
+                    basketRoutingDeliveryMenu();
+                    break;
+                default:
+                    System.err.println("Invalid Option. Please Try Again.");
+                    System.out.println();
+                    sc.next();
+                    selectDistributionNetwork();
+                    break;
+            }
+        } catch (InputMismatchException e){
+            System.err.println("Invalid Option. Please Try Again.");
+            System.out.println();
+            sc.next();
+            selectDistributionNetwork();
         }
     }
 }

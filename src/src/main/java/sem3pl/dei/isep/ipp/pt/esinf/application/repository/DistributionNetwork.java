@@ -10,14 +10,30 @@ public class DistributionNetwork {
     public DistributionNetwork(){
     }
 
-    public boolean createDistributionNetwork(){
+    public boolean createDistributionNetworkBig(){
         USEI01 usei01 = new USEI01();
+        if(graph != null) {
+            setGraph(null);
+        }
         graph = usei01.readToGraph("src/src/main/resources/locais_big.csv", "src/src/main/resources/distancias_big.csv");
+        return graph != null;
+    }
+
+    public boolean createDistributionNetworkSmall(){
+        USEI01 usei01 = new USEI01();
+        if (graph != null) {
+            setGraph(null);
+        }
+        graph = usei01.readToGraph("src/src/main/resources/locais_small.csv", "src/src/main/resources/distancias_small.csv");
         return graph != null;
     }
 
     public CommonGraph<Locals, Integer> getGraph(){
         return graph;
+    }
+
+    public void setGraph(CommonGraph<Locals, Integer> g){
+        this.graph = g;
     }
 
     public boolean isEmpty(){
