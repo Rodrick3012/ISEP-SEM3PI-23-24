@@ -20,36 +20,20 @@ public class USEI09 {
         return hubsAndClusters;
     }
 
-    private static <V, E> void organizeClusters(Graph<V, E> g, Map<V, Set<V>> hubsAndClusters, Comparator<E> ce, BinaryOperator<E> sum, E zero, E infinity, Integer nClusters) {
-        Set<V> visited = new HashSet<>();
+    private static <V,E> void organizeClusters(Graph<V, E> g, Map<V, Set<V>> hubsAndClusters, Comparator<E> ce, BinaryOperator<E> sum, E zero, E infinity, Integer nClusters){
+        while(hubsAndClusters.size() < nClusters){
+            Edge<V,E> edgeToRemove = findEdgeWithMaxShortestPaths(g, ce, sum, zero, infinity);
+            g.removeEdge(edgeToRemove.getVOrig(), edgeToRemove.getVDest());
 
-        while (hubsAndClusters.size() < nClusters) {
-            Edge<V, E> edgeToRemove = findEdgeWithMaxShortestPaths(g, ce, sum, zero, infinity, visited);
-            if (edgeToRemove != null) {
-                V origVertex = edgeToRemove.getVOrig();
-                V destVertex = edgeToRemove.getVDest();
-
-                g.removeEdge(origVertex, destVertex);
-
-                List<Set<V>> connectedComponents = getConnectedComponents(g);
-                if (connectedComponents.size() > hubsAndClusters.size()) {
-                    hubsAndClusters.clear();
-                    for (Set<V> component : connectedComponents) {
-                        V hub = findHubInCluster(g, component);
-                        hubsAndClusters.put(hub, component);
-                    }
-                } else {
-                    g.addEdge(origVertex, destVertex, edgeToRemove.getWeight());
-                    visited.add(origVertex);
-                    visited.add(destVertex);
-                }
-            } else {
-                break;
+            List<Set<V>> connectedComponents = getConnectedComponents(g);
+            for(Set<V> component : connectedComponents){
+                V hub = findHubInCluster(g, component);
+                hubsAndClusters.put(hub, component);
             }
         }
     }
 
-    private static <V, E> Edge<V, E> findEdgeWithMaxShortestPaths(Graph<V, E> g, Comparator<E> ce, BinaryOperator<E> sum, E zero, E infinity, Set<V> visited) {
+    private static <V, E> Edge<V, E> findEdgeWithMaxShortestPaths(Graph<V, E> g, Comparator<E> ce, BinaryOperator<E> sum, E zero, E infinity) {
         Edge<V, E> edgeWithMaxPaths = null;
         int maxPaths = 0;
 
