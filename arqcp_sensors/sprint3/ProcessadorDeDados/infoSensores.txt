@@ -1,0 +1,5 @@
+sensor_id:7#type:atmospheric_temperature#value:24.50#unit:celsius#time:4432030
+sensor_id:4#type:atmospheric_humidity#value:49.00#unit:percentage#time:4432031
+sensor_id:7#type:atmospheric_temperature#value:24.80#unit:celsius#time:4434030
+sensor_id:4#type:atmospheric_humidity#value:49.00#unit:percentage#time:4434031
+sensor_id:2#type:soil_humidity#value:49.00#unit:percentage#time:4435030

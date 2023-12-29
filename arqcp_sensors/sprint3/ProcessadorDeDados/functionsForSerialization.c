@@ -9,10 +9,10 @@ char* buildSensorString(Sensor* sensor) {
     char* result = (char*)malloc(buffer_size);
     if (result != NULL) {
 		if(sensor->isInError == 1){
-		snprintf(result, buffer_size, "sensor_id->%d ,write_counter->%d ,type->%s ,unit->%s, ERROR #",
+		snprintf(result, buffer_size, "%d,%d,%s,%s,ERROR#",
 		sensor->sensor_id, sensor->write_counter, sensor->type, sensor->unit);
 		}else{
-		snprintf(result, buffer_size, "sensor_id->%d ,write_counter->%d ,type->%s ,unit->%s ,mediana->%d #",
+		snprintf(result, buffer_size, "%d,%d,%s,%s,%d#",
 		sensor->sensor_id, sensor->write_counter, sensor->type, sensor->unit, sensor->ultimoCalculomediana);
 		}
 	}

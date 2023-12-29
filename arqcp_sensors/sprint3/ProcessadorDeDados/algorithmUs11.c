@@ -5,10 +5,9 @@
 #include <string.h>
 #include "structs.h"
 #include "projectFunctions.h"
-
+#include <time.h>
 
 void algoritmoUs11(Sensor **arraySensor, int numSensores, int d) {
-    const int intervaloSegundos = 6;  
     char serialize[256];
     char * ptrSerialize = serialize;    
     int continuarLoop = 1;
@@ -46,8 +45,16 @@ void algoritmoUs11(Sensor **arraySensor, int numSensores, int d) {
 				contadorLeitura++;
            } 
                 printf("\n");
-                FILE* fileSerialize = fopen("serialize.txt", "w"); // Abre o ficheiro para escrita 
-                if (fileSerialize != NULL) {
+			time_t t = time(NULL);
+			struct tm tm = *localtime(&t);
+
+			char fileName[50]; 
+			sprintf(fileName, "readSensor/%04d%02d%02d%02d%02d%02d_sensors.txt",
+            tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday,
+            tm.tm_hour, tm.tm_min, tm.tm_sec);
+			
+			FILE* fileSerialize = fopen(fileName, "w");                
+			if (fileSerialize != NULL) {
 					for (int i = 0; i < numSensores; i++) {
 						if (arraySensor[i]->isInError == 0 && (arraySensor[i]->numeroValoresLidos != 0 || arraySensor[i]->write_counter != 0)  )
 						{
@@ -71,7 +78,7 @@ void algoritmoUs11(Sensor **arraySensor, int numSensores, int d) {
             fprintf(stderr, "Erro ao abrir o arquivo.\n");
         }	
 		
-		printf("--------------ITERACÃO DO LOOP FEITA--------------");
+		printf("--------------ITERACÃO DO LOOP FEITA--------------\n");
 	}
 
 
