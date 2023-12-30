@@ -793,16 +793,23 @@ Insert into Plantacao (id,cultura,quantidade) values (4,23, 60);
 Insert into Plantacao (id,cultura,quantidade) values (5,24, 40);
 Insert into Poda (id,cultura,quantidade) values (6,11, 30);
 Insert into Poda (id,cultura,quantidade) values (7,12, 20);
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (8,(select designacao from fatorproducao where designacao like 'Patentkali'),15,(select designacao from parcela where designacao like 'Campo grande'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (9,(select designacao from fatorproducao where designacao like 'Patentkali'),10,(select designacao from parcela where designacao like 'Campo grande'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (8,15,(select designacao from parcela where designacao like 'Campo grande'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (8,(select designacao from fatorproducao where designacao like 'Patentkali'));
+
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (9,10,(select designacao from parcela where designacao like 'Campo grande'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (9,(select designacao from fatorproducao where designacao like 'Patentkali'));
+
 Insert into Poda (id,cultura,quantidade) values (10,22, 90);
 Insert into Poda (id,cultura,quantidade) values (11,23, 60);
 Insert into Poda (id,cultura,quantidade) values (12,24, 40);
 Insert into Plantacao (id,cultura,quantidade) values (13,26, 500);
 Insert into Plantacao (id,cultura,quantidade) values (14,27, 700);
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (15,(select designacao from fatorproducao where designacao like 'ESTA Kieserit'),10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (16,(select designacao from fatorproducao where designacao like 'ESTA Kieserit'),6,(select designacao from parcela where designacao like 'Lameiro da ponte'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (17,(select designacao from fatorproducao where designacao like 'ESTA Kieserit'),5,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (15,10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (15,(select designacao from fatorproducao where designacao like 'ESTA Kieserit'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (16,6,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (16,(select designacao from fatorproducao where designacao like 'ESTA Kieserit'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (17,5,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (17,(select designacao from fatorproducao where designacao like 'ESTA Kieserit'));
 Insert into Poda (id,cultura,quantidade) values (18,11, 30);
 Insert into Poda (id,cultura,quantidade) values (19,12, 20);
 Insert into Plantacao (id,cultura,quantidade) values (20,25, 30);
@@ -811,19 +818,30 @@ Insert into Poda (id,cultura,quantidade) values (22,27, 700);
 Insert into Poda (id,cultura,quantidade) values (23,22, 90);
 Insert into Poda (id,cultura,quantidade) values (24,23, 60);
 Insert into Poda (id,cultura,quantidade) values (25,25, 40);
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (26,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'),2,(select designacao from parcela where designacao like 'Vinha'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (27,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'),2.5,(select designacao from parcela where designacao like 'Vinha'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (28,(select designacao from fatorproducao where designacao like 'ESTA Kieserit'),10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (29,(select designacao from fatorproducao where designacao like 'ESTA Kieserit'),5,(select designacao from parcela where designacao like 'Lameiro da ponte'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (30,(select designacao from fatorproducao where designacao like 'ESTA Kieserit'),7,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (26,2,(select designacao from parcela where designacao like 'Vinha'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (26,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (27,2.5,(select designacao from parcela where designacao like 'Vinha'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (27,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (28,10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (28,(select designacao from fatorproducao where designacao like 'ESTA Kieserit'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (29,5,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (29,(select designacao from fatorproducao where designacao like 'ESTA Kieserit'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (30,7,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (30,(select designacao from fatorproducao where designacao like 'ESTA Kieserit'));
 Insert into Poda (id,cultura,quantidade) values (31,11, 30);
 Insert into Poda (id,cultura,quantidade) values (32,12, 20);
 Insert into Poda (id,cultura,quantidade) values (33,26, 500);
 Insert into Poda (id,cultura,quantidade) values (34,27, 700);
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (35,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'),2,(select designacao from parcela where designacao like 'Vinha'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (36,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'),2.5,(select designacao from parcela where designacao like 'Vinha'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (35,2,(select designacao from parcela where designacao like 'Vinha'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (35,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'));
+
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (36,2.5,(select designacao from parcela where designacao like 'Vinha'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (36,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'));
+
 Insert into Semeadura (id,cultura,area,quantidade) values (37,13,(select area from cultura inner join parcela on parcela.designacao = cultura.parcela where id=13), 0.9);
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (38,(select designacao from fatorproducao where designacao like 'Biocal Composto'),600,(select designacao from parcela where designacao like 'Campo do poço'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (38,600,(select designacao from parcela where designacao like 'Campo do poço'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (38,(select designacao from fatorproducao where designacao like 'Biocal Composto'));
+
 Insert into Colheita (id,cultura,quantidade) values (39,13, 2200);
 Insert into Colheita (id,cultura,quantidade) values (40,13, 1400);
 Insert into Semeadura (id,cultura,area,quantidade) values (41,14,(select area from cultura inner join parcela on parcela.designacao = cultura.parcela where id=14), 0.6);
@@ -837,23 +855,30 @@ Insert into Poda (id,cultura,quantidade) values (48,12, 20);
 Insert into Colheita (id,cultura,quantidade) values (49,15, 600);
 Insert into Poda (id,cultura,quantidade) values (50,25, 70);
 Insert into Poda (id,cultura,quantidade) values (51,22, 50);
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (52,(select designacao from fatorproducao where designacao like 'Patentkali'),10,(select designacao from parcela where designacao like 'Campo grande'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (53,(select designacao from fatorproducao where designacao like 'Patentkali'),7,(select designacao from parcela where designacao like 'Campo grande'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (52,10,(select designacao from parcela where designacao like 'Campo grande'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (52,(select designacao from fatorproducao where designacao like 'Patentkali'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (53,7,(select designacao from parcela where designacao like 'Campo grande'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (53,(select designacao from fatorproducao where designacao like 'Patentkali'));
 Insert into Poda (id,cultura,quantidade) values (54,22, 40);
 Insert into Poda (id,cultura,quantidade) values (55,23, 60);
 Insert into Poda (id,cultura,quantidade) values (56,26, 500);
 Insert into Colheita (id,cultura,quantidade) values (57,15, 2500);
 Insert into Poda (id,cultura,quantidade) values (58,27, 700);
 Insert into Colheita (id,cultura,quantidade) values (59,15, 2900);
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (60,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'),2,(select designacao from parcela where designacao like 'Vinha'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (61,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'),2.5,(select designacao from parcela where designacao like 'Vinha'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (60,2,(select designacao from parcela where designacao like 'Vinha'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (60,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (61,2.5,(select designacao from parcela where designacao like 'Vinha'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (61,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'));
 Insert into Semeadura (id,cultura,area,quantidade) values (62,16,(select area from cultura inner join parcela on parcela.designacao = cultura.parcela where id=16), 0.9);
 Insert into IncorporacaoSolo (id,cultura,area) values (63,1,1.3);
 Insert into IncorporacaoSolo (id,cultura,area) values (64,1,1.3);
 Insert into Semeadura (id,cultura,area,quantidade) values (65,2,(select area from cultura inner join parcela on parcela.designacao = cultura.parcela where id=2), 30);
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (66,(select designacao from fatorproducao where designacao like 'EPSO Microtop'),10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (67,(select designacao from fatorproducao where designacao like 'EPSO Microtop'),10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (68,(select designacao from fatorproducao where designacao like 'EPSO Microtop'),10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (66,10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (66,(select designacao from fatorproducao where designacao like 'EPSO Microtop'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (67,10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (67,(select designacao from fatorproducao where designacao like 'EPSO Microtop'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (68,10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (68,(select designacao from fatorproducao where designacao like 'EPSO Microtop'));
 Insert into Colheita (id,cultura,quantidade) values (69,16, 2200);
 Insert into Colheita (id,cultura,quantidade) values (70,16, 1400);
 Insert into Semeadura (id,cultura,area,quantidade) values (71,17,(select area from cultura inner join parcela on parcela.designacao = cultura.parcela where id=17), 0.6);
@@ -882,16 +907,21 @@ Insert into Poda (id,cultura,quantidade) values (93,23, 60);
 Insert into Colheita (id,cultura,quantidade) values (94,18, 2500);
 Insert into Poda (id,cultura,quantidade) values (95,27, 700);
 Insert into Colheita (id,cultura,quantidade) values (96,18, 2900);
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (97,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'),3,(select designacao from parcela where designacao like 'Vinha'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (98,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'),3.5,(select designacao from parcela where designacao like 'Vinha'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (97,3,(select designacao from parcela where designacao like 'Vinha'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (97,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (98,3.5,(select designacao from parcela where designacao like 'Vinha'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (98,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'));
 Insert into Semeadura (id,cultura,area,quantidade) values (99,19,(select area from cultura inner join parcela on parcela.designacao = cultura.parcela where id=19), 0.9);
 Insert into IncorporacaoSolo (id,cultura,area) values (100,3,1.3);
 Insert into IncorporacaoSolo (id,cultura,area) values (101,3,1.3);
 Insert into Semeadura (id,cultura,area,quantidade) values (102,4,(select area from cultura inner join parcela on parcela.designacao = cultura.parcela where id=4), 30);
 Insert into Colheita (id,cultura,quantidade) values (103,19, 2250);
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (104,(select designacao from fatorproducao where designacao like 'EPSO Microtop'),10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (105,(select designacao from fatorproducao where designacao like 'EPSO Microtop'),10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (106,(select designacao from fatorproducao where designacao like 'EPSO Microtop'),10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (104,10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (104,(select designacao from fatorproducao where designacao like 'EPSO Microtop'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (105,10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (105,(select designacao from fatorproducao where designacao like 'EPSO Microtop'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (106,10,(select designacao from parcela where designacao like 'Lameiro da ponte'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (106,(select designacao from fatorproducao where designacao like 'EPSO Microtop'));
 Insert into Colheita (id,cultura,quantidade) values (107,19, 1300);
 Insert into Semeadura (id,cultura,area,quantidade) values (108,20,(select area from cultura inner join parcela on parcela.designacao = cultura.parcela where id=20), 0.6);
 Insert into Colheita (id,cultura,quantidade) values (109,26, 600);
@@ -916,15 +946,19 @@ Insert into Colheita (id,cultura,quantidade) values (127,12, 200);
 Insert into Colheita (id,cultura,quantidade) values (128,21, 50);
 Insert into Poda (id,cultura,quantidade) values (129,25, 70);
 Insert into Poda (id,cultura,quantidade) values (130,22, 90);
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (131,(select designacao from fatorproducao where designacao like 'Patentkali'),15,(select designacao from parcela where designacao like 'Campo grande'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (132,(select designacao from fatorproducao where designacao like 'Patentkali'),10,(select designacao from parcela where designacao like 'Campo grande'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (131,15,(select designacao from parcela where designacao like 'Campo grande'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (131,(select designacao from fatorproducao where designacao like 'Patentkali'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (132,10,(select designacao from parcela where designacao like 'Campo grande'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (132,(select designacao from fatorproducao where designacao like 'Patentkali'));
 Insert into Poda (id,cultura,quantidade) values (133,26, 500);
 Insert into Colheita (id,cultura,quantidade) values (134,21, 200);
 Insert into Poda (id,cultura,quantidade) values (135,27, 700);
 Insert into Poda (id,cultura,quantidade) values (136,23, 60);
 Insert into Colheita (id,cultura,quantidade) values (137,21, 250);
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (138,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'),4,(select designacao from parcela where designacao like 'Vinha'));
-Insert into operacaoFatorProducao (id,fatorproducao,quantidade,parcela) values (139,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'),5,(select designacao from parcela where designacao like 'Vinha'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (138,4,(select designacao from parcela where designacao like 'Vinha'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (138,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'));
+Insert into operacaoFatorProducao (id,quantidade,parcela) values (139,5,(select designacao from parcela where designacao like 'Vinha'));
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (139,(select designacao from fatorproducao where designacao like 'Calda Bordalesa ASCENZA'));
 Insert into IncorporacaoSolo (id,cultura,area) values (140,3,1.3);
 Insert into culturaOperacaoFatorProducao (operacaofatorproducao,cultura) values (8,11);
 Insert into culturaOperacaoFatorProducao (operacaofatorproducao,cultura) values (9,12);
@@ -1450,183 +1484,223 @@ INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from pr
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-13', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (246,'BIOFERTIL N6','Campo grande',120);
+insert into operacaofatorProducao(id,parcela,quantidade) values (246,'Campo grande',120);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (246,'BIOFERTIL N6');
 insert into operacaoAplicacao(id) values (246);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (246,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('PICUAL') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (247,'BIOFERTIL N6','Campo grande',180);
+insert into operacaofatorProducao(id,parcela,quantidade) values (247,'Campo grande',180);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (247,'BIOFERTIL N6');
 insert into operacaoAplicacao(id) values (247);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (247,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('galega%') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (248,'BIOFERTIL N6','Campo grande',240);
+insert into operacaofatorProducao(id,parcela,quantidade) values (248,'Campo grande',240);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (248,'BIOFERTIL N6');
+
 insert into operacaoAplicacao(id) values (248);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (248,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('Arbequina') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (249,'BIOFERTIL N6','Campo grande',120);
+insert into operacaofatorProducao(id,parcela,quantidade) values (249,'Campo grande',120);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (249,'BIOFERTIL N6');
+
 insert into operacaoAplicacao(id) values (249);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (249,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('PICUAL') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (250,'BIOFERTIL N6','Campo grande',180);
+insert into operacaofatorProducao(id,parcela,quantidade) values (250,'Campo grande',180);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (250,'BIOFERTIL N6');
+
 insert into operacaoAplicacao(id) values (250);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (250,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('galega%') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-13', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (251,'BIOFERTIL N6','Campo grande',240);
+insert into operacaofatorProducao(id,parcela,quantidade) values (251,'Campo grande',240);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (251,'BIOFERTIL N6');
+
 insert into operacaoAplicacao(id) values (251);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (251,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('Arbequina') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (252,'BIOFERTIL N6','Campo grande',120);
+insert into operacaofatorProducao(id,parcela,quantidade) values (252,'Campo grande',120);
 insert into operacaoAplicacao(id) values (252);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (252,'BIOFERTIL N6');
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (252,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('picual') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (253,'BIOFERTIL N6','Campo grande',180);
+insert into operacaofatorProducao(id,parcela,quantidade) values (253,'Campo grande',180);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (253,'BIOFERTIL N6');
 insert into operacaoAplicacao(id) values (253);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (253,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('galega%') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-12', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (254,'BIOFERTIL N6','Campo grande',240);
+insert into operacaofatorProducao(id,parcela,quantidade) values (254,'Campo grande',240);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (254,'BIOFERTIL N6');
 insert into operacaoAplicacao(id) values (254);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (254,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('Arbequina') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-04-01', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (255,'Biocal Composto','Campo novo',500);
+insert into operacaofatorProducao(id,parcela,quantidade) values (255,'Campo novo',500);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (255,'Biocal Composto');
 insert into operacaoAplicacao(id) values (255);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-07-03', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (256,'Fertimax Extrume de Cavalo','Campo novo',1800);
+insert into operacaofatorProducao(id,parcela,quantidade) values (256,'Campo novo',1800);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (256,'Fertimax Extrume de Cavalo');
 insert into operacaoAplicacao(id) values (256);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-04', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (257,'BIOFERTIL N6','Lameiro do moinho',3200);
+insert into operacaofatorProducao(id,parcela,quantidade) values (257,'Lameiro do moinho',3200);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (257,'BIOFERTIL N6');
 insert into operacaoAplicacao(id) values (257);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-06', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (258,'Fertimax Extrume de Cavalo','Lameiro do moinho',100);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (258,'Lameiro do moinho',100);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (258,'Fertimax Extrume de Cavalo');
 insert into operacaoAplicacao(id) values (258);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (258,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('porta de loja') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-06', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (259,'Fertimax Extrume de Cavalo','Lameiro do moinho',40);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (259,'Lameiro do moinho',40);
 insert into operacaoAplicacao(id) values (259);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (259,'Fertimax Extrume de Cavalo');
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (259,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('malápio') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-06', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (260,'Fertimax Extrume de Cavalo','Lameiro do moinho',80);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (260,'Lameiro do moinho',80);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (260,'Fertimax Extrume de Cavalo');
 insert into operacaoAplicacao(id) values (260);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (260,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('pipo de basto') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-06', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (261,'Fertimax Extrume de Cavalo','Lameiro do moinho',60);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (261,'Lameiro do moinho',60);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (261,'Fertimax Extrume de Cavalo');
 insert into operacaoAplicacao(id) values (261);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (261,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('canada') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-07', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (262,'Fertimax Extrume de Cavalo','Lameiro do moinho',80);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (262,'Lameiro do moinho',80);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (262,'Fertimax Extrume de Cavalo');
 insert into operacaoAplicacao(id) values (262);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (262,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('grand fay') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2020-01-07', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (263,'Fertimax Extrume de Cavalo','Lameiro do moinho',100);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (263,'Lameiro do moinho',100);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (263,'Fertimax Extrume de Cavalo');
 insert into operacaoAplicacao(id) values (263);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (263,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('gronho doce') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-07', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (264,'Fertimax Extrume de Cavalo','Lameiro do moinho',150);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (264,'Lameiro do moinho',150);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (264,'Fertimax Extrume de Cavalo');
 insert into operacaoAplicacao(id) values (264);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (264,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('porta de loja') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-07', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (265,'Fertimax Extrume de Cavalo','Lameiro do moinho',60);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (265,'Lameiro do moinho',60);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (265,'Fertimax Extrume de Cavalo');
 insert into operacaoAplicacao(id) values (265);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (265,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('malápio') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-08', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (266,'Fertimax Extrume de Cavalo','Lameiro do moinho',120);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (266,'Lameiro do moinho',120);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (266,'Fertimax Extrume de Cavalo');
 insert into operacaoAplicacao(id) values (266);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (266,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('pipo de basto') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-07', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (267,'Fertimax Extrume de Cavalo','Lameiro do moinho',90);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (267,'Lameiro do moinho',90);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (267,'Fertimax Extrume de Cavalo');
 insert into operacaoAplicacao(id) values (267);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (267,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('canada') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-07', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (268,'Fertimax Extrume de Cavalo','Lameiro do moinho',120);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (268,'Lameiro do moinho',120);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (268,'Fertimax Extrume de Cavalo');
 insert into operacaoAplicacao(id) values (268);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (268,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('grand fay') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2021-01-08', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (269,'Fertimax Extrume de Cavalo','Lameiro do moinho',150);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (269,'Lameiro do moinho',150);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (269,'Fertimax Extrume de Cavalo');
 insert into operacaoAplicacao(id) values (269);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (269,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('gronho doce') and dataFinal IS NULL));
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-15', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (270,'BIOFERTIL N6','Lameiro do moinho',150);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (270,'Lameiro do moinho',150);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (270,'BIOFERTIL N6');
 insert into operacaoAplicacao(id) values (270);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (270,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('porta de loja') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-15', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (271,'BIOFERTIL N6','Lameiro do moinho',60);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (271,'Lameiro do moinho',60);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (271,'BIOFERTIL N6');
 insert into operacaoAplicacao(id) values (271);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (271,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('malápio') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-15', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (272,'BIOFERTIL N6','Lameiro do moinho',120);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (272,'Lameiro do moinho',120);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (272,'BIOFERTIL N6');
 insert into operacaoAplicacao(id) values (272);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (272,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('pipo de basto') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-16', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (273,'BIOFERTIL N6','Lameiro do moinho',90);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (273,'Lameiro do moinho',90);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (273,'BIOFERTIL N6');
 insert into operacaoAplicacao(id) values (273);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (273,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('canada') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-16', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (274,'BIOFERTIL N6','Lameiro do moinho',120);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (274,'Lameiro do moinho',120);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (274,'BIOFERTIL N6');
 insert into operacaoAplicacao(id) values (274);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (274,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('grand fay') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2022-01-16', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (275,'BIOFERTIL N6','Lameiro do moinho',150);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (275,'Lameiro do moinho',150);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (275,'BIOFERTIL N6');
 insert into operacaoAplicacao(id) values (275);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (275,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('gronho doce') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (276,'EPSO Microtop','Lameiro do moinho',5);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (276,'Lameiro do moinho',5);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (276,'EPSO Microtop');
 insert into operacaoAplicacao(id) values (276);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (276,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('porta de loja') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (277,'EPSO Microtop','Lameiro do moinho',2);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (277,'Lameiro do moinho',2);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (277,'EPSO Microtop');
 insert into operacaoAplicacao(id) values (277);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (277,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('malápio') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (278,'EPSO Microtop','Lameiro do moinho',4);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (278,'Lameiro do moinho',4);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (278,'EPSO Microtop');
 insert into operacaoAplicacao(id) values (278);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (278,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('pipo de basto') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (279,'EPSO Microtop','Lameiro do moinho',3);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (279,'Lameiro do moinho',3);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (279,'EPSO Microtop');
 insert into operacaoAplicacao(id) values (279);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (279,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('canada') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (280,'EPSO Microtop','Lameiro do moinho',4);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (280,'Lameiro do moinho',4);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (280,'EPSO Microtop');
 insert into operacaoAplicacao(id) values (280);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (280,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('grand fay') and dataFinal IS NULL));
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-05-15', 'YYYY-MM-DD'));
-insert into operacaofatorProducao(id,fatorproducao,parcela,quantidade) values (281,'EPSO Microtop','Lameiro do moinho',5);
+Insert into operacaoFatorProducao(id,parcela,quantidade) values (281,'Lameiro do moinho',5);
+INSERT INTO FATORPRODUCAO_OPERACAO (idoperacao, fatorproducao) values (281,'EPSO Microtop');
 insert into operacaoAplicacao(id) values (281);
 insert into culturaoperacaofatorproducao(operacaofatorproducao,cultura) values (281,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where lower(planta.variedade) like lower('gronho doce') and dataFinal IS NULL));
 
@@ -1644,6 +1718,7 @@ insert into fabricante (fabricante) values ('Asfertglobal');
 insert into fabricante (fabricante) values ('Tecniferti MOL');
 
 insert into fatorProducao(designacao,fabricante,formulacao,classificacao,objetivo) values ('Tecniferti MOL',(select id from fabricante where fabricante = 'Tecniferti MOL'),4,(select id from classificacao where classificacao = 'Matéria Orgânica'),2);
+
 insert into substancia (substancia) values ('AF');
 
 insert into substanciaFatorProducao values (13,'Tecniferti MOL',27);
@@ -1673,14 +1748,12 @@ insert into fatorProducao(designacao,fabricante,formulacao,classificacao,objetiv
 insert into substanciaFatorProducao values (1,'Cuperdem',6);
 
 
-insert into mixFertirrega values (10);
-insert into mixFertirrega_FatorProducao values (10, (select designacao from fatorProducao where designacao = 'EPSO Top'),1.5,3);
-insert into mixFertirrega_FatorProducao values (10,(select designacao from fatorProducao where designacao = 'soluSOP 52'),2.5,3);
-insert into mixFertirrega_FatorProducao values (10,(select designacao from fatorProducao where designacao = 'Floracal Flow SL'),1.7,4);
+insert into Receita_FatorProducao values (10, (select designacao from fatorProducao where designacao = 'EPSO Top'),1.5,3);
+insert into Receita_FatorProducao values (10,(select designacao from fatorProducao where designacao = 'soluSOP 52'),2.5,3);
+insert into Receita_FatorProducao values (10,(select designacao from fatorProducao where designacao = 'Floracal Flow SL'),1.7,4);
 
-insert into mixFertirrega values (11);
-insert into mixFertirrega_FatorProducao values (11,(select designacao from fatorProducao where designacao = 'Tecniferti MOL'),60,4);
-insert into mixFertirrega_FatorProducao values (11,(select designacao from fatorProducao where designacao = 'Kiplant AllGrip'),2,4);
+insert into Receita_FatorProducao values (11,(select designacao from fatorProducao where designacao = 'Tecniferti MOL'),60,4);
+insert into Receita_FatorProducao values (11,(select designacao from fatorProducao where designacao = 'Kiplant AllGrip'),2,4);
 INSERT INTO operacao ( data) VALUES (TO_DATE('17-06-2023','DD/MM/YYYY'));
 INSERT INTO operacao ( data) VALUES (TO_DATE('17/07/2023','DD/MM/YYYY'));
 INSERT INTO operacao ( data) VALUES (TO_DATE('17/08/2023','DD/MM/YYYY'));
@@ -1783,16 +1856,4 @@ INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (329, 150, TO
 INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (330, 120, TO_TIMESTAMP('12/08/2023  21:30', 'DD/MM/YYYY HH24:MI:SS'), 42);
 INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (331, 120, TO_TIMESTAMP('20/05/2023 07:30:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
 INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (332, 120, TO_TIMESTAMP('09/07/2023 06:20:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
-Insert into RegaFertirrega values(320, 10);
-Insert into RegaFertirrega values(321, 10);
-Insert into RegaFertirrega values(322, 10);
-Insert into RegaFertirrega values(323, 10);
-Insert into RegaFertirrega values(324, 11);
-Insert into RegaFertirrega values(325, 10);
-Insert into RegaFertirrega values(326, 10);
-Insert into RegaFertirrega values(327, 11);
-Insert into RegaFertirrega values(328, 10);
-Insert into RegaFertirrega values(329, 11);
-Insert into RegaFertirrega values(330, 10);
-Insert into RegaFertirrega values(331, 11);
-Insert into RegaFertirrega values(332, 10);
+

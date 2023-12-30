@@ -64,7 +64,6 @@ CREATE TABLE LogOperacoes
 CREATE TABLE OperacaoFatorProducao
 (
     id            NUMBER CONSTRAINT pk_OperacaoFatorProducao PRIMARY KEY,
-    fatorproducao VARCHAR2(30) CONSTRAINT nn_fatorProducao_OperacaoFatorProducao NOT NULL,
     parcela       VARCHAR2(25) CONSTRAINT nn_parcela_OperacaoFatorProducao NOT NULL,
     quantidade    NUMBER CONSTRAINT nn_quantidade_OperacaoFatorProducao NOT NULL
 );
@@ -383,8 +382,6 @@ ALTER TABLE LogOperacoes
     ADD CONSTRAINT FKLogOperaco411938 FOREIGN KEY (tipoAlteracao) REFERENCES tipoAlteracao (id);
 ALTER TABLE OperacaoFatorProducao
     ADD CONSTRAINT FKOperacaoFa39367 FOREIGN KEY (id) REFERENCES Operacao (id);
-ALTER TABLE OperacaoFatorProducao
-    ADD CONSTRAINT FKOperacaoFa455406 FOREIGN KEY (fatorproducao) REFERENCES FatorProducao (designacao);
 ALTER TABLE FatorProducao
     ADD CONSTRAINT FKFatorProdu762811 FOREIGN KEY (objetivo) REFERENCES Objetivo (id);
 ALTER TABLE OperacaoFatorProducao
