@@ -18,16 +18,14 @@ DROP TABLE Colheita CASCADE CONSTRAINTS;
 DROP TABLE OperacaoAplicacao CASCADE CONSTRAINTS;
 DROP TABLE OperacaoFertilizacao CASCADE CONSTRAINTS;
 DROP TABLE Modo CASCADE CONSTRAINTS;
-DROP TABLE RegaFertirrega CASCADE CONSTRAINTS;
 DROP TABLE OperacaoRegaSetor CASCADE CONSTRAINTS;
 DROP TABLE Setor CASCADE CONSTRAINTS;
-DROP TABLE MixFertirrega CASCADE CONSTRAINTS;
 DROP TABLE CulturaOperacaoFatorProducao CASCADE CONSTRAINTS;
 DROP TABLE Plantacao CASCADE CONSTRAINTS;
 DROP TABLE Semeadura CASCADE CONSTRAINTS;
 DROP TABLE MobilizacaoSolo CASCADE CONSTRAINTS;
 DROP TABLE Monda CASCADE CONSTRAINTS;
-DROP TABLE MixFertirrega_FatorProducao CASCADE CONSTRAINTS;
+DROP TABLE Receita_FatorProducao CASCADE CONSTRAINTS;
 DROP TABLE Unidade CASCADE CONSTRAINTS;
 DROP TABLE plantaProduto CASCADE CONSTRAINTS;
 DROP TABLE Produto CASCADE CONSTRAINTS;
@@ -43,6 +41,7 @@ DROP TABLE SubstanciaFatorProducao CASCADE CONSTRAINTS;
 DROP TABLE Colheita_Produto CASCADE CONSTRAINTS;
 DROP TABLE FatorProducaoPH CASCADE CONSTRAINTS;
 DROP TABLE Quantidade CASCADE CONSTRAINTS;
+DROP TABLE FatorProducao_Operacao CASCADE CONSTRAINTS;
 
 CREATE TABLE tipoAlteracao
 (
@@ -186,12 +185,6 @@ CREATE TABLE Modo
     CONSTRAINT pk_modo PRIMARY KEY (id)
 );
 
-CREATE TABLE RegaFertirrega
-(
-    OperacaoRegaSetor number ,
-    MixFertirrega     number CONSTRAINT nn_mixFertirrega NOT NULL,
-    CONSTRAINT pk_regaFertirrega PRIMARY KEY (OperacaoRegaSetor)
-);
 
 CREATE TABLE OperacaoRegaSetor
 (
@@ -211,11 +204,7 @@ CREATE TABLE Setor
     CONSTRAINT pk_setor PRIMARY KEY (setor)
 );
 
-CREATE TABLE MixFertirrega
-(
-    id number ,
-    CONSTRAINT pk_mixFertirrega PRIMARY KEY (id)
-);
+
 
 CREATE TABLE CulturaOperacaoFatorProducao
 (
@@ -261,13 +250,13 @@ CREATE TABLE Monda
     CONSTRAINT pk_monda PRIMARY KEY (id)
 );
 
-CREATE TABLE MixFertirrega_FatorProducao
+CREATE TABLE Receita_FatorProducao
 (
-    MixFertirrega number ,
-    FatorProducao varchar2(30) CONSTRAINT nn_fatorProducao_MixFertirrega_FatorProducao NOT NULL,
-    quantidade    number(10) CONSTRAINT nn_quantidade_MixFertirrega_FatorProducao NOT NULL CONSTRAINT check_quantidade_positive CHECK ( quantidade>0 ),
-    Unidade       number CONSTRAINT nn_unidade_MixFertirrega_FatorProducao NOT NULL,
-    CONSTRAINT pk_mixFertirrega_FatorProducao PRIMARY KEY (MixFertirrega,
+    idReceita number,
+    FatorProducao varchar2(30) CONSTRAINT nn_fatorProducao_Receita_FatorProducao NOT NULL,
+    quantidade    number(10) CONSTRAINT nn_quantidade_Receita_FatorProducao NOT NULL CONSTRAINT check_receita_quantidade_positive CHECK ( quantidade>0 ),
+    Unidade       number CONSTRAINT nn_unidade_Receita_FatorProducao NOT NULL,
+    CONSTRAINT pk_Receita_FatorProducao PRIMARY KEY (idReceita,
                  FatorProducao)
 );
 CREATE TABLE Unidade
@@ -366,7 +355,13 @@ CREATE TABLE Colheita_Produto
     CONSTRAINT pk_colheitaProduto PRIMARY KEY (Colheitaid,
                  Produtoid)
 );
-
+CREATE TABLE FatorProducao_Operacao
+(
+    idOperacao number ,
+    fatorProducao  varchar2(30) ,
+    CONSTRAINT pk_colheitaProdutoFatorProducao_Operacao PRIMARY KEY (idOperacao,
+                                               fatorProducao)
+);
 CREATE TABLE FatorProducaoPH
 (
     fatorProducao varchar2(30) ,
@@ -420,14 +415,10 @@ ALTER TABLE OperacaoFertilizacao
     ADD CONSTRAINT FKOperacaoFe880318 FOREIGN KEY (id) REFERENCES OperacaoFatorProducao (id);
 ALTER TABLE OperacaoFertilizacao
     ADD CONSTRAINT FKOperacaoFe3347 FOREIGN KEY (modo) REFERENCES Modo (id);
-ALTER TABLE RegaFertirrega
-    ADD CONSTRAINT FKRegaFertir40828 FOREIGN KEY (OperacaoRegaSetor) REFERENCES OperacaoRegaSetor (id);
 ALTER TABLE OperacaoRegaSetor
     ADD CONSTRAINT FKOperacaoRe730827 FOREIGN KEY (id) REFERENCES Operacao (id);
 ALTER TABLE OperacaoRegaSetor
     ADD CONSTRAINT FKOperacaoRe376754 FOREIGN KEY (setor) REFERENCES Setor (setor);
-ALTER TABLE RegaFertirrega
-    ADD CONSTRAINT FKRegaFertir391842 FOREIGN KEY (MixFertirrega) REFERENCES MixFertirrega (id);
 ALTER TABLE CulturaOperacaoFatorProducao
     ADD CONSTRAINT FKCulturaOpe323177 FOREIGN KEY (OperacaoFatorProducao) REFERENCES OperacaoFatorProducao (id);
 ALTER TABLE CulturaOperacaoFatorProducao
@@ -448,11 +439,11 @@ ALTER TABLE Monda
     ADD CONSTRAINT FKMonda393036 FOREIGN KEY (id) REFERENCES Operacao (id);
 ALTER TABLE Monda
     ADD CONSTRAINT FKMonda818719 FOREIGN KEY (Cultura) REFERENCES Cultura (id);
-ALTER TABLE MixFertirrega_FatorProducao
-    ADD CONSTRAINT FKMixFertirr147144 FOREIGN KEY (MixFertirrega) REFERENCES MixFertirrega (id);
-ALTER TABLE MixFertirrega_FatorProducao
+ALTER TABLE Receita_FatorProducao
+    ADD CONSTRAINT Receita_FatorProducao_idReceitaID FOREIGN KEY (idReceita) REFERENCES MixFertirrega (id);
+ALTER TABLE Receita_FatorProducao
     ADD CONSTRAINT FKMixFertirr220075 FOREIGN KEY (FatorProducao) REFERENCES FatorProducao (designacao);
-ALTER TABLE MixFertirrega_FatorProducao
+ALTER TABLE Receita_FatorProducao
     ADD CONSTRAINT FKMixFertirr351504 FOREIGN KEY (Unidade) REFERENCES Unidade (id);
 ALTER TABLE plantaProduto
     ADD CONSTRAINT FKplantaProd874382 FOREIGN KEY (produto) REFERENCES Produto (id);
@@ -482,3 +473,7 @@ ALTER TABLE Quantidade
     ADD CONSTRAINT FKQuantidade768256 FOREIGN KEY (cultura) REFERENCES Cultura (id);
 ALTER TABLE Quantidade
     ADD CONSTRAINT FKQuantidade252813 FOREIGN KEY (unidade) REFERENCES Unidade (id);
+ALTER TABLE FatorProducao_Operacao
+    ADD CONSTRAINT FKOperacaoID FOREIGN KEY (idOperacao) REFERENCES OperacaoFatorProducao (id);
+ALTER TABLE FatorProducao_Operacao
+    ADD CONSTRAINT FKFatorProducaoDesignacao FOREIGN KEY (fatorProducao) REFERENCES FatorProducao (designacao);
