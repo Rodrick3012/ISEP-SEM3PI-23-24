@@ -68,32 +68,8 @@ public class USEI06 {
         int totalDistance = 0;
         LinkedHashMap<Locals, Integer> distances = new LinkedHashMap<>();
 
-        // O primeiro local tem distância 0
-        //distances.put(path.getFirst(), 0);
-        Locals firstLocal = path.getFirst();
-        for (int i = 1; i < path.size(); i++) {
-            Locals currentVertex = path.get(i - 1);
-            Locals nextVertex = path.get(i);
-            Edge<Locals, Integer> edge = g.edge(currentVertex, nextVertex);
-            int edgeWeight = edge.getWeight();
+        // O primeiro local tem distância
 
-
-            distances.put(nextVertex, edgeWeight);
-            totalDistance += edgeWeight;
-        }
-        travelTime = calculateTravelTime(averageSpeed, totalDistance);
-
-        return new ResultDataTotalSemi(totalDistance, distances, travelTime, firstLocal);
-    }
-
-    private static ResultDataTotalSemi getTotalPathDataFinal(Graph<Locals, Integer> g, LinkedList<Locals> path, int averageSpeed, Locals v) {
-        path.add(v);
-        String travelTime = null;
-        int totalDistance = 0;
-        LinkedHashMap<Locals, Integer> distances = new LinkedHashMap<>();
-
-        // O primeiro local tem distância 0
-        //distances.put(path.getFirst(), 0);
         Locals firstLocal = path.getFirst();
         for (int i = 1; i < path.size(); i++) {
             Locals currentVertex = path.get(i - 1);

@@ -24,6 +24,7 @@ public class InfoForUs06 {
 
     // Método para imprimir informações
     public void printTravelSet() {
+        System.out.println();
         for (Map.Entry<LinkedList<Locals>, ResultDataTotalSemi> entry : pathsData.entrySet()) {
             LinkedList<Locals> path = entry.getKey();
             ResultDataTotalSemi resultData = entry.getValue();
