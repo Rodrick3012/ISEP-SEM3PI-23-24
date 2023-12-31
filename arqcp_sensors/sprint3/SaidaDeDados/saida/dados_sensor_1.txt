@@ -1,0 +1,5 @@
+Sensor ID: 1
+Write Counter: 5
+Type: soil_humidity
+Unit: percentage
+Mediana: 0.00

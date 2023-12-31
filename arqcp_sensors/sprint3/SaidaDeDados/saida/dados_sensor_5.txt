@@ -1,0 +1,5 @@
+Sensor ID: 5
+Write Counter: 0
+Type: atmospheric_humidity
+Unit: percentage
+Mediana: error

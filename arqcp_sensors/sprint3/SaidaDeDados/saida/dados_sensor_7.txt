@@ -1,0 +1,5 @@
+Sensor ID: 7
+Write Counter: 0
+Type: atmospheric_temperature
+Unit: celsius
+Mediana: error
