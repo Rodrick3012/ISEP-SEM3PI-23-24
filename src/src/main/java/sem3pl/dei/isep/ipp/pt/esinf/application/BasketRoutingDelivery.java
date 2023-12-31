@@ -47,7 +47,7 @@ public class BasketRoutingDelivery implements Runnable {
         System.out.println("6. Find the delivery circuit that starts from a origin location, passes through N hubs and returns to the origin location minimizing the total distance traveled");
         System.out.println("7. Update hubs schedule");
         System.out.println("8. Organize the locals into N clusters with 1 hub per cluster");
-        System.out.println("8. Exit");
+        System.out.println("9. Exit");
         System.out.println();
         System.out.println("Select your option: ");
         try {
@@ -168,6 +168,7 @@ public class BasketRoutingDelivery implements Runnable {
                     } catch (NullPointerException e) {
                         System.err.println("Network is empty. Returning to menu.");
                     }
+                    basketRoutingDeliveryMenu();
                     break;
                 case 9:
                     System.out.println("Do you really want to exit this app?");
