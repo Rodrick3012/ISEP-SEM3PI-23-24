@@ -15,9 +15,6 @@ DROP TABLE Especie CASCADE CONSTRAINTS;
 DROP TABLE TipoPlanta CASCADE CONSTRAINTS;
 DROP TABLE Poda CASCADE CONSTRAINTS;
 DROP TABLE Colheita CASCADE CONSTRAINTS;
-DROP TABLE OperacaoAplicacao CASCADE CONSTRAINTS;
-DROP TABLE OperacaoFertilizacao CASCADE CONSTRAINTS;
-DROP TABLE Modo CASCADE CONSTRAINTS;
 DROP TABLE OperacaoRegaSetor CASCADE CONSTRAINTS;
 DROP TABLE Setor CASCADE CONSTRAINTS;
 DROP TABLE CulturaOperacaoFatorProducao CASCADE CONSTRAINTS;
@@ -25,6 +22,7 @@ DROP TABLE Plantacao CASCADE CONSTRAINTS;
 DROP TABLE Semeadura CASCADE CONSTRAINTS;
 DROP TABLE MobilizacaoSolo CASCADE CONSTRAINTS;
 DROP TABLE Monda CASCADE CONSTRAINTS;
+DROP TABLE Modo CASCADE CONSTRAINTS;
 DROP TABLE Receita_FatorProducao CASCADE CONSTRAINTS;
 DROP TABLE Unidade CASCADE CONSTRAINTS;
 DROP TABLE plantaProduto CASCADE CONSTRAINTS;
@@ -42,6 +40,9 @@ DROP TABLE Colheita_Produto CASCADE CONSTRAINTS;
 DROP TABLE FatorProducaoPH CASCADE CONSTRAINTS;
 DROP TABLE Quantidade CASCADE CONSTRAINTS;
 DROP TABLE FatorProducao_Operacao CASCADE CONSTRAINTS;
+DROP TABLE OperacaoFpSolo CASCADE CONSTRAINTS;
+DROP TABLE OperacaoFpCultura CASCADE CONSTRAINTS;
+
 
 CREATE TABLE tipoAlteracao
 (
@@ -64,8 +65,17 @@ CREATE TABLE LogOperacoes
 CREATE TABLE OperacaoFatorProducao
 (
     id            NUMBER CONSTRAINT pk_OperacaoFatorProducao PRIMARY KEY,
-    parcela       VARCHAR2(25) CONSTRAINT nn_parcela_OperacaoFatorProducao NOT NULL,
-    quantidade    NUMBER CONSTRAINT nn_quantidade_OperacaoFatorProducao NOT NULL
+    area       NUMBER CONSTRAINT nn_area_OperacaoFatorProducao NOT NULL check ( area >0 )
+);
+CREATE TABLE OperacaoFPSolo
+(
+    id            NUMBER CONSTRAINT pk_OperacaoFpSolo PRIMARY KEY,
+    parcela       varchar2(25) CONSTRAINT nn_parcela_OperacaoFpSolo NOT NULL
+);
+CREATE TABLE OperacaoFPCultura
+(
+    id            NUMBER CONSTRAINT pk_OperacaoFpCultura PRIMARY KEY,
+    modo       NUMBER CONSTRAINT nn_modo_OperacaoFpCultura NOT NULL
 );
 CREATE TABLE Operacao
 (
@@ -166,17 +176,6 @@ CREATE TABLE Colheita
     CONSTRAINT check_quantidade_positive_Colheita CHECK (quantidade > 0),
     CONSTRAINT pk_colheita PRIMARY KEY (id)
 );
-CREATE TABLE OperacaoAplicacao
-(
-    id number NOT NULL,
-    CONSTRAINT pk_operacaoAplicacao PRIMARY KEY (id)
-);
-CREATE TABLE OperacaoFertilizacao
-(
-    id   number ,
-    modo number CONSTRAINT nn_modo NOT NULL,
-    CONSTRAINT pk_operacaoFertilizacao PRIMARY KEY (id)
-);
 CREATE TABLE Modo
 (
     id   number GENERATED AS IDENTITY,
@@ -208,8 +207,8 @@ CREATE TABLE Setor
 CREATE TABLE CulturaOperacaoFatorProducao
 (
     OperacaoFatorProducao number ,
-    Cultura               number CONSTRAINT nn_culturaOpFp NOT NULL,
-    CONSTRAINT pk_culturaOperacaoFatorProducao PRIMARY KEY (OperacaoFatorProducao)
+    Cultura               number,
+    CONSTRAINT pk_culturaOperacaoFatorProducao PRIMARY KEY (OperacaoFatorProducao,Cultura)
 );
 
 CREATE TABLE Plantacao
@@ -358,7 +357,8 @@ CREATE TABLE FatorProducao_Operacao
 (
     idOperacao number ,
     fatorProducao  varchar2(30) ,
-    CONSTRAINT pk_colheitaProdutoFatorProducao_Operacao PRIMARY KEY (idOperacao,
+    quantidade    NUMBER CONSTRAINT nn_quantidade_OperacaoFatorProducao NOT NULL,
+        CONSTRAINT pk_colheitaProdutoFatorProducao_Operacao PRIMARY KEY (idOperacao,
                                                fatorProducao)
 );
 CREATE TABLE FatorProducaoPH
@@ -384,8 +384,6 @@ ALTER TABLE OperacaoFatorProducao
     ADD CONSTRAINT FKOperacaoFa39367 FOREIGN KEY (id) REFERENCES Operacao (id);
 ALTER TABLE FatorProducao
     ADD CONSTRAINT FKFatorProdu762811 FOREIGN KEY (objetivo) REFERENCES Objetivo (id);
-ALTER TABLE OperacaoFatorProducao
-    ADD CONSTRAINT FKOperacaoFa567047 FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
 ALTER TABLE IncorporacaoSolo
     ADD CONSTRAINT FKIncorporac414313 FOREIGN KEY (id) REFERENCES Operacao (id);
 ALTER TABLE IncorporacaoSolo
@@ -406,12 +404,6 @@ ALTER TABLE Colheita
     ADD CONSTRAINT FKColheita943585 FOREIGN KEY (id) REFERENCES Operacao (id);
 ALTER TABLE Colheita
     ADD CONSTRAINT FKColheita268170 FOREIGN KEY (Cultura) REFERENCES Cultura (id);
-ALTER TABLE OperacaoAplicacao
-    ADD CONSTRAINT FKOperacaoAp303441 FOREIGN KEY (id) REFERENCES OperacaoFatorProducao (id);
-ALTER TABLE OperacaoFertilizacao
-    ADD CONSTRAINT FKOperacaoFe880318 FOREIGN KEY (id) REFERENCES OperacaoFatorProducao (id);
-ALTER TABLE OperacaoFertilizacao
-    ADD CONSTRAINT FKOperacaoFe3347 FOREIGN KEY (modo) REFERENCES Modo (id);
 ALTER TABLE OperacaoRegaSetor
     ADD CONSTRAINT FKOperacaoRe730827 FOREIGN KEY (id) REFERENCES Operacao (id);
 ALTER TABLE OperacaoRegaSetor
@@ -420,6 +412,14 @@ ALTER TABLE CulturaOperacaoFatorProducao
     ADD CONSTRAINT FKCulturaOpe323177 FOREIGN KEY (OperacaoFatorProducao) REFERENCES OperacaoFatorProducao (id);
 ALTER TABLE CulturaOperacaoFatorProducao
     ADD CONSTRAINT FKCulturaOpe850504 FOREIGN KEY (Cultura) REFERENCES Cultura (id);
+ALTER TABLE OperacaoFPSolo
+    ADD CONSTRAINT fkidOperacaoSolo FOREIGN KEY (id) REFERENCES OperacaoFatorProducao (id);
+ALTER TABLE OperacaoFPCultura
+    ADD CONSTRAINT fkidOperacaoCultura FOREIGN KEY (id) REFERENCES OperacaoFatorProducao (id);
+ALTER TABLE OperacaoFPCultura
+    ADD CONSTRAINT fkModo FOREIGN KEY (modo) REFERENCES Modo (id);
+ALTER TABLE OperacaoFPSolo
+    ADD CONSTRAINT fkSolo FOREIGN KEY (parcela) REFERENCES Parcela (designacao);
 ALTER TABLE Plantacao
     ADD CONSTRAINT FKPlantacao567054 FOREIGN KEY (id) REFERENCES Operacao (id);
 ALTER TABLE Plantacao
