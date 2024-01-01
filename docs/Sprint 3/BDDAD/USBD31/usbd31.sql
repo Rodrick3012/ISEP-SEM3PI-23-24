@@ -55,3 +55,49 @@ EXCEPTION
 ROLLBACK;
 END;
 /
+
+                            --BLOCOS ANONIMOS DADODS NO GUIÃO SPRINT REVIEW 3
+
+
+--Caso insucesso
+DECLARE
+    -- Declaração de variáveis
+receita_id NUMBER;
+    fatores_producao FatoresProducaoArrayType;
+BEGIN
+    -- Inicializar variáveis
+    receita_id := 23;
+    fatores_producao := FatoresProducaoArrayType();
+
+    -- .extend serve para adicionar dinamicamente espaço para mais 2 fatorProducaoType no array
+    fatores_producao.EXTEND(2);
+    -- Adicionar elementos ao array
+    fatores_producao(1) := FatorProducaoType('Tecniferti MOL', 60, 4);
+    fatores_producao(2) := FatorProducaoType('Kiplant AllFit Plus', 2.5, 4);
+
+    -- Chamar a procedure
+    PCD_REGISTAR_RECEITA_FERTIRREGA(receita_id, fatores_producao);
+END;
+/
+
+--Caso sucesso
+DECLARE
+    -- Declaração de variáveis
+receita_id NUMBER;
+    fatores_producao FatoresProducaoArrayType;
+BEGIN
+    -- Inicializar variáveis
+    receita_id := 22;
+    fatores_producao := FatoresProducaoArrayType();
+
+    -- .extend serve para adicionar dinamicamente espaço para mais 3 fatorProducaoType no array
+    fatores_producao.EXTEND(3);
+    -- Adicionar elementos ao array
+    fatores_producao(1) := FatorProducaoType('Tecniferti MOL', 60, 4);
+    fatores_producao(2) := FatorProducaoType('Kiplant AllGrip', 2, 4);
+    fatores_producao(3) := FatorProducaoType('soluSOP 52', 2.5, 3);
+
+    -- Chamar a procedure
+    PCD_REGISTAR_RECEITA_FERTIRREGA(receita_id, fatores_producao);
+END;
+/
