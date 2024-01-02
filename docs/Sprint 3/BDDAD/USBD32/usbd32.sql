@@ -3,73 +3,47 @@ CREATE OR REPLACE PROCEDURE pcdInserirOperacaoRega(
     pduracao operacaoRegaSetor.duracao%type,
     pdata DATE,
     horaMinSeg VARCHAR,
-    p_mixFerti mixFertirrega.id%type DEFAULT -1
+    receita Receita_FatorProducao.idReceita%type,
+    pArea operacaoFatorProducao.area%type
 )
 IS
+    v_idFpCursor SYS_REFCURSOR;
+    v_idOperacao number;
+    v_idCultura number;
+    v_quantidadeFp Receita_FatorProducao.quantidade%type;
+    v_idFp FatorProducao.designacao%type;
     v_timestamp operacaoRegaSetor.horario%type;
-    v_id NUMBER;
+    v_setorCursor SYS_REFCURSOR;
 BEGIN
-
     v_timestamp := TO_TIMESTAMP(TO_CHAR(pdata, 'YYYY-MM-DD') || ' ' || horaMinSeg, 'YYYY-MM-DD HH24:MI:SS');
+OPEN v_idFpCursor FOR
+SELECT fatorProducao, quantidade
+FROM Receita_FatorProducao
+WHERE idReceita = receita;
 
-INSERT INTO operacao (data) VALUES (pdata) RETURNING id INTO v_id;
+OPEN v_setorCursor FOR
+SELECT cultura
+FROM culturaSetor
+WHERE setor = psetor;
 
-INSERT INTO operacaoRegaSetor (id, duracao, horario, setor)
-VALUES (v_id, pduracao, v_timestamp, psetor);
 
-IF p_mixFerti <> -1 THEN
-        INSERT INTO RegaFertirrega (operacaoRegaSetor, mixFertirrega) VALUES (v_id, p_mixFerti);
-END IF;
+INSERT INTO operacao (data) VALUES (pdata) RETURNING id INTO v_idOperacao;
+INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (v_idOperacao, pduracao, v_timestamp, psetor);
+INSERT INTO operacaoFatorProducao VALUES (v_idOperacao, pArea);
+INSERT INTO operacaoFpCultura VALUES (v_idOperacao, 2);
 
-COMMIT;
+LOOP
+FETCH v_idFpCursor INTO v_idFp, v_quantidadeFp;
+        EXIT WHEN v_idFpCursor%NOTFOUND;
+INSERT INTO fatorProducao_operacao VALUES(v_idOperacao, v_idFp, v_quantidadeFp);
+END LOOP;
 
-EXCEPTION
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLCODE || ' - ' || SQLERRM);
+    LOOP
+FETCH v_setorCursor INTO v_idCultura ;
+        EXIT WHEN v_setorCursor%NOTFOUND;
+INSERT INTO culturaOperacaoFatorProducao VALUES (v_idOperacao, v_idCultura);
+END LOOP;
 
-        RAISE_APPLICATION_ERROR(-20001, 'Erro');
-
-ROLLBACK;
 END;
 /
-
-
-
-DECLARE
-v_setor setor.setor%type :=10;
-    v_duracao operacaoRegaSetor.duracao%type := 6969;
-    v_data DATE := SYSDATE;
-    v_horaMinSeg VARCHAR2(8) := '12:34:56';
-    v_mixFerti mixFertirrega.id%type :=2 ;
-
-BEGIN
-    pcdInserirOperacaoRega(v_setor, v_duracao, v_data, v_horaMinSeg, v_mixFerti);
-
-    DBMS_OUTPUT.PUT_LINE('Procedimento executado com sucesso.');
-
-EXCEPTION
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLCODE || ' - ' || SQLERRM);
-ROLLBACK;
-END;
-/
-
-DECLARE
-v_setor setor.setor%type :=10;
-    v_duracao operacaoRegaSetor.duracao%type := 6969;
-    v_data DATE := SYSDATE;
-    v_horaMinSeg VARCHAR2(8) := '12:34:56';
-
-BEGIN
-    pcdInserirOperacaoRega(v_setor, v_duracao, v_data, v_horaMinSeg);
-
-    DBMS_OUTPUT.PUT_LINE('Procedimento executado com sucesso.');
-
-EXCEPTION
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Erro: ' || SQLCODE || ' - ' || SQLERRM);
-ROLLBACK;
-END;
-/
-
 
