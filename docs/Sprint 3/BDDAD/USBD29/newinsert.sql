@@ -1105,9 +1105,8 @@ insert into cultura(planta,parcela,dataInicial) values ((select id from planta w
 Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-09','YYYY-MM-DD') and variedade like 'Porta de loja'),(select id from unidade where designacao like 'un'),50);
 Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-09','YYYY-MM-DD') and variedade like 'Porta de loja'),(select id from unidade where designacao like 'ha'),0.125);
 
-insert into planta (nomeComum, variedade,especieid) values('Maceira','Malápio',(select id from especie where designacao like  'Malus domestica'));
-insert into plantaProduto values (3,(select id from planta where variedade like 'Malápio'));
-insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'Malápio'),'Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'));
+insert into plantaProduto values (3,(select id from planta where variedade like 'MALÁPIO'));
+insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'MALÁPIO'),'Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'));
 Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-10','YYYY-MM-DD') and variedade like 'Malápio'),(select id from unidade where designacao like 'un'),20);
 Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-10','YYYY-MM-DD') and variedade like 'Malápio'),(select id from unidade where designacao like 'ha'),0.05);
 
@@ -1172,7 +1171,7 @@ insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((selec
 
 --setor 22
 insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Porta de loja'),22,50,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
-insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Malápio'),22,20,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'MALÁPIO'),22,20,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
 insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Canada'),22,30,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
 insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Grand Fay'),22,40,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
 insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Gronho Doce'),22,50,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
@@ -1446,7 +1445,7 @@ INSERT INTO Plantacao(id,cultura,quantidade) values (231,(select cultura.id from
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-09', 'YYYY-MM-DD'));
-INSERT INTO Plantacao(id,cultura,quantidade) values (232,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like  'Malápio' and dataFinal IS NULL),20);
+INSERT INTO Plantacao(id,cultura,quantidade) values (232,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like  'MALÁPIO' and dataFinal IS NULL),20);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-10', 'YYYY-MM-DD'));
@@ -1490,8 +1489,8 @@ INSERT INTO Colheita(id,cultura,quantidade) values (242,(select cultura.id from 
 INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Gronho Doce'),242);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-10-15', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (243,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like'Malápio' and dataFinal IS NULL),700);
-INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Malápio'),243);
+INSERT INTO Colheita(id,cultura,quantidade) values (243,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like'MALÁPIO' and dataFinal IS NULL),700);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'MALÁPIO'),243);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-11-12', 'YYYY-MM-DD'));
 INSERT INTO Colheita(id,cultura,quantidade) values (244,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Porta de loja' and dataFinal IS NULL),700);
@@ -1875,4 +1874,19 @@ INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (329, 150, TO
 INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (330, 120, TO_TIMESTAMP('12/08/2023  21:30', 'DD/MM/YYYY HH24:MI:SS'), 42);
 INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (331, 120, TO_TIMESTAMP('20/05/2023 07:30:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
 INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (332, 120, TO_TIMESTAMP('09/07/2023 06:20:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
-
+/*
+begin
+pcdInserirOperacaoFertirrega(10, 60,TO_DATE('02/06/2023','DD/MM/YYYY'), '06:00:00',10);
+pcdInserirOperacaoFertirrega(10, 120,TO_DATE('02/07/2023','DD/MM/YYYY'), '06:00:00',10);
+pcdInserirOperacaoFertirrega(10, 180,TO_DATE('02/08/2023','DD/MM/YYYY'), '05:00:00',10);
+pcdInserirOperacaoFertirrega(22, 120,TO_DATE('16/06/2023','DD/MM/YYYY'), '23:00:00',10);
+pcdInserirOperacaoFertirrega(22, 180,TO_DATE('15/07/2023','DD/MM/YYYY'), '23:00:00',11);
+pcdInserirOperacaoFertirrega(22, 150,TO_DATE('10/08/2023','DD/MM/YYYY'), '23:00:00',10);
+pcdInserirOperacaoFertirrega(22, 120,TO_DATE('09/09/2023','DD/MM/YYYY'), '23:00:00',10);
+pcdInserirOperacaoFertirrega(42, 120,TO_DATE('30/06/2023','DD/MM/YYYY'), '04:00:00',11);
+pcdInserirOperacaoFertirrega(42, 120,TO_DATE('15/07/2023','DD/MM/YYYY'), '04:00:00',10);
+pcdInserirOperacaoFertirrega(42, 150,TO_DATE('29/07/2023','DD/MM/YYYY'), '04:00:00',11);
+pcdInserirOperacaoFertirrega(42, 120,TO_DATE('12/08/2023','DD/MM/YYYY'), '21:30',10);
+pcdInserirOperacaoFertirrega(41, 120,TO_DATE('20/05/2023','DD/MM/YYYY'), '07:30:00',11);
+pcdInserirOperacaoFertirrega(41, 120,TO_DATE('09/07/2023','DD/MM/YYYY'), '06:20:00',10);
+end;
