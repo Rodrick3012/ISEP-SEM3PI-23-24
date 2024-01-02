@@ -1867,6 +1867,7 @@ INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (329, 150, TO
 INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (330, 120, TO_TIMESTAMP('12/08/2023  21:30', 'DD/MM/YYYY HH24:MI:SS'), 42);
 INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (331, 120, TO_TIMESTAMP('20/05/2023 07:30:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
 INSERT INTO operacaoRegaSetor (id, duracao, horario, setor) VALUES (332, 120, TO_TIMESTAMP('09/07/2023 06:20:00', 'DD/MM/YYYY HH24:MI:SS'), 41);
+/*
 begin
 pcdInserirOperacaoFertirrega(10, 60,TO_DATE('02/06/2023','DD/MM/YYYY'), '06:00:00',10);
 pcdInserirOperacaoFertirrega(10, 120,TO_DATE('02/07/2023','DD/MM/YYYY'), '06:00:00',10);
