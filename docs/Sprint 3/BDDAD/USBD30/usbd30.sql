@@ -2,7 +2,6 @@ create or replace NONEDITIONABLE PROCEDURE pcd_anular_operacao_prevista (idOpera
 
     v_data_operacao date;
     v_diferenca_dias number;
-    v_id_operacao number := -1;
     v_result BOOLEAN;
     ex_data_maior_que_tres_dias EXCEPTION;
     ex_operacoes_dependentes EXCEPTION;
@@ -10,7 +9,7 @@ create or replace NONEDITIONABLE PROCEDURE pcd_anular_operacao_prevista (idOpera
 
 BEGIN
 
-    v_result := verifica_id(v_id_operacao);
+    v_result := verifica_id(idOperacao);
 
     IF  v_result THEN
     RAISE ex_operacoes_dependentes;
@@ -52,6 +51,7 @@ END pcd_anular_operacao_prevista;
 
 
 
+--Função que verifica id
 
 
 CREATE OR REPLACE FUNCTION verifica_id(idOperacao INT) RETURN BOOLEAN AS
@@ -85,5 +85,58 @@ BEGIN
 ELSE
       DBMS_OUTPUT.PUT_LINE('ID ' || v_idOperacao || ' não encontrado.');
 END IF;
+END;
+/
+
+
+--testes(blocos anonimos)
+
+    set serveroutput on
+
+Insert INTO operacao (anulada,data) values (0, TO_DATE('04-01-2024', 'DD-MM-YYYY'));
+
+select id from operacao;
+
+
+INSERT INTO operacaoRegaSetor (id,duracao, horario, setor)
+VALUES (334,60, TO_TIMESTAMP('2024-01-04 15:00:00', 'YYYY-MM-DD HH24:MI:SS'), 11);
+
+select *
+from setor;
+
+
+select id from operacaoRegaSetor;
+
+
+DECLARE
+v_id_operacao operacao.id%type; -- Substitua o tipo de dado pelo tipo real da coluna ID
+BEGIN
+
+   v_id_operacao := 334;
+
+   -- Chame o procedimento pcd_anular_operacao_prevista
+   pcd_anular_operacao_prevista(v_id_operacao);
+END;
+/
+
+
+
+SELECT *
+FROM operacaoRegaSetor
+WHERE duracao = 60
+  AND EXTRACT(HOUR FROM horario) = 6
+  AND EXTRACT(MINUTE FROM horario) = 0;
+
+
+
+
+DECLARE
+v_id_operacao operacao.id%type; -- Substitua o tipo de dado pelo tipo real da coluna ID
+BEGIN
+
+   v_id_operacao := 287;
+
+   -- Chame o procedimento pcd_anular_operacao_prevista
+   pcd_anular_operacao_prevista(v_id_operacao);
 END;
 /
