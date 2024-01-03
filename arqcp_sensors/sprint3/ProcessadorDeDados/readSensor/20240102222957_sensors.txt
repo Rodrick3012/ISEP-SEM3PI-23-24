@@ -1,10 +1,10 @@
 1,1,soil_humidity,percentage,0#
-2,0,soil_humidity,percentage,0#
-3,0,atmospheric_humidity,percentage,0#
+2,0,soil_humidity,percentage,ERROR#
+3,0,atmospheric_humidity,percentage,ERROR#
 4,1,atmospheric_humidity,percentage,0#
 5,0,atmospheric_humidity,percentage,0#
 6,0,atmospheric_humidity,percentage,ERROR#
-7,0,atmospheric_temperature,celsius,0#
+7,1,atmospheric_temperature,celsius,0#
 8,0,atmospheric_temperature,celsius,ERROR#
 9,0,atmospheric_temperature,celsius,0#
-10,0,atmospheric_temperature,celsius,ERROR#
+10,0,atmospheric_temperature,celsius,0#

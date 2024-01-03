@@ -1,5 +1,5 @@
 Sensor ID: 8
-Write Counter: 0
+Write Counter: 2
 Type: atmospheric_temperature
 Unit: celsius
 Mediana: error

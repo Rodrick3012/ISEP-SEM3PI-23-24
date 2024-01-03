@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include "output_struct.h"
 
-#define MAX_LINE_LENGTH 100
+#define MAX_LINE_LENGTH 115
 #define NUM_SENSORS 10
 
 void initialize_sensor_data(SensorData *sensor){
@@ -94,7 +94,7 @@ void output_process(const char *input_directory, const char *output_directory, d
 			snprintf(input_file_path, MAX_LINE_LENGTH, "%s/%s", input_directory, entry->d_name);
 			process_file(input_file_path, output_directory);
 			
-			printf("Dados do(s) sensor(es) inseridos com sucesso!\n");
+			printf("Dados do(s) sensor(es) inseridos com sucesso atraves da saida de dados!\n");
 			usleep(execution_interval); // "Adormece" o progama pelo tempo colocado por parâmetro
 			
 			free(input_file_path);
