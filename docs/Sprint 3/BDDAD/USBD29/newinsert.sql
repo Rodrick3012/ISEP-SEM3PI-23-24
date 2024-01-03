@@ -72,7 +72,7 @@ INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from esp
 INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'NOIVA');
 INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'OLHO ABERTO');
 INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'CAMOESA ROSA');
-INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'MALÁPIO');
+INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'Malápio');
 INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'GRONHO DOCE');
 INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'PÉ DE BOI ');
 INSERT INTO planta (especieid, nomeComum, variedade) VALUES ((select id from especie where designacao like  'Malus domestica'),'Macieira', 'PINOVA');
@@ -352,10 +352,10 @@ Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where n
 Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'CAMOESA ROSA%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
 Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'CAMOESA ROSA'));
 
-Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'MALÁPIO%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
-Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'MALÁPIO%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
-Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'MALÁPIO%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
-Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'MALÁPIO'));
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'Malápio%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'Malápio%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
+Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'Malápio%'),'Agosto a setembro',(select id from TipoPeriodo where TipoPeriodo like 'dataColheita')) ;
+Insert into plantaProduto (produto,planta) values ((select id from produto where produto like 'Maçã'),(select id from planta where variedade like 'Malápio'));
 
 Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GRONHO DOCE%'),'Novembro a dezembro',(select id from TipoPeriodo where TipoPeriodo like 'dataPoda')) ;
 Insert Into Periodo (planta,Periodo,tipo) values ((select id from planta where nomecomum like 'Macieira' and variedade like 'GRONHO DOCE%'),'Março a abril',(select id from TipoPeriodo where TipoPeriodo like 'dataFloração')) ;
@@ -1105,8 +1105,7 @@ insert into cultura(planta,parcela,dataInicial) values ((select id from planta w
 Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-09','YYYY-MM-DD') and variedade like 'Porta de loja'),(select id from unidade where designacao like 'un'),50);
 Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-09','YYYY-MM-DD') and variedade like 'Porta de loja'),(select id from unidade where designacao like 'ha'),0.125);
 
-insert into plantaProduto values (3,(select id from planta where variedade like 'MALÁPIO'));
-insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'MALÁPIO'),'Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'));
+insert into cultura(planta,parcela,dataInicial) values ((select id from planta where variedade like 'Malápio'),'Lameiro do moinho',TO_DATE('2019-01-10','YYYY-MM-DD'));
 Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-10','YYYY-MM-DD') and variedade like 'Malápio'),(select id from unidade where designacao like 'un'),20);
 Insert into Quantidade (Cultura,Unidade,quantidade) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta where datainicial = TO_DATE('2019-01-10','YYYY-MM-DD') and variedade like 'Malápio'),(select id from unidade where designacao like 'ha'),0.05);
 
@@ -1171,7 +1170,7 @@ insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((selec
 
 --setor 22
 insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Porta de loja'),22,50,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
-insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'MALÁPIO'),22,20,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
+insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Malápio'),22,20,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
 insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Canada'),22,30,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
 insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Grand Fay'),22,40,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
 insert into CulturaSetor (cultura, setor,quantidade,dataInsercao) values ((select cultura.id from cultura inner join planta on planta.id=cultura.planta  where parcela = 'Lameiro do moinho' and planta.variedade = 'Gronho Doce'),22,50,TO_DATE('01-05-2019', 'DD-MM-YYYY'));
@@ -1445,7 +1444,7 @@ INSERT INTO Plantacao(id,cultura,quantidade) values (231,(select cultura.id from
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-09', 'YYYY-MM-DD'));
-INSERT INTO Plantacao(id,cultura,quantidade) values (232,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like  'MALÁPIO' and dataFinal IS NULL),20);
+INSERT INTO Plantacao(id,cultura,quantidade) values (232,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like  'Malápio' and dataFinal IS NULL),20);
 
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2019-01-10', 'YYYY-MM-DD'));
@@ -1489,8 +1488,8 @@ INSERT INTO Colheita(id,cultura,quantidade) values (242,(select cultura.id from 
 INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Gronho Doce'),242);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-10-15', 'YYYY-MM-DD'));
-INSERT INTO Colheita(id,cultura,quantidade) values (243,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like'MALÁPIO' and dataFinal IS NULL),700);
-INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'MALÁPIO'),243);
+INSERT INTO Colheita(id,cultura,quantidade) values (243,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like'Malápio' and dataFinal IS NULL),700);
+INSERT INTO Colheita_produto (produtoid,Colheitaid) values ((select p.id from produto p inner join plantaproduto pp on p.id=pp.produto inner join planta on planta.id=pp.planta where planta.variedade like 'Malápio'),243);
 
 INSERT INTO Operacao (anulada,data) values (0, TO_DATE('2023-11-12', 'YYYY-MM-DD'));
 INSERT INTO Colheita(id,cultura,quantidade) values (244,(select cultura.id from cultura inner join planta on planta.id = cultura.planta where planta.variedade like 'Porta de loja' and dataFinal IS NULL),700);

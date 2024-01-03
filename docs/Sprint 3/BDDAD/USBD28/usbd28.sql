@@ -81,21 +81,6 @@ END;
 /
 
 
-CREATE OR REPLACE TRIGGER trg_naoApagarOperacoesFertilizacao
-BEFORE DELETE ON operacaoFertilizacao
-FOR EACH ROW
-BEGIN
-    raise_application_error(-20001, 'Operations can not be deleted');
-END;
-/
-CREATE OR REPLACE TRIGGER trg_naoApagarOperacoesAplicacao
-BEFORE DELETE ON operacaoAplicacao
-FOR EACH ROW
-BEGIN
-    raise_application_error(-20001, 'Operations can not be deleted');
-END;
-/
-
 CREATE OR REPLACE TRIGGER trg_naoApagarOperacoes
 BEFORE DELETE ON operacao
 FOR EACH ROW
