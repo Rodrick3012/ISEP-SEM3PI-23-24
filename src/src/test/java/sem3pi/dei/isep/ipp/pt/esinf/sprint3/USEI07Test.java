@@ -54,6 +54,7 @@ public class USEI07Test {
 
         List<Edge<Locals,Integer>> ListEdges = new ArrayList<>();
 
+
         Map<String,Integer> stats = usei07.us07_method(graph,graph.vertices().get(0),ListEdges,hubs, LocalTime.of(14,0,0),90,150,100000,result);
 
         assertEquals(Optional.of(1).get(),stats.get("carregamentos"));

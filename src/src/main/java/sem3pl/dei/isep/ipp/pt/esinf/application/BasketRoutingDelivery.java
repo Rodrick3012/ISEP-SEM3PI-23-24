@@ -1,25 +1,20 @@
 package sem3pl.dei.isep.ipp.pt.esinf.application;
 
 import org.apache.commons.lang.ObjectUtils;
-import sem3pl.dei.isep.ipp.pt.esinf.application.domain.InfoForUs08;
-import sem3pl.dei.isep.ipp.pt.esinf.application.domain.InfoForUs06;
-import sem3pl.dei.isep.ipp.pt.esinf.application.domain.Locals;
-import sem3pl.dei.isep.ipp.pt.esinf.application.domain.LocationCriteria;
-import sem3pl.dei.isep.ipp.pt.esinf.application.domain.ShortestPath;
+import sem3pl.dei.isep.ipp.pt.esinf.application.domain.*;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.CommonGraph;
+import sem3pl.dei.isep.ipp.pt.esinf.application.graph.Edge;
 import sem3pl.dei.isep.ipp.pt.esinf.application.graph.Graph;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI02;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI03;
 import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint2.USEI04;
-import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI06;
-import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI08;
-import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI09;
-import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.USEI11;
+import sem3pl.dei.isep.ipp.pt.esinf.application.implementation.sprint3.*;
 import sem3pl.dei.isep.ipp.pt.esinf.application.repository.DistributionNetwork;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.FarmCoordinator;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Files;
 import sem3pl.dei.isep.ipp.pt.lapr3.application.utils.Utils;
 
+import java.time.LocalTime;
 import java.util.*;
 
 public class BasketRoutingDelivery implements Runnable {
@@ -47,7 +42,8 @@ public class BasketRoutingDelivery implements Runnable {
         System.out.println("6. Find the delivery circuit that starts from a origin location, passes through N hubs and returns to the origin location minimizing the total distance traveled");
         System.out.println("7. Update hubs schedule");
         System.out.println("8. Organize the locals into N clusters with 1 hub per cluster");
-        System.out.println("9. Exit");
+        System.out.println("9. Find the route for a producer departing from an origin location that maximizes the number of hubs it passes through.");
+        System.out.println("10. Exit");
         System.out.println();
         System.out.println("Select your option: ");
         try {
@@ -171,6 +167,45 @@ public class BasketRoutingDelivery implements Runnable {
                     basketRoutingDeliveryMenu();
                     break;
                 case 9:
+                    try {
+                        if(!distributionNetwork.isEmpty()) {
+                            Graph<Locals, Integer> graph = distributionNetwork.getGraph();
+                            int nHubs = Utils.readInt("Write the number of hubs");
+                            int velocidade = Utils.readInt("Write the avarage speed");
+                            int descarga = Utils.readInt("Write the unloading time");
+                            int autonomia = Utils.readInt("Write the autonomy");
+                            int hour = Utils.readInt("Write the hour");
+                            int minute = Utils.readInt("Write the minute");
+                            int second = Utils.readInt("Write the second");
+                            LocalTime time = LocalTime.of(hour, minute, second);
+
+                            List<PathMaxHubs> result=new ArrayList<>();
+                            USEI07 usei07 = new USEI07();
+
+                            USEI02 usei02 = new USEI02();
+
+                            List<Locals> hubs =  usei02.obterVerticesPorMaiorGrau(graph, nHubs);
+
+                            List<Edge<Locals,Integer>> ListEdges = new ArrayList<>();
+
+                            Map<String,Integer> stats = usei07.us07_method(graph,graph.vertices().get(0),ListEdges,hubs,time,velocidade,descarga,autonomia,result);
+
+                            System.out.println();System.out.println("Results:");
+
+                            for(PathMaxHubs i : result){
+                                System.out.println("Local: " + i.getLocais() + ", Hub: " + i.getHub()+ ", Chegada: " + i.getChegada()+ ", Partida: " + i.getPartida());
+                            }
+
+                            System.out.println(stats);System.out.println();System.out.println();
+
+
+                        } else System.err.println("Network is empty. Returning to menu.");
+                    } catch (NullPointerException e) {
+                        System.err.println("Network is empty. Returning to menu.");
+                    }
+                    basketRoutingDeliveryMenu();
+                    break;
+                case 10:
                     System.out.println("Do you really want to exit this app?");
                     sc.nextLine();
                     String exitOption = sc.nextLine();
@@ -178,6 +213,7 @@ public class BasketRoutingDelivery implements Runnable {
                         FarmCoordinator farmCoordinator = new FarmCoordinator();
                         farmCoordinator.run();
                     } else basketRoutingDeliveryMenu();
+
                     break;
                 default:
                     System.err.println("Invalid Option. Please Try Again.");
