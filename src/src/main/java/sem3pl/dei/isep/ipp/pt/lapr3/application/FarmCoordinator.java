@@ -29,8 +29,7 @@ public class FarmCoordinator implements Runnable {
         System.out.println("1. Access the irrigation sector menu");
         System.out.println("2. Access to Basket Routing and Delivery");
         System.out.println("3. Perform farm operations");
-        System.out.println("4. Import legacy file");
-        System.out.println("5. Exit");
+        System.out.println("4. Exit");
         System.out.println();
         System.out.println("Select your option: ");
         try {
@@ -49,13 +48,6 @@ public class FarmCoordinator implements Runnable {
                     operationsUI.run();
                     break;
                 case 4:
-                    ImportLegacyController importLegacyController = new ImportLegacyController();
-                    importLegacyController.writeSQLToFile(importLegacyController.readFile("Legacy_Data.xlsx"),"docs/Sprint 2/BDDAD/USBD22/insert.sql");
-                    System.out.println("File imported successfully.");
-                    System.out.println();
-                    farmCoordinatorMenu();
-                    break;
-                case 5:
                     System.out.println("Do you really want to exit the app?");
                     sc.nextLine();
                     String exitOption = sc.nextLine();

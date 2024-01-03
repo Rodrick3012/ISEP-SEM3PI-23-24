@@ -34,15 +34,15 @@ public class BasketRoutingDelivery implements Runnable {
     private void basketRoutingDeliveryMenu() {
         System.out.println("Choose the functionality you want");
         System.out.println();
-        System.out.println("1. Build the distribution network"); // USEI01
-        System.out.println("2. Determine the ideal vertices for the localization of hubs"); // USEI02
-        System.out.println("3. Calculate the minimum distance between two more remote locals"); // USEI03
-        System.out.println("4. Create the network with all locals with a minimum cost"); // USEI04
-        System.out.println("5. Finding for a producer the different routes they can take between a place of origin and a hub limited by km "); // USEI04
-        System.out.println("6. Find the delivery circuit that starts from a origin location, passes through N hubs and returns to the origin location minimizing the total distance traveled");
-        System.out.println("7. Update hubs schedule");
-        System.out.println("8. Organize the locals into N clusters with 1 hub per cluster");
-        System.out.println("9. Find the route for a producer departing from an origin location that maximizes the number of hubs it passes through.");
+        System.out.println("1. Build the distribution network [USEI01]"); // USEI01
+        System.out.println("2. Determine the ideal vertices for the localization of hubs [USEI02]"); // USEI02
+        System.out.println("3. Calculate the minimum distance between two more remote locals [USEI03]"); // USEI03
+        System.out.println("4. Create the network with all locals with a minimum cost [USEI04]"); // USEI04
+        System.out.println("5. Finding for a producer the different routes they can take between a place of origin and a hub limited by km [USEI06]");
+        System.out.println("6. Find the delivery circuit that starts from a origin location, passes through N hubs and returns to the origin location minimizing the total distance traveled [USEI08]");
+        System.out.println("7. Update hubs schedule [USEI11]");
+        System.out.println("8. Organize the locals into N clusters with 1 hub per cluster [USEI09]");
+        System.out.println("9. Find the route for a producer departing from an origin location that maximizes the number of hubs it passes through. [USEI07]");
         System.out.println("10. Exit");
         System.out.println();
         System.out.println("Select your option: ");
